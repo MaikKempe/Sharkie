@@ -1,0 +1,2 @@
+class pufferfish extends MovealbeObject {
+}
