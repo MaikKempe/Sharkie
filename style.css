@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,6 +7,6 @@ body {
 
 canvas {
     background-color: black;
-    width: 720px;
-    height: 480px;
+    width: 1280px;
+    height: 720px;
 }

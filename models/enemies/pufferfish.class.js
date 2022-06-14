@@ -1,2 +1,2 @@
-class pufferfish extends MovealbeObject {
+class Pufferfish extends MovealbeObject {
 }

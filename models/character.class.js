@@ -1,3 +1,8 @@
-class character extends MovealbeObject {
+class Character extends MovealbeObject {
+moveUp(){
 
+}
+moveDown(){
+    
+}
 }
