@@ -1,7 +1,9 @@
 class MovealbeObject {
-    x = 120;
-    y = 400;
+    x = 170;
+    y = 300;
     img;
+    height = 400;
+    width = 400;
 
     loadImage(path){
         this.img = new Image();
