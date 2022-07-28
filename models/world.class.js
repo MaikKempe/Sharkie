@@ -13,8 +13,7 @@ class World {
     }
 
     draw() {
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.height, this.character.width);
-        console.log(this.character.img);
+       this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.height, this.character.width);
     }
 
 }
