@@ -1,6 +1,6 @@
 class MovealbeObject {
-    x = 150;
-    y = 300;
+    x = 250;
+    y = 400;
     img;
     height = 100;
     width = 150;
