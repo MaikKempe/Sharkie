@@ -6,14 +6,21 @@ class World {
         new Pufferfish(),
     ];
     ctx;
+    canvas;
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
+        this.canvas = canvas;
         this.draw();
     }
 
     draw() {
-       this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.height, this.character.width);
-    }
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
+        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.height, this.character.width);
 
+        self = this;
+        requestAnimationFrame(function () { //führt draw() solange aus, wie es die Grafikkarte hergibt.
+            self.draw();
+        })
+    }
 }
