@@ -9,7 +9,7 @@ class World {
     ];
 
     backgroundObjects = [
-        new BackgroundObject('img/3_background/layers/5_water/D.png', 0, 320, 480, 720),
+        new BackgroundObject('img/3_background/layers/5_water/D.png', 0, 0, 480, 720),
     ];
     
 
