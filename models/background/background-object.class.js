@@ -1,9 +1,9 @@
 class BackgroundObject extends MovealbeObject {
-    constructor(path, x, y, height, width) {
+    constructor(path, x, width, height) {
         super().loadImage(path);
         this.x = x;
-        this.y = y;
-        this.height = height;
+        this.y = 720 - height;
         this.width = width;
+        this.height = height;
     }
 }
