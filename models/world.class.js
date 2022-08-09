@@ -29,7 +29,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         self = this;
-        requestAnimationFrame(function () { //führt draw() solange aus, wie es die Grafikkarte hergibt.
+        requestAnimationFrame( () => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
         })
     }
