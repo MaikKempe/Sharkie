@@ -4,17 +4,26 @@ class MovealbeObject {
     img;
     width;
     height;
+    imageCache = {};
 
-    loadImage(path){
+    loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
-    moveRight() {
-       
+    loadImages(array) {
+        array.forEach(path => {
+            let img = new Image();
+            img.src = path;
+            this.imageCache[path] = img;
+        });
     }
 
-    moveLeft(){
+    moveRight() {
+
+    }
+
+    moveLeft() {
 
     }
 }

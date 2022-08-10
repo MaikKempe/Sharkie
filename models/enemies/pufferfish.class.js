@@ -1,6 +1,6 @@
 class Pufferfish extends MovealbeObject {
     x = 200 + Math.random() * 400; //zahl zwischen 200 und 800;
-    y = Math.random() * 220;
+    y = Math.random() * 390;
     width = 120;
     height = 120;
 
