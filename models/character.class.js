@@ -3,7 +3,6 @@ class Character extends MovealbeObject {
     y = 150;
     width = 340;
     height = 320;
-    currentImage = 0;
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -27,19 +26,19 @@ class Character extends MovealbeObject {
     ];
 
     constructor() {
-        super().loadImage('img/1_sharkie/1_IDLE/1.png');
+        super();
+        this.loadImage('img/1_sharkie/1_IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
-        this.animate(this.IMAGES_IDLE);
+        this.animateCharacter(this.IMAGES_IDLE);
     }
 
-    animate() {
+    animateCharacter(array) {
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_IDLE.length; //modulo operator let i = 0 % 18
-            let path = this.IMAGES_IDLE[i];
+            let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
+            let path = array[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        }, 150);
-
+        }, 100);
     }
 
     moveUp() {

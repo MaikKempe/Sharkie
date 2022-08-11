@@ -5,6 +5,7 @@ class MovealbeObject {
     width;
     height;
     imageCache = {};
+    currentImage = 0;
 
     loadImage(path) {
         this.img = new Image();
