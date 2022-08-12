@@ -1,6 +1,8 @@
 class MovealbeObject {
     x;
     y;
+    speedX;
+    speedY;
     img;
     width;
     height;
@@ -25,6 +27,8 @@ class MovealbeObject {
     }
 
     moveLeft() {
-
+        setInterval(() => {
+            this.x -= this.speedX;
+        }, 1000 / 60);
     }
 }

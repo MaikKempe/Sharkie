@@ -19,6 +19,8 @@ class Pufferfish extends MovealbeObject {
         this.loadImage('img/2_enemy/1_pufferfish/1_swim/1.swim1.png');
         this.loadImages(this.IMAGES_SWIM);
         this.animatePufferfish(this.IMAGES_SWIM);
+        this.speedX = 0.15 + Math.random() * 0.5;
+        this.moveLeft();
     }
 
 

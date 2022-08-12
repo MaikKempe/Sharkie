@@ -26,8 +26,8 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
         this.addObjectsToMap(this.backgroundObjects);
-        this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
+        this.addToMap(this.character);
         self = this;
         requestAnimationFrame( () => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
