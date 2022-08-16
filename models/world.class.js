@@ -1,6 +1,7 @@
 class World {
     canvas;
     ctx;
+    keyboard;
     character = new Character();
     enemies = [
         new Pufferfish(),
@@ -17,10 +18,12 @@ class World {
     ];
     
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorldToCharacter();
     }
 
     draw() {
@@ -47,5 +50,9 @@ class World {
         catch (e) {
             console.error('Error: could not load', o.img);
         }
+    }
+
+    setWorldToCharacter() { //Keyboard acess
+        this.character.world = this;
     }
 }

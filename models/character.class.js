@@ -3,6 +3,7 @@ class Character extends MovealbeObject {
     y = 150;
     width = 340;
     height = 320;
+    world; // set world on character, to use keyboard
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
