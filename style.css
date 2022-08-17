@@ -1,3 +1,7 @@
+* {
+    font-family: 'Luckiest Guy', cursive;
+}
+
 body {
     margin: 0;
     height: 100vh;
@@ -6,8 +10,6 @@ body {
     align-items: center;
     justify-content: center;
     background-image: linear-gradient(0deg, #710da7, #2013df);
-    background-repeat: no-repeat;
-    background-size: cover;
     overflow: hidden;
 }
 
