@@ -1,6 +1,8 @@
 class Character extends MovealbeObject {
     x = 0;
     y = 150;
+    speedX = 4;
+    speedY = 4;
     width = 340;
     height = 320;
     world; // set world on character, to use keyboard
@@ -35,11 +37,73 @@ class Character extends MovealbeObject {
 
     animate(array) {
         setInterval(() => {
-            let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
-            let path = array[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            if (this.world.keyboard.UP) {
+                this.y -= this.speedY;
+            }
+        }, 1000 / 60)
+
+        setInterval(() => {
+            if (this.world.keyboard.DOWN) {
+                this.y += this.speedY;
+            }
+        }, 1000 / 60)
+
+        setInterval(() => {
+            if (this.world.keyboard.LEFT) {
+                this.x -= this.speedX;
+            }
+        }, 1000 / 60)
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT) {
+                this.x += this.speedX;
+            }
+        }, 1000 / 60)
+
+        setInterval(() => {
+            if (this.world.keyboard.UP) {
+                this.y -= this.speedY;
+                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
+                let path = array[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
         }, 100);
+
+        setInterval(() => {
+            if (this.world.keyboard.DOWN) {
+                this.y += this.speedY;
+                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
+                let path = array[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 100);
+
+        setInterval(() => {
+            if (this.world.keyboard.LEFT) {
+                this.x -= this.speedX;
+                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
+                let path = array[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 100);
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT) {
+                this.x += this.speedX;
+                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
+                let path = array[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 100);
+
+
+
+
+
     }
 
     moveUp() {
