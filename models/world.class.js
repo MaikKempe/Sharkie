@@ -44,12 +44,7 @@ class World {
     }
 
     addToMap(o) {
-        try {
             this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
-        }
-        catch (e) {
-            console.error('Error: could not load', o.img);
-        }
     }
 
     setWorldToCharacter() { //Keyboard acess
