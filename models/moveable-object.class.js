@@ -8,6 +8,7 @@ class MovealbeObject {
     height;
     imageCache = {};
     currentImage = 0;
+    otherDirection = false;
 
     loadImage(path) {
         this.img = new Image();

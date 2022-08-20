@@ -16,7 +16,7 @@ class World {
         new BackgroundObject('img/3_background/layers/2_floor/D1.png', 0, 480, 720),
         new BackgroundObject('img/3_background/layers/1_light/D1.png', 0, 480, 720),
     ];
-    
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -32,7 +32,7 @@ class World {
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
         self = this;
-        requestAnimationFrame( () => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
+        requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
         })
     }
@@ -44,7 +44,18 @@ class World {
     }
 
     addToMap(o) {
-            this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
+        if (o.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(o.width, 0);
+            this.ctx.scale(-1, 1);
+            o.x = o.x * -1;
+        };
+        this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
+        if (o.otherDirection) {
+            o.x = o.x * -1;
+            this.ctx.restore();
+            
+        }
     }
 
     setWorldToCharacter() { //Keyboard acess
