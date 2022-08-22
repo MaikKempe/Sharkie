@@ -37,24 +37,31 @@ class World {
         })
     }
 
-    addObjectsToMap(objects) {
-        objects.forEach(o => {
+    addObjectsToMap(o) {
+        o.forEach(o => {
             this.addToMap(o);
         })
     }
 
     addToMap(o) {
+        this.flipImage(o);
+        this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
+        this.flipImageBack(o)
+    }
+
+    flipImage(o) {
         if (o.otherDirection) {
             this.ctx.save();
             this.ctx.translate(o.width, 0);
             this.ctx.scale(-1, 1);
             o.x = o.x * -1;
         };
-        this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
+    }
+
+    flipImageBack(o) {
         if (o.otherDirection) {
             o.x = o.x * -1;
             this.ctx.restore();
-            
         }
     }
 

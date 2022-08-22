@@ -22,14 +22,4 @@ class MovealbeObject {
             this.imageCache[path] = img;
         });
     }
-
-    moveRight() {
-
-    }
-
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speedX;
-        }, 1000 / 60);
-    }
 }

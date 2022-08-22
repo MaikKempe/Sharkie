@@ -21,6 +21,13 @@ class Pufferfish extends MovealbeObject {
         this.loadImages(this.IMAGES_SWIM);
         this.animate(this.IMAGES_SWIM);
         this.moveLeft();
+   
+    }
+
+    moveLeft() {
+        setInterval(() => {
+            this.x -= this.speedX;
+        }, 1000 / 60);
     }
 
 
