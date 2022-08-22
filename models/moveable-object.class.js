@@ -15,8 +15,8 @@ class MovealbeObject {
         this.img.src = path;
     }
 
-    loadImages(array) {
-        array.forEach(path => {
+    loadImages(arr) {
+        arr.forEach(path => {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;

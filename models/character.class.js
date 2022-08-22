@@ -35,15 +35,15 @@ class Character extends MovealbeObject {
         this.animate(this.IMAGES_IDLE);
     }
 
-    animate(array) {
-        this.moveUp(array);
-        this.moveDown(array);
-        this.moveLeft(array);
-        this.moveRight(array);
+    animate(arr) {
+        this.moveUp(arr);
+        this.moveDown(arr);
+        this.moveLeft(arr);
+        this.moveRight(arr);
     }
 
 
-    moveUp(array) {
+    moveUp(arr) {
         setInterval(() => {
             if (this.world.keyboard.UP) {
                 this.y -= this.speedY;
@@ -53,8 +53,8 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.world.keyboard.UP) {
                 this.y -= this.speedY;
-                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
-                let path = array[i];
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
@@ -62,7 +62,7 @@ class Character extends MovealbeObject {
     }
 
 
-    moveDown(array) {
+    moveDown(arr) {
         setInterval(() => {
             if (this.world.keyboard.DOWN) {
                 this.y += this.speedY;
@@ -72,8 +72,8 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.world.keyboard.DOWN) {
                 this.y += this.speedY;
-                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
-                let path = array[i];
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
@@ -81,7 +81,7 @@ class Character extends MovealbeObject {
     }
 
 
-    moveLeft(array) {
+    moveLeft(arr) {
         setInterval(() => {
             if (this.world.keyboard.LEFT) {
                 this.x -= this.speedX;
@@ -92,8 +92,8 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.world.keyboard.LEFT) {
                 this.x -= this.speedX;
-                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
-                let path = array[i];
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
@@ -101,8 +101,8 @@ class Character extends MovealbeObject {
 
     }
 
-    
-    moveRight(array) {
+
+    moveRight(arr) {
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speedX;
@@ -113,8 +113,8 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speedX;
-                let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
-                let path = array[i];
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }

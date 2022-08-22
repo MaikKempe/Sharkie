@@ -31,10 +31,10 @@ class Pufferfish extends MovealbeObject {
     }
 
 
-    animate(array) {
+    animate(arr) {
         setInterval(() => {
-            let i = this.currentImage % array.length; //modulo operator let i = 0 % 18
-            let path = array[i];
+            let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+            let path = arr[i];
             this.img = this.imageCache[path];
             this.currentImage++;
         }, 100);
