@@ -86,6 +86,7 @@ class Character extends MovealbeObject {
             if (this.world.keyboard.LEFT) {
                 this.x -= this.speedX;
                 this.otherDirection = true;
+                this.moveBackgroundX();
             }
         }, 1000 / 60)
 
@@ -107,6 +108,7 @@ class Character extends MovealbeObject {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speedX;
                 this.otherDirection = false;
+                this.moveBackgroundX();
             }
         }, 1000 / 60)
 
@@ -119,5 +121,9 @@ class Character extends MovealbeObject {
                 this.currentImage++;
             }
         }, 100);
+    }
+
+    moveBackgroundX() {
+        this.world.camera_x = -this.x;
     }
 }

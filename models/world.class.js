@@ -2,6 +2,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
     character = new Character();
     enemies = [
         new Pufferfish(),
@@ -28,9 +29,11 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
+        this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.backgroundObjects);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
+        this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
