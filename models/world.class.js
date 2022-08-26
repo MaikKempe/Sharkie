@@ -3,20 +3,13 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    startX = -350;
+    endX = 4 * 719;
+    startY = -150;
+    endY = 210;
     character = new Character();
-    enemies = [
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-    ];
-
-    backgroundObjects = [
-        new BackgroundObject('img/3_background/layers/5_water/D1.png', 0, 480, 720),
-        new BackgroundObject('img/3_background/layers/4_fondo2/D1.png', 0, 480, 720),
-        new BackgroundObject('img/3_background/layers/3_fondo1/D1.png', 0, 480, 720),
-        new BackgroundObject('img/3_background/layers/2_floor/D1.png', 0, 480, 720),
-        new BackgroundObject('img/3_background/layers/1_light/D1.png', 0, 480, 720),
-    ];
+    enemies = level1.enemies;
+    backgroundObjects = level1.backgroundObjects;
 
 
     constructor(canvas, keyboard) {

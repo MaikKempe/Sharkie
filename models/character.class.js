@@ -1,11 +1,12 @@
 class Character extends MovealbeObject {
     x = 0;
-    y = 150;
+    y = 0;
     speedX = 4;
     speedY = 4;
     width = 340;
     height = 320;
-    world; // set world on character, to use keyboard
+    startY = 10;
+    world; // set world on character, to use keyboard, getting Starting
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -36,83 +37,46 @@ class Character extends MovealbeObject {
     }
 
     animate(arr) {
-        this.moveUp(arr);
-        this.moveDown(arr);
-        this.moveLeft(arr);
-        this.moveRight(arr);
-    }
-
-
-    moveUp(arr) {
         setInterval(() => {
-            if (this.world.keyboard.UP) {
+            if (this.world.keyboard.UP && this.y > this.world.startY) {
                 this.y -= this.speedY;
             }
-        }, 1000 / 60);
-
-        setInterval(() => {
-            if (this.world.keyboard.UP) {
-                this.y -= this.speedY;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
-            }
-        }, 100);
-    }
-
-
-    moveDown(arr) {
-        setInterval(() => {
-            if (this.world.keyboard.DOWN) {
+            if (this.world.keyboard.DOWN && this.y < this.world.endY) {
                 this.y += this.speedY;
             }
-        }, 1000 / 60)
-
-        setInterval(() => {
-            if (this.world.keyboard.DOWN) {
-                this.y += this.speedY;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
-            }
-        }, 100);
-    }
-
-
-    moveLeft(arr) {
-        setInterval(() => {
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > this.world.startX) {//end of map
                 this.x -= this.speedX;
                 this.otherDirection = true;
-                this.moveBackgroundX();
             }
-        }, 1000 / 60)
-
-        setInterval(() => {
-            if (this.world.keyboard.LEFT) {
-                this.x -= this.speedX;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
-            }
-        }, 100);
-
-    }
-
-
-    moveRight(arr) {
-        setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speedX;
                 this.otherDirection = false;
-                this.moveBackgroundX();
             }
-        }, 1000 / 60)
+            this.world.camera_x = -this.x + 10; //spawn position, movebackground
+        }, 1000 / 60);
 
         setInterval(() => {
+            if (this.world.keyboard.UP && this.y > this.world.startY) {
+                this.y -= this.speedY;
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+            if (this.world.keyboard.DOWN && this.y < this.world.endY) {
+                this.y += this.speedY;
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+            if (this.world.keyboard.LEFT && this.x > this.world.startX) { // end of map
+                this.x -= this.speedX;
+                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
+                let path = arr[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speedX;
                 let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
@@ -121,9 +85,5 @@ class Character extends MovealbeObject {
                 this.currentImage++;
             }
         }, 100);
-    }
-
-    moveBackgroundX() {
-        this.world.camera_x = -this.x;
     }
 }
