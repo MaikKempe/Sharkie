@@ -37,6 +37,7 @@ class Character extends MovealbeObject {
     }
 
     animate(arr) {
+        //animate movement, FPS
         setInterval(() => {
             if (this.world.keyboard.UP && this.y > this.world.startY) {
                 this.y -= this.speedY;
@@ -54,7 +55,7 @@ class Character extends MovealbeObject {
             }
             this.world.camera_x = -this.x + 10; //spawn position, movebackground
         }, 1000 / 60);
-
+        //animate images of character
         setInterval(() => {
             if (this.world.keyboard.UP && this.y > this.world.startY) {
                 this.y -= this.speedY;
