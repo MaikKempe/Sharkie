@@ -5,7 +5,6 @@ class Character extends MovealbeObject {
     speedY = 4;
     width = 340;
     height = 320;
-    startY = 10;
     world; // set world on character, to use keyboard, getting Starting
 
     IMAGES_IDLE = [
@@ -39,17 +38,17 @@ class Character extends MovealbeObject {
     animate(arr) {
         //animate movement, FPS
         setInterval(() => {
-            if (this.world.keyboard.UP && this.y > this.world.startY) {
+            if (this.world.keyboard.UP && this.y > this.world.level.startY) {
                 this.y -= this.speedY;
             }
-            if (this.world.keyboard.DOWN && this.y < this.world.endY) {
+            if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
                 this.y += this.speedY;
             }
-            if (this.world.keyboard.LEFT && this.x > this.world.startX) {//end of map
+            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) {//end of map
                 this.x -= this.speedX;
                 this.otherDirection = true;
             }
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speedX;
                 this.otherDirection = false;
             }
@@ -57,28 +56,28 @@ class Character extends MovealbeObject {
         }, 1000 / 60);
         //animate images of character
         setInterval(() => {
-            if (this.world.keyboard.UP && this.y > this.world.startY) {
+            if (this.world.keyboard.UP && this.y > this.world.level.startY) {
                 this.y -= this.speedY;
                 let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
                 let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
-            if (this.world.keyboard.DOWN && this.y < this.world.endY) {
+            if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
                 this.y += this.speedY;
                 let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
                 let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
-            if (this.world.keyboard.LEFT && this.x > this.world.startX) { // end of map
+            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
                 this.x -= this.speedX;
                 let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
                 let path = arr[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speedX;
                 let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
                 let path = arr[i];

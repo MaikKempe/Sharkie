@@ -3,10 +3,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    startX = -350;
-    endX = 4 * 719;
-    startY = -150;
-    endY = 210;
+    level = level1;
     character = new Character();
     enemies = level1.enemies;
     backgroundObjects = level1.backgroundObjects;
@@ -23,8 +20,8 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.backgroundObjects);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         self = this;
