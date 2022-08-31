@@ -8,6 +8,9 @@ class Character extends MovealbeObject {
     startY = 10;
     world; // set world on character, to use keyboard, getting Starting
 
+    AUDIO_SLAP = new Audio('audio/slap.mp3');
+
+
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
         'img/1_sharkie/1_IDLE/2.png',
@@ -39,6 +42,7 @@ class Character extends MovealbeObject {
     animate(arr) {
         //animate movement, FPS
         setInterval(() => {
+            //   this.AUDIO_SLAP.pause();
             if (this.world.keyboard.UP && this.y > this.world.startY) {
                 this.y -= this.speedY;
             }
@@ -52,6 +56,10 @@ class Character extends MovealbeObject {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speedX;
                 this.otherDirection = false;
+            }
+
+            if (this.world.keyboard.SPACE) {
+                this.AUDIO_SLAP.play();
             }
             this.world.camera_x = -this.x + 10; //spawn position, movebackground
         }, 1000 / 60);
