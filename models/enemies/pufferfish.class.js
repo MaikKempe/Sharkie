@@ -11,7 +11,6 @@ class Pufferfish extends MovealbeObject {
         'img/2_enemy/1_pufferfish/1_swim/1.swim3.png',
         'img/2_enemy/1_pufferfish/1_swim/1.swim4.png',
         'img/2_enemy/1_pufferfish/1_swim/1.swim5.png',
-        
     ];
 
 

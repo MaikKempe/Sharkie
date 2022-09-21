@@ -9,7 +9,6 @@ class Character extends MovealbeObject {
 
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
-
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
         'img/1_sharkie/1_IDLE/2.png',
