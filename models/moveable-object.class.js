@@ -22,4 +22,11 @@ class MovealbeObject {
             this.imageCache[path] = img;
         });
     }
+
+    playAnimation(images) {
+        let i = this.currentImage % images.length; //modulo operator let i = 0 % 18
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
 }

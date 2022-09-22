@@ -37,7 +37,7 @@ class Character extends MovealbeObject {
         this.animate(this.IMAGES_IDLE);
     }
 
-    animate(arr) {
+    animate(images) {
         //animate movement, FPS
         setInterval(() => {
             //   this.AUDIO_SLAP.pause();
@@ -66,31 +66,19 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.world.keyboard.UP && this.y > this.world.level.startY) {
                 this.y -= this.speedY;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(images);
             }
             if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
                 this.y += this.speedY;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(images);
             }
             if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
                 this.x -= this.speedX;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(images);
             }
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speedX;
-                let i = this.currentImage % arr.length; //modulo operator let i = 0 % 18
-                let path = arr[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(images);
             }
         }, 100);
     }

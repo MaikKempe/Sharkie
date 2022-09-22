@@ -39,7 +39,7 @@ class World {
     addToMap(o) {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
-        this.flipImageBack(o)
+        this.flipImageBack(o);
     }
 
     flipImage(o) {
