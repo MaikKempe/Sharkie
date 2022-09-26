@@ -33,6 +33,6 @@ class Pufferfish extends MovealbeObject {
     animate(images) {
         setInterval(() => {
             this.playAnimation(images);
-        }, 100);
+        }, 1000 / 10);
     }
 }
