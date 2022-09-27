@@ -1,8 +1,8 @@
 class Endboss extends MovealbeObject {
     height = 420;
     width = 360;
-    x = 4 * 719; // end of map
-    y = 0;
+    x;
+    y;
     IMAGES_SWIM = [
         'img/2_enemy/3_final_enemy/2_floating/1.png',
         'img/2_enemy/3_final_enemy/2_floating/2.png',
@@ -19,10 +19,12 @@ class Endboss extends MovealbeObject {
         'img/2_enemy/3_final_enemy/2_floating/13.png',
     ];
 
-    constructor() {
+    constructor(x, y) {
         super();
         this.loadImage('img/2_enemy/3_final_enemy/2_floating/1.png');
         this.loadImages(this.IMAGES_SWIM);
+        this.x = x;
+        this.y = y;
         this.animate(this.IMAGES_SWIM);
     }
 

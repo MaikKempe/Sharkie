@@ -4,7 +4,7 @@ const level1 = new Level(
         new Pufferfish_normal(900, 0),
         new Pufferfish_normal(500, 0),
         new Pufferfish_hard(1200, 0),
-        new Endboss(),
+        new Endboss(4 * 719, 0),
     ],
     [
         new BackgroundObject('img/3_background/layers/5_water/D2.png', -719, 720, 480),

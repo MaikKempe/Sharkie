@@ -2,8 +2,8 @@ class Pufferfish_hard extends MovealbeObject {
     x;
     y;
     speedX = 0.15 + Math.random() * 0.5;
-    width = 120;
-    height = 120;
+    width = 100;
+    height = 100;
 
     IMAGES_SWIM = [
         'img/2_enemy/1_pufferfish/1_swim/2.swim1.png',
