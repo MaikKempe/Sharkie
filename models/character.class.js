@@ -86,7 +86,6 @@ class Character extends MovealbeObject {
                 this.x += this.speedX;
                 this.otherDirection = false;
             }
-
             if (this.world.keyboard.SPACE) {
                 this.AUDIO_SLAP.play();
             }
