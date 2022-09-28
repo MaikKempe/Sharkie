@@ -1,8 +1,6 @@
 class Pufferfish_normal extends MovealbeObject {
-    x;
-    y;
     speedX = 0.15 + Math.random() * 0.5;
-    width = 100;
+    width = 105;
     height = 120;
 
     IMAGES_SWIM = {

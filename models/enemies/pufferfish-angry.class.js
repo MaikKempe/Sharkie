@@ -1,7 +1,7 @@
 class PufferfishAngry extends MovealbeObject {
     speedX = 0.1 + Math.random() * 0.3;
-    width = 110;
-    height = 150;
+    width = 115;
+    height = 145;
 
     IMAGES_SWIM = [
         'img/2_enemy/1_pufferfish/1_swim/3.swim1.png',
