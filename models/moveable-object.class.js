@@ -1,11 +1,5 @@
 class MovealbeObject {
-    x;
-    y;
-    speedX;
-    speedY;
     img;
-    width;
-    height;
     imageCache = {};
     currentImage = 0;
     otherDirection = false;

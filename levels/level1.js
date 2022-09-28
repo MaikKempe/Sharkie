@@ -1,9 +1,9 @@
 const level1 = new Level(
     [
-        new Pufferfish_normal(600, 0),
-        new Pufferfish_normal(900, 0),
-        new Pufferfish_normal(500, 0),
-        new Pufferfish_hard(1200, 0),
+        new Pufferfish_normal(600, 0, 'green'),
+        new Pufferfish_normal(900, 0, 'orange'),
+        new Pufferfish_normal(500, 0, 'orange'),
+        new PufferfishAngry(1200, 70),
         new Endboss(4 * 719, 0),
     ],
     [

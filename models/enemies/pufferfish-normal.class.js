@@ -2,25 +2,34 @@ class Pufferfish_normal extends MovealbeObject {
     x;
     y;
     speedX = 0.15 + Math.random() * 0.5;
-    width = 120;
+    width = 100;
     height = 120;
 
-    IMAGES_SWIM = [
-        'img/2_enemy/1_pufferfish/1_swim/1.swim1.png',
-        'img/2_enemy/1_pufferfish/1_swim/1.swim2.png',
-        'img/2_enemy/1_pufferfish/1_swim/1.swim3.png',
-        'img/2_enemy/1_pufferfish/1_swim/1.swim4.png',
-        'img/2_enemy/1_pufferfish/1_swim/1.swim5.png',
-    ];
+    IMAGES_SWIM = {
+        'green': [
+            'img/2_enemy/1_pufferfish/1_swim/1.swim1.png',
+            'img/2_enemy/1_pufferfish/1_swim/1.swim2.png',
+            'img/2_enemy/1_pufferfish/1_swim/1.swim3.png',
+            'img/2_enemy/1_pufferfish/1_swim/1.swim4.png',
+            'img/2_enemy/1_pufferfish/1_swim/1.swim5.png',
+        ],
+        'orange': [
+            'img/2_enemy/1_pufferfish/1_swim/2.swim1.png',
+            'img/2_enemy/1_pufferfish/1_swim/2.swim2.png',
+            'img/2_enemy/1_pufferfish/1_swim/2.swim3.png',
+            'img/2_enemy/1_pufferfish/1_swim/2.swim4.png',
+            'img/2_enemy/1_pufferfish/1_swim/2.swim5.png',
+        ]
+    }
 
 
-    constructor(x, y) {
+    constructor(x, y, color) {
         super();
-        this.loadImage('img/2_enemy/1_pufferfish/1_swim/1.swim1.png');
-        this.loadImages(this.IMAGES_SWIM);
+        this.loadImage(this.IMAGES_SWIM[color][0]);
+        this.loadImages(this.IMAGES_SWIM[color]);
         this.x = x;
         this.y = y;
-        this.animate();
+        this.animate(this.IMAGES_SWIM[color]);
         this.moveLeft();
 
     }
@@ -32,9 +41,9 @@ class Pufferfish_normal extends MovealbeObject {
     }
 
 
-    animate() {
+    animate(images) {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIM);
+            this.playAnimation(images);
         }, 1000 / 10);
     }
 }
