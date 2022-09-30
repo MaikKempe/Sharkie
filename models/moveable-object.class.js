@@ -17,6 +17,12 @@ class MovealbeObject {
         });
     }
 
+    animate(images) {
+        setInterval(() => {
+            this.playAnimation(images);
+        }, 1000 / 10);
+    }
+
     playAnimation(images) {
         let i = this.currentImage % images.length; //modulo operator let i = 0 % 18
         let path = images[i];

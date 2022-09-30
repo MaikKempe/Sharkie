@@ -61,10 +61,10 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_SWIMMING);
-        this.animate();
+        this.animateCharacter();
     }
 
-    animate() {
+    animateCharacter() {
         this.animateMovement();
         this.animateImages();
     }
