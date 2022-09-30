@@ -7,6 +7,9 @@ const level1 = new Level(
         new Endboss(4 * 719, 0),
     ],
     [
+        new Coin(400, 0)
+    ],
+    [
         new BackgroundObject('img/3_background/layers/5_water/D2.png', -719, 720, 480),
         new BackgroundObject('img/3_background/layers/4_fondo2/D2.png', -719, 720, 480),
         new BackgroundObject('img/3_background/layers/3_fondo1/D2.png', -719, 720, 480),

@@ -20,7 +20,6 @@ class PufferfishNormal extends Pufferfish {
         ]
     }
 
-
     constructor(x, y, color) {
         super();
         this.loadImage(this.IMAGES_SWIM[color][0]);

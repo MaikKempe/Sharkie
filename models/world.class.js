@@ -6,6 +6,7 @@ class World {
     level = level1;
     character = new Character();
     enemies = level1.enemies;
+    collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
 
 
@@ -21,6 +22,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.collectableObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
