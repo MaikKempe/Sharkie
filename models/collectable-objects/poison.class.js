@@ -1,4 +1,6 @@
 class Poison extends CollectableObject {
+    width = 60;
+    height = 50;
     IMAGES = [
         'img/4_marcadores/poison/animada/1.png',
         'img/4_marcadores/poison/animada/2.png',
