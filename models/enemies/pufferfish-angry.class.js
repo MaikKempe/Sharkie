@@ -1,4 +1,4 @@
-class PufferfishAngry extends MovealbeObject {
+class PufferfishAngry extends Pufferfish {
     speedX = 0.1 + Math.random() * 0.3;
     width = 115;
     height = 145;
@@ -43,20 +43,7 @@ class PufferfishAngry extends MovealbeObject {
         this.loadImages(this.IMAGES_SWIM);
         this.x = x;
         this.y = y;
-        this.animate();
-        this.moveLeft();
-    }
-
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speedX;
-        }, 1000 / 60);
-    }
-
-
-    animate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIM);
-        }, 1000 / 10);
+        this.animate(this.IMAGES_SWIM);
+        this.moveLeft(this.speedX);
     }
 }

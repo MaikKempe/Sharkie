@@ -1,4 +1,4 @@
-class Pufferfish_normal extends MovealbeObject {
+class PufferfishNormal extends Pufferfish {
     speedX = 0.15 + Math.random() * 0.5;
     width = 105;
     height = 120;
@@ -28,20 +28,6 @@ class Pufferfish_normal extends MovealbeObject {
         this.x = x;
         this.y = y;
         this.animate(this.IMAGES_SWIM[color]);
-        this.moveLeft();
-
-    }
-
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speedX;
-        }, 1000 / 60);
-    }
-
-
-    animate(images) {
-        setInterval(() => {
-            this.playAnimation(images);
-        }, 1000 / 10);
+        this.moveLeft(this.speedX);
     }
 }
