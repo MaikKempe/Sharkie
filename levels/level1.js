@@ -3,12 +3,10 @@ const level1 = new Level(
         new PufferfishNormal(180, 30, 'green'),
         new PufferfishNormal(140, 140, 'orange'),
         new PufferfishNormal(190, 350, 'green'),
-
         new PufferfishNormal(530, 220, 'green'),
         new PufferfishNormal(630, 350, 'orange'),
         new PufferfishNormal(700, 0, 'green'),
         new PufferfishNormal(820, 120, 'orange'),
-
         new PufferfishAngry(1000, 250),
         new PufferfishNormal(1070, 10, 'green'),
         new PufferfishNormal(1400, 150, 'orange'),
@@ -17,11 +15,9 @@ const level1 = new Level(
         new PufferfishAngry(2000, 110),
         new PufferfishNormal(2100, 0, 'orange'),
         new PufferfishNormal(2100, 280, 'green'),
-      
         new PufferfishAngry(2500, 360),
         new PufferfishNormal(2600, 160, 'orange'),
         new PufferfishNormal(2700, 30, 'green'),
-
         new PufferfishAngry(3200, 300),
         new PufferfishNormal(3500, 80, 'green'),
         new PufferfishNormal(3600, 360, 'green'),
@@ -35,13 +31,17 @@ const level1 = new Level(
         new PufferfishAngry(5000, 70),
         new PufferfishNormal(5000, 320, 'orange'),
         new PufferfishNormal(5000, 180, 'green'),
-
-        new Endboss(3.5 * 720, 0),
+        new Endboss(2500, 0),
     ],
     [
-        new Coin(400, 50),
-        new Coin(1200, 100),
-        new Poison(300, 100)
+        new Coin(140, 90),
+        new Coin(600, 370),
+        new Coin(950, 200),
+        new Coin(1400, 405),
+        new Coin(1800, 140),
+        new Poison(-280, 110),
+        new Poison(1000, 350),
+        new Poison(1500, 90),
     ],
     [
         new BackgroundObject('img/3_background/layers/5_water/D.png', -720, 720 * 2, 480),
