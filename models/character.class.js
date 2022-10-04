@@ -1,6 +1,6 @@
 class Character extends MovealbeObject {
     x = -450;
-    y = 0;
+    y = 100;
     speedX = 4;
     speedY = 4;
     width = 340;
