@@ -2,7 +2,7 @@ class Level {
     enemies;
     collectableObjects;
     backgroundObjects;
-    levelStartX = -350;
+    levelStartX = -700;
     levelEndX = 4 * 720;
     startY = -150;
     endY = 210;

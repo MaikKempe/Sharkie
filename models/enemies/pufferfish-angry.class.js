@@ -1,5 +1,4 @@
 class PufferfishAngry extends Pufferfish {
-    speedX = 0.1 + Math.random() * 0.3;
     width = 115;
     height = 145;
 
@@ -14,6 +13,11 @@ class PufferfishAngry extends Pufferfish {
         'img/2_enemy/1_pufferfish/2_transition/3.transition3.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition4.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition5.png',
+        'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim1.png',
+        'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim2.png',
+        'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim3.png',
+        'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim4.png',
+        'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim5.png',
         'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim1.png',
         'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim2.png',
         'img/2_enemy/1_pufferfish/3_bubbleeswim/3.bubbleswim3.png',
@@ -44,6 +48,6 @@ class PufferfishAngry extends Pufferfish {
         this.x = x;
         this.y = y;
         this.animate(this.IMAGES_SWIM);
-        this.moveLeft(this.speedX);
+        this.moveLeft();
     }
 }

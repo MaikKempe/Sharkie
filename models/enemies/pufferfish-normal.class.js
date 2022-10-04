@@ -1,5 +1,4 @@
 class PufferfishNormal extends Pufferfish {
-    speedX = 0.15 + Math.random() * 0.5;
     width = 105;
     height = 120;
 
@@ -27,6 +26,6 @@ class PufferfishNormal extends Pufferfish {
         this.x = x;
         this.y = y;
         this.animate(this.IMAGES_SWIM[color]);
-        this.moveLeft(this.speedX);
+        this.moveLeft();
     }
 }
