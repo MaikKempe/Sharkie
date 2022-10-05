@@ -52,8 +52,19 @@ class Character extends MovealbeObject {
         'img/1_sharkie/3_swim/3.png',
         'img/1_sharkie/3_swim/4.png',
         'img/1_sharkie/3_swim/5.png',
-        'img/1_sharkie/3_swim/6.png'
+        'img/1_sharkie/3_swim/6.png',
     ];
+
+    IMAGES_SLAPPING = [
+        'img/1_sharkie/4_attack/fin_slap/1.png',
+        'img/1_sharkie/4_attack/fin_slap/2.png',
+        'img/1_sharkie/4_attack/fin_slap/3.png',
+        'img/1_sharkie/4_attack/fin_slap/4.png',
+        'img/1_sharkie/4_attack/fin_slap/5.png',
+        'img/1_sharkie/4_attack/fin_slap/6.png',
+        'img/1_sharkie/4_attack/fin_slap/7.png',
+        'img/1_sharkie/4_attack/fin_slap/8.png'
+    ]
 
     constructor() {
         super();
@@ -61,6 +72,7 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_SLAPPING);
         this.animateCharacter();
     }
 
@@ -88,6 +100,7 @@ class Character extends MovealbeObject {
             }
             if (this.world.keyboard.SPACE) {
                 this.AUDIO_SLAP.play();
+                this.playAnimation(this.IMAGES_SLAPPING);
             }
             this.world.camera_x = -this.x + 10; //spawn position, movebackground
         }, 1000 / 60);
@@ -121,6 +134,8 @@ class Character extends MovealbeObject {
     noKeyIsPressed() {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
     }
+
+   
 
 
 }
