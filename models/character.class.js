@@ -74,6 +74,7 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_SLAPPING);
         this.animateCharacter();
+        this.playCharacterSounds();
     }
 
     animateCharacter() {
@@ -97,10 +98,6 @@ class Character extends MovealbeObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speedX;
                 this.otherDirection = false;
-            }
-            if (this.world.keyboard.SPACE) {
-                this.AUDIO_SLAP.play();
-                this.playAnimation(this.IMAGES_SLAPPING);
             }
             this.world.camera_x = -this.x + 10; //spawn position, movebackground
         }, 1000 / 60);
@@ -128,6 +125,10 @@ class Character extends MovealbeObject {
                 this.x += this.speedX;
                 this.playAnimation(this.IMAGES_SWIMMING);
             }
+            if (this.world.keyboard.SPACE) {
+                this.AUDIO_SLAP.play();
+                this.playAnimation(this.IMAGES_SLAPPING);
+            }
         }, 1000 / 10);
     }
 
@@ -135,7 +136,12 @@ class Character extends MovealbeObject {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
     }
 
-   
+    playCharacterSounds() {
+        setInterval(() => {
+            if (this.world.keyboard.SPACE) {
+                this.AUDIO_SLAP.play();
+            }
+        }, 1000 / 60);
 
-
+    }
 }
