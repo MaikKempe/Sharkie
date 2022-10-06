@@ -8,6 +8,7 @@ function init() {
 }
 
 window.addEventListener('keydown', (event) => {
+    keyboard.lastEvent = new Date().getTime();
     if (event.key == 'ArrowUp') {
         keyboard.UP = true;
     }
@@ -32,6 +33,7 @@ window.addEventListener('keydown', (event) => {
 });
 
 window.addEventListener('keyup', (event) => {
+    keyboard.lastEvent = new Date().getTime();
     if (event.key == 'ArrowUp') {
         keyboard.UP = false;
     }

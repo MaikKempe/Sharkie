@@ -109,6 +109,11 @@ class Character extends MovealbeObject {
             if (this.noKeyIsPressed()) {
                 this.playAnimation(this.IMAGES_IDLE);
             }
+            /** 
+            if (this.isLongIdle() && this.noKeyIsPressed) {
+                this.playAnimation(this.IMAGES_SLEEPING);
+            }
+            */
             if (this.world.keyboard.UP && this.y > this.world.level.startY) {
                 this.y -= this.speedY;
                 this.playAnimation(this.IMAGES_SWIMMING);
@@ -142,6 +147,10 @@ class Character extends MovealbeObject {
                 this.AUDIO_SLAP.play();
             }
         }, 1000 / 60);
+    }
 
+    isLongIdle() {
+        let secondsUntilSleeping = new Date().getTime() - this.world.keyboard.lastEvent;
+        return secondsUntilSleeping > 4000;
     }
 }

@@ -6,4 +6,5 @@ class Keyboard {
     SPACE;
     V;
     B;
+    lastEvent = 0;
 }
