@@ -3,6 +3,8 @@ class MovealbeObject {
     imageCache = {};
     currentImage = 0;
     otherDirection = false;
+    animationStarted = false;
+    animationFinished = false;
 
     loadImage(path) {
         this.img = new Image();
@@ -17,16 +19,44 @@ class MovealbeObject {
         });
     }
 
-    animate(images) {
+    animate(images, option) {
         setInterval(() => {
-            this.playAnimation(images);
+            this.playAnimation(images, option);
         }, 1000 / 10);
     }
 
-    playAnimation(images) {
-        let i = this.currentImage % images.length; //modulo operator let i = 0 % 18
+    playAnimation(images, option) {
+        if (option == 'once' && !this.animationFinished) {
+            this.playAnimationOnce(images);
+            
+        } else if (option == 'multiple') {
+           this.playAnimationMultiple(images);
+        }
+    }
+
+    playAnimationOnce(images){
+        if (!this.animationStarted) {
+            this.currentImage = 0;
+        }
+
+        this.animationStarted = true;
+        let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+
+        if (this.currentImage == images.length) {
+            this.animationFinished = true;
+            this.animationStarted = false;
+        }
+    }
+
+    playAnimationMultiple(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+        this.animationFinished = false;
     }
 }
+

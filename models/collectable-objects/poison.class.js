@@ -17,6 +17,6 @@ class Poison extends CollectableObject {
         this.loadImages(this.IMAGES);
         this.x = x;
         this.y = y;
-        this.animate(this.IMAGES);
+        this.animate(this.IMAGES, 'multiple');
     }
 }

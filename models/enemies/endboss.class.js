@@ -12,9 +12,7 @@ class Endboss extends MovealbeObject {
         'img/2_enemy/3_final_enemy/2_floating/8.png',
         'img/2_enemy/3_final_enemy/2_floating/9.png',
         'img/2_enemy/3_final_enemy/2_floating/10.png',
-        'img/2_enemy/3_final_enemy/2_floating/11.png',
-        'img/2_enemy/3_final_enemy/2_floating/12.png',
-        'img/2_enemy/3_final_enemy/2_floating/13.png',
+        'img/2_enemy/3_final_enemy/2_floating/11.png'
     ];
 
     constructor(x, y) {
@@ -23,12 +21,6 @@ class Endboss extends MovealbeObject {
         this.loadImages(this.IMAGES_SWIM);
         this.x = x;
         this.y = y;
-        this.animate(this.IMAGES_SWIM);
-    }
-
-    animate(images) {
-        setInterval(() => {
-            this.playAnimation(images);
-        }, 100);
+        this.animate(this.IMAGES_SWIM, 'multiple');
     }
 }

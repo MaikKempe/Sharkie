@@ -25,7 +25,7 @@ class PufferfishNormal extends Pufferfish {
         this.loadImages(this.IMAGES_SWIM[color]);
         this.x = x;
         this.y = y;
-        this.animate(this.IMAGES_SWIM[color]);
+        this.animate(this.IMAGES_SWIM[color], 'multiple');
         this.moveLeft();
     }
 }

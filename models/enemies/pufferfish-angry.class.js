@@ -47,7 +47,7 @@ class PufferfishAngry extends Pufferfish {
         this.loadImages(this.IMAGES_SWIM);
         this.x = x;
         this.y = y;
-        this.animate(this.IMAGES_SWIM);
+        this.animate(this.IMAGES_SWIM, 'multiple');
         this.moveLeft();
     }
 }

@@ -106,35 +106,33 @@ class Character extends MovealbeObject {
     animateImages() {
         //animate images of character
         setInterval(() => {
-            if (this.noKeyIsPressed()) {
-                this.playAnimation(this.IMAGES_IDLE);
-            }
-            /** 
-            if (this.isLongIdle() && this.noKeyIsPressed) {
-                this.playAnimation(this.IMAGES_SLEEPING);
-            }
-            */
-            if (this.world.keyboard.UP && this.y > this.world.level.startY) {
-                this.y -= this.speedY;
-                this.playAnimation(this.IMAGES_SWIMMING);
-            }
             if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
                 this.y += this.speedY;
-                this.playAnimation(this.IMAGES_SWIMMING);
-            }
-            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
+                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+            } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
                 this.x -= this.speedX;
-                this.playAnimation(this.IMAGES_SWIMMING);
-            }
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
+                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+            } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speedX;
-                this.playAnimation(this.IMAGES_SWIMMING);
+                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+            } else if (this.world.keyboard.UP && this.y > this.world.level.startY) {
+                this.y -= this.speedY;
+                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+            } else if (this.world.keyboard.SPACE) {
+                this.keepKeyActive();
+                this.playAnimation(this.IMAGES_SLAPPING, 'once');
+            } else if (this.isLongIdle() && this.noKeyIsPressed) {
+                this.playAnimation(this.IMAGES_SLEEPING, 'multiple');
+            } else {
+                this.playAnimation(this.IMAGES_IDLE, 'multiple');
             }
-            if (this.world.keyboard.SPACE) {
-                this.AUDIO_SLAP.play();
-                this.playAnimation(this.IMAGES_SLAPPING);
-            }
-        }, 1000 / 10);
+        }, 150);
+    }
+
+    keepKeyActive() {
+        if (this.animationStarted = true) {
+            this.world.keyboard.SPACE = true;
+        }
     }
 
     noKeyIsPressed() {
