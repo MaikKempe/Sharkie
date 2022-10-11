@@ -4,7 +4,7 @@ class MovealbeObject {
     currentImage = 0;
     otherDirection = false;
     animationStarted = false;
-    animationFinished = false;
+    animationStopped = false;
 
     loadImage(path) {
         this.img = new Image();
@@ -26,7 +26,7 @@ class MovealbeObject {
     }
 
     playAnimation(images, option) {
-        if (option == 'once' && !this.animationFinished) {
+        if (option == 'once' && !this.animationStopped) {
             this.playAnimationOnce(images);
             
         } else if (option == 'multiple') {
@@ -46,7 +46,7 @@ class MovealbeObject {
         this.currentImage++;
 
         if (this.currentImage == images.length) {
-            this.animationFinished = true;
+            this.animationStopped = true;
             this.animationStarted = false;
         }
     }
@@ -56,7 +56,7 @@ class MovealbeObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-        this.animationFinished = false;
+        this.animationStopped = false;
     }
 }
 

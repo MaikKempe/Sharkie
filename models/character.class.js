@@ -7,6 +7,7 @@ class Character extends MovealbeObject {
     height = 320;
     world; // set world on character, to use keyboard, getting Starting
     activeEvent = false;
+    isSlapping = false;
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
     IMAGES_IDLE = [
@@ -79,6 +80,7 @@ class Character extends MovealbeObject {
 
     animateCharacter() {
         this.animateMovement();
+        this.listenForSingleAnimations();
         this.animateImages();
     }
     //animate movement, FPS
@@ -103,23 +105,24 @@ class Character extends MovealbeObject {
         }, 1000 / 60);
     }
 
+    listenForSingleAnimations() {
+        setInterval(() => {
+            this.listenForSlapAnimation();
+        }, 100);
+    }
+
     animateImages() {
         //animate images of character
         setInterval(() => {
             if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
-                this.y += this.speedY;
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
-                this.x -= this.speedX;
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
-                this.x += this.speedX;
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.world.keyboard.UP && this.y > this.world.level.startY) {
-                this.y -= this.speedY;
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.SPACE) {
-                this.slapAttack();
+            } else if (this.isSlapping) {
                 this.playAnimation(this.IMAGES_SLAPPING, 'once');
             } else if (this.isLongIdle() && this.noKeyIsPressed) {
                 this.playAnimation(this.IMAGES_SLEEPING, 'multiple');
@@ -129,13 +132,11 @@ class Character extends MovealbeObject {
         }, 100);
     }
 
-    slapAttack() {
-        this.keepKeyActive();
-        this.activeEvent = true;
-    }
+    listenForSlapAnimation() {
+        if (this.world.keyboard.SPACE && !this.activeEvent) {
+            this.currentImage = 0;
+            this.isSlapping = true;
 
-    keepKeyActive() {
-        if (!this.activeEvent) {
             let spacePressed = setInterval(() => {
                 this.world.keyboard.SPACE = true;
                 this.activeEvent = true;
@@ -144,11 +145,11 @@ class Character extends MovealbeObject {
             setTimeout(() => {
                 this.world.keyboard.SPACE = false;
                 this.activeEvent = false;
+                this.isSlapping = false;
                 clearInterval(spacePressed);
             }, 1000);
         }
     }
-
 
     noKeyIsPressed() {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
@@ -159,11 +160,11 @@ class Character extends MovealbeObject {
             if (this.world.keyboard.SPACE) {
                 this.AUDIO_SLAP.play();
             }
-        }, 1000 / 60);
+        }, 1000);
     }
 
     isLongIdle() {
         let secondsUntilSleeping = new Date().getTime() - this.world.keyboard.lastEvent;
-        return secondsUntilSleeping > 4000;
+        return secondsUntilSleeping > 3000;
     }
 }
