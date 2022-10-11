@@ -6,7 +6,7 @@ class Character extends MovealbeObject {
     width = 340;
     height = 320;
     world; // set world on character, to use keyboard, getting Starting
-
+    activeEvent = false;
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
     IMAGES_IDLE = [
@@ -52,7 +52,7 @@ class Character extends MovealbeObject {
         'img/1_sharkie/3_swim/3.png',
         'img/1_sharkie/3_swim/4.png',
         'img/1_sharkie/3_swim/5.png',
-        'img/1_sharkie/3_swim/6.png',
+        'img/1_sharkie/3_swim/6.png'
     ];
 
     IMAGES_SLAPPING = [
@@ -119,21 +119,36 @@ class Character extends MovealbeObject {
                 this.y -= this.speedY;
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.world.keyboard.SPACE) {
-                this.keepKeyActive();
+                this.slapAttack();
                 this.playAnimation(this.IMAGES_SLAPPING, 'once');
             } else if (this.isLongIdle() && this.noKeyIsPressed) {
                 this.playAnimation(this.IMAGES_SLEEPING, 'multiple');
             } else {
                 this.playAnimation(this.IMAGES_IDLE, 'multiple');
             }
-        }, 150);
+        }, 100);
+    }
+
+    slapAttack() {
+        this.keepKeyActive();
+        this.activeEvent = true;
     }
 
     keepKeyActive() {
-        if (this.animationStarted = true) {
-            this.world.keyboard.SPACE = true;
+        if (!this.activeEvent) {
+            let spacePressed = setInterval(() => {
+                this.world.keyboard.SPACE = true;
+                this.activeEvent = true;
+            }, 100);
+
+            setTimeout(() => {
+                this.world.keyboard.SPACE = false;
+                this.activeEvent = false;
+                clearInterval(spacePressed);
+            }, 1000);
         }
     }
+
 
     noKeyIsPressed() {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
