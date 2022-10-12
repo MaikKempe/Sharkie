@@ -5,6 +5,7 @@ class MovealbeObject {
     otherDirection = false;
     animationStarted = false;
     animationStopped = false;
+    activeEvent = false;
 
     loadImage(path) {
         this.img = new Image();

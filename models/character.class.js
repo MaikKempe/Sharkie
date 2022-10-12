@@ -6,8 +6,9 @@ class Character extends MovealbeObject {
     width = 340;
     height = 320;
     world; // set world on character, to use keyboard, getting Starting
-    activeEvent = false;
     isSlapping = false;
+    isBubbling = false;
+    isPoisonedBubbling = false;
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
     IMAGES_IDLE = [
@@ -56,7 +57,7 @@ class Character extends MovealbeObject {
         'img/1_sharkie/3_swim/6.png'
     ];
 
-    IMAGES_SLAPPING = [
+    IMAGES_SLAP_ATTACK = [
         'img/1_sharkie/4_attack/fin_slap/1.png',
         'img/1_sharkie/4_attack/fin_slap/2.png',
         'img/1_sharkie/4_attack/fin_slap/3.png',
@@ -65,7 +66,29 @@ class Character extends MovealbeObject {
         'img/1_sharkie/4_attack/fin_slap/6.png',
         'img/1_sharkie/4_attack/fin_slap/7.png',
         'img/1_sharkie/4_attack/fin_slap/8.png'
-    ]
+    ];
+
+    IMAGES_BUBBLE_ATTACK = [
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/1.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/2.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/3.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/4.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/5.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/6.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/7.png',
+        'img/1_sharkie/4_attack/bubble_trap/op_1_bubble_formation/8.png'
+    ];
+
+    IMAGES_POISONED_BUBBLE_ATTACK = [
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/1.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/2.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/3.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/4.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/5.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/6.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/7.png',
+        'img/1_sharkie/4_attack/bubble_trap/for_whale/8.png'
+    ];
 
     constructor() {
         super();
@@ -73,14 +96,16 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_SWIMMING);
-        this.loadImages(this.IMAGES_SLAPPING);
+        this.loadImages(this.IMAGES_SLAP_ATTACK);
+        this.loadImages(this.IMAGES_BUBBLE_ATTACK);
+        this.loadImages(this.IMAGES_POISONED_BUBBLE_ATTACK);
         this.animateCharacter();
         this.playCharacterSounds();
     }
 
     animateCharacter() {
         this.animateMovement();
-        this.listenForSingleAnimations();
+        this.activateSingleAnimations();
         this.animateImages();
     }
     //animate movement, FPS
@@ -105,9 +130,12 @@ class Character extends MovealbeObject {
         }, 1000 / 60);
     }
 
-    listenForSingleAnimations() {
+    //listen for Single Animationstart
+    activateSingleAnimations() {
         setInterval(() => {
-            this.listenForSlapAnimation();
+            this.activateSlapAnimation();
+            this.activateBubbleAttack();
+            this.activatePoisonedBubbleAttack();
         }, 100);
     }
 
@@ -123,7 +151,11 @@ class Character extends MovealbeObject {
             } else if (this.world.keyboard.UP && this.y > this.world.level.startY) {
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.isSlapping) {
-                this.playAnimation(this.IMAGES_SLAPPING, 'once');
+                this.playAnimation(this.IMAGES_SLAP_ATTACK, 'once');
+            } else if (this.isBubbling) {
+                this.playAnimation(this.IMAGES_BUBBLE_ATTACK, 'once');
+            } else if (this.isPoisonedBubbling) {
+                this.playAnimation(this.IMAGES_POISONED_BUBBLE_ATTACK, 'once');
             } else if (this.isLongIdle() && this.noKeyIsPressed) {
                 this.playAnimation(this.IMAGES_SLEEPING, 'multiple');
             } else {
@@ -132,12 +164,12 @@ class Character extends MovealbeObject {
         }, 100);
     }
 
-    listenForSlapAnimation() {
+    activateSlapAnimation() {
         if (this.world.keyboard.SPACE && !this.activeEvent) {
             this.currentImage = 0;
             this.isSlapping = true;
 
-            let spacePressed = setInterval(() => {
+            let keepKeyActive = setInterval(() => {
                 this.world.keyboard.SPACE = true;
                 this.activeEvent = true;
             }, 100);
@@ -146,7 +178,45 @@ class Character extends MovealbeObject {
                 this.world.keyboard.SPACE = false;
                 this.activeEvent = false;
                 this.isSlapping = false;
-                clearInterval(spacePressed);
+                clearInterval(keepKeyActive);
+            }, 1000);
+        }
+    }
+
+    activateBubbleAttack() {
+        if (this.world.keyboard.B && !this.activeEvent) {
+            this.currentImage = 0;
+            this.isBubbling = true;
+
+            let keepKeyActive = setInterval(() => {
+                this.world.keyboard.B = true;
+                this.activeEvent = true;
+            }, 100);
+
+            setTimeout(() => {
+                this.world.keyboard.B = false;
+                this.activeEvent = false;
+                this.isBubbling = false;
+                clearInterval(keepKeyActive);
+            }, 1000);
+        }
+    }
+
+    activatePoisonedBubbleAttack() {
+        if (this.world.keyboard.V && !this.activeEvent) {
+            this.currentImage = 0;
+            this.isPoisonedBubbling = true;
+
+            let keepKeyActive = setInterval(() => {
+                this.world.keyboard.V = true;
+                this.activeEvent = true;
+            }, 100);
+
+            setTimeout(() => {
+                this.world.keyboard.V = false;
+                this.activeEvent = false;
+                this.isPoisonedBubbling = false;
+                clearInterval(keepKeyActive);
             }, 1000);
         }
     }
