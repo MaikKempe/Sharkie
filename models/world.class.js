@@ -42,6 +42,12 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
+
+        this.ctx.beginPath();
+        this.ctx.lineWidth = '6';
+        this.ctx.strokeStyle = 'red';
+        this.ctx.rect(o.x, o.y, o.height, o.width);
+        this.ctx.stroke();
     }
 
     flipImage(o) {
