@@ -91,16 +91,16 @@ class Character extends MovealbeObject {
         'img/1_sharkie/4_attack/bubble_trap/for_whale/7.png',
         'img/1_sharkie/4_attack/bubble_trap/for_whale/8.png'
     ];
-
-    IMAGES_ELECTROSHOCK = [
-        'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
-        'img/1_sharkie/5_hurt/2_electric_shock/.o2.png',
-        'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
-        'img/1_sharkie/5_hurt/2_electric_shock/.o2.png',
-        'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
-        'img/1_sharkie/5_hurt/2_electric_shock/.o2.png'
-    ];
-
+    /** 
+        IMAGES_ELECTROSHOCK = [
+            'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
+            'img/1_sharkie/5_hurt/2_electric_shock/.o2.png',
+            'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
+            'img/1_sharkie/5_hurt/2_electric_shock/.o2.png',
+            'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
+            'img/1_sharkie/5_hurt/2_electric_shock/.o2.png'
+        ];
+    */
     constructor() {
         super();
         this.loadImage('img/1_sharkie/1_IDLE/1.png');
@@ -110,7 +110,7 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_SLAP_ATTACK);
         this.loadImages(this.IMAGES_BUBBLE_ATTACK);
         this.loadImages(this.IMAGES_POISONED_BUBBLE_ATTACK);
-        this.loadImages(this.IMAGES_ELECTROSHOCK);
+      //  this.loadImages(this.IMAGES_ELECTROSHOCK);
         this.animateCharacter();
         this.playCharacterSounds();
     }
