@@ -17,7 +17,6 @@ class World {
         this.draw();
         this.setWorldToCharacter();
         this.checkCollisions();
-        console.log(this.character.x);
     }
 
     draw() {

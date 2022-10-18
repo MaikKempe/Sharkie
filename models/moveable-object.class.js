@@ -61,11 +61,11 @@ class MovealbeObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Pufferfish || this instanceof Endboss) {
+        if (this instanceof Character/**  || this instanceof Pufferfish || this instanceof Endboss*/) {
             ctx.beginPath();
             ctx.lineWidth = '6';
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.collisionHeight, this.collisionWidth);
+            ctx.rect(this.x + 10, this.y, this.height - 65, this.width - 65);
             ctx.stroke();
         }
     }
