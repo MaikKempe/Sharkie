@@ -65,18 +65,14 @@ class MovealbeObject {
             ctx.beginPath();
             ctx.lineWidth = '6';
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.height, this.width);
+            ctx.rect(this.x, this.y, this.collisionHeight, this.collisionWidth);
             ctx.stroke();
         }
     }
 
 
-    isColliding(obj) {
-        return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
-            (this.Y + this.offsetY + this.height) >= obj.Y &&
-            (this.Y + this.offsetY) <= (obj.Y + obj.height) &&
-            obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-
+    isColliding(o) {
+        return this.x + this.width > o.x && this.y + this.height > o.y && this.x < o.x && this.y < o.y + o.height;
     }
 
 }
