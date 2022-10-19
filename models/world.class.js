@@ -43,9 +43,13 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
-        o.drawFrame(this.ctx);
-
+        this.drawHitbox(o);
     }
+
+    drawHitbox(o){
+        o.drawHitboxCharacter(this.ctx);
+    }
+
 
     flipImage(o) {
         if (o.otherDirection) {
@@ -71,7 +75,7 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
-                    console.log('Collision with', enemy);
+                   // console.log('Collision with', enemy);
                 }
             });
         }, 1000);

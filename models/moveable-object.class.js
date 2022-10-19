@@ -60,12 +60,12 @@ class MovealbeObject {
         this.animationStopped = false;
     }
 
-    drawFrame(ctx) {
-        if (this instanceof Character/**  || this instanceof Pufferfish || this instanceof Endboss*/) {
+    drawHitboxCharacter(ctx) {
+        if (this instanceof Character) {
             ctx.beginPath();
-            ctx.lineWidth = '6';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x + 10, this.y, this.height - 65, this.width - 65);
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'red';9
+            ctx.rect(this.x + 100, this.y + 185, this.height - 185, this.width - 280);
             ctx.stroke();
         }
     }
