@@ -48,6 +48,7 @@ class World {
 
     drawHitbox(o){
         o.drawHitboxCharacter(this.ctx);
+        o.drawHitboxPufferfishNormal(this.ctx);
     }
 
 
@@ -75,10 +76,10 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
-                   // console.log('Collision with', enemy);
+                   console.log('Collision with', enemy);
                 }
             });
-        }, 1000);
+        }, 100);
 
 
     }

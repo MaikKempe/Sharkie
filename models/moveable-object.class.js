@@ -64,15 +64,27 @@ class MovealbeObject {
         if (this instanceof Character) {
             ctx.beginPath();
             ctx.lineWidth = '3';
-            ctx.strokeStyle = 'red';9
-            ctx.rect(this.x + 100, this.y + 185, this.height - 185, this.width - 280);
+            ctx.strokeStyle = 'red'; 9
+            ctx.rect(this.x + 95, this.y + 177, this.height - 175, this.width - 270);
             ctx.stroke();
         }
     }
 
+    drawHitboxPufferfishNormal(ctx) {
+        if (this instanceof PufferfishNormal) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'red'; 9
+            ctx.rect(this.x, this.y, this.height, this.width);
+            ctx.stroke();
+        }
+    }
 
+   // return (this.x + 20) + (this.width - 40) > mo.x && (this.y + 65) + (this.height - 90) > mo.y && (this.x + 20) < mo.x + (this.width - 40) && (this.y + 65) < mo.y + mo.height;
     isColliding(o) {
-        return this.x + this.width > o.x && this.y + this.height > o.y && this.x < o.x && this.y < o.y + o.height;
+        if (this instanceof Character) {
+            return (this.x + 95) + (this.width - 270) > o.x && (this.y + 177) + (this.height -175) > o.y && (this.x + 95) < o.x + (this.width - 270) && (this.y + 177) < o.y + o.height;
+        }
     }
 
 }
