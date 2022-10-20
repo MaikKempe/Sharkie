@@ -5,6 +5,12 @@ class Character extends MovealbeObject {
     speedY = 4;
     width = 340;
     height = 320;
+    offset = {
+        x: 95,
+        y: 170,
+        width: 95,
+        height: 170
+    };
     world; // set world on character, to use keyboard, getting Starting
     isHurt = false;
     isSlapping = false;
@@ -110,7 +116,7 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_SLAP_ATTACK);
         this.loadImages(this.IMAGES_BUBBLE_ATTACK);
         this.loadImages(this.IMAGES_POISONED_BUBBLE_ATTACK);
-      //  this.loadImages(this.IMAGES_ELECTROSHOCK);
+        //  this.loadImages(this.IMAGES_ELECTROSHOCK);
         this.animateCharacter();
         this.playCharacterSounds();
     }

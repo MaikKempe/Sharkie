@@ -65,7 +65,8 @@ class MovealbeObject {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red'; 9
-            ctx.rect(this.x + 95, this.y + 177, this.height - 175, this.width - 270);
+            ctx.rect(this.x + this.offset.x, this.y + this.offset.y, this.width - this.offset.width - this.offset.x, this.height - this.offset.height - this.offset.y);
+            //  ctx.rect(this.x + 95, this.y + 177, this.height - 175, this.width - 270);
             ctx.stroke();
         }
     }
@@ -80,10 +81,12 @@ class MovealbeObject {
         }
     }
 
-   // return (this.x + 20) + (this.width - 40) > mo.x && (this.y + 65) + (this.height - 90) > mo.y && (this.x + 20) < mo.x + (this.width - 40) && (this.y + 65) < mo.y + mo.height;
-    isColliding(o) {
+    isColliding(mo) {
         if (this instanceof Character) {
-            return (this.x + 95) + (this.width - 270) > o.x && (this.y + 177) + (this.height -175) > o.y && (this.x + 95) < o.x + (this.width - 270) && (this.y + 177) < o.y + o.height;
+            return this.x + this.width - this.offset.width > mo.x &&
+                this.y + this.height - this.offset.height > mo.y &&
+                this.x + this.offset.x < mo.x + mo.width &&
+                this.y + this.offset.y < mo.y + mo.height;
         }
     }
 
