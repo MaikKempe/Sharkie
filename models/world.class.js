@@ -43,12 +43,7 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
-        this.drawHitbox(o);
-    }
-
-    drawHitbox(o){
-        o.drawHitboxCharacter(this.ctx);
-        o.drawHitboxPufferfishNormal(this.ctx);
+        o.drawHitbox(this.ctx);
     }
 
 

@@ -6,6 +6,12 @@ class MovealbeObject {
     animationStarted = false;
     animationStopped = false;
     activeEvent = false;
+    offset = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
+    };
 
     loadImage(path) {
         this.img = new Image();
@@ -60,34 +66,21 @@ class MovealbeObject {
         this.animationStopped = false;
     }
 
-    drawHitboxCharacter(ctx) {
-        if (this instanceof Character) {
+    drawHitbox(ctx) {
+        if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishAngry) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red'; 9
             ctx.rect(this.x + this.offset.x, this.y + this.offset.y, this.width - this.offset.width - this.offset.x, this.height - this.offset.height - this.offset.y);
-            //  ctx.rect(this.x + 95, this.y + 177, this.height - 175, this.width - 270);
-            ctx.stroke();
-        }
-    }
-
-    drawHitboxPufferfishNormal(ctx) {
-        if (this instanceof PufferfishNormal) {
-            ctx.beginPath();
-            ctx.lineWidth = '3';
-            ctx.strokeStyle = 'red'; 9
-            ctx.rect(this.x, this.y, this.height, this.width);
             ctx.stroke();
         }
     }
 
     isColliding(mo) {
-        if (this instanceof Character) {
-            return this.x + this.width - this.offset.width > mo.x &&
-                this.y + this.height - this.offset.height > mo.y &&
-                this.x + this.offset.x < mo.x + mo.width &&
-                this.y + this.offset.y < mo.y + mo.height;
-        }
+        return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&
+            this.y + this.height - this.offset.height > mo.y + mo.offset.y &&
+            this.x + this.offset.x < mo.x + mo.width - mo.offset.width &&
+            this.y + this.offset.y < mo.y + mo.height - mo.offset.height;
     }
 
 }

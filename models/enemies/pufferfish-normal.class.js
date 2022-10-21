@@ -1,6 +1,12 @@
 class PufferfishNormal extends Pufferfish {
     width = 105;
     height = 120;
+    offset = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
+    };
 
     IMAGES_SWIM = {
         'green': [
