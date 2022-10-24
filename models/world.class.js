@@ -67,11 +67,11 @@ class World {
         this.character.world = this;
     }
 
-    checkCollisions(){
+    checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy)) {
-                   console.log('Collision with', enemy);
+                if (this.character.isColliding(enemy)) {
+                    this.character.energy -= 20;
                 }
             });
         }, 100);

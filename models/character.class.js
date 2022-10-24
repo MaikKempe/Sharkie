@@ -12,6 +12,7 @@ class Character extends MovealbeObject {
         height: 80,
     };
     world; // set world on character, to use keyboard, getting Starting
+    energy = 100;
     isHurt = false;
     isSlapping = false;
     isBubbling = false;

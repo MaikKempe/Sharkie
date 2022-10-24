@@ -12,6 +12,7 @@ class MovealbeObject {
         width: 0,
         height: 0
     };
+    energy;
 
     loadImage(path) {
         this.img = new Image();
