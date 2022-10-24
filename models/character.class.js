@@ -6,10 +6,10 @@ class Character extends MovealbeObject {
     width = 320;
     height = 320;
     offset = {
-        x: 85,
-        y: 205,
-        width: 95,
-        height: 170
+        x: 75,
+        y: 160,
+        width: 75,
+        height: 80,
     };
     world; // set world on character, to use keyboard, getting Starting
     isHurt = false;

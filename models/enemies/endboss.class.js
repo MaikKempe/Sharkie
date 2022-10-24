@@ -1,6 +1,12 @@
 class Endboss extends MovealbeObject {
     height = 420;
-    width = 360;
+    width = 420;
+    offset = {
+        x: 25,
+        y: 200,
+        width: 40,
+        height: 80
+    };
     IMAGES_SWIM = [
         'img/2_enemy/3_final_enemy/2_floating/1.png',
         'img/2_enemy/3_final_enemy/2_floating/2.png',

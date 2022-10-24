@@ -67,7 +67,7 @@ class MovealbeObject {
     }
 
     drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishAngry) {
+        if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishAngry || this instanceof Endboss || this instanceof CollectableObject) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red'; 9

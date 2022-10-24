@@ -1,6 +1,12 @@
 class Poison extends CollectableObject {
     width = 60;
     height = 50;
+    offset = {
+        x: 7,
+        y: 5,
+        width: 18,
+        height: -7
+    };
     IMAGES = [
         'img/4_marcadores/poison/animada/1.png',
         'img/4_marcadores/poison/animada/2.png',

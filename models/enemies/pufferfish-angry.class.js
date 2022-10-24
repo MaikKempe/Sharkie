@@ -2,10 +2,10 @@ class PufferfishAngry extends Pufferfish {
     width = 115;
     height = 145;
     offset = {
-        x: 0,
-        y: 0,
+        x: 7,
+        y: 9,
         width: 0,
-        height: 0
+        height: 45
     };
 
     IMAGES_SWIM = [
