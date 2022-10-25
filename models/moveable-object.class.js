@@ -84,5 +84,18 @@ class MovealbeObject {
             this.y + this.offset.y < mo.y + mo.height - mo.offset.height;
     }
 
+    hit() {
+
+        this.energy -= 20;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+        console.log(this.energy)
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
 }
 

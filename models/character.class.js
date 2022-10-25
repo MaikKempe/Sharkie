@@ -98,6 +98,21 @@ class Character extends MovealbeObject {
         'img/1_sharkie/4_attack/bubble_trap/for_whale/7.png',
         'img/1_sharkie/4_attack/bubble_trap/for_whale/8.png'
     ];
+
+    IMAGES_DEAD = [
+        'img/1_sharkie/6_dead/1_poisoned/1.png',
+        'img/1_sharkie/6_dead/1_poisoned/2.png',
+        'img/1_sharkie/6_dead/1_poisoned/3.png',
+        'img/1_sharkie/6_dead/1_poisoned/4.png',
+        'img/1_sharkie/6_dead/1_poisoned/5.png',
+        'img/1_sharkie/6_dead/1_poisoned/6.png',
+        'img/1_sharkie/6_dead/1_poisoned/7.png',
+        'img/1_sharkie/6_dead/1_poisoned/8.png',
+        'img/1_sharkie/6_dead/1_poisoned/9.png',
+        'img/1_sharkie/6_dead/1_poisoned/10.png',
+        'img/1_sharkie/6_dead/1_poisoned/11.png',
+        'img/1_sharkie/6_dead/1_poisoned/12.png'
+    ];
     /** 
         IMAGES_ELECTROSHOCK = [
             'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
@@ -117,6 +132,7 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_SLAP_ATTACK);
         this.loadImages(this.IMAGES_BUBBLE_ATTACK);
         this.loadImages(this.IMAGES_POISONED_BUBBLE_ATTACK);
+        this.loadImages(this.IMAGES_DEAD);
         //  this.loadImages(this.IMAGES_ELECTROSHOCK);
         this.animateCharacter();
         this.playCharacterSounds();
@@ -161,7 +177,9 @@ class Character extends MovealbeObject {
     animateImages() {
         //animate images of character
         setInterval(() => {
-            if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD, 'once');
+            } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
