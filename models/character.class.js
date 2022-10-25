@@ -99,6 +99,13 @@ class Character extends MovealbeObject {
         'img/1_sharkie/4_attack/bubble_trap/for_whale/8.png'
     ];
 
+    IMAGES_HURT = [
+        'img/1_sharkie/5_hurt/1_poisoned/1.png',
+        'img/1_sharkie/5_hurt/1_poisoned/2.png',
+        'img/1_sharkie/5_hurt/1_poisoned/3.png',
+        'img/1_sharkie/5_hurt/1_poisoned/4.png',
+    ];
+
     IMAGES_DEAD = [
         'img/1_sharkie/6_dead/1_poisoned/1.png',
         'img/1_sharkie/6_dead/1_poisoned/2.png',
@@ -132,6 +139,7 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_SLAP_ATTACK);
         this.loadImages(this.IMAGES_BUBBLE_ATTACK);
         this.loadImages(this.IMAGES_POISONED_BUBBLE_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         //  this.loadImages(this.IMAGES_ELECTROSHOCK);
         this.animateCharacter();
@@ -179,6 +187,8 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
+            } else if (this.isHurt1()) {
+                this.playAnimation(this.IMAGES_HURT, 'multiple');
             } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
@@ -271,7 +281,7 @@ class Character extends MovealbeObject {
     }
 
     isLongIdle() {
-        let secondsUntilSleeping = new Date().getTime() - this.world.keyboard.lastEvent;
-        return secondsUntilSleeping > 3000;
+        let timePassed = new Date().getTime() - this.world.keyboard.lastEvent;
+        return timePassed > 3000;
     }
 }

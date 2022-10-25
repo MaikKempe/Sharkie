@@ -6,6 +6,7 @@ class MovealbeObject {
     animationStarted = false;
     animationStopped = false;
     activeEvent = false;
+    lastHit = 0;
     offset = {
         x: 0,
         y: 0,
@@ -85,12 +86,19 @@ class MovealbeObject {
     }
 
     hit() {
-
-        this.energy -= 20;
+        this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
         console.log(this.energy)
+    }
+
+    isHurt1() {
+        let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
+        timePassed = timePassed / 1000; // Difference in s
+        return timePassed < 0.5;
     }
 
     isDead() {
