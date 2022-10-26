@@ -155,17 +155,17 @@ class Character extends MovealbeObject {
     animateMovement() {
         setInterval(() => {
             //   this.AUDIO_SLAP.pause();
-            if (this.world.keyboard.UP && this.y > this.world.level.startY) {
+            if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead()) {
                 this.y -= this.speedY;
             }
-            if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
+            if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead()) {
                 this.y += this.speedY;
             }
-            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) {//end of map
+            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead()) {//end of map
                 this.x -= this.speedX;
                 this.otherDirection = true;
             }
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead()) {
                 this.x += this.speedX;
                 this.otherDirection = false;
             }
@@ -212,7 +212,7 @@ class Character extends MovealbeObject {
     }
 
     activateSlapAnimation() {
-        if (this.world.keyboard.SPACE && !this.activeEvent) {
+        if (this.world.keyboard.SPACE && !this.activeEvent && !this.isDead()) {
             this.currentImage = 0;
             this.isSlapping = true;
 
@@ -231,7 +231,7 @@ class Character extends MovealbeObject {
     }
 
     activateBubbleAttack() {
-        if (this.world.keyboard.B && !this.activeEvent) {
+        if (this.world.keyboard.B && !this.activeEvent && !this.isDead()) {
             this.currentImage = 0;
             this.isBubbling = true;
 
@@ -250,7 +250,7 @@ class Character extends MovealbeObject {
     }
 
     activatePoisonedBubbleAttack() {
-        if (this.world.keyboard.V && !this.activeEvent) {
+        if (this.world.keyboard.V && !this.activeEvent && !this.isDead()) {
             this.currentImage = 0;
             this.isPoisonedBubbling = true;
 
