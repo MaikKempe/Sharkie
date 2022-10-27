@@ -1,7 +1,4 @@
-class MovealbeObject {
-    img;
-    imageCache = {};
-    currentImage = 0;
+class MovealbeObject extends DrawableObject {
     otherDirection = false;
     animationStarted = false;
     animationStopped = false;
@@ -14,19 +11,6 @@ class MovealbeObject {
         height: 0
     };
     energy;
-
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
 
     animate(images, option) {
         setInterval(() => {
