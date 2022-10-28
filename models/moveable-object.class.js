@@ -51,17 +51,7 @@ class MovealbeObject extends DrawableObject {
         this.currentImage++;
         this.animationStopped = false;
     }
-
-    drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishAngry || this instanceof Endboss || this instanceof CollectableObject) {
-            ctx.beginPath();
-            ctx.lineWidth = '3';
-            ctx.strokeStyle = 'red'; 9
-            ctx.rect(this.x + this.offset.x, this.y + this.offset.y, this.width - this.offset.width - this.offset.x, this.height - this.offset.height - this.offset.y);
-            ctx.stroke();
-        }
-    }
-
+    
     isColliding(mo) {
         return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&
             this.y + this.height - this.offset.height > mo.y + mo.offset.y &&

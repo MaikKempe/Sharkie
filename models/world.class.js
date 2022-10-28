@@ -4,6 +4,7 @@ class World {
     keyboard;
     camera_x = 0;
     level = level1;
+    statusbar = new StatusBar();
     character = new Character();
     enemies = level1.enemies;
     collectableObjects = level1.collectableObjects;
@@ -26,7 +27,9 @@ class World {
         this.addObjectsToMap(this.level.collectableObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
+       
         this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusbar);
         self = this;
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
