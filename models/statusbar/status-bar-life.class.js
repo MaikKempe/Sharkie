@@ -1,0 +1,4 @@
+class StatusBarLife extends StatusBar {
+
+
+}
