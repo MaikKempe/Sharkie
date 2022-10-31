@@ -4,6 +4,7 @@ class MovealbeObject extends DrawableObject {
     animationStopped = false;
     activeEvent = false;
     lastHit = 0;
+    attack;
     offset = {
         x: 0,
         y: 0,
@@ -59,8 +60,8 @@ class MovealbeObject extends DrawableObject {
             this.y + this.offset.y < mo.y + mo.height - mo.offset.height;
     }
 
-    hit() {
-        this.energy -= 5;
+    hit(attack) {
+        this.energy -= attack;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

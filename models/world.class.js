@@ -4,7 +4,7 @@ class World {
     keyboard;
     camera_x = 0;
     level = level1;
-    statusbar = new StatusBar();
+    statusbarLife = new StatusBarLife();
     character = new Character();
     enemies = level1.enemies;
     collectableObjects = level1.collectableObjects;
@@ -30,7 +30,7 @@ class World {
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         // space for fixed objects
-        this.addToMap(this.statusbar);
+        this.addToMap(this.statusbarLife);
         self = this;
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
@@ -75,7 +75,7 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    this.character.hit();
+                    this.character.hit(enemy.attack);
                 }
             });
         }, 100);

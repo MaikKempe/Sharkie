@@ -7,6 +7,7 @@ class PufferfishAngry extends Pufferfish {
         width: 0,
         height: 45
     };
+    attack = 20;
 
     IMAGES_SWIM = [
         'img/2_enemy/1_pufferfish/1_swim/3.swim1.png',
