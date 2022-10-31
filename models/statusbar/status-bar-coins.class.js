@@ -1,6 +1,6 @@
 class StatusBarCoins extends StatusBar {
     x = 20;
-    y = 30;
+    y = 35;
     percentage = 0;
     IMAGES = [
      'img/4_marcadores/green/coin/0_copia4.png',
