@@ -1,6 +1,6 @@
 class StatusBarLife extends StatusBar {
     x = 20;
-    y = 0;
+    y = -5;
     percentage = 100;
     IMAGES = [
         'img/4_marcadores/green/life/0_copia3.png',
@@ -16,6 +16,4 @@ class StatusBarLife extends StatusBar {
         this.loadImages(this.IMAGES);
         this.setPercentage(100);
     }
-
-
 }

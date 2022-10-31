@@ -5,6 +5,8 @@ class World {
     camera_x = 0;
     level = level1;
     statusbarLife = new StatusBarLife();
+    statusbarCoins = new StatusBarCoins();
+    statusbarPoison = new StatusBarPoison();
     character = new Character();
     enemies = level1.enemies;
     collectableObjects = level1.collectableObjects;
@@ -31,6 +33,8 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // space for fixed objects
         this.addToMap(this.statusbarLife);
+        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusbarPoison);
         self = this;
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
@@ -76,6 +80,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit(enemy.attack);
+                    this.statusbarLife.setPercentage(this.character.energy);
                 }
             });
         }, 100);
