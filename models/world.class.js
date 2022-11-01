@@ -7,6 +7,7 @@ class World {
     statusbarLife = new StatusBarLife();
     statusbarCoins = new StatusBarCoins();
     statusbarPoison = new StatusBarPoison();
+    bubbles = [new Bubble()];
     character = new Character();
     enemies = level1.enemies;
     collectableObjects = level1.collectableObjects;
@@ -30,6 +31,7 @@ class World {
         this.addObjectsToMap(this.level.collectableObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.bubbles);
         this.ctx.translate(-this.camera_x, 0);
         // space for fixed objects
         this.addToMap(this.statusbarLife);

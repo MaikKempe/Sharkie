@@ -1,6 +1,6 @@
 class StatusBarPoison extends StatusBar {
     x = 20;
-    y = 65;
+    y = 70;
     percentage = 0;
     IMAGES = [
      'img/4_marcadores/green/poisoned_bubbles/0_copia2.png',

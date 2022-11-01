@@ -1,6 +1,6 @@
 class StatusBarLife extends StatusBar {
     x = 20;
-    y = -5;
+    y = 0;
     percentage = 100;
     IMAGES = [
         'img/4_marcadores/green/life/0_copia3.png',
