@@ -3,6 +3,8 @@ class MovealbeObject extends DrawableObject {
     animationStarted = false;
     animationStopped = false;
     activeEvent = false;
+    speedX;
+    speedY;
     lastHit = 0;
     attack;
     offset = {
