@@ -2,7 +2,7 @@ class MovealbeObject extends DrawableObject {
     otherDirection = false;
     animationStarted = false;
     animationStopped = false;
-    activeEvent = false;
+    activeKeyEvent = false;
     speedX;
     speedY;
     lastHit = 0;

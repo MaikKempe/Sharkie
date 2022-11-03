@@ -17,7 +17,8 @@ class Character extends MovealbeObject {
     isSlapping = false;
     isBubbling = false;
     isPoisonedBubbling = false;
-    isAttackedByJellyfish = false;
+    bubbleAnimationFinished = false;
+    keyboardBlocked = false;
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
     IMAGES_IDLE = [
@@ -155,30 +156,34 @@ class Character extends MovealbeObject {
     animateMovement() {
         setInterval(() => {
             //   this.AUDIO_SLAP.pause();
-            if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead()) {
+            if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
                 this.y -= this.speedY;
             }
-            if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead()) {
+            if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked) {
                 this.y += this.speedY;
             }
-            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead()) {//end of map
+            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked) {//end of map
                 this.x -= this.speedX;
                 this.otherDirection = true;
             }
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead()) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked) {
                 this.x += this.speedX;
                 this.otherDirection = false;
             }
-            this.world.camera_x = -this.x + 10; //spawn position, movebackground
+            this.moveBackground();
         }, 1000 / 60);
+    }
+
+    moveBackground() {
+        return this.world.camera_x = -this.x + 10; //spawn position, movebackground
     }
 
     //listen for Single Animationstart
     activateSingleAnimations() {
         setInterval(() => {
             this.activateSlapAnimation();
-            this.activateBubbleAttack();
-            this.activatePoisonedBubbleAttack();
+            this.activateBubbleAnimation();
+            this.activatePoisonedBubbleAnimation();
         }, 100);
     }
 
@@ -189,13 +194,13 @@ class Character extends MovealbeObject {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
             } else if (this.isHurt1()) {
                 this.playAnimation(this.IMAGES_HURT, 'multiple');
-            } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY) {
+            } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX) { // end of map
+            } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.keyboardBlocked) { // end of map
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
+            } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.keyboardBlocked) {
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.UP && this.y > this.world.level.startY) {
+            } else if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.keyboardBlocked) {
                 this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
             } else if (this.isSlapping) {
                 this.playAnimation(this.IMAGES_SLAP_ATTACK, 'once');
@@ -212,59 +217,71 @@ class Character extends MovealbeObject {
     }
 
     activateSlapAnimation() {
-        if (this.world.keyboard.SPACE && !this.activeEvent && !this.isDead()) {
+        if (this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
             this.isSlapping = true;
 
             let keepKeyActive = setInterval(() => {
                 this.world.keyboard.SPACE = true;
-                this.activeEvent = true;
+                this.activeKeyEvent = true;
             }, 100);
 
             setTimeout(() => {
                 this.world.keyboard.SPACE = false;
-                this.activeEvent = false;
+                this.activeKeyEvent = false;
                 this.isSlapping = false;
                 clearInterval(keepKeyActive);
-            }, 1000);
+            }, 700);
         }
     }
 
-    activateBubbleAttack() {
-        if (this.world.keyboard.B && !this.activeEvent && !this.isDead()) {
+    activateBubbleAnimation() {
+        if (this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
+            this.keyboardBlocked = true;
             this.isBubbling = true;
 
             let keepKeyActive = setInterval(() => {
                 this.world.keyboard.B = true;
-                this.activeEvent = true;
+                this.activeKeyEvent = true;
             }, 100);
 
             setTimeout(() => {
                 this.world.keyboard.B = false;
-                this.activeEvent = false;
+                this.activeKeyEvent = false;
                 this.isBubbling = false;
                 clearInterval(keepKeyActive);
-            }, 1000);
+                this.keyboardBlocked = false;
+                this.bubbleAnimationFinished = true;
+            }, 750);
+        }
+        if (this.bubbleAnimationFinished) {
+            this.createBubble();
         }
     }
 
-    activatePoisonedBubbleAttack() {
-        if (this.world.keyboard.V && !this.activeEvent && !this.isDead()) {
+    createBubble() {
+        let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
+        this.world.bubbles.push(bubble);
+        this.bubbleAnimationFinished = false;
+    }
+
+    activatePoisonedBubbleAnimation() {
+        if (this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
             this.isPoisonedBubbling = true;
 
             let keepKeyActive = setInterval(() => {
                 this.world.keyboard.V = true;
-                this.activeEvent = true;
+                this.activeKeyEvent = true;
             }, 100);
 
             setTimeout(() => {
                 this.world.keyboard.V = false;
-                this.activeEvent = false;
+                this.activeKeyEvent = false;
                 this.isPoisonedBubbling = false;
                 clearInterval(keepKeyActive);
-            }, 1000);
+            }, 700);
         }
     }
 

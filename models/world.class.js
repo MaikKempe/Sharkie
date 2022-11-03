@@ -7,7 +7,7 @@ class World {
     statusbarLife = new StatusBarLife();
     statusbarCoins = new StatusBarCoins();
     statusbarPoison = new StatusBarPoison();
-    bubbles = [new Bubble()];
+    bubbles = [];
     character = new Character();
     enemies = level1.enemies;
     collectableObjects = level1.collectableObjects;
