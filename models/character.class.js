@@ -260,7 +260,7 @@ class Character extends MovealbeObject {
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
-  
+
     }
 
     activatePoisonedBubbleAnimation() {
@@ -278,9 +278,20 @@ class Character extends MovealbeObject {
                 this.activeKeyEvent = false;
                 this.isPoisonedBubbling = false;
                 clearInterval(keepKeyActive);
+                this.keyboardBlocked = false;
+                this.createPoisonedBubble();
             }, 750);
         }
     }
+
+
+    createPoisonedBubble() {
+        //if arry is empty, character shall create normal bubble
+        let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
+        this.world.poisonedBubbles.push(poisonedBubble);
+
+    }
+
 
     noKeyIsPressed() {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
