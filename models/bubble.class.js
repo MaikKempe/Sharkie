@@ -7,15 +7,25 @@ class Bubble extends MovealbeObject {
     constructor(x, y, otherDirection) {
         super();
         this.loadImage('img/1_sharkie/4_attack/bubble_trap/bubble.png');
-        this.bubbleFloating(x, y, otherDirection)
+        this.otherDirection = otherDirection;
+        this.floating(x, y)
     }
 
-    bubbleFloating(x, y) {
+    floating(x, y) {
         this.x = x;
         this.y = y;
+        if (this.otherDirection) {
+            this.x -= 200;
+        }
         setInterval(() => {
-            this.x += this.speedX;
-            this.y -= this.speedY;
+            if (this.otherDirection) {
+                this.x -= this.speedX;
+                this.y -= this.speedY;
+            } else {
+                this.x += this.speedX;
+                this.y -= this.speedY;
+            }
         }, 1000 / 60)
     }
+
 }

@@ -231,7 +231,7 @@ class Character extends MovealbeObject {
                 this.activeKeyEvent = false;
                 this.isSlapping = false;
                 clearInterval(keepKeyActive);
-            }, 700);
+            }, 750);
         }
     }
 
@@ -252,18 +252,15 @@ class Character extends MovealbeObject {
                 this.isBubbling = false;
                 clearInterval(keepKeyActive);
                 this.keyboardBlocked = false;
-                this.bubbleAnimationFinished = true;
+                this.createBubble();
             }, 750);
-        }
-        if (this.bubbleAnimationFinished) {
-            this.createBubble();
         }
     }
 
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
-        this.bubbleAnimationFinished = false;
+  
     }
 
     activatePoisonedBubbleAnimation() {
@@ -281,7 +278,7 @@ class Character extends MovealbeObject {
                 this.activeKeyEvent = false;
                 this.isPoisonedBubbling = false;
                 clearInterval(keepKeyActive);
-            }, 700);
+            }, 750);
         }
     }
 
