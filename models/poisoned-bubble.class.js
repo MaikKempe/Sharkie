@@ -4,6 +4,12 @@ class PoisonedBubble extends MovealbeObject {
     speedX = 1.3;
     speedY = 0.9;
     attack = 10;
+    offset = {
+        x: 8,
+        y: 8,
+        width: 8,
+        height: 8
+    };
     constructor(x, y, otherDirection) {
         super();
         this.loadImage('img/1_sharkie/4_attack/bubble_trap/poisoned_bubble_for_whale.png');

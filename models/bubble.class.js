@@ -4,6 +4,12 @@ class Bubble extends MovealbeObject {
     speedX = 1.3;
     speedY = 0.9;
     attack = 10;
+    offset = {
+        x: 2,
+        y: 2,
+        width: 2,
+        height: 2
+    };
     constructor(x, y, otherDirection) {
         super();
         this.loadImage('img/1_sharkie/4_attack/bubble_trap/bubble.png');

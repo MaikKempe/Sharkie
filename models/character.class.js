@@ -9,7 +9,7 @@ class Character extends MovealbeObject {
         x: 75,
         y: 160,
         width: 75,
-        height: 80,
+        height: 80
     };
     world; // set world on character, to use keyboard, getting Starting
     energy = 100;
@@ -266,6 +266,7 @@ class Character extends MovealbeObject {
     activatePoisonedBubbleAnimation() {
         if (this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
+            this.keyboardBlocked = true;
             this.isPoisonedBubbling = true;
 
             let keepKeyActive = setInterval(() => {
