@@ -287,10 +287,7 @@ class Character extends MovealbeObject {
 
 
     createPoisonedBubble() {
-        //if arry is empty, character shall create normal bubble
-        let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
-        this.world.poisonedBubbles.push(poisonedBubble);
-
+        this.world.poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
     }
 
 

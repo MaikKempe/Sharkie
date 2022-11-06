@@ -21,7 +21,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorldToCharacter();
-        this.checkCollisions();
+        this.run();
     }
 
     draw() {
@@ -33,7 +33,9 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.bubbles);
-        this.addObjectsToMap(this.poisonedBubbles);
+        if (this.poisonedBubble) {
+            this.addToMap(this.poisonedBubble);
+        }
         this.ctx.translate(-this.camera_x, 0);
         // space for fixed objects
         this.addToMap(this.statusbarLife);
@@ -79,16 +81,27 @@ class World {
         this.character.world = this;
     }
 
+    run() {
+        setInterval(() => {  
+            this.checkCollisions();
+        }, 100);
+    }
+
     checkCollisions() {
-        setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit(enemy.attack);
                     this.statusbarLife.setPercentage(this.character.energy);
                 }
             });
-        }, 100);
-
-
+            this.level.enemies.forEach((enemy) => {
+                if (this.poisonedBubble) {
+                    if (this.poisonedBubble.isColliding(enemy)) {
+                        console.log('hit');
+                        this.poisonedBubble = undefined;
+                    }
+                }
+            });
+// bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.
     }
 }
