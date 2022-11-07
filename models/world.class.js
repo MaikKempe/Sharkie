@@ -33,9 +33,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.bubbles);
-        if (this.poisonedBubble) {
-            this.addToMap(this.poisonedBubble);
-        }
+        this.addObjectsToMap(this.poisonedBubbles);
         this.ctx.translate(-this.camera_x, 0);
         // space for fixed objects
         this.addToMap(this.statusbarLife);
@@ -100,23 +98,45 @@ class World {
         this.enemyMeetsPoisonedBubble();
 
 
+
     }
 
     enemyMeetsBubble() {
-        //can only created if chracter is not hurt or Dead
         this.bubbles.forEach(bubble => {
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
+                    if (enemy instanceof PufferfishNormal) {
+                        enemy.hit(bubble.attack);
+                        this.deleteObject(this.bubbles, bubble);
+                    }
+                    if (enemy instanceof PufferfishAngry || enemy instanceof Endboss) {
+                        this.deleteObject(this.bubbles, bubble);
+                    }
+                }
+                //bubble leaves window
+                if (bubble.y < 0) {
                     this.deleteObject(this.bubbles, bubble);
                 }
             });
         });
     }
 
+
     enemyMeetsPoisonedBubble() {
         this.poisonedBubbles.forEach(poisonedBubble => {
             this.level.enemies.forEach((enemy) => {
                 if (poisonedBubble.isColliding(enemy)) {
+                    if (enemy instanceof Endboss) {
+                        enemy.hit(poisonedBubble.attack);
+                        console.log(enemy.energy);
+                        this.deleteObject(this.poisonedBubbles, poisonedBubble);
+                    }
+                    if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishAngry) {
+                        this.deleteObject(this.poisonedBubbles, poisonedBubble);
+                    }
+                }
+                //bubble leaves window
+                if (poisonedBubble.y < 0) {
                     this.deleteObject(this.poisonedBubbles, poisonedBubble);
                 }
             });

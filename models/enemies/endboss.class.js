@@ -8,6 +8,8 @@ class Endboss extends MovealbeObject {
         height: 80
     };
     attack = 100;
+    energy = 100;
+    
     IMAGES_SWIM = [
         'img/2_enemy/3_final_enemy/2_floating/1.png',
         'img/2_enemy/3_final_enemy/2_floating/2.png',

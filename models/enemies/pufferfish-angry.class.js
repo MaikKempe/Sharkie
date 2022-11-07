@@ -8,6 +8,7 @@ class PufferfishAngry extends Pufferfish {
         height: 45
     };
     attack = 20;
+    energy = 100;
 
     IMAGES_SWIM = [
         'img/2_enemy/1_pufferfish/1_swim/3.swim1.png',

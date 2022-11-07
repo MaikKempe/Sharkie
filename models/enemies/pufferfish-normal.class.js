@@ -8,6 +8,7 @@ class PufferfishNormal extends Pufferfish {
         height: 45
     };
     attack = 5;
+    energy = 100;
 
     IMAGES_SWIM = {
         'green': [
