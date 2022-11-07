@@ -82,26 +82,51 @@ class World {
     }
 
     run() {
-        setInterval(() => {  
+        setInterval(() => {
             this.checkCollisions();
         }, 100);
     }
 
     checkCollisions() {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit(enemy.attack);
-                    this.statusbarLife.setPercentage(this.character.energy);
-                }
-            });
-            this.level.enemies.forEach((enemy) => {
-                if (this.poisonedBubble) {
-                    if (this.poisonedBubble.isColliding(enemy)) {
-                        console.log('hit');
-                        this.poisonedBubble = undefined;
-                    }
-                }
-            });
-// bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.
+        //character meets enemy
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit(enemy.attack);
+                this.statusbarLife.setPercentage(this.character.energy);
+            }
+        });
+
+        this.enemyMeetsBubble();
+        this.enemyMeetsPoisonedBubble();
+
+
     }
+
+    enemyMeetsBubble() {
+        //can only created if chracter is not hurt or Dead
+        this.bubbles.forEach(bubble => {
+            this.level.enemies.forEach((enemy) => {
+                if (bubble.isColliding(enemy)) {
+                    this.deleteObject(this.bubbles, bubble);
+                }
+            });
+        });
+    }
+
+    enemyMeetsPoisonedBubble() {
+        this.poisonedBubbles.forEach(poisonedBubble => {
+            this.level.enemies.forEach((enemy) => {
+                if (poisonedBubble.isColliding(enemy)) {
+                    this.deleteObject(this.poisonedBubbles, poisonedBubble);
+                }
+            });
+        });
+    }
+
+    // bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.
+    deleteObject(arr, mo) {
+        let index = arr.indexOf(mo);
+        arr.splice(index, 1);
+    }
+
 }
