@@ -54,7 +54,7 @@ class MovealbeObject extends DrawableObject {
         this.currentImage++;
         this.animationStopped = false;
     }
-    
+
     isColliding(mo) {
         return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&
             this.y + this.height - this.offset.height > mo.y + mo.offset.y &&
@@ -75,7 +75,11 @@ class MovealbeObject extends DrawableObject {
     isHurt1() {
         let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
         timePassed = timePassed / 1000; // Difference in s
-        return timePassed < 0.5;
+        if (this instanceof PufferfishNormal) { // Pufferfish has longer animation
+            return timePassed < 1.2;
+        } else {
+            return timePassed < 0.5;
+        }
     }
 
     isDead() {
