@@ -82,7 +82,20 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            this.checkIfDead();
         }, 100);
+    }
+
+    checkIfDead() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy.isDead()) {
+                setTimeout(() => {
+                    this.deleteObject(this.enemies, enemy);
+                    console.log(this.level.enemies);
+                }, 600)
+
+            }
+        });
     }
 
     checkCollisions() {
@@ -100,15 +113,19 @@ class World {
 
 
     }
-
+    /**
+     * bubbles only effect normal Pufferfishes
+     */
     enemyMeetsBubble() {
         this.bubbles.forEach(bubble => {
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
                     if (enemy instanceof PufferfishNormal) {
+
                         enemy.hit(bubble.attack);
                         this.deleteObject(this.bubbles, bubble);
                     }
+
                     if (enemy instanceof PufferfishAngry || enemy instanceof Endboss) {
                         this.deleteObject(this.bubbles, bubble);
                     }
