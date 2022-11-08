@@ -90,7 +90,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (enemy.isDead()) {
                 setTimeout(() => {
-                    this.deleteObject(this.enemies, enemy);
+                    this.deleteObject(this.enemies, enemy); // undefiend oder invisible. hit function !isDead
                     console.log(this.level.enemies);
                 }, 600)
 
