@@ -87,17 +87,21 @@ class PufferfishNormal extends Pufferfish {
         this.loadImages(this.IMAGES_DEAD[color]);
         this.x = x;
         this.y = y;
-        this.animate1(color);
+        this.animate(color);
         this.moveLeft();
     }
 
-    animate1(color) {
+    animate(color) {
         setInterval(() => {
             if (this.isDead()) {
+                this.attack = 0;
                 this.playAnimation(this.IMAGES_DEAD[color], 'once');
-                // delete Object in world
             } else if (this.isHurt1() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT[color], 'once');
+                this.speedX = 1.7;
+                setTimeout(() => {
+                    this.speedX = 0.7;
+                }, 1200); //time passed isHurt() 1200;
             } else {
                 this.playAnimation(this.IMAGES_SWIM[color], 'multiple');
             }

@@ -21,7 +21,8 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorldToCharacter();
-        this.run();
+        this.checkCollisions();
+        this.checkIfDead();
     }
 
     draw() {
@@ -79,37 +80,35 @@ class World {
         this.character.world = this;
     }
 
-    run() {
-        setInterval(() => {
-            this.checkCollisions();
-            this.checkIfDead();
-        }, 100);
-    }
 
+    // check if enemy are dad and despawn them
     checkIfDead() {
-        this.level.enemies.forEach((enemy) => {
-            if (enemy.isDead()) {
-                setTimeout(() => {
-                    this.deleteObject(this.enemies, enemy); // undefiend oder invisible. hit function !isDead
-                    console.log(this.level.enemies);
-                }, 600)
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isDead() && enemy instanceof PufferfishNormal) {
+                    setTimeout(() => {
+                        this.deleteObject(this.level.enemies, enemy);
+                        console.log(this.level.enemies);
+                    }, 500);
 
-            }
-        });
+                }
+            });
+        }, 650);
     }
 
     checkCollisions() {
         //character meets enemy
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit(enemy.attack);
-                this.statusbarLife.setPercentage(this.character.energy);
-            }
-        });
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy) && !enemy.isDead()) {
+                    this.character.hit(enemy.attack);
+                    this.statusbarLife.setPercentage(this.character.energy);
+                }
+            });
 
-        this.enemyMeetsBubble();
-        this.enemyMeetsPoisonedBubble();
-
+            this.enemyMeetsBubble();
+            this.enemyMeetsPoisonedBubble();
+        }, 100);
 
 
     }
