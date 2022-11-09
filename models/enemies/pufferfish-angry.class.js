@@ -1,11 +1,11 @@
 class PufferfishAngry extends Pufferfish {
-    width = 115;
-    height = 145;
+    width = 120;
+    height = 150;
     offset = {
         x: 7,
         y: 9,
         width: 0,
-        height: 45
+        height: 55
     };
     attack = 20;
     energy = 100;
