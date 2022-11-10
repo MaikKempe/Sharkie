@@ -99,18 +99,32 @@ class World {
     checkCollisions() {
         //character meets enemy
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy) && !enemy.isDead()) {
-                    this.character.hit(enemy.attack);
-                    this.statusbarLife.setPercentage(this.character.energy);
-                }
-            });
 
+            this.enemyHitsCharacter();
             this.enemyMeetsBubble();
             this.enemyMeetsPoisonedBubble();
+            this.characterSlapsEnemy();
         }, 100);
+    }
 
+    characterSlapsEnemy() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping) {
+            //enemy is slapped
+            // enemy wait = true
+                enemy.hit(this.character.attack);
+                //if this. character. finslapped = false --> enemy .wait = false
+            }
+        });
+    }
 
+    enemyHitsCharacter() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isSlapping) {
+                this.character.hit(enemy.attack);
+                this.statusbarLife.setPercentage(this.character.energy);
+            }
+        });
     }
     /**
      * bubbles only effect normal Pufferfishes

@@ -31,7 +31,7 @@ const level1 = new Level(
         new PufferfishAngry(5000, 70),
         new PufferfishNormal(5000, 320, 'orange'),
         new PufferfishNormal(5000, 180, 'green'),
-        new Endboss(200, 0),
+        new Endboss(2700, 0),
     ],
     [
         new Coin(140, 90),

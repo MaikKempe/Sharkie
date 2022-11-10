@@ -13,7 +13,7 @@ class Character extends MovealbeObject {
     };
     world; // set world on character, to use keyboard, getting Starting
     energy = 100;
-    isHurt = false;
+    attack = 100;
     isSlapping = false;
     isBubbling = false;
     isPoisonedBubbling = false;
