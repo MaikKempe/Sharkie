@@ -89,7 +89,7 @@ class World {
                     setTimeout(() => {
                         this.deleteObject(this.level.enemies, enemy);
                         console.log(this.level.enemies);
-                    }, 500);
+                    }, 500); //timespace for animation
 
                 }
             });
