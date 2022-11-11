@@ -8,8 +8,8 @@ class Character extends MovealbeObject {
     offset = {
         x: 75,
         y: 160,
-        width: 75,
-        height: 80
+        width: 75, //45 for slap
+        height: 80,
     };
     world; // set world on character, to use keyboard, getting Starting
     energy = 100;
@@ -149,7 +149,7 @@ class Character extends MovealbeObject {
 
     animateCharacter() {
         this.animateMovement();
-        this.activateSingleAnimations();
+        this.singleMoves();
         this.animateImages();
     }
     //animate movement, FPS
@@ -179,11 +179,11 @@ class Character extends MovealbeObject {
     }
 
     //listen for Single Animationstart
-    activateSingleAnimations() {
+    singleMoves() {
         setInterval(() => {
-            this.activateSlapAnimation();
-            this.activateBubbleAnimation();
-            this.activatePoisonedBubbleAnimation();
+            this.slapAttack();
+            this.bubbleAttack();
+            this.poisonedBubbleAttack();
         }, 100);
     }
 
@@ -216,9 +216,10 @@ class Character extends MovealbeObject {
         }, 100);
     }
 
-    activateSlapAnimation() {
+    slapAttack() {
         if (this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
+            this.keyboardBlocked = true;
             this.isSlapping = true;
 
             let keepKeyActive = setInterval(() => {
@@ -231,11 +232,12 @@ class Character extends MovealbeObject {
                 this.activeKeyEvent = false;
                 this.isSlapping = false;
                 clearInterval(keepKeyActive);
+                this.keyboardBlocked = false;
             }, 750);
         }
     }
 
-    activateBubbleAnimation() {
+    bubbleAttack() {
         if (this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
             this.keyboardBlocked = true;
@@ -264,7 +266,7 @@ class Character extends MovealbeObject {
 
     }
 
-    activatePoisonedBubbleAnimation() {
+    poisonedBubbleAttack() {
         if (this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
             this.keyboardBlocked = true;
