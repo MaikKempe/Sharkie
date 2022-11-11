@@ -93,9 +93,13 @@ class PufferfishNormal extends Pufferfish {
 
     animate(color) {
         setInterval(() => {
-            if (this.isDead()) {
+            if (this.isDead() && !this.isSlapped) { //Death by Bubble
                 this.attack = 0;
                 this.playAnimation(this.IMAGES_DEAD[color], 'once');
+            } else if (this.isDead() && this.isSlapped) { //Death by Slap Attack
+                this.attack = 0;
+                this.playAnimation(this.IMAGES_DEAD[color], 'once');
+                this.isSlapped = false;
             } else if (this.isHurt1() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT[color], 'once');
                 this.speedX = 1.7;

@@ -85,7 +85,7 @@ class World {
     checkIfDead() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
-                if (enemy.isDead() && enemy instanceof PufferfishNormal) {
+                if (enemy.isDead() && enemy instanceof Pufferfish) {
                     setTimeout(() => {
                         this.deleteObject(this.level.enemies, enemy);
                         console.log(this.level.enemies);
@@ -109,9 +109,10 @@ class World {
 
     characterSlapsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping) {
-            //enemy is slapped
-            // enemy wait = true
+            if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
+                enemy.isSlapped = true;
+         
+                // enemy wait = true
                 enemy.hit(this.character.attack);
                 //if this. character. finslapped = false --> enemy .wait = false
             }
