@@ -42,8 +42,8 @@ class MovealbeObject extends DrawableObject {
         this.currentImage++;
 
         if (this.currentImage == images.length) {
-            this.animationStopped = true;
             this.animationStarted = false;
+            this.animationStopped = true;
         }
     }
 

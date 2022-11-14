@@ -88,8 +88,7 @@ class World {
                 if (enemy.isDead() && enemy instanceof Pufferfish) {
                     setTimeout(() => {
                         this.deleteObject(this.level.enemies, enemy);
-                        console.log(this.level.enemies);
-                    }, 500); //timespace for animation
+                    }, 1000); //timespace for animation
 
                 }
             });
@@ -135,12 +134,17 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
                     if (enemy instanceof PufferfishNormal) {
-
                         enemy.hit(bubble.attack);
                         this.deleteObject(this.bubbles, bubble);
                     }
 
-                    if (enemy instanceof PufferfishHard || enemy instanceof Endboss) {
+                    if (enemy instanceof PufferfishHard) {
+                        enemy.hitByBubble++;
+                        enemy.hit(bubble.attack);
+                        this.deleteObject(this.bubbles, bubble);
+                    }
+
+                    if (enemy instanceof Endboss) {
                         this.deleteObject(this.bubbles, bubble);
                     }
                 }
