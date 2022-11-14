@@ -140,7 +140,7 @@ class World {
                         this.deleteObject(this.bubbles, bubble);
                     }
 
-                    if (enemy instanceof PufferfishAngry || enemy instanceof Endboss) {
+                    if (enemy instanceof PufferfishHard || enemy instanceof Endboss) {
                         this.deleteObject(this.bubbles, bubble);
                     }
                 }
@@ -162,7 +162,7 @@ class World {
                         console.log(enemy.energy);
                         this.deleteObject(this.poisonedBubbles, poisonedBubble);
                     }
-                    if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishAngry) {
+                    if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
                         this.deleteObject(this.poisonedBubbles, poisonedBubble);
                     }
                 }

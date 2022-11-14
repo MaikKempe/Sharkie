@@ -22,7 +22,7 @@ class DrawableObject {
     }
     
     drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishAngry || this instanceof Endboss || this instanceof CollectableObject || this instanceof Bubble || this instanceof PoisonedBubble) {
+        if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishHard || this instanceof Endboss || this instanceof CollectableObject || this instanceof Bubble || this instanceof PoisonedBubble) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red'; 9

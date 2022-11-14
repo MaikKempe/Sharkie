@@ -1,4 +1,4 @@
-class PufferfishAngry extends Pufferfish {
+class PufferfishHard extends Pufferfish {
     width = 120;
     height = 150;
     offset = {

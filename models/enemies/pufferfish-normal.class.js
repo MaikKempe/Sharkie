@@ -87,7 +87,7 @@ class PufferfishNormal extends Pufferfish {
         this.x = x;
         this.y = y;
         this.animate(color);
-      //  this.moveLeft();
+        this.moveLeft();
     }
 
     animate(color) {
