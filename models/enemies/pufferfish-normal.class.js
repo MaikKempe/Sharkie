@@ -9,7 +9,6 @@ class PufferfishNormal extends Pufferfish {
     };
     attack = 5;
     energy = 100;
-
     IMAGES_SWIM = {
         'green': [
             'img/2_enemy/1_pufferfish/1_swim/1.swim1.png',
@@ -88,7 +87,7 @@ class PufferfishNormal extends Pufferfish {
         this.x = x;
         this.y = y;
         this.animate(color);
-        this.moveLeft();
+      //  this.moveLeft();
     }
 
     animate(color) {
@@ -109,6 +108,7 @@ class PufferfishNormal extends Pufferfish {
             } else {
                 this.playAnimation(this.IMAGES_SWIM[color], 'multiple');
             }
+        
         }, 100);
     }
 }

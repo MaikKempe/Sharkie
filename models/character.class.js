@@ -10,6 +10,7 @@ class Character extends MovealbeObject {
         y: 160,
         width: 75, //45 for slap
         height: 80,
+        slapMoveExtension: 20
     };
     world; // set world on character, to use keyboard, getting Starting
     energy = 100;
@@ -217,10 +218,12 @@ class Character extends MovealbeObject {
     }
 
     slapAttack() {
-        if (this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
+        if (this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.isHurt1() && !this.keyboardBlocked) {
             this.currentImage = 0;
             this.keyboardBlocked = true;
             this.isSlapping = true;
+            this.increaseOffset();
+
 
             let keepKeyActive = setInterval(() => {
                 this.world.keyboard.SPACE = true;
@@ -232,10 +235,29 @@ class Character extends MovealbeObject {
                 this.activeKeyEvent = false;
                 this.isSlapping = false;
                 clearInterval(keepKeyActive);
+                this.decreaseOffset();
                 this.keyboardBlocked = false;
             }, 750);
         }
     }
+
+    //exend range of Slapmove, hitbox gets extended
+    increaseOffset() {
+        if (this.otherDirection) {
+            this.offset.x = this.offset.x - this.offset.slapMoveExtension;
+        } else {
+            this.offset.width = this.offset.width - this.offset.slapMoveExtension;
+        }
+    }
+
+    decreaseOffset() {
+        if (this.otherDirection) {
+            this.offset.x = this.offset.x + this.offset.slapMoveExtension;
+        } else {
+            this.offset.width = this.offset.width + this.offset.slapMoveExtension;
+        }
+    }
+
 
     bubbleAttack() {
         if (this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {

@@ -111,7 +111,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
                 enemy.isSlapped = true;
-         
+                enemy.slappedAway(this.character.otherDirection);
                 // enemy wait = true
                 enemy.hit(this.character.attack);
                 //if this. character. finslapped = false --> enemy .wait = false
