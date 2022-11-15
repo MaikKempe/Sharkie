@@ -180,8 +180,16 @@ class World {
     characterCollectsObject() {
         this.level.collectableObjects.forEach((object) => {
             if (this.character.isColliding(object)) {
-                this.character.collect(object);
-                this.deleteObject(this.collectableObjects, object);
+                if (object instanceof Coin) {
+                    this.character.collect(object);
+                    this.deleteObject(this.collectableObjects, object);
+                    this.statusbarCoins.setPercentage(this.character.coinsCollected / this.level.allCoins * 100);
+                }
+                if (object instanceof Poison) {
+                    this.character.collect(object);
+                    this.deleteObject(this.collectableObjects, object);
+                    this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100);
+                }
             }
         });
     }
