@@ -57,8 +57,8 @@ class PufferfishNormal extends Pufferfish {
             'img/2_enemy/1_pufferfish/2_transition/1.transition3.png',
             'img/2_enemy/1_pufferfish/2_transition/1.transition2.png',
             'img/2_enemy/1_pufferfish/2_transition/1.transition1.png',
-
         ],
+
         'orange': [
             'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
             'img/2_enemy/1_pufferfish/2_transition/3.transition2.png',
@@ -92,7 +92,7 @@ class PufferfishNormal extends Pufferfish {
 
     animate(color) {
         setInterval(() => {
-            if (this.isDead()) { //Death by Bubble
+            if (this.isDead()) {
                 this.attack = 0;
                 this.playAnimation(this.IMAGES_DEAD[color], 'once');
             } else if (this.isHurt1() && !this.isDead() && !this.isSlapped) {
@@ -100,7 +100,7 @@ class PufferfishNormal extends Pufferfish {
                 this.speedX = 1.7;
                 setTimeout(() => {
                     this.speedX = 0.7;
-                }, 1200); //time passed isHurt() 1200;
+                }, 1500); //time passed isHurt() 1200;
             } else {
                 this.playAnimation(this.IMAGES_SWIM[color], 'multiple');
             }

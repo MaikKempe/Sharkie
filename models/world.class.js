@@ -88,8 +88,8 @@ class World {
                 if (enemy.isDead() && enemy instanceof Pufferfish) {
                     setTimeout(() => {
                         this.deleteObject(this.level.enemies, enemy);
-                    }, 1000); //timespace for animation
-
+                        console.log(this.level.enemies);
+                    }, 400);
                 }
             });
         }, 650);
@@ -98,7 +98,6 @@ class World {
     checkCollisions() {
         //character meets enemy
         setInterval(() => {
-
             this.enemyHitsCharacter();
             this.enemyMeetsBubble();
             this.enemyMeetsPoisonedBubble();

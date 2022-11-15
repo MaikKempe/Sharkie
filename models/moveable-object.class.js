@@ -76,7 +76,7 @@ class MovealbeObject extends DrawableObject {
         let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
         timePassed = timePassed / 1000; // Difference in s
         if (this instanceof PufferfishNormal) { // objects with longer animation
-            return timePassed < 1.2;
+            return timePassed < 1.5;
         } else {
             return timePassed < 0.5;
         }

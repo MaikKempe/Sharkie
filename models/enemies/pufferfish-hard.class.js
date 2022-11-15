@@ -49,7 +49,7 @@ class PufferfishHard extends Pufferfish {
         'img/2_enemy/1_pufferfish/2_transition/3.transition4.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition3.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition2.png',
-        'img/2_enemy/1_pufferfish/2_transition/3.transition1.png'
+        'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
     ];
 
     IMAGES_DEAD = [
@@ -81,9 +81,9 @@ class PufferfishHard extends Pufferfish {
             } else if (this.hitByBubble == 2 && !this.isSlapped && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ANGRY, 'multiple');
                 this.speedX = 1.5;
-            }  else {
+            } else {
                 this.playAnimation(this.IMAGES_SWIM, 'multiple');
             }
-        }, 100);
+        }, 1000 / 10);
     }
 }
