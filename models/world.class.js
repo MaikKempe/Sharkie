@@ -102,19 +102,8 @@ class World {
             this.enemyMeetsBubble();
             this.enemyMeetsPoisonedBubble();
             this.characterSlapsEnemy();
+            this.characterCollectsObject();
         }, 100);
-    }
-
-    characterSlapsEnemy() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
-                enemy.isSlapped = true;
-                enemy.slappedAway(this.character.otherDirection);
-                // enemy wait = true
-                enemy.hit(this.character.attack);
-                //if this. character. finslapped = false --> enemy .wait = false
-            }
-        });
     }
 
     enemyHitsCharacter() {
@@ -162,7 +151,6 @@ class World {
                 if (poisonedBubble.isColliding(enemy)) {
                     if (enemy instanceof Endboss) {
                         enemy.hit(poisonedBubble.attack);
-                        console.log(enemy.energy);
                         this.deleteObject(this.poisonedBubbles, poisonedBubble);
                     }
                     if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
@@ -174,6 +162,27 @@ class World {
                     this.deleteObject(this.poisonedBubbles, poisonedBubble);
                 }
             });
+        });
+    }
+
+    characterSlapsEnemy() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
+                enemy.isSlapped = true;
+                enemy.slappedAway(this.character.otherDirection);
+                // enemy wait = true
+                enemy.hit(this.character.attack);
+                //if this. character. finslapped = false --> enemy .wait = false
+            }
+        });
+    }
+
+    characterCollectsObject() {
+        this.level.collectableObjects.forEach((object) => {
+            if (this.character.isColliding(object)) {
+                this.character.collect(object);
+                this.deleteObject(this.collectableObjects, object);
+            }
         });
     }
 

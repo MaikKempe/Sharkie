@@ -20,6 +20,8 @@ class Character extends MovealbeObject {
     isPoisonedBubbling = false;
     bubbleAnimationFinished = false;
     keyboardBlocked = false;
+    coinsCollected = 0;
+    poisonCollected = 0;
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
     IMAGES_IDLE = [
@@ -284,8 +286,6 @@ class Character extends MovealbeObject {
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
-        console.log(this.world.bubbles);
-
     }
 
     poisonedBubbleAttack() {
@@ -314,7 +314,16 @@ class Character extends MovealbeObject {
     createPoisonedBubble() {
         let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.poisonedBubbles.push(poisonedBubble);
-        console.log(this.world.poisonedBubbles);
+    }
+
+    collect(o) {
+        if (o instanceof Coin) {
+            this.coinsCollected++;
+        }
+
+        if (o instanceof Poison) {
+            this.poisonCollected++;
+        }
     }
 
 

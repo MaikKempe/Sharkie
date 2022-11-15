@@ -3,7 +3,7 @@ class PoisonedBubble extends MovealbeObject {
     height = 70;
     speedX = 1.3;
     speedY = 0.9;
-    attack = 35;
+    attack = 70;
     offset = {
         x: 8,
         y: 8,
