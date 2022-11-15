@@ -34,6 +34,12 @@ class Endboss extends MovealbeObject {
     IMAGES_DEAD = [
         'img/2_enemy/3_final_enemy/dead/1.png',
         'img/2_enemy/3_final_enemy/dead/2.png',
+        'img/2_enemy/3_final_enemy/dead/1.png',
+        'img/2_enemy/3_final_enemy/dead/2.png',
+        'img/2_enemy/3_final_enemy/dead/1.png',
+        'img/2_enemy/3_final_enemy/dead/2.png',
+        'img/2_enemy/3_final_enemy/dead/1.png',
+        'img/2_enemy/3_final_enemy/dead/2.png',
         'img/2_enemy/3_final_enemy/dead/3.png',
         'img/2_enemy/3_final_enemy/dead/4.png',
         'img/2_enemy/3_final_enemy/dead/5.png'
