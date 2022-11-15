@@ -12,11 +12,11 @@ class PufferfishHard extends Pufferfish {
     hitByBubble = 0;
 
     IMAGES_SWIM = [
-        'img/2_enemy/1_pufferfish/1_swim/3.swim1.png',
-        'img/2_enemy/1_pufferfish/1_swim/3.swim2.png',
-        'img/2_enemy/1_pufferfish/1_swim/3.swim3.png',
-        'img/2_enemy/1_pufferfish/1_swim/3.swim4.png',
-        'img/2_enemy/1_pufferfish/1_swim/3.swim5.png'
+        'img/2_enemy/1_pufferfish/1_swim/2.swim1.png',
+        'img/2_enemy/1_pufferfish/1_swim/2.swim2.png',
+        'img/2_enemy/1_pufferfish/1_swim/2.swim3.png',
+        'img/2_enemy/1_pufferfish/1_swim/2.swim4.png',
+        'img/2_enemy/1_pufferfish/1_swim/2.swim5.png'
     ];
 
     IMAGES_ANGRY = [
