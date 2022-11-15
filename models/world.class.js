@@ -88,7 +88,6 @@ class World {
                 if (enemy.isDead() && enemy instanceof Pufferfish) {
                     setTimeout(() => {
                         this.deleteObject(this.level.enemies, enemy);
-                        console.log(this.level.enemies);
                     }, 400);
                 }
             });
@@ -183,15 +182,23 @@ class World {
                 if (object instanceof Coin) {
                     this.character.collect(object);
                     this.deleteObject(this.collectableObjects, object);
-                    this.statusbarCoins.setPercentage(this.character.coinsCollected / this.level.allCoins * 100);
+                    this.updateStatusbarCoins();
                 }
                 if (object instanceof Poison) {
                     this.character.collect(object);
                     this.deleteObject(this.collectableObjects, object);
-                    this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100);
+                    this.updateStatusbarPoisons();
                 }
             }
         });
+    }
+
+    updateStatusbarCoins() {
+        this.statusbarCoins.setPercentage(this.character.coinsCollected / this.level.allCoins * 100);
+    }
+
+    updateStatusbarPoisons() {
+        this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100);
     }
 
     // bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.

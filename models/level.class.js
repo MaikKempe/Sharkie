@@ -16,7 +16,6 @@ class Level {
         this.backgroundObjects = backgroundObjects;
         this.allCoins = this.countCoins();
         this.allPoisons = this.countPoisons();
-        console.log(this.allCoins, this.allPoisons);
     }
 
     countCoins() {
