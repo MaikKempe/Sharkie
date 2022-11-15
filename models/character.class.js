@@ -312,9 +312,7 @@ class Character extends MovealbeObject {
 
 
     createPoisonedBubble() {
-        if (this.poisonCollected <= 0) {
-            this.createBubble();
-        } else {
+        if (this.poisonCollected > 0) {
             let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
