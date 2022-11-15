@@ -40,8 +40,10 @@ const level1 = new Level(
         new Coin(1400, 405),
         new Coin(1800, 140),
         new Poison(-280, 110),
+        new Poison(500, 40),
         new Poison(1000, 350),
         new Poison(1500, 90),
+        new Poison(2000, 280),
     ],
     [
         new BackgroundObject('img/3_background/layers/5_water/D.png', -720, 720 * 2, 480),

@@ -4,7 +4,7 @@ class Pufferfish extends MovealbeObject {
     speedFloatingAway = 2;
 
     moveLeft() {
-        if (!this.isSlapped) {
+        if (!this.isSlapped && !this.isDead()) {
             setInterval(() => {
                 this.x -= this.speedX;
             }, 1000 / 60);
