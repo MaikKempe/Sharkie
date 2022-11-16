@@ -52,10 +52,16 @@ class PufferfishHard extends Pufferfish {
         'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
     ];
 
-    IMAGES_DEAD = [
+    IMAGES_DEAD_ANGRY = [
         'img/2_enemy/1_pufferfish/4_DIE/3.1.png',
         'img/2_enemy/1_pufferfish/4_DIE/3.2.png',
         'img/2_enemy/1_pufferfish/4_DIE/3.3.png'
+    ];
+
+    IMAGES_DEAD = [
+        'img/2_enemy/1_pufferfish/4_DIE/2.1.png',
+        'img/2_enemy/1_pufferfish/4_DIE/2.2.png',
+        'img/2_enemy/1_pufferfish/4_DIE/2.3.png'
     ];
 
 
@@ -65,6 +71,7 @@ class PufferfishHard extends Pufferfish {
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_ANGRY);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_DEAD_ANGRY);
         this.x = x;
         this.y = y;
         this.animate();
@@ -73,7 +80,10 @@ class PufferfishHard extends Pufferfish {
 
     animate() {
         setInterval(() => {
-            if (this.isDead()) { //Death by Bubble
+            if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
+                this.attack = 0;
+                this.playAnimation(this.IMAGES_DEAD_ANGRY, 'once');
+            } else if (this.isDead() && this.hitByBubble == 0) { // death after changed color
                 this.attack = 0;
                 this.playAnimation(this.IMAGES_DEAD, 'once');
             } else if (this.hitByBubble == 1 && !this.isSlapped && !this.isDead()) {

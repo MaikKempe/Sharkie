@@ -18,9 +18,9 @@ class PufferfishNormal extends Pufferfish {
     ];
 
     IMAGES_DEAD = [
-        'img/2_enemy/1_pufferfish/4_DIE/3.1.png',
-        'img/2_enemy/1_pufferfish/4_DIE/3.2.png',
-        'img/2_enemy/1_pufferfish/4_DIE/3.3.png',
+        'img/2_enemy/1_pufferfish/4_DIE/1.1.png',
+        'img/2_enemy/1_pufferfish/4_DIE/1.2.png',
+        'img/2_enemy/1_pufferfish/4_DIE/1.3.png',
     ]
 
     IMAGES_HURT = [
@@ -41,7 +41,7 @@ class PufferfishNormal extends Pufferfish {
         'img/2_enemy/1_pufferfish/2_transition/1.transition1.png',
     ]
 
-    constructor(x, y, color) {
+    constructor(x, y) {
         super();
         this.loadImage(this.IMAGES_SWIM[0]);
         this.loadImages(this.IMAGES_SWIM);
@@ -49,11 +49,11 @@ class PufferfishNormal extends Pufferfish {
         this.loadImages(this.IMAGES_DEAD);
         this.x = x;
         this.y = y;
-        this.animate(color);
+        this.animate();
         this.moveLeft();
     }
 
-    animate(color) {
+    animate() {
         setInterval(() => {
             if (this.isDead()) {
                 this.attack = 0;

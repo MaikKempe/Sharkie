@@ -18,7 +18,6 @@ class Character extends MovealbeObject {
     isSlapping = false;
     isBubbling = false;
     isPoisonedBubbling = false;
-    bubbleAnimationFinished = false;
     keyboardBlocked = false;
     coinsCollected = 0;
     poisonCollected = 0;
