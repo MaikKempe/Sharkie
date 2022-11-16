@@ -7,6 +7,7 @@ class World {
     statusbarLife = new StatusBarLife();
     statusbarCoins = new StatusBarCoins();
     statusbarPoison = new StatusBarPoison();
+    statusbarEndboss = new StatusBarEndboss();
     bubbles = [];
     poisonedBubbles = [];
     character = new Character();
@@ -40,6 +41,7 @@ class World {
         this.addToMap(this.statusbarLife);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarPoison);
+        this.addToMap(this.statusbarEndboss);
         self = this;
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
@@ -150,6 +152,7 @@ class World {
                 if (poisonedBubble.isColliding(enemy)) {
                     if (enemy instanceof Endboss) {
                         enemy.hit(poisonedBubble.attack);
+                        this.statusbarEndboss.setPercentage(enemy.energy);
                         this.deleteObject(this.poisonedBubbles, poisonedBubble);
                     }
                     if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
