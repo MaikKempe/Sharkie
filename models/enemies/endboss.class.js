@@ -1,6 +1,6 @@
 class Endboss extends MovealbeObject {
-    height = 420;
-    width = 420;
+    height = 480;
+    width = 480;
     offset = {
         x: 30,
         y: 210,
@@ -77,6 +77,7 @@ class Endboss extends MovealbeObject {
             if (this.isIntroduced) {
                 if (i < this.IMAGES_INTRODUCE.length) {
                     this.playAnimation(this.IMAGES_INTRODUCE, 'once')
+                    console.log(this.world.character.x);
                 } else if (this.isDead()) {
                     this.attack = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once')

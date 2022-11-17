@@ -12,6 +12,7 @@ class World {
     poisonedBubbles = [];
     character = new Character();
     enemies = level1.enemies;
+    endboss = level1.endboss;
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
 
@@ -21,7 +22,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        this.setWorldToCharacter();
+        this.setWorld();
         this.checkCollisions();
         this.checkIfDead();
     }
@@ -33,6 +34,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.collectableObjects);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);
         this.addObjectsToMap(this.bubbles);
         this.addObjectsToMap(this.poisonedBubbles);
@@ -78,8 +80,9 @@ class World {
         }
     }
 
-    setWorldToCharacter() { //Keyboard acess
+    setWorld() { //Keyboard acess to character
         this.character.world = this;
+        this.endboss[0].world = this;
     }
 
 

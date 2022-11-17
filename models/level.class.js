@@ -1,5 +1,6 @@
 class Level {
     enemies;
+    endboss;
     collectableObjects;
     backgroundObjects;
     levelStartX = -700;
@@ -10,8 +11,9 @@ class Level {
     allPoisons;
   
 
-    constructor(enemies, collectableObjects, backgroundObjects) {
+    constructor(enemies, endboss, collectableObjects, backgroundObjects) {
         this.enemies = enemies;
+        this.endboss = endboss;
         this.collectableObjects = collectableObjects;
         this.backgroundObjects = backgroundObjects;
         this.allCoins = this.countCoins();
