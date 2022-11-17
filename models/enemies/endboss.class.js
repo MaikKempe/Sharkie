@@ -9,6 +9,20 @@ class Endboss extends MovealbeObject {
     };
     attack = 100;
     energy = 100;
+    isIntroduced = true;
+
+    IMAGES_INTRODUCE = [
+        'img/2_enemy/3_final_enemy/1_introduce/1.png',
+        'img/2_enemy/3_final_enemy/1_introduce/2.png',
+        'img/2_enemy/3_final_enemy/1_introduce/3.png',
+        'img/2_enemy/3_final_enemy/1_introduce/4.png',
+        'img/2_enemy/3_final_enemy/1_introduce/5.png',
+        'img/2_enemy/3_final_enemy/1_introduce/6.png',
+        'img/2_enemy/3_final_enemy/1_introduce/7.png',
+        'img/2_enemy/3_final_enemy/1_introduce/8.png',
+        'img/2_enemy/3_final_enemy/1_introduce/9.png',
+        'img/2_enemy/3_final_enemy/1_introduce/10.png'
+    ];
 
     IMAGES_SWIM = [
         'img/2_enemy/3_final_enemy/2_floating/1.png',
@@ -47,7 +61,8 @@ class Endboss extends MovealbeObject {
 
     constructor(x, y) {
         super();
-        this.loadImage('img/2_enemy/3_final_enemy/2_floating/1.png');
+        this.loadImage('img/2_enemy/3_final_enemy/1_introduce/1.png');
+        this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
@@ -57,14 +72,20 @@ class Endboss extends MovealbeObject {
     }
 
     animate() {
+        let i = 0;
         setInterval(() => {
-            if (this.isDead()) {
-                this.attack = 0;
-                this.playAnimation(this.IMAGES_DEAD, 'once')
-            } else if (this.isHurt1() && !this.isDead()) {
-                this.playAnimation(this.IMAGES_HURT, 'once')
-            } else {
-                this.playAnimation(this.IMAGES_SWIM, 'multiple')
+            if (this.isIntroduced) {
+                if (i < this.IMAGES_INTRODUCE.length) {
+                    this.playAnimation(this.IMAGES_INTRODUCE, 'once')
+                } else if (this.isDead()) {
+                    this.attack = 0;
+                    this.playAnimation(this.IMAGES_DEAD, 'once')
+                } else if (this.isHurt1() && !this.isDead()) {
+                    this.playAnimation(this.IMAGES_HURT, 'once')
+                } else {
+                    this.playAnimation(this.IMAGES_SWIM, 'multiple')
+                }
+                i++;
             }
         }, 100)
     }
