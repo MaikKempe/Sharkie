@@ -77,7 +77,6 @@ class Endboss extends MovealbeObject {
             if (this.isIntroduced) {
                 if (i < this.IMAGES_INTRODUCE.length) {
                     this.playAnimation(this.IMAGES_INTRODUCE, 'once')
-                    console.log(this.world.character.x);
                 } else if (this.isDead()) {
                     this.attack = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once')
@@ -89,5 +88,6 @@ class Endboss extends MovealbeObject {
                 i++;
             }
         }, 100)
+     
     }
 }

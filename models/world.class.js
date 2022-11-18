@@ -34,7 +34,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.collectableObjects);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.endboss);
+        this.addToMap(this.level.endboss);
         this.addToMap(this.character);
         this.addObjectsToMap(this.bubbles);
         this.addObjectsToMap(this.poisonedBubbles);
@@ -82,7 +82,7 @@ class World {
 
     setWorld() { //Keyboard acess to character
         this.character.world = this;
-        this.endboss[0].world = this;
+        this.endboss.world = this;
     }
 
 
@@ -103,8 +103,8 @@ class World {
         //character meets enemy
         setInterval(() => {
             this.enemyHitsCharacter();
-            this.enemyMeetsBubble();
-            this.enemyMeetsPoisonedBubble();
+            this.bubbleHitsEnemy();
+            this.poisonedBubbleHitsEnemy();
             this.characterSlapsEnemy();
             this.characterCollectsObject();
         }, 100);
@@ -121,8 +121,14 @@ class World {
     /**
      * bubbles only effect normal Pufferfishes
      */
-    enemyMeetsBubble() {
+    bubbleHitsEnemy() {
         this.bubbles.forEach(bubble => {
+            if (bubble.y < 0) {  //bubble leaves window
+                this.deleteObject(this.bubbles, bubble);
+            }
+            if (bubble.isColliding(this.level.endboss)) {
+                this.deleteObject(this.bubbles, bubble);
+            }
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
                     if (enemy instanceof PufferfishNormal) {
@@ -135,36 +141,27 @@ class World {
                         enemy.hit(bubble.attack);
                         this.deleteObject(this.bubbles, bubble);
                     }
-
-                    if (enemy instanceof Endboss) {
-                        this.deleteObject(this.bubbles, bubble);
-                    }
-                }
-                //bubble leaves window
-                if (bubble.y < 0) {
-                    this.deleteObject(this.bubbles, bubble);
                 }
             });
         });
     }
 
 
-    enemyMeetsPoisonedBubble() {
+    poisonedBubbleHitsEnemy() {
         this.poisonedBubbles.forEach(poisonedBubble => {
+            if (poisonedBubble.y < 0) { //bubble leaves window
+                this.deleteObject(this.poisonedBubbles, poisonedBubble);
+            }
+            if (poisonedBubble.isColliding(this.level.endboss)) {
+                this.level.endboss.hit(poisonedBubble.attack);
+                this.statusbarEndboss.setPercentage(this.level.endboss.energy);
+                this.deleteObject(this.poisonedBubbles, poisonedBubble);
+            }
             this.level.enemies.forEach((enemy) => {
                 if (poisonedBubble.isColliding(enemy)) {
-                    if (enemy instanceof Endboss) {
-                        enemy.hit(poisonedBubble.attack);
-                        this.statusbarEndboss.setPercentage(enemy.energy);
-                        this.deleteObject(this.poisonedBubbles, poisonedBubble);
-                    }
                     if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
                         this.deleteObject(this.poisonedBubbles, poisonedBubble);
                     }
-                }
-                //bubble leaves window
-                if (poisonedBubble.y < 0) {
-                    this.deleteObject(this.poisonedBubbles, poisonedBubble);
                 }
             });
         });
