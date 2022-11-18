@@ -98,7 +98,7 @@ class Endboss extends MovealbeObject {
                 }
                 i++;
             }
-            if ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width) < 100 && !this.test()) {
+            if ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width) < 100 && !this.outOfRange()) {
                 console.log('match');
             }
             if (this.firstContact()) {
@@ -108,7 +108,7 @@ class Endboss extends MovealbeObject {
         }, 100)
     }
 
-    test() {
+    outOfRange() {
         return (this.world.character.x + this.world.character.offset.width) - (this.x - this.offset.x) > 200;
     }
 
