@@ -1,6 +1,6 @@
 class Endboss extends MovealbeObject {
-    height = 520;
-    width = 520;
+    height = 600;
+    width = 600;
     speedX = 0.2;
     offset = {
         x: 30,
@@ -46,6 +46,15 @@ class Endboss extends MovealbeObject {
         'img/2_enemy/3_final_enemy/hurt/4.png'
     ];
 
+    IMAGES_ATTACK = [
+        'img/2_enemy/3_final_enemy/attack/1.png',
+        'img/2_enemy/3_final_enemy/attack/2.png',
+        'img/2_enemy/3_final_enemy/attack/3.png',
+        'img/2_enemy/3_final_enemy/attack/4.png',
+        'img/2_enemy/3_final_enemy/attack/5.png',
+        'img/2_enemy/3_final_enemy/attack/6.png'
+    ];
+
     IMAGES_DEAD = [
         'img/2_enemy/3_final_enemy/dead/1.png',
         'img/2_enemy/3_final_enemy/dead/2.png',
@@ -66,6 +75,7 @@ class Endboss extends MovealbeObject {
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DEAD);
         this.x = x;
         this.y = y;
@@ -88,14 +98,21 @@ class Endboss extends MovealbeObject {
                 }
                 i++;
             }
-            if (this.characterApproachesSpawnposition()) {
+            if ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width) < 100 && !this.test()) {
+                console.log('match');
+            }
+            if (this.firstContact()) {
                 this.moveLeft();
                 this.isIntroduced = true;
             }
         }, 100)
     }
 
-    characterApproachesSpawnposition() {
+    test() {
+        return (this.world.character.x + this.world.character.offset.width) - (this.x - this.offset.x) > 200;
+    }
+
+    firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
     }
 }
