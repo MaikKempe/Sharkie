@@ -3,14 +3,6 @@ class Pufferfish extends MovealbeObject {
     speedX = 0.2 + Math.random() * 0.5;
     speedFloatingAway = 2;
 
-    moveLeft() {
-        if (!this.isDead()) {
-            setInterval(() => {
-                this.x -= this.speedX;
-            }, 1000 / 60);
-        }
-    }
-
     slappedAway(characterMirrored) {
         setInterval(() => {
             if (characterMirrored) {

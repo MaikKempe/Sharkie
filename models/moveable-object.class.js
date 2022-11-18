@@ -55,6 +55,14 @@ class MovealbeObject extends DrawableObject {
         this.animationStopped = false;
     }
 
+    moveLeft() {
+        if (!this.isDead()) {
+            setInterval(() => {
+                this.x -= this.speedX;
+            }, 1000 / 60);
+        }
+    }
+
     isColliding(mo) {
         return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&
             this.y + this.height - this.offset.height > mo.y + mo.offset.y &&

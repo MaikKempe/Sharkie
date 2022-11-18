@@ -16,7 +16,6 @@ class World {
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -43,7 +42,10 @@ class World {
         this.addToMap(this.statusbarLife);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarPoison);
-        this.addToMap(this.statusbarEndboss);
+        if (this.endboss.isIntroduced) {
+            this.addToMap(this.statusbarEndboss);
+        };
+
         self = this;
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
@@ -63,6 +65,10 @@ class World {
         o.drawHitbox(this.ctx);
     }
 
+    setWorld() { //Keyboard acess to character
+        this.endboss.world = this;
+        this.character.world = this;
+    }
 
     flipImage(o) {
         if (o.otherDirection) {
@@ -80,13 +86,7 @@ class World {
         }
     }
 
-    setWorld() { //Keyboard acess to character
-        this.character.world = this;
-        this.endboss.world = this;
-    }
-
-
-    // check if enemy are dad and despawn them
+    // check if enemy are dad and despawn them, character and Endboss dont need to despawned
     checkIfDead() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
@@ -102,7 +102,7 @@ class World {
     checkCollisions() {
         //character meets enemy
         setInterval(() => {
-            this.enemyHitsCharacter();
+           // this.enemyHitsCharacter();
             this.bubbleHitsEnemy();
             this.poisonedBubbleHitsEnemy();
             this.characterSlapsEnemy();

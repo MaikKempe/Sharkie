@@ -1,6 +1,7 @@
 class Endboss extends MovealbeObject {
-    height = 480;
-    width = 480;
+    height = 520;
+    width = 520;
+    speedX = 0.2;
     offset = {
         x: 30,
         y: 210,
@@ -9,7 +10,7 @@ class Endboss extends MovealbeObject {
     };
     attack = 100;
     energy = 100;
-    isIntroduced = true;
+    isIntroduced = false;
 
     IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -87,7 +88,14 @@ class Endboss extends MovealbeObject {
                 }
                 i++;
             }
+            if (this.characterApproachesSpawnposition()) {
+                this.moveLeft();
+                this.isIntroduced = true;
+            }
         }, 100)
-     
+    }
+
+    characterApproachesSpawnposition() {
+        return this.world.character.x > 2100 && !this.isIntroduced;
     }
 }
