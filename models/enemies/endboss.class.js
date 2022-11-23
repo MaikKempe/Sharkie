@@ -1,12 +1,12 @@
 class Endboss extends MovealbeObject {
-    height = 600;
-    width = 600;
+    height = 440;
+    width = 440;
     speedX = 0.2;
     offset = {
-        x: 30,
-        y: 210,
+        x: 40,
+        y: 220,
         width: 45,
-        height: 90
+        height: 100
     };
     attack = 100;
     energy = 100;
@@ -98,7 +98,7 @@ class Endboss extends MovealbeObject {
                 }
                 i++;
             }
-            if ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width) < 100 && !this.outOfRange()) {
+            if ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width) < 50 && !this.outOfRange()) {
                 console.log('match');
             }
             if (this.firstContact()) {
@@ -109,7 +109,7 @@ class Endboss extends MovealbeObject {
     }
 
     outOfRange() {
-        return (this.world.character.x + this.world.character.offset.width) - (this.x - this.offset.x) > 200;
+        return (this.world.character.x + this.world.character.offset.width) - (this.x - this.offset.x) > 50;
     }
 
     firstContact() {

@@ -171,11 +171,10 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
                 enemy.isSlapped = true;
-                // warten bis die Slapanimation fortgeschritten ist
                 setTimeout(() => {
                     enemy.hit(this.character.attack);
                     enemy.slappedAway(this.character.otherDirection);
-                }, 200);
+                }, 100);
             }
         });
     }
