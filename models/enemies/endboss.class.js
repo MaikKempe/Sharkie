@@ -11,6 +11,7 @@ class Endboss extends MovealbeObject {
     attack = 100;
     energy = 100;
     isIntroduced = false;
+    isAttacking = false;
 
     IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -90,16 +91,24 @@ class Endboss extends MovealbeObject {
                     this.playAnimation(this.IMAGES_INTRODUCE, 'once')
                 } else if (this.isDead()) {
                     this.attack = 0;
-                    this.playAnimation(this.IMAGES_DEAD, 'once')
+                    this.playAnimation(this.IMAGES_DEAD, 'once');
+                } else if (this.isAttacking && !this.isDead()) {
+                    this.playAnimation(this.IMAGES_ATTACK, 'multiple');
                 } else if (this.isHurt1() && !this.isDead()) {
-                    this.playAnimation(this.IMAGES_HURT, 'once')
+                    this.playAnimation(this.IMAGES_HURT, 'once');
                 } else {
-                    this.playAnimation(this.IMAGES_SWIM, 'multiple')
+                    this.playAnimation(this.IMAGES_SWIM, 'multiple');
                 }
                 i++;
             }
-            if ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width) < 50 && !this.outOfRange()) {
+            if (this.characterIsInRange() && this.isIntroduced) {
+                this.isAttacking = true;
+                this.speedX = 4;
                 console.log('match');
+            }
+            if (this.world.character.isDead()) {
+                this.isAttacking = false;
+                this.speedX = 0;
             }
             if (this.firstContact()) {
                 this.moveLeft();
@@ -108,9 +117,10 @@ class Endboss extends MovealbeObject {
         }, 100)
     }
 
-    outOfRange() {
-        return (this.world.character.x + this.world.character.offset.width) - (this.x - this.offset.x) > 50;
+    characterIsInRange() {
+        return ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width)) - 220 < 50;
     }
+
 
     firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
