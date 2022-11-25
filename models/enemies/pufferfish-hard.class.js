@@ -2,7 +2,7 @@ class PufferfishHard extends Pufferfish {
     width = 125;
     height = 165;
     offset = {
-        x: 7,
+        x: 6,
         y: 9,
         width: 0,
         height: 75

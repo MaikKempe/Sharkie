@@ -62,7 +62,7 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
-        o.drawHitbox(this.ctx);
+       // o.drawHitbox(this.ctx);
     }
 
     setWorld() { //Keyboard acess to character
@@ -102,7 +102,7 @@ class World {
     checkCollisions() {
         //character meets enemy
         setInterval(() => {
-           // this.enemyHitsCharacter();
+            this.enemyHitsCharacter();
             this.bubbleHitsEnemy();
             this.poisonedBubbleHitsEnemy();
             this.characterSlapsEnemy();

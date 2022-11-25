@@ -2,7 +2,7 @@ class PufferfishNormal extends Pufferfish {
     width = 105;
     height = 120;
     offset = {
-        x: 7,
+        x: 6,
         y: 9,
         width: 5,
         height: 45

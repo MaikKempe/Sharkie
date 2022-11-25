@@ -1,7 +1,7 @@
 class Endboss extends MovealbeObject {
     height = 500;
     width = 500;
-    speedX = 0;
+    speedX = 0.3;
     speedY;
     offset = {
         x: 45,
@@ -94,10 +94,11 @@ class Endboss extends MovealbeObject {
                 } else if (this.isDead()) {
                     this.attack = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once');
-                } else if (this.isAttacking && !this.isDead()) {
-                    this.followCharacterY();
+                } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
+                    this.followCharacter();
                     this.playAnimation(this.IMAGES_ATTACK, 'multiple');
                 } else if (this.isHurt1() && !this.isDead()) {
+                    this.speedX = 0;
                     this.playAnimation(this.IMAGES_HURT, 'once');
                 } else {
                     this.playAnimation(this.IMAGES_SWIM, 'multiple');
@@ -106,7 +107,6 @@ class Endboss extends MovealbeObject {
             }
             if (this.characterIsInRange() && this.isIntroduced) {
                 this.isAttacking = true;
-                this.speedX = this.world.character.speedX + 0.5;
             }
             if (this.world.character.isDead()) {
                 this.isAttacking = false;
@@ -123,8 +123,9 @@ class Endboss extends MovealbeObject {
         return ((this.world.character.x + this.world.character.offset.width)) > (this.x + this.offset.x) - this.distance;
     }
 
-    followCharacterY() {
+    followCharacter() {
         this.y += ((this.world.character.y - 100) - this.y) / 5;
+        this.speedX = this.world.character.speedX + 0.5;
     }
 
 
