@@ -93,15 +93,17 @@ class Endboss extends MovealbeObject {
                     this.playAnimation(this.IMAGES_INTRODUCE, 'once')
                 } else if (this.isDead()) {
                     this.attack = 0;
+                    this.speedX = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once');
                 } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
                     this.followCharacter();
                     this.playAnimation(this.IMAGES_ATTACK, 'multiple');
                 } else if (this.isHurt1() && !this.isDead()) {
-                    this.speedX = 0;
                     this.playAnimation(this.IMAGES_HURT, 'once');
+                    this.speedX = 0;
                 } else {
                     this.playAnimation(this.IMAGES_SWIM, 'multiple');
+                    this.speedX = 0.3;
                 }
                 i++;
             }
