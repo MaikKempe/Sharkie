@@ -1,7 +1,8 @@
 class Endboss extends MovealbeObject {
-    height = 440;
-    width = 440;
-    speedX = 0.2;
+    height = 500;
+    width = 500;
+    speedX = 0.3;
+    speedY;
     offset = {
         x: 40,
         y: 220,
@@ -12,6 +13,7 @@ class Endboss extends MovealbeObject {
     energy = 100;
     isIntroduced = false;
     isAttacking = false;
+    distance = 350;
 
     IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -93,6 +95,7 @@ class Endboss extends MovealbeObject {
                     this.attack = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once');
                 } else if (this.isAttacking && !this.isDead()) {
+                    this.followCharacterY();
                     this.playAnimation(this.IMAGES_ATTACK, 'multiple');
                 } else if (this.isHurt1() && !this.isDead()) {
                     this.playAnimation(this.IMAGES_HURT, 'once');
@@ -103,8 +106,7 @@ class Endboss extends MovealbeObject {
             }
             if (this.characterIsInRange() && this.isIntroduced) {
                 this.isAttacking = true;
-                this.speedX = 4;
-                console.log('match');
+                this.speedX = 5;
             }
             if (this.world.character.isDead()) {
                 this.isAttacking = false;
@@ -118,7 +120,11 @@ class Endboss extends MovealbeObject {
     }
 
     characterIsInRange() {
-        return ((this.x - this.offset.x) - (this.world.character.x + this.world.character.offset.width)) - 220 < 50;
+        return ((this.world.character.x + this.world.character.offset.width)) > (this.x + this.offset.x) - this.distance;
+    }
+
+    followCharacterY() {
+        this.y += ((this.world.character.y - 100) - this.y) / 5;
     }
 
 
