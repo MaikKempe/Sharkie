@@ -1,13 +1,13 @@
 class Endboss extends MovealbeObject {
     height = 500;
     width = 500;
-    speedX = 0.3;
+    speedX = 0;
     speedY;
     offset = {
-        x: 40,
-        y: 220,
+        x: 45,
+        y: 245,
         width: 45,
-        height: 100
+        height: 115
     };
     attack = 100;
     energy = 100;
@@ -106,7 +106,7 @@ class Endboss extends MovealbeObject {
             }
             if (this.characterIsInRange() && this.isIntroduced) {
                 this.isAttacking = true;
-                this.speedX = 5;
+                this.speedX = this.world.character.speedX + 0.5;
             }
             if (this.world.character.isDead()) {
                 this.isAttacking = false;
