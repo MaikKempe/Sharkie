@@ -8,7 +8,7 @@ class Character extends MovealbeObject {
     offset = {
         x: 75,
         y: 160,
-        width: 75, //45 for slap
+        width: 75,
         height: 80,
         slapMoveExtension: 10
     };
@@ -123,16 +123,7 @@ class Character extends MovealbeObject {
         'img/1_sharkie/6_dead/1_poisoned/11.png',
         'img/1_sharkie/6_dead/1_poisoned/12.png'
     ];
-    /** 
-        IMAGES_ELECTROSHOCK = [
-            'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
-            'img/1_sharkie/5_hurt/2_electric_shock/.o2.png',
-            'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
-            'img/1_sharkie/5_hurt/2_electric_shock/.o2.png',
-            'img/1_sharkie/5_hurt/2_electric_shock/.o1.png',
-            'img/1_sharkie/5_hurt/2_electric_shock/.o2.png'
-        ];
-    */
+
     constructor() {
         super();
         this.loadImage('img/1_sharkie/1_IDLE/1.png');
@@ -194,6 +185,7 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
+                gameOver(false);
             } else if (this.isHurt1()) {
                 this.playAnimation(this.IMAGES_HURT, 'multiple');
             } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
