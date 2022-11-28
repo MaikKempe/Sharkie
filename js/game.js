@@ -4,8 +4,26 @@ let keyboard = new Keyboard();
 let win = false;
 
 function init() {
+   showStartscreen();
+}
+
+function showStartscreen() {
+    document.getElementById('startscreen').innerHTML += startScreenTemplate();
+}
+
+function removeStartscreen() {
+    document.getElementById('startscreen').innerHTML = '';
+}
+
+function startGame() {
+    removeStartscreen();
+    showGamescreen();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+function showGamescreen() {
+    document.getElementById('game').innerHTML += gameTemplate();
 }
 
 function gameOver(win) {
