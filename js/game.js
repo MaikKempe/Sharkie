@@ -26,6 +26,10 @@ function showGameScreen() {
     document.getElementById('game').innerHTML += gameScreenTemplate();
 }
 
+function clearGameContent() {
+    document.getElementById('game').innerHTML = '';
+}
+
 function gameOver(win) {
     if (win) {
         console.log('player wins');
