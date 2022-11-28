@@ -1,10 +1,19 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let win = false;
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+function gameOver(win) {
+    if (win) {
+        console.log('player wins');
+    } else {
+        console.log('player looses');
+    }
 }
 
 window.addEventListener('keydown', (event) => {
