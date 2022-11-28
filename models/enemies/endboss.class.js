@@ -96,7 +96,7 @@ class Endboss extends MovealbeObject {
                     this.speedX = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once');
                 } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
-                    this.followCharacter();
+                    this.huntCharacter();
                     this.playAnimation(this.IMAGES_ATTACK, 'multiple');
                 } else if (this.isHurt1() && !this.isDead()) {
                     this.playAnimation(this.IMAGES_HURT, 'once');
@@ -125,7 +125,7 @@ class Endboss extends MovealbeObject {
         return ((this.world.character.x + this.world.character.offset.width)) > (this.x + this.offset.x) - this.distance;
     }
 
-    followCharacter() {
+    huntCharacter() {
         this.y += ((this.world.character.y - 100) - this.y) / 5;
         this.speedX = this.world.character.speedX + 0.5;
     }

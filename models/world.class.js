@@ -117,6 +117,10 @@ class World {
                 this.statusbarLife.setPercentage(this.character.energy);
             }
         });
+        if (this.character.isColliding(this.level.endboss)) {
+            this.character.hit(this.level.endboss.attack);
+            this.statusbarLife.setPercentage(this.character.energy);
+        }
     }
     /**
      * bubbles only effect normal Pufferfishes
