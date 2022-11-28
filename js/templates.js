@@ -23,7 +23,7 @@ function startScreenTemplate() {
     </div>`;
 }
 
-function gameTemplate() {
+function gameScreenTemplate() {
     return `
     <canvas id="canvas" width="720" height="480"></canvas>`;
 }

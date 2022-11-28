@@ -4,26 +4,26 @@ let keyboard = new Keyboard();
 let win = false;
 
 function init() {
-   showStartscreen();
+   showStartScreen();
 }
 
-function showStartscreen() {
+function showStartScreen() {
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
 }
 
-function removeStartscreen() {
+function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
 }
 
 function startGame() {
-    removeStartscreen();
-    showGamescreen();
+    removeStartScreen();
+    showGameScreen();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
 
-function showGamescreen() {
-    document.getElementById('game').innerHTML += gameTemplate();
+function showGameScreen() {
+    document.getElementById('game').innerHTML += gameScreenTemplate();
 }
 
 function gameOver(win) {
