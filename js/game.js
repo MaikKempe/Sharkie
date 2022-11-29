@@ -1,10 +1,11 @@
 let canvas;
 let world;
+let back
 let keyboard = new Keyboard();
 let win = false;
 
 function init() {
-   showStartScreen();
+    showStartScreen();
 }
 
 function showStartScreen() {
@@ -18,6 +19,7 @@ function removeStartScreen() {
 function startGame() {
     removeStartScreen();
     showGameScreen();
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
