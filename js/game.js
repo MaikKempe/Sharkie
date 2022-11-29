@@ -26,6 +26,11 @@ function startGame() {
 
 function showGameScreen() {
     document.getElementById('game').innerHTML += gameScreenTemplate();
+    // Fade-in effect for headline and description
+    setTimeout(() => {
+        document.getElementById('gamescreen-headline').style.display = "flex";
+        document.getElementById('gamescreen-description').style.display = "flex";
+    }, 2000);
 }
 
 function clearGameContent() {

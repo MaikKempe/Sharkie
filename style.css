@@ -14,8 +14,9 @@ body {
 }
 
 canvas {
-    background-color: black;
     box-shadow: 1px 2px 13px -2px rgb(0 0 0 / 50%);
+    animation: zoomIn 600ms ease-in-out;
+    background-image: linear-gradient(0deg, #710da7, #2013df);
 }
 
 .d-none {
@@ -29,4 +30,41 @@ canvas {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    animation: opacity 225ms ease-in-out;
+}
+
+#game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#gamescreen-headline {
+    display: none;
+    animation: opacity 225ms ease-in-out;
+}
+
+#gamescreen-description {
+    display: none;
+    animation: opacity 225ms ease-in-out;
+}
+
+
+@keyframes opacity {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }

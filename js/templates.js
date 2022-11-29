@@ -25,5 +25,8 @@ function startScreenTemplate() {
 
 function gameScreenTemplate() {
     return `
-    <canvas id="canvas" width="720" height="480"></canvas>`;
+    <h2 id="gamescreen-headline">Sharkie</h2>
+    <canvas id="canvas" width="720" height="480"></canvas>
+    <div id="gamescreen-description">Tastatur Beschreibung</div>
+    `;
 }
