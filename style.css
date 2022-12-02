@@ -16,7 +16,7 @@ body {
 canvas {
     box-shadow: 1px 2px 13px -2px rgb(0 0 0 / 50%);
     animation: zoomIn 600ms ease-in-out;
-    background-image: linear-gradient(0deg, #710da7, #2013df);
+    background-image: url('./img/3_background/legacy/dark/preview.png');
 }
 
 .d-none {
