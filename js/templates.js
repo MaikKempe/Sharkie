@@ -2,7 +2,7 @@ function startScreenTemplate() {
     return `
     <div class="startscreen">
       <h1>Sharkie</h1>
-      <button onclick="startGame()">Start Game</button>
+      <button class="btn-xl" onclick="startGame()">START GAME</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>

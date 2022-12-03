@@ -19,6 +19,11 @@ canvas {
     background-image: url('./img/3_background/legacy/dark/preview.png');
 }
 
+h1 {
+    font-size: 80px;
+    color: white;
+}
+
 .d-none {
     display: none;
 }
@@ -32,6 +37,30 @@ canvas {
     justify-content: center;
     animation: opacity 225ms ease-in-out;
 }
+
+.btn-xl {
+    display: flex;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-size: 35px;
+    color: white;
+    background: #5303ef;
+    transition: all 225ms ease-in-out;
+    transform: skewY(0deg);
+    border-radius: 20px;
+    border: white 4px solid;
+    box-shadow: 1px 2px 13px -2px rgb(0 0 0 / 50%);
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-xl:hover {
+    transform: skewY(-5deg);
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    border: white 4px solid;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 
 #game {
     display: flex;
@@ -75,5 +104,19 @@ canvas {
     }
     to {
         transform: scale(1);
+    }
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
     }
 }
