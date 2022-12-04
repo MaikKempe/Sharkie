@@ -18,13 +18,18 @@ function removeStartScreen() {
 
 function startGame() {
     initLevel();
+    loadingAnimation();
     setTimeout(() => {
         removeStartScreen();
         showGameScreen();
         canvas = document.getElementById('canvas');
         world = new World(canvas, keyboard);
-    }, 1500);
+    }, 2000);
 
+}
+
+function loadingAnimation() {
+    document.getElementById('h1').classList.add('filling-water');
 }
 
 function showGameScreen() {
@@ -33,7 +38,7 @@ function showGameScreen() {
     setTimeout(() => {
         document.getElementById('gamescreen-headline').style.display = "flex";
         document.getElementById('gamescreen-description').style.display = "flex";
-    }, 3000);
+    }, 1500);
 }
 
 function clearGameContent() {

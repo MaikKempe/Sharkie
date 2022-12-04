@@ -13,16 +13,55 @@ body {
     overflow: hidden;
 }
 
+.bg-start {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    object-fit: cover;
+    opacity: 70%;
+    z-index: -1;
+}
+
+.bg-ingame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    object-fit: cover;
+    opacity: 80%;
+    z-index: -1;
+    filter: blur(10px);
+    animation: opacity 600ms ease-in-out;
+}
+
 canvas {
     box-shadow: 1px 2px 13px -2px rgb(0 0 0 / 50%);
     animation: zoomIn 600ms ease-in-out;
     background-image: url('./img/3_background/legacy/dark/preview.png');
 }
 
+h1, h2, h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
 h1 {
     font-size: 80px;
-    color: white;
-    font-weight: 600;
+    color: transparent;
+    font-weight:lighter;
+    -webkit-text-stroke: 1px white; 
+}
+
+.h1-container {
+    background-color: white;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 22px;
 }
 
 .d-none {
@@ -39,7 +78,7 @@ h1 {
     animation: opacity 225ms ease-in-out;
 }
 
-.btn-xl {
+.start-btn {
     display: flex;
     padding: 10px 35px;
     text-decoration: none;
@@ -50,23 +89,49 @@ h1 {
     outline: 5px solid;
     outline-color: rgba(255, 255, 255, 1);
     outline-offset: -5px;
-    transition: all 1100ms cubic-bezier(0.2, 1, 0.22, 1);
+    transition: all 1300ms cubic-bezier(0.2, 1, 0.22, 1);
     border-width: 0;
     border: 5px solid rgba(255, 255, 255, 0);
     cursor: pointer;
 }
 
-.btn-xl:hover {
+.start-btn:hover {
     background: #3c079e;
 }
 
-.btn-xl:focus {
+.start-btn:focus {
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 25px;
     border: 5px solid rgba(255, 255, 255, 1);
     background: #2e057c;
 }
 
+.filling-water {
+    --r1: 154%;
+    --r2: 68.5%;
+   
+    animation: water-fill 2300ms infinite linear;
+    background: radial-gradient(
+          var(--r1) var(--r2) at top,
+          #fff 79.5%,
+          #2e057c 80%
+        )
+        center left,
+      radial-gradient(
+          var(--r1) var(--r2) at bottom,
+          #2e057c 79.5%,
+          #fff 80%
+        )
+        center center,
+      radial-gradient(var(--r1) var(--r2) at top, #fff 79.5%, #2e057c 80%)
+        center right,
+      transparent;
+    background-size: 50.5% 220%;
+    background-position: -100% 0%, 0% 0%, 100% 0%;
+    background-repeat: no-repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
 
 
 #game {
@@ -113,3 +178,15 @@ h1 {
         transform: scale(1);
     }
 }
+
+@keyframes water-fill {
+    33% {
+      background-position: 0% 33%, 100% 33%, 200% 33%;
+    }
+    66% {
+      background-position: -100% 66%, 0% 66%, 100% 66%;
+    }
+    100% {
+      background-position: 0% 100%, 100% 100%, 200% 100%;
+    }
+  }

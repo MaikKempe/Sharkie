@@ -1,8 +1,11 @@
 function startScreenTemplate() {
     return `
     <div class="startscreen">
-      <h1>Sharkie</h1>
-      <button class="btn-xl" onclick="startGame()">START GAME</button>
+    <img class="bg-start" src="img/3_background/dark/1.png">
+      <div class="h1-container">
+        <h1 id="h1" class="">Sharkie</h1>
+      </div>
+      <button class="start-btn" onclick="startGame()">START GAME</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>
@@ -25,6 +28,7 @@ function startScreenTemplate() {
 
 function gameScreenTemplate() {
     return `
+    <img class="bg-ingame" src="img/3_background/dark/1.png">
     <div class="gamescreen-headline-container">
       <h2 id="gamescreen-headline">Sharkie</h2>
     </div>
