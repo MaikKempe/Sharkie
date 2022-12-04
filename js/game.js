@@ -17,11 +17,14 @@ function removeStartScreen() {
 }
 
 function startGame() {
-    removeStartScreen();
-    showGameScreen();
     initLevel();
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    setTimeout(() => {
+        removeStartScreen();
+        showGameScreen();
+        canvas = document.getElementById('canvas');
+        world = new World(canvas, keyboard);
+    }, 1500);
+
 }
 
 function showGameScreen() {
@@ -30,7 +33,7 @@ function showGameScreen() {
     setTimeout(() => {
         document.getElementById('gamescreen-headline').style.display = "flex";
         document.getElementById('gamescreen-description').style.display = "flex";
-    }, 2000);
+    }, 3000);
 }
 
 function clearGameContent() {
