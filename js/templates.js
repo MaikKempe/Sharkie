@@ -1,11 +1,13 @@
 function startScreenTemplate() {
-    return `
+  return `
     <div class="startscreen">
     <img class="bg-start" src="img/3_background/dark/1.png">
       <div class="h1-container">
+        <img class="sharkie-h1" src="img/1_sharkie/1_IDLE/1.png">
         <h1 id="h1" class="">Sharkie</h1>
       </div>
       <button class="start-btn" onclick="startGame()">START GAME</button>
+      <button class="btn" onclick="">Introductions</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>
@@ -27,11 +29,18 @@ function startScreenTemplate() {
 }
 
 function gameScreenTemplate() {
-    return `
+  return `
     <img class="bg-ingame" src="img/3_background/dark/1.png">
-    <div class="gamescreen-headline-container">
+    <div class="gamescreen-container">
       <h2 id="gamescreen-headline">Sharkie</h2>
     </div>
     <canvas id="canvas" width="720" height="480"></canvas>
-    <div id="gamescreen-description">Tastatur Beschreibung</div>`;
+    <div class="gamescreen-container">
+       <div id="gamescreen-description">
+         <span>Arrows: Move</span>
+         <span>Space: Slap-Attack</span>
+         <span>V: Poisoned Bubble Attack</span>
+         <span>B: Bubble Attack</span>
+       </div>
+    </div>`;
 }

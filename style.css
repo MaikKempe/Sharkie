@@ -14,6 +14,8 @@ body {
 }
 
 .bg-start {
+    height: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     right: 0;
@@ -24,7 +26,20 @@ body {
     z-index: -1;
 }
 
+.sharkie-h1 {
+    top: -234%;
+    left: -66%;
+    width: 300px;
+    height: 380px;
+    position: absolute;
+    z-index: -1;
+    transform: rotate(-30deg);
+    object-fit: contain;
+}
+
 .bg-ingame {
+    height: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     right: 0;
@@ -33,7 +48,7 @@ body {
     object-fit: cover;
     opacity: 80%;
     z-index: -1;
-    filter: blur(10px);
+    filter: blur(12px);
     animation: opacity 600ms ease-in-out;
 }
 
@@ -53,15 +68,22 @@ h1, h2, h3 {
 h1 {
     font-size: 80px;
     color: transparent;
-    font-weight:lighter;
+    font-weight: lighter;
     -webkit-text-stroke: 1px white; 
 }
 
 .h1-container {
+    position: relative;
     background-color: white;
     background-clip: text;
     -webkit-background-clip: text;
-    margin-bottom: 22px;
+    margin-bottom: 32px;
+}
+
+h2 {
+    font-size: 62px;
+    font-weight: lighter;
+    color: white;
 }
 
 .d-none {
@@ -80,37 +102,54 @@ h1 {
 
 .start-btn {
     display: flex;
-    padding: 10px 35px;
+    padding: 10px 34px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 32px;
     color: white;
     background: #2e057c;
     border-radius: 16px;
     outline: 5px solid;
     outline-color: rgba(255, 255, 255, 1);
     outline-offset: -5px;
-    transition: all 1300ms cubic-bezier(0.2, 1, 0.22, 1);
+    transition: all 225ms ease-in-out;
     border-width: 0;
     border: 5px solid rgba(255, 255, 255, 0);
+    margin-bottom: 48px;
+}
+
+.start-btn:hover, .btn:hover {
+    background: #430fa3;
     cursor: pointer;
 }
 
-.start-btn:hover {
-    background: #3c079e;
-}
-
 .start-btn:focus {
+    transition: all 1300ms cubic-bezier(0.2, 1, 0.22, 1);
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 25px;
     border: 5px solid rgba(255, 255, 255, 1);
     background: #2e057c;
 }
 
+.btn {
+    display: flex;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: lighter;
+    color: white;
+    background: #2e057c;
+    border-radius: 16px;
+    transition: all 225ms ease-in-out;
+    border-width: 0;
+    border: 5px solid white;
+}
+
+
 .filling-water {
     --r1: 154%;
     --r2: 68.5%;
    
-    animation: water-fill 2300ms infinite linear;
+    animation: water-fill 2100ms infinite linear;
     background: radial-gradient(
           var(--r1) var(--r2) at top,
           #fff 79.5%,
@@ -142,12 +181,12 @@ h1 {
     width: 720px;
 }
 
-.gamescreen-headline-container {
+.gamescreen-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: 90px;
 }
 
 #gamescreen-headline {
@@ -155,9 +194,19 @@ h1 {
     animation: opacity 225ms ease-in-out;
 }
 
+.gamescreen-container span {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    line-height: 1;
+    font-weight: lighter;
+}
+
 #gamescreen-description {
     display: none;
     animation: opacity 225ms ease-in-out;
+    justify-content: space-between;
+    align-items: center;
 }
 
 

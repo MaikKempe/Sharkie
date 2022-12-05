@@ -38,7 +38,7 @@ function showGameScreen() {
     setTimeout(() => {
         document.getElementById('gamescreen-headline').style.display = "flex";
         document.getElementById('gamescreen-description').style.display = "flex";
-    }, 1500);
+    }, 1700);
 }
 
 function clearGameContent() {
