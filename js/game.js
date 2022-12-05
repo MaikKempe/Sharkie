@@ -9,11 +9,21 @@ function init() {
 }
 
 function showStartScreen() {
+    removeIntroductions();
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
 }
 
 function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
+}
+
+function showIntroductions() {
+    removeStartScreen();
+    document.getElementById('introductions').innerHTML += introductionsTemplate();
+}
+
+function removeIntroductions() {
+    document.getElementById('introductions').innerHTML = '';
 }
 
 function startGame() {

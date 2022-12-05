@@ -90,7 +90,7 @@ h2 {
     display: none;
 }
 
-.startscreen {
+.startscreen, .introductions {
     margin: 0;
     height: 100vh;
     display: flex;
