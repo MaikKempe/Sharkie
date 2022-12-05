@@ -88,8 +88,10 @@ class PufferfishHard extends Pufferfish {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
             } else if (this.hitByBubble == 1 && !this.isSlapped && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ANGRY, 'multiple');
+                this.offset.height = 60;
             } else if (this.hitByBubble == 2 && !this.isSlapped && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ANGRY, 'multiple');
+                this.offset.height = 60;
                 this.speedX = 1.5;
             } else {
                 this.playAnimation(this.IMAGES_SWIM, 'multiple');

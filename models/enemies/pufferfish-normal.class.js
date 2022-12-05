@@ -60,9 +60,11 @@ class PufferfishNormal extends Pufferfish {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
             } else if (this.isHurt1() && !this.isDead() && !this.isSlapped) {
                 this.playAnimation(this.IMAGES_HURT, 'once');
+                this.offset.height = 35;
                 this.speedX = 1.7;
                 setTimeout(() => {
                     this.speedX = 0.7;
+                    this.offset.height = 45;
                 }, 1500); //time passed isHurt() 1200;
             } else {
                 this.playAnimation(this.IMAGES_SWIM, 'multiple');
