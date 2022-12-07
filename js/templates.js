@@ -7,7 +7,7 @@ function startScreenTemplate() {
         <h1 id="h1" class="">Sharkie</h1>
       </div>
       <button class="start-btn" onclick="startGame()">START GAME</button>
-      <button class="btn" onclick="showIntroductions()">Introductions</button>
+      <button class="btn" onclick="showIntroduction()">Introduction</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>
@@ -28,12 +28,29 @@ function startScreenTemplate() {
     </div>`;
 }
 
-function introductionsTemplate() {
+function introductionTemplate() {
   return `
-    <div class="introductions">
-     <h2>Introductions</h2>
-     
-     <button class="btn" onclick="showStartScreen()">close</button>
+    <div class="introduction">
+     <div class="introduction-headline">
+       <h2>Introduction</h2>
+     </div>
+     <div class="introduction-description">
+       <span>
+         Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext
+       </span>
+     </div>
+     <div class="introduction-manual-container">
+       <div class="manual-row">
+        <div class="manual-child">
+          <div class="key-container">
+            <div class="key">B</div>
+          </div>
+        </div>
+       </div>
+     </div>
+     <div class="introduction-menu">
+       <button class="btn" onclick="showStartScreen()">close</button>
+     </div>
     </div>`;
 }
 

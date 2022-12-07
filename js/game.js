@@ -9,7 +9,7 @@ function init() {
 }
 
 function showStartScreen() {
-    removeIntroductions();
+    removeIntroduction();
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
 }
 
@@ -17,12 +17,12 @@ function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
 }
 
-function showIntroductions() {
+function showIntroduction() {
     removeStartScreen();
-    document.getElementById('introductions').innerHTML += introductionsTemplate();
+    document.getElementById('introductions').innerHTML += introductionTemplate();
 }
 
-function removeIntroductions() {
+function removeIntroduction() {
     document.getElementById('introductions').innerHTML = '';
 }
 
