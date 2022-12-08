@@ -86,6 +86,18 @@ h2 {
     color: white;
 }
 
+h3 {
+    font-size: 42px;
+    font-weight: lighter;
+    color: white;
+}
+
+h4 {
+    font-size: 32px;
+    font-weight: lighter;
+    color: white;
+}
+
 .d-none {
     display: none;
 }
@@ -172,16 +184,23 @@ h2 {
     -webkit-background-clip: text;
   }
 
+  #introduction {
+    overflow: auto;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+  }
+
 .introduction {
     margin: 0;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     animation: opacity 225ms ease-in-out;
     max-width: 1200px;
 }
 
-.introduction-headline {
+.help-headline {
     display: flex;
     justify-content: center;
     margin-bottom: 24px;
@@ -208,20 +227,27 @@ h2 {
 
 .manual-row {
     width: 100%;
-    height: 150px;
+    height: 130px;
     background-color:rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
 .manual-child {
-    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+    margin-right: 24px;
 }
 
-.key-container {
+.manual-child h4 {
+    margin-left: 24px;
+}
+
+.key {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -232,10 +258,79 @@ h2 {
     border: 5px solid white;
 }
 
-.key {
+.key-letter {
     font-weight: lighter;
     color: white;
     font-size: 32px;
+}
+
+.key-img {
+    width: 50px;
+    height: 50px;
+}
+
+.space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 58px;
+    width: 230px;
+    background: #2e057c;
+    border-radius: 16px;
+    border: 5px solid white;
+}
+
+.manual-sharkie {
+    object-fit: contain;
+    width: 150px;
+    margin-left: 24px;
+}
+
+.manual-sharkie-attack {
+    object-fit: contain;
+    width: 180px;
+    margin-left: 24px;
+}
+
+.manual-enemy {
+    object-fit: contain;
+    width: 180px;
+}
+
+.collectible-element-row {
+    width: 100%;
+    height: 100px;
+    background-color:rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.collectible-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.collectible-element span {
+    font-size: 20px;
+    color: white;
+    margin-left: 24px;
+}
+
+.coin {
+  object-fit: contain;
+  width: 70px;
+}
+
+.poison {
+    object-fit: contain;
+    width: 45px;
+    padding-bottom: 6px;
 }
 
 .introduction-menu {

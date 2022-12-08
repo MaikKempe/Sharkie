@@ -30,28 +30,82 @@ function startScreenTemplate() {
 
 function introductionTemplate() {
   return `
-    <div class="introduction">
-     <div class="introduction-headline">
-       <h2>Introduction</h2>
+  <div class="introduction">
+    <div class="help-headline">
+       <h3>Introduction</h3>
      </div>
      <div class="introduction-description">
        <span>
-         Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext
+         Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltex
        </span>
+     </div>
+     <div class="help-headline">
+       <h3>Keys</h3>
      </div>
      <div class="introduction-manual-container">
        <div class="manual-row">
         <div class="manual-child">
-          <div class="key-container">
-            <div class="key">B</div>
+          <div class="key">
+            <img src="img/8_icons/arrows.png" class="key-img">
           </div>
+          <h4>Move</h4>
+          <img class="manual-sharkie" src="img/7_introduction/sharkie.png">
         </div>
        </div>
      </div>
+     <div class="manual-row">
+        <div class="manual-child">
+          <div class="space">
+            <div class="key-letter">Space</div>
+          </div>
+          <h4>Slap Attack</h4>
+          <img class="manual-sharkie-attack" src="img/7_introduction/sharkie_slap.png">
+        </div>
+        <div class="manual-child">
+          <img class="manual-enemy" src="img/7_introduction/pufferfishes.png">
+        </div>
+     </div>
+     <div class="manual-row">
+        <div class="manual-child">
+          <div class="key">
+            <div class="key-letter">B</div>
+          </div>
+          <h4>Bubble Attack</h4>
+          <img class="manual-sharkie-attack" src="img/7_introduction/sharkie_bubble.png">
+        </div>
+        <div class="manual-child">
+          <img class="manual-enemy" src="img/7_introduction/pufferfishes.png">
+        </div>
+       </div>
+     <div class="manual-row">
+        <div class="manual-child">
+          <div class="key">
+            <div class="key-letter">V</div>
+          </div>
+          <h4>Poisoned Bubble Attack</h4>
+          <img class="manual-sharkie-attack" src="img/7_introduction/sharkie_poisoned_bubble.png">
+        </div>
+        <div class="manual-child">
+          <img class="manual-enemy" src="img/7_introduction/endboss.png">
+        </div>
+       </div>
+     <div class="help-headline">
+       <h3>Collectible Elements</h3>
+     </div>
+     <div class="collectible-element-row">
+        <div class="collectible-element">
+          <img class="coin" src="img/7_introduction/coin.png">
+          <span>Coin</span>
+        </div>
+        <div class="collectible-element">
+          <img class="poison" src="img/7_introduction/poison.png">
+          <span>Poison (to use Poisoned Bubble Attack)</span>
+        </div>
+     </div>
      <div class="introduction-menu">
        <button class="btn" onclick="showStartScreen()">close</button>
-     </div>
-    </div>`;
+     </div>    
+ </div>`;
 }
 
 function gameScreenTemplate() {
