@@ -71,6 +71,7 @@ function reload() {
 
 
 function endGame(win) {
+        world.stopAnimations();
     if (win) {
         setTimeout(() => {
             showWinScreen();

@@ -87,7 +87,7 @@ class Endboss extends MovealbeObject {
 
     animate() {
         let i = 0;
-        setInterval(() => {
+        this.animationInterval = setInterval(() => {
             if (this.isIntroduced) {
                 if (i < this.IMAGES_INTRODUCE.length) {
                     this.playAnimation(this.IMAGES_INTRODUCE, 'once')
@@ -134,5 +134,9 @@ class Endboss extends MovealbeObject {
 
     firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
+    }
+
+    stopAnimations() {
+        clearInterval(this.animationInterval);
     }
 }

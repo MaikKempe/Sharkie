@@ -21,6 +21,10 @@ class Character extends MovealbeObject {
     keyboardBlocked = false;
     coinsCollected = 0;
     poisonCollected = 0;
+    animationIntervalMovement;
+    animationIntervalSingleMoves;
+    animationIntervalImages;
+
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
     IMAGES_IDLE = [
@@ -146,7 +150,7 @@ class Character extends MovealbeObject {
     }
     //animate movement, FPS
     animateMovement() {
-        setInterval(() => {
+        this.animationIntervalMovement = setInterval(() => {
             //   this.AUDIO_SLAP.pause();
             if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
                 this.y -= this.speedY;
@@ -172,7 +176,7 @@ class Character extends MovealbeObject {
 
     //listen for Single Animationstart
     singleMoves() {
-        setInterval(() => {
+        this.animationIntervalSingleMoves = setInterval(() => {
             this.slapAttack();
             this.bubbleAttack();
             this.poisonedBubbleAttack();
@@ -181,7 +185,7 @@ class Character extends MovealbeObject {
 
     animateImages() {
         //animate images of character
-        setInterval(() => {
+        this.animationIntervalImages = setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
                 endGame(false);
@@ -336,5 +340,11 @@ class Character extends MovealbeObject {
     isLongIdle() {
         let timePassed = new Date().getTime() - this.world.keyboard.lastEvent;
         return timePassed > 3000;
+    }
+
+    stopAnimations() {
+        clearInterval(this.animationIntervalMovement);
+        clearInterval(this.animationIntervalSingleMoves);
+        clearInterval(this.animationIntervalImages);
     }
 }

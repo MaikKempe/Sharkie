@@ -14,6 +14,7 @@ class MovealbeObject extends DrawableObject {
         height: 0
     };
     energy;
+    animationInterval;
 
     animate(images, option) {
         setInterval(() => {
@@ -57,7 +58,7 @@ class MovealbeObject extends DrawableObject {
 
     moveLeft() {
         if (!this.isDead()) {
-            setInterval(() => {
+           this.animationInterval = setInterval(() => {
                 this.x -= this.speedX;
             }, 1000 / 60);
         }
@@ -92,6 +93,5 @@ class MovealbeObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
-
 }
 

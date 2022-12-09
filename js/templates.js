@@ -54,8 +54,7 @@ function gameOverScreenTemplate() {
         <h2>GAME OVER</h2>
       </div>
       <button class="btn" onclick="reload()">Try again</button>
-  </div>
-  `;
+  </div>`;
 }
 
 function winScreenTemplate() {
@@ -68,8 +67,7 @@ function winScreenTemplate() {
       </div>
       <div class="coin-info">You have collected X of X Coins</div>
       <button class="btn" onclick="reload()">Play again</button>
-  </div>
-  `;
+  </div>`;
 }
 
 function helpSectionTemplate() {

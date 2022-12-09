@@ -214,4 +214,10 @@ class World {
         arr.splice(index, 1);
     }
 
+    stopAnimations() {
+        this.character.stopAnimations();
+        this.endboss.stopAnimations();
+        this.move
+    }
+
 }
