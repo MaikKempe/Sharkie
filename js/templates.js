@@ -1,10 +1,10 @@
 function startScreenTemplate() {
   return `
     <div class="startscreen">
-    <img class="bg-start" src="img/3_background/dark/1.png">
+    <img class="bg" src="img/3_background/dark/1.png">
       <div class="h1-container">
-        <img class="sharkie-h1" src="img/1_sharkie/1_IDLE/1.png">
-        <h1 id="h1" class="">Sharkie</h1>
+        <img class="sharkie-startscreen" src="img/1_sharkie/1_IDLE/1.png">
+        <h1 id="h1">Sharkie</h1>
       </div>
       <button class="start-btn" onclick="startGame()">START GAME</button>
       <button class="btn" onclick="showIntroduction()">HELP</button>
@@ -26,6 +26,50 @@ function startScreenTemplate() {
           <div class="bubble bubble-15"></div>
       </div>
     </div>`;
+}
+
+function gameScreenTemplate() {
+  return `
+    <img class="bg-blurred" src="img/3_background/dark/1.png">
+    <div class="gamescreen-container">
+      <h2 id="gamescreen-headline">Sharkie</h2>
+    </div>
+    <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="gamescreen-container">
+       <div id="gamescreen-description">
+         <span>Arrows: Move</span>
+         <span>Space: Slap-Attack</span>
+         <span>V: Poisoned Bubble Attack</span>
+         <span>B: Bubble Attack</span>
+       </div>
+    </div>`;
+}
+
+function gameOverScreenTemplate() {
+  return `
+  <div class="endscreen">
+    <img class="bg" src="img/3_background/dark/1.png">
+      <div class="headline-container">
+        <img class="sharkie-game-over" src="img/1_sharkie/6_dead/1_poisoned/sin_subir/DES 2_00011.png">
+        <h2>GAME OVER</h2>
+      </div>
+      <button class="btn" onclick="reload()">Try again</button>
+  </div>
+  `;
+}
+
+function winScreenTemplate() {
+  return `
+  <div class="endscreen">
+    <img class="bg" src="img/3_background/dark/1.png">
+      <div class="headline-container">
+        <img class="sharkie-win" src="img/6_botones/sharkie_win.png">
+        <h2>YOU WIN!</h2>
+      </div>
+      <div class="coin-info">You have collected X of X Coins</div>
+      <button class="btn" onclick="reload()">Play again</button>
+  </div>
+  `;
 }
 
 function helpSectionTemplate() {
@@ -102,25 +146,8 @@ function helpSectionTemplate() {
           <span>Poison (to use Poisoned Bubble Attack)</span>
         </div>
      </div>
-     <div class="introduction-menu">
+     <div class="help-menu">
        <button class="btn" onclick="showStartScreen()">close</button>
      </div>    
  </div>`;
-}
-
-function gameScreenTemplate() {
-  return `
-    <img class="bg-ingame" src="img/3_background/dark/1.png">
-    <div class="gamescreen-container">
-      <h2 id="gamescreen-headline">Sharkie</h2>
-    </div>
-    <canvas id="canvas" width="720" height="480"></canvas>
-    <div class="gamescreen-container">
-       <div id="gamescreen-description">
-         <span>Arrows: Move</span>
-         <span>Space: Slap-Attack</span>
-         <span>V: Poisoned Bubble Attack</span>
-         <span>B: Bubble Attack</span>
-       </div>
-    </div>`;
 }

@@ -135,7 +135,6 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_POISONED_BUBBLE_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        //  this.loadImages(this.IMAGES_ELECTROSHOCK);
         this.animateCharacter();
         this.playCharacterSounds();
     }
@@ -185,7 +184,7 @@ class Character extends MovealbeObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD, 'once');
-                gameOver(false);
+                endGame(false);
             } else if (this.isHurt1()) {
                 this.playAnimation(this.IMAGES_HURT, 'multiple');
             } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {

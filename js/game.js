@@ -51,15 +51,34 @@ function showGameScreen() {
     }, 1700);
 }
 
-function clearGameContent() {
+function removeGameScreen() {
     document.getElementById('game').innerHTML = '';
 }
 
-function gameOver(win) {
+function showGameOverScreen() {
+    removeGameScreen();
+    document.getElementById('endscreen').innerHTML += gameOverScreenTemplate();
+}
+
+function showWinScreen() {
+    removeGameScreen();
+    document.getElementById('endscreen').innerHTML += winScreenTemplate();
+}
+
+function reload() {
+    window.location.reload();
+}
+
+
+function endGame(win) {
     if (win) {
-        console.log('player wins');
+        setTimeout(() => {
+            showWinScreen();
+        }, 1700);
     } else {
-        console.log('player looses');
+        setTimeout(() => {
+            showGameOverScreen();
+        }, 1700);
     }
 }
 
