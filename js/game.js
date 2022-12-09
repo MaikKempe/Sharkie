@@ -19,11 +19,11 @@ function removeStartScreen() {
 
 function showIntroduction() {
     removeStartScreen();
-    document.getElementById('introduction').innerHTML += introductionTemplate();
+    document.getElementById('help').innerHTML += helpSectionTemplate();
 }
 
 function removeIntroduction() {
-    document.getElementById('introduction').innerHTML = '';
+    document.getElementById('help').innerHTML = '';
 }
 
 function startGame() {

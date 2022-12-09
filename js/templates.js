@@ -7,7 +7,7 @@ function startScreenTemplate() {
         <h1 id="h1" class="">Sharkie</h1>
       </div>
       <button class="start-btn" onclick="startGame()">START GAME</button>
-      <button class="btn" onclick="showIntroduction()">Introduction</button>
+      <button class="btn" onclick="showIntroduction()">HELP</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>
@@ -28,13 +28,13 @@ function startScreenTemplate() {
     </div>`;
 }
 
-function introductionTemplate() {
+function helpSectionTemplate() {
   return `
-  <div class="introduction">
+  <div class="help-section">
     <div class="help-headline">
        <h3>Introduction</h3>
      </div>
-     <div class="introduction-description">
+     <div class="help-description">
        <span>
          Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltex
        </span>
@@ -42,51 +42,51 @@ function introductionTemplate() {
      <div class="help-headline">
        <h3>Keys</h3>
      </div>
-     <div class="introduction-manual-container">
-       <div class="manual-row">
-        <div class="manual-child">
+     <div class="help-container">
+       <div class="help-row">
+        <div class="help-child">
           <div class="key">
             <img src="img/8_icons/arrows.png" class="key-img">
           </div>
           <h4>Move</h4>
-          <img class="manual-sharkie" src="img/7_introduction/sharkie.png">
+          <img class="sharkie-preview" src="img/7_introduction/sharkie.png">
         </div>
        </div>
      </div>
-     <div class="manual-row">
-        <div class="manual-child">
+     <div class="help-row">
+        <div class="help-child">
           <div class="space">
             <div class="key-letter">Space</div>
           </div>
           <h4>Slap Attack</h4>
-          <img class="manual-sharkie-attack" src="img/7_introduction/sharkie_slap.png">
+          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_slap.png">
         </div>
-        <div class="manual-child">
-          <img class="manual-enemy" src="img/7_introduction/pufferfishes.png">
+        <div class="help-child">
+          <img class="enemy-preview" src="img/7_introduction/pufferfishes.png">
         </div>
      </div>
-     <div class="manual-row">
-        <div class="manual-child">
+     <div class="help-row">
+        <div class="help-child">
           <div class="key">
             <div class="key-letter">B</div>
           </div>
           <h4>Bubble Attack</h4>
-          <img class="manual-sharkie-attack" src="img/7_introduction/sharkie_bubble.png">
+          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_bubble.png">
         </div>
-        <div class="manual-child">
-          <img class="manual-enemy" src="img/7_introduction/pufferfishes.png">
+        <div class="help-child">
+          <img class="enemy-preview" src="img/7_introduction/pufferfishes.png">
         </div>
        </div>
-     <div class="manual-row">
-        <div class="manual-child">
+     <div class="help-row">
+        <div class="help-child">
           <div class="key">
             <div class="key-letter">V</div>
           </div>
           <h4>Poisoned Bubble Attack</h4>
-          <img class="manual-sharkie-attack" src="img/7_introduction/sharkie_poisoned_bubble.png">
+          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_poisoned_bubble.png">
         </div>
-        <div class="manual-child">
-          <img class="manual-enemy" src="img/7_introduction/endboss.png">
+        <div class="help-child">
+          <img class="enemy-preview" src="img/7_introduction/endboss.png">
         </div>
        </div>
      <div class="help-headline">

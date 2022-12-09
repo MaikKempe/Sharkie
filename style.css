@@ -184,7 +184,7 @@ h4 {
     -webkit-background-clip: text;
   }
 
-  #introduction {
+  #help {
     overflow: auto;
     width: 100vw;
     display: flex;
@@ -192,7 +192,7 @@ h4 {
 
   }
 
-.introduction {
+.help-section {
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -207,25 +207,25 @@ h4 {
     margin-top: 24px;
 }
 
-.introduction-description {
+.help-description {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     margin-bottom: 12px;
 }
 
-.introduction-description span {
+.help-description span {
     color: white;
     font-size: 20px;
 }
 
-.introduction-manual-container  {
+.help-container  {
     display: flex;
     flex-direction: column;
 }
 
 
-.manual-row {
+.help-row {
     width: 100%;
     height: 130px;
     background-color:rgba(255, 255, 255, 0.2);
@@ -236,14 +236,14 @@ h4 {
     margin-bottom: 24px;
 }
 
-.manual-child {
+.help-child {
     display: flex;
     align-items: center;
     margin-left: 24px;
     margin-right: 24px;
 }
 
-.manual-child h4 {
+.help-child h4 {
     margin-left: 24px;
 }
 
@@ -280,26 +280,26 @@ h4 {
     border: 5px solid white;
 }
 
-.manual-sharkie {
+.sharkie-preview {
     object-fit: contain;
     width: 150px;
     margin-left: 24px;
 }
 
-.manual-sharkie-attack {
+.sharkie-attack-preview {
     object-fit: contain;
     width: 180px;
     margin-left: 24px;
 }
 
-.manual-enemy {
+.enemy-preview {
     object-fit: contain;
     width: 180px;
 }
 
 .collectible-element-row {
     width: 100%;
-    height: 100px;
+    height: 80px;
     background-color:rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
@@ -317,19 +317,19 @@ h4 {
 }
 
 .collectible-element span {
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     margin-left: 24px;
 }
 
 .coin {
   object-fit: contain;
-  width: 70px;
+  width: 55px;
 }
 
 .poison {
     object-fit: contain;
-    width: 45px;
+    width: 32px;
     padding-bottom: 6px;
 }
 
