@@ -3,6 +3,7 @@ let world;
 let back
 let keyboard = new Keyboard();
 let win = false;
+let gameIsRunning = true;
 
 function init() {
     showStartScreen();
@@ -70,16 +71,12 @@ function reload() {
 }
 
 
-function endGame(win) {
-        world.stopAnimations();
+function stopGame(win) {
+    gameIsRunning = false;
     if (win) {
-        setTimeout(() => {
-            showWinScreen();
-        }, 1700);
+        showWinScreen();
     } else {
-        setTimeout(() => {
-            showGameOverScreen();
-        }, 1700);
+        showGameOverScreen();
     }
 }
 

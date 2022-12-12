@@ -87,39 +87,50 @@ class Endboss extends MovealbeObject {
 
     animate() {
         let i = 0;
-        this.animationInterval = setInterval(() => {
-            if (this.isIntroduced) {
-                if (i < this.IMAGES_INTRODUCE.length) {
-                    this.playAnimation(this.IMAGES_INTRODUCE, 'once')
-                } else if (this.isDead()) {
-                    this.attack = 0;
-                    this.speedX = 0;
-                    this.playAnimation(this.IMAGES_DEAD, 'once');
-                    endGame(true);
-                } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
-                    this.huntCharacter();
-                    this.playAnimation(this.IMAGES_ATTACK, 'multiple');
-                } else if (this.isHurt1() && !this.isDead()) {
-                    this.playAnimation(this.IMAGES_HURT, 'once');
-                    this.speedX = 0;
-                } else {
-                    this.playAnimation(this.IMAGES_SWIM, 'multiple');
-                    this.speedX = 0.3;
+        setInterval(() => {
+            if (gameIsRunning) {
+                if (this.isIntroduced) {
+                    if (i < this.IMAGES_INTRODUCE.length) {
+                        this.playAnimation(this.IMAGES_INTRODUCE, 'once')
+                    } else if (this.isDead()) {
+                        this.attack = 0;
+                        this.speedX = 0;
+                        this.playAnimation(this.IMAGES_DEAD, 'once');
+                        this.gameWon();
+                    } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
+                        this.huntCharacter();
+                        this.playAnimation(this.IMAGES_ATTACK, 'multiple');
+                    } else if (this.isHurt1() && !this.isDead()) {
+                        this.playAnimation(this.IMAGES_HURT, 'once');
+                        this.speedX = 0;
+                    } else {
+                        this.playAnimation(this.IMAGES_SWIM, 'multiple');
+                        this.speedX = 0.3;
+                    }
+                    i++;
                 }
-                i++;
-            }
-            if (this.characterIsInRange() && this.isIntroduced) {
-                this.isAttacking = true;
-            }
-            if (this.world.character.isDead()) {
-                this.isAttacking = false;
-                this.speedX = 0;
-            }
-            if (this.firstContact()) {
-                this.moveLeft();
-                this.isIntroduced = true;
+                if (this.characterIsInRange() && this.isIntroduced) {
+                    this.isAttacking = true;
+                }
+                if (this.world.character.isDead()) {
+                    this.isAttacking = false;
+                    this.speedX = 0;
+                }
+                if (this.firstContact()) {
+                    this.moveLeft();
+                    this.isIntroduced = true;
+                }
             }
         }, 100)
+    }
+
+    gameWon() {
+        if (!this.endbossAlreadyDead && !this.characterAlreadyDead) {
+            this.endbossAlreadyDead = true;
+            setTimeout(() => {
+                stopGame(true);
+            }, 2000);
+        }
     }
 
     characterIsInRange() {
@@ -134,9 +145,5 @@ class Endboss extends MovealbeObject {
 
     firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
-    }
-
-    stopAnimations() {
-        clearInterval(this.animationInterval);
     }
 }

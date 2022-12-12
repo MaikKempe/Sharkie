@@ -14,11 +14,14 @@ class MovealbeObject extends DrawableObject {
         height: 0
     };
     energy;
-    animationInterval;
+    characterAlreadyDead = false;
+    endbossAlreadyDead = false;
 
     animate(images, option) {
         setInterval(() => {
-            this.playAnimation(images, option);
+            if (gameIsRunning) {
+                this.playAnimation(images, option);
+            }
         }, 1000 / 10);
     }
 
@@ -58,8 +61,10 @@ class MovealbeObject extends DrawableObject {
 
     moveLeft() {
         if (!this.isDead()) {
-           this.animationInterval = setInterval(() => {
-                this.x -= this.speedX;
+            setInterval(() => {
+                if (gameIsRunning) {
+                    this.x -= this.speedX;
+                }
             }, 1000 / 60);
         }
     }

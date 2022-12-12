@@ -80,21 +80,23 @@ class PufferfishHard extends Pufferfish {
 
     animate() {
         setInterval(() => {
-            if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
-                this.attack = 0;
-                this.playAnimation(this.IMAGES_DEAD_ANGRY, 'once');
-            } else if (this.isDead() && this.hitByBubble == 0) { // death after changed color
-                this.attack = 0;
-                this.playAnimation(this.IMAGES_DEAD, 'once');
-            } else if (this.hitByBubble == 1 && !this.isSlapped && !this.isDead()) {
-                this.playAnimation(this.IMAGES_ANGRY, 'multiple');
-                this.offset.height = 60;
-            } else if (this.hitByBubble == 2 && !this.isSlapped && !this.isDead()) {
-                this.playAnimation(this.IMAGES_ANGRY, 'multiple');
-                this.offset.height = 60;
-                this.speedX = 1.5;
-            } else {
-                this.playAnimation(this.IMAGES_SWIM, 'multiple');
+            if (gameIsRunning) {
+                if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
+                    this.attack = 0;
+                    this.playAnimation(this.IMAGES_DEAD_ANGRY, 'once');
+                } else if (this.isDead() && this.hitByBubble == 0) { // death after changed color
+                    this.attack = 0;
+                    this.playAnimation(this.IMAGES_DEAD, 'once');
+                } else if (this.hitByBubble == 1 && !this.isSlapped && !this.isDead()) {
+                    this.playAnimation(this.IMAGES_ANGRY, 'multiple');
+                    this.offset.height = 60;
+                } else if (this.hitByBubble == 2 && !this.isSlapped && !this.isDead()) {
+                    this.playAnimation(this.IMAGES_ANGRY, 'multiple');
+                    this.offset.height = 60;
+                    this.speedX = 1.5;
+                } else {
+                    this.playAnimation(this.IMAGES_SWIM, 'multiple');
+                }
             }
         }, 1000 / 10);
     }

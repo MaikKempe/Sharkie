@@ -21,9 +21,6 @@ class Character extends MovealbeObject {
     keyboardBlocked = false;
     coinsCollected = 0;
     poisonCollected = 0;
-    animationIntervalMovement;
-    animationIntervalSingleMoves;
-    animationIntervalImages;
 
     AUDIO_SLAP = new Audio('audio/slap.mp3');
 
@@ -150,23 +147,25 @@ class Character extends MovealbeObject {
     }
     //animate movement, FPS
     animateMovement() {
-        this.animationIntervalMovement = setInterval(() => {
-            //   this.AUDIO_SLAP.pause();
-            if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
-                this.y -= this.speedY;
+        setInterval(() => {
+            if (gameIsRunning) {
+                //   this.AUDIO_SLAP.pause();
+                if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
+                    this.y -= this.speedY;
+                }
+                if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked) {
+                    this.y += this.speedY;
+                }
+                if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked) {//end of map
+                    this.x -= this.speedX;
+                    this.otherDirection = true;
+                }
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked) {
+                    this.x += this.speedX;
+                    this.otherDirection = false;
+                }
+                this.moveBackground();
             }
-            if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked) {
-                this.y += this.speedY;
-            }
-            if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked) {//end of map
-                this.x -= this.speedX;
-                this.otherDirection = true;
-            }
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked) {
-                this.x += this.speedX;
-                this.otherDirection = false;
-            }
-            this.moveBackground();
         }, 1000 / 60);
     }
 
@@ -176,41 +175,54 @@ class Character extends MovealbeObject {
 
     //listen for Single Animationstart
     singleMoves() {
-        this.animationIntervalSingleMoves = setInterval(() => {
-            this.slapAttack();
-            this.bubbleAttack();
-            this.poisonedBubbleAttack();
+        setInterval(() => {
+            if (gameIsRunning) {
+                this.slapAttack();
+                this.bubbleAttack();
+                this.poisonedBubbleAttack();
+            }
         }, 100);
     }
 
     animateImages() {
         //animate images of character
-        this.animationIntervalImages = setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD, 'once');
-                endGame(false);
-            } else if (this.isHurt1()) {
-                this.playAnimation(this.IMAGES_HURT, 'multiple');
-            } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
-                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.keyboardBlocked) { // end of map
-                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.keyboardBlocked) {
-                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.keyboardBlocked) {
-                this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
-            } else if (this.isSlapping) {
-                this.playAnimation(this.IMAGES_SLAP_ATTACK, 'once');
-            } else if (this.isBubbling) {
-                this.playAnimation(this.IMAGES_BUBBLE_ATTACK, 'once');
-            } else if (this.isPoisonedBubbling) {
-                this.playAnimation(this.IMAGES_POISONED_BUBBLE_ATTACK, 'once');
-            } else if (this.isLongIdle() && this.noKeyIsPressed) {
-                this.playAnimation(this.IMAGES_SLEEPING, 'multiple');
-            } else {
-                this.playAnimation(this.IMAGES_IDLE, 'multiple');
+        setInterval(() => {
+            if (gameIsRunning) {
+                if (this.isDead()) {
+                    this.playAnimation(this.IMAGES_DEAD, 'once');
+                    this.gameOver();
+                } else if (this.isHurt1()) {
+                    this.playAnimation(this.IMAGES_HURT, 'multiple');
+                } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
+                    this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+                } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.keyboardBlocked) { // end of map
+                    this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+                } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.keyboardBlocked) {
+                    this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+                } else if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.keyboardBlocked) {
+                    this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
+                } else if (this.isSlapping) {
+                    this.playAnimation(this.IMAGES_SLAP_ATTACK, 'once');
+                } else if (this.isBubbling) {
+                    this.playAnimation(this.IMAGES_BUBBLE_ATTACK, 'once');
+                } else if (this.isPoisonedBubbling) {
+                    this.playAnimation(this.IMAGES_POISONED_BUBBLE_ATTACK, 'once');
+                } else if (this.isLongIdle() && this.noKeyIsPressed) {
+                    this.playAnimation(this.IMAGES_SLEEPING, 'multiple');
+                } else {
+                    this.playAnimation(this.IMAGES_IDLE, 'multiple');
+                }
             }
         }, 100);
+    }
+
+    gameOver() {
+        if (!this.characterAlreadyDead && !this.endbossAlreadyDead) {
+            this.characterAlreadyDead = true;
+            setTimeout(() => {
+                stopGame(false);
+            }, 1700);
+        }
     }
 
     slapAttack() {
@@ -340,11 +352,5 @@ class Character extends MovealbeObject {
     isLongIdle() {
         let timePassed = new Date().getTime() - this.world.keyboard.lastEvent;
         return timePassed > 3000;
-    }
-
-    stopAnimations() {
-        clearInterval(this.animationIntervalMovement);
-        clearInterval(this.animationIntervalSingleMoves);
-        clearInterval(this.animationIntervalImages);
     }
 }

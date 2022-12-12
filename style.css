@@ -112,9 +112,9 @@ h4 {
 }
 
 .sharkie-win {
-    top: -150%;
-    left: -44%;
-    width: 170px;
+    top: -105%;
+    left: -35%;
+    width: 130px;
     position: absolute;
     z-index: -1;
     transform: rotate(18deg);
