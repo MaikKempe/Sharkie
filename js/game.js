@@ -4,6 +4,10 @@ let back
 let keyboard = new Keyboard();
 let win = false;
 let gameIsRunning = false;
+let fullscreenOn = false;
+let soundOn = true;
+let standbyOn = false;
+let controlsOn = true;
 
 function init() {
     showStartScreen();
@@ -49,6 +53,7 @@ function showGameScreen() {
     setTimeout(() => {
         document.getElementById('gamescreen-headline').style.display = "flex";
         document.getElementById('gamescreen-description').style.display = "flex";
+        document.getElementById('gamescreen-sidebar').style.display = "flex";
     }, 1700);
 }
 
@@ -78,6 +83,14 @@ function stopGame(win) {
     } else {
         showGameOverScreen();
     }
+}
+
+/***
+ * Sidebar
+ */
+
+function toogleScreen() {
+ 
 }
 
 window.addEventListener('keydown', (event) => {
