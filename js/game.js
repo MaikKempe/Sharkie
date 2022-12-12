@@ -3,7 +3,7 @@ let world;
 let back
 let keyboard = new Keyboard();
 let win = false;
-let gameIsRunning = true;
+let gameIsRunning = false;
 
 function init() {
     showStartScreen();
@@ -35,8 +35,8 @@ function startGame() {
         showGameScreen();
         canvas = document.getElementById('canvas');
         world = new World(canvas, keyboard);
+        gameIsRunning = true;
     }, 2000);
-
 }
 
 function loadingAnimation() {
