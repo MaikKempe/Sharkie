@@ -422,44 +422,41 @@ h4 {
 #gamescreen-sidebar {
     display: none;
     animation: opacity 225ms ease-in-out;
-    width: 80px;
-    height: 100%;
-    flex-direction: column;
-    right: -12%;
     z-index: 1;
     position: absolute;
-    top: 0;
-    gap: 8px;
+    left: 0;
+    bottom: 1%;
+    gap: 6px;
 }
 
 .setting-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 42px;
-    width: 42px;
+    height: 40px;
+    width: 40px;
     border-radius: 6px;
     cursor: pointer;
     opacity: 100%;
     transition: all 125ms ease-in-out;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .setting-icon {
     object-fit: contain;
-    width: 26px;
-    opacity: 85%;
+    width: 24px;
+    opacity: 100%;
     transition: all 125ms ease-in-out;
 }
 
 
 .setting-btn:hover {
     transition: all 125ms ease-in-out;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(0, 0, 0, 0.55);
 }
 
 .coin-info {
-    font-size: 20px;
+    font-size: 22px;
     color: white;
     margin-bottom: 32px;
 }

@@ -96,6 +96,7 @@ class Endboss extends MovealbeObject {
                         this.attack = 0;
                         this.speedX = 0;
                         this.playAnimation(this.IMAGES_DEAD, 'once');
+                        this.characterAlreadyDead = false;
                         this.gameWon();
                     } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
                         this.huntCharacter();

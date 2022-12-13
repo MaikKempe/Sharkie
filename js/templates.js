@@ -37,7 +37,7 @@ function gameScreenTemplate() {
     <div class="game-content">
       <canvas id="canvas" width="720" height="480"></canvas>
       <div id="gamescreen-paused">
-       <h3>Game Paused</h3>
+       <h2>Game Paused</h2>
       </div>
       <div id="gamescreen-sidebar">
         <div class="setting-btn" onclick="toggleScreen()">

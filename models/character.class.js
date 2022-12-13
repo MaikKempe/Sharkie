@@ -190,6 +190,7 @@ class Character extends MovealbeObject {
             if (gameIsRunning) {
                 if (this.isDead()) {
                     this.playAnimation(this.IMAGES_DEAD, 'once');
+                    this.endbossAlreadyDead = false;
                     this.gameOver();
                 } else if (this.isHurt1()) {
                     this.playAnimation(this.IMAGES_HURT, 'multiple');
