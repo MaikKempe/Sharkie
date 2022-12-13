@@ -36,22 +36,25 @@ function gameScreenTemplate() {
     </div>
     <div class="game-content">
       <canvas id="canvas" width="720" height="480"></canvas>
+      <div id="gamescreen-paused">
+       <h3>Game Paused</h3>
+      </div>
       <div id="gamescreen-sidebar">
-        <div class="setting-btn">
-          <img id="fullscreen-off-icon" class="setting-icon" src="img/8_icons/fullscreen_off.png">
-          <img id="fullscreen-on-icon" class="setting-icon d-none" src="img/8_icons/fullscreen_on.png">
+        <div class="setting-btn" onclick="toggleScreen()">
+          <img id="fullscreen-on-icon" class="setting-icon" src="img/8_icons/fullscreen_on.png">
+          <img id="fullscreen-off-icon" class="setting-icon d-none" src="img/8_icons/fullscreen_off.png">
         </div>
-        <div class="setting-btn">
+        <div class="setting-btn" onclick="toggleSound()">
           <img id="sound-on-icon" class="setting-icon" src="img/8_icons/sound_on.png">
           <img id="sound-off-icon" class="setting-icon d-none" src="img/8_icons/sound_off.png">
         </div>
-        <div class="setting-btn">
+        <div class="setting-btn" onclick="toggleStandby()">
           <img id="standby-off-icon" class="setting-icon" src="img/8_icons/standby_off.png">
           <img id="standby-on-icon" class="setting-icon d-none" src="img/8_icons/standby_on.png">
         </div>
-        <div class="setting-btn">
-          <img id="controls-on-icon" class="setting-icon" src="img/8_icons/controls_on.png">
-          <img id="controls-off-icon" class="setting-icon d-none" src="img/8_icons/controls_off.png">
+        <div class="setting-btn" onclick="toggleDescription()">
+          <img id="info-on-icon" class="setting-icon" src="img/8_icons/info_on.png">
+          <img id="info-off-icon" class="setting-icon d-none" src="img/8_icons/info_off.png">
         </div>
       </div>
     </div>
@@ -59,8 +62,8 @@ function gameScreenTemplate() {
        <div id="gamescreen-description">
          <span>Arrows: Move</span>
          <span>Space: Slap-Attack</span>
-         <span>V: Poisoned Bubble Attack</span>
          <span>B: Bubble Attack</span>
+         <span>V: Poisoned Bubble Attack</span>
        </div>
     </div>`;
 }
