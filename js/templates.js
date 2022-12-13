@@ -88,7 +88,7 @@ function winScreenTemplate() {
         <img class="sharkie-win" src="img/6_botones/sharkie_win.png">
         <h2>YOU WIN!</h2>
       </div>
-      <div class="coin-info">You have collected X of X Coins</div>
+      <div class="coin-info">You have collected ${world.character.coinsCollected} of ${world.level.allCoins} Coins</div>
       <button class="btn" onclick="reload()">Play again</button>
   </div>`;
 }
