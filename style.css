@@ -44,7 +44,13 @@ body {
 canvas {
     box-shadow: 1px 2px 13px -2px rgb(0 0 0 / 50%);
     animation: zoomIn 600ms ease-in-out;
-    background-image: url('./img/3_background/legacy/dark/preview.png');
+  
+}
+
+.canvas-fullscreen {
+    object-fit: contain;
+    height: 100vh;
+    width: 100vw;
 }
 
 .d-none {

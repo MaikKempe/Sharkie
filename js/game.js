@@ -52,7 +52,7 @@ function showGameScreen() {
     // Fade-in effect for headline and description
     setTimeout(() => {
         showIngameHeadline();
-        showIngameDescription(); 
+        showIngameDescription();
         showSidebar();
     }, 1700);
 }
@@ -114,12 +114,58 @@ function toggleScreen() {
         document.getElementById('fullscreen-on-icon').classList.add('d-none');
         document.getElementById('fullscreen-off-icon').classList.remove('d-none');
         fullscreenOn = true;
+        openFullscreen();
     } else {
         document.getElementById('fullscreen-off-icon').classList.add('d-none');
         document.getElementById('fullscreen-on-icon').classList.remove('d-none');
         fullscreenOn = false;
+        closeFullscreen();
     }
 }
+
+
+function openFullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    if (fullscreen.requestFullscreen) {
+        fullscreen.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        fullscreen.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        fullscreen.msRequestFullscreen();
+    }
+    canvasFullscreenModeOn();
+    hideDescriptionButton();
+}
+
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+      }
+      canvasFullscreenModeOff();
+      showDescriptionButton();
+}
+
+function canvasFullscreenModeOn() {
+    canvas.classList.add('canvas-fullscreen');
+}
+
+function canvasFullscreenModeOff() {
+    canvas.classList.remove('canvas-fullscreen');
+}
+
+function hideDescriptionButton() {
+    document.getElementById('description-btn').style.display = "none";
+}
+
+function showDescriptionButton() {
+    document.getElementById('description-btn').style.display = "flex";
+}
+
 
 function toggleSound() {
     if (soundOn) {
