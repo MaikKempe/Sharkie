@@ -15,8 +15,7 @@
     background-color: white;
     bottom: -30px;
     opacity: 0.2;
-    animation: bubble 15s ease-in-out infinite,
-      sideWays 4s ease-in-out infinite alternate;
+    animation: bubble 15s ease-in-out infinite;
   }
   
   .bubble-1 {
@@ -159,14 +158,5 @@
     }
     100% {
       transform: translateY(-120vh);
-    }
-  }
-  
-  @keyframes sideWays {
-    0% {
-      margin-left: 0px;
-    }
-    100% {
-      margin-left: 200px;
     }
   }
