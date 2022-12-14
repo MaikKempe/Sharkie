@@ -59,6 +59,20 @@ class MovealbeObject extends DrawableObject {
         this.animationStopped = false;
     }
 
+    //playGameover animation
+    // stop interval character
+    /** 
+    playAnimationOnce(images) {
+        if (!this.animationStarted) {
+            this.currentImage = 0;
+        }
+
+        this.animationStarted = true;
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }*/
     moveLeft() {
         if (!this.isDead()) {
             setInterval(() => {

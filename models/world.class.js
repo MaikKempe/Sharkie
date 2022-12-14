@@ -62,7 +62,7 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
-        // o.drawHitbox(this.ctx);
+       // o.drawHitbox(this.ctx);
     }
 
     setWorld() { //Keyboard acess to character
@@ -89,27 +89,24 @@ class World {
     // check if enemy are dad and despawn them, character and Endboss dont need to despawned
     checkIfDead() {
         setInterval(() => {
-            if (gameIsRunning) {
-                this.level.enemies.forEach((enemy) => {
-                    if (enemy.isDead() && enemy instanceof Pufferfish) {
-                        setTimeout(() => {
-                            this.deleteObject(this.level.enemies, enemy);
-                        }, 400);
-                    }
-                });
-            }
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isDead() && enemy instanceof Pufferfish) {
+                    setTimeout(() => {
+                        this.deleteObject(this.level.enemies, enemy);
+                    }, 400);
+                }
+            });
         }, 650);
     }
 
     checkCollisions() {
+        //character meets enemy
         setInterval(() => {
-            if (gameIsRunning) {
-                this.enemyHitsCharacter();
-                this.bubbleHitsEnemy();
-                this.poisonedBubbleHitsEnemy();
-                this.characterSlapsEnemy();
-                this.characterCollectsObject();
-            }
+            this.enemyHitsCharacter();
+            this.bubbleHitsEnemy();
+            this.poisonedBubbleHitsEnemy();
+            this.characterSlapsEnemy();
+            this.characterCollectsObject();
         }, 100);
     }
 
@@ -216,4 +213,10 @@ class World {
         let index = arr.indexOf(mo);
         arr.splice(index, 1);
     }
+
+    stopAnimations() {
+        this.character.stopAnimations();
+        this.endboss.stopAnimations();
+    }
+
 }
