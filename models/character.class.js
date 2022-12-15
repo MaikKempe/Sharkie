@@ -190,7 +190,6 @@ class Character extends MovealbeObject {
             if (gameIsRunning) {
                 if (this.isDead()) {
                     this.playAnimation(this.IMAGES_DEAD, 'once');
-                    this.endbossAlreadyDead = false;
                     this.gameOver();
                 } else if (this.isHurt1()) {
                     this.playAnimation(this.IMAGES_HURT, 'multiple');
@@ -218,12 +217,9 @@ class Character extends MovealbeObject {
     }
 
     gameOver() {
-        if (!this.characterAlreadyDead && !this.endbossAlreadyDead) {
-            this.characterAlreadyDead = true;
-            setTimeout(() => {
-                stopGame(false);
-            }, 1700);
-        }
+        setTimeout(() => {
+            stopGame(false);
+        }, 2500);
     }
 
     slapAttack() {

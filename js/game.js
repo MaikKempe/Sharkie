@@ -4,6 +4,7 @@ let back
 let keyboard = new Keyboard();
 let win = false;
 let gameIsRunning = false;
+let gameFinished = false;
 let fullscreenOn = false;
 let soundOn = true;
 let standbyOn = false;
@@ -98,9 +99,11 @@ function reload() {
 
 function stopGame(win) {
     gameIsRunning = false;
-    if (win) {
+    if (win && !gameFinished) {
+        gameFinished = true;
         showWinScreen();
-    } else {
+    } else if (!win && !gameFinished) {
+        gameFinished = true;
         showGameOverScreen();
     }
 }
@@ -141,13 +144,13 @@ function openFullscreen() {
 function closeFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) { /* Safari */
+    } else if (document.webkitExitFullscreen) { /* Safari */
         document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) { /* IE11 */
+    } else if (document.msExitFullscreen) { /* IE11 */
         document.msExitFullscreen();
-      }
-      canvasFullscreenModeOff();
-      showDescriptionButton();
+    }
+    canvasFullscreenModeOff();
+    showDescriptionButton();
 }
 
 function canvasFullscreenModeOn() {

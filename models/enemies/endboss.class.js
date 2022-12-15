@@ -96,7 +96,6 @@ class Endboss extends MovealbeObject {
                         this.attack = 0;
                         this.speedX = 0;
                         this.playAnimation(this.IMAGES_DEAD, 'once');
-                        this.characterAlreadyDead = false;
                         this.gameWon();
                     } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
                         this.huntCharacter();
@@ -126,12 +125,9 @@ class Endboss extends MovealbeObject {
     }
 
     gameWon() {
-        if (!this.endbossAlreadyDead && !this.characterAlreadyDead) {
-            this.endbossAlreadyDead = true;
-            setTimeout(() => {
-                stopGame(true);
-            }, 2000);
-        }
+        setTimeout(() => {
+            stopGame(true);
+        }, 2500);
     }
 
     characterIsInRange() {
