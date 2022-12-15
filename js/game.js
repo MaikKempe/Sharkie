@@ -11,7 +11,7 @@ let soundWasOff = false;
 let standbyOn = false;
 let descriptionOn = true;
 
-let BACKGROUND_MUSIC = new Audio('audio/background_sound.mp3');
+let LEVEL1_MUSIC = new Audio('audio/background_sound.mp3');
 
 function init() {
     showStartScreen();
@@ -277,10 +277,10 @@ function toggleDescription() {
 function playBackgroundMusic() {
     setInterval(() => {
         if (soundOn) {
-            BACKGROUND_MUSIC.volume = 0.1;
-            BACKGROUND_MUSIC.play();
+            LEVEL1_MUSIC.volume = 0.1;
+            LEVEL1_MUSIC.play();
         } else {
-            BACKGROUND_MUSIC.pause();
+            LEVEL1_MUSIC.pause();
         }
     }, 100);
 }

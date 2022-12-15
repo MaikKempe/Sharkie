@@ -137,7 +137,6 @@ class Character extends MovealbeObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.animateCharacter();
-        this.playCharacterSounds();
     }
 
     animateCharacter() {

@@ -87,7 +87,7 @@ class World {
         }
     }
 
-    // check if enemy are dad and despawn them, character and Endboss dont need to despawned
+    // check if enemy are dad and despawn them, character and Endboss dont need to be despawned
     checkIfDead() {
         setInterval(() => {
             if (gameIsRunning) {
