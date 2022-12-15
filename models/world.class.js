@@ -15,7 +15,6 @@ class World {
     endboss = level1.endboss;
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
-    BACKGROUND_MUSIC = new Audio('audio/background_sound.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -26,9 +25,6 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.checkIfDead();
-        setTimeout(() => {
-            this.setBackgroundMusic();
-        }, 1700);
     }
 
     draw() {
@@ -211,17 +207,6 @@ class World {
 
     updateStatusbarPoisons() {
         this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100);
-    }
-
-    setBackgroundMusic() {
-        setInterval(() => {
-            if (soundOn) {
-                this.BACKGROUND_MUSIC.volume = 0.1;
-                this.BACKGROUND_MUSIC.play();
-            } else {
-                this.BACKGROUND_MUSIC.pause();
-            }
-        }, 100);
     }
 
     // bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.

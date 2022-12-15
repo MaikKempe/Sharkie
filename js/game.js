@@ -11,7 +11,7 @@ let soundWasOff = false;
 let standbyOn = false;
 let descriptionOn = true;
 
-
+let BACKGROUND_MUSIC = new Audio('audio/background_sound.mp3');
 
 function init() {
     showStartScreen();
@@ -58,6 +58,7 @@ function showGameScreen() {
         showIngameHeadline();
         showIngameDescription();
         showSidebar();
+        playBackgroundMusic();
     }, 1700);
 }
 
@@ -112,7 +113,9 @@ function stopGame(win) {
 }
 
 /***
- * Sidebar
+ * ###########################################
+ * Sidebar/ Navigation
+ * ###########################################
  */
 
 function toggleScreen() {
@@ -205,6 +208,8 @@ function soundButtonDisabledStyle() {
     document.getElementById('sound-btn').style.opacity = "50%";
 }
 
+// If player turned sound off before, the sound is still paused after standby
+
 function toggleStandby() {
     if (!standbyOn) {
         showStandbyOnIcon();
@@ -220,7 +225,6 @@ function toggleStandby() {
         standbyOn = false;
         gameIsRunning = true;
         soundButtonEnabledStyle();
-        // If player turned sound off before, the sound is still paused after standby
         if (soundWasOff) {
             showSoundOffIcon();
             soundOn = false;
@@ -262,6 +266,25 @@ function toggleDescription() {
         descriptionOn = true;
     }
 }
+
+
+/***
+ * ###########################################
+ * Music
+ * ###########################################
+ */
+
+function playBackgroundMusic() {
+    setInterval(() => {
+        if (soundOn) {
+            BACKGROUND_MUSIC.volume = 0.1;
+            BACKGROUND_MUSIC.play();
+        } else {
+            BACKGROUND_MUSIC.pause();
+        }
+    }, 100);
+}
+
 
 window.addEventListener('keydown', (event) => {
     keyboard.lastEvent = new Date().getTime();
