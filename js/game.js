@@ -7,11 +7,12 @@ let gameIsRunning = false;
 let gameFinished = false;
 let fullscreenOn = false;
 let soundOn = true;
-let soundWasOff = false;
+let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
 
-let LEVEL1_MUSIC = new Audio('audio/background_sound.mp3');
+let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
+let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
 
 function init() {
     showStartScreen();
@@ -58,8 +59,11 @@ function showGameScreen() {
         showIngameHeadline();
         showIngameDescription();
         showSidebar();
-        playBackgroundMusic();
     }, 1700);
+    // CSS Animations takes longer
+    setTimeout(() => {
+        playBackgroundMusic();
+    }, 2000);
 }
 
 function showIngameHeadline() {
@@ -100,7 +104,7 @@ function reload() {
     window.location.reload();
 }
 
-
+//function can only called once
 function stopGame(win) {
     gameIsRunning = false;
     if (win && !gameFinished) {
@@ -271,16 +275,17 @@ function toggleDescription() {
 /***
  * ###########################################
  * Music
+ * game effekt sound werden an der entsprechenden Stelle einer classe gestartet
  * ###########################################
  */
 
 function playBackgroundMusic() {
     setInterval(() => {
         if (soundOn) {
-            LEVEL1_MUSIC.volume = 0.1;
-            LEVEL1_MUSIC.play();
+            LEVEL_MUSIC.volume = 0.1;
+            LEVEL_MUSIC.play();
         } else {
-            LEVEL1_MUSIC.pause();
+            LEVEL_MUSIC.pause();
         }
     }, 100);
 }

@@ -125,6 +125,7 @@ class Endboss extends MovealbeObject {
     }
 
     gameWon() {
+        // short timeout for death animation
         setTimeout(() => {
             stopGame(true);
         }, 2500);
