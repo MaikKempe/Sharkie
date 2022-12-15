@@ -45,7 +45,7 @@ function gameScreenTemplate() {
             <img id="fullscreen-on-icon" class="setting-icon" src="img/8_icons/fullscreen_on.png">
             <img id="fullscreen-off-icon" class="setting-icon d-none" src="img/8_icons/fullscreen_off.png">
           </div>
-          <div class="setting-btn" onclick="toggleSound()">
+          <div id="sound-btn" class="setting-btn" onclick="toggleSound()">
             <img id="sound-on-icon" class="setting-icon" src="img/8_icons/sound_on.png">
             <img id="sound-off-icon" class="setting-icon d-none" src="img/8_icons/sound_off.png">
           </div>

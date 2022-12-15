@@ -7,8 +7,11 @@ let gameIsRunning = false;
 let gameFinished = false;
 let fullscreenOn = false;
 let soundOn = true;
+let soundWasOff = false;
 let standbyOn = false;
 let descriptionOn = true;
+
+
 
 function init() {
     showStartScreen();
@@ -171,31 +174,79 @@ function showDescriptionButton() {
 
 
 function toggleSound() {
-    if (soundOn) {
-        document.getElementById('sound-on-icon').classList.add('d-none');
-        document.getElementById('sound-off-icon').classList.remove('d-none');
-        soundOn = false;
-    } else {
-        document.getElementById('sound-off-icon').classList.add('d-none');
-        document.getElementById('sound-on-icon').classList.remove('d-none');
-        soundOn = true;
+    if (!standbyOn) { // can only used out, off standyBy modus
+        if (soundOn) {
+            showSoundOffIcon();
+            soundOn = false;
+            soundWasOff = true;
+        } else {
+            showSoundOnIcon();
+            soundOn = true;
+            soundWasOff = false;
+        }
     }
+}
+
+function showSoundOnIcon() {
+    document.getElementById('sound-off-icon').classList.add('d-none');
+    document.getElementById('sound-on-icon').classList.remove('d-none');
+}
+
+function showSoundOffIcon() {
+    document.getElementById('sound-on-icon').classList.add('d-none');
+    document.getElementById('sound-off-icon').classList.remove('d-none');
+}
+
+function soundButtonEnabledStyle() {
+    document.getElementById('sound-btn').style.opacity = "100%";
+}
+
+function soundButtonDisabledStyle() {
+    document.getElementById('sound-btn').style.opacity = "50%";
 }
 
 function toggleStandby() {
     if (!standbyOn) {
-        document.getElementById('standby-off-icon').classList.add('d-none');
-        document.getElementById('standby-on-icon').classList.remove('d-none');
-        document.getElementById('gamescreen-paused').style.display = "flex";
+        showStandbyOnIcon();
+        showPausedScreen();
         standbyOn = true;
-        gameIsRunning = false;
+        gameIsRunning = false; // game intervalls stops
+        soundOn = false; //backgorund music stops
+        showSoundOffIcon();
+        soundButtonDisabledStyle();
     } else {
-        document.getElementById('gamescreen-paused').style.display = "none";
-        document.getElementById('standby-on-icon').classList.add('d-none');
-        document.getElementById('standby-off-icon').classList.remove('d-none');
+        showStandbyOffIcon();
+        removePausedScreen();
         standbyOn = false;
         gameIsRunning = true;
+        soundButtonEnabledStyle();
+        // If player turned sound off before, the sound is still paused after standby
+        if (soundWasOff) {
+            showSoundOffIcon();
+            soundOn = false;
+        } else {
+            showSoundOnIcon();
+            soundOn = true;
+        }
     }
+}
+
+function showStandbyOnIcon() {
+    document.getElementById('standby-off-icon').classList.add('d-none');
+    document.getElementById('standby-on-icon').classList.remove('d-none');
+}
+
+function showStandbyOffIcon() {
+    document.getElementById('standby-on-icon').classList.add('d-none');
+    document.getElementById('standby-off-icon').classList.remove('d-none');
+}
+
+function showPausedScreen() {
+    document.getElementById('gamescreen-paused').style.display = "flex";
+}
+
+function removePausedScreen() {
+    document.getElementById('gamescreen-paused').style.display = "none";
 }
 
 function toggleDescription() {

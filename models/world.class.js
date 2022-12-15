@@ -15,6 +15,8 @@ class World {
     endboss = level1.endboss;
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
+    BACKGROUND_MUSIC = new Audio('audio/background_sound.mp3');
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,6 +26,9 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.checkIfDead();
+        setTimeout(() => {
+            this.setBackgroundMusic();
+        }, 1700);
     }
 
     draw() {
@@ -62,7 +67,7 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
-       // o.drawHitbox(this.ctx);
+        // o.drawHitbox(this.ctx);
     }
 
     setWorld() { //Keyboard acess to character
@@ -208,15 +213,20 @@ class World {
         this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100);
     }
 
+    setBackgroundMusic() {
+        setInterval(() => {
+            if (soundOn) {
+                this.BACKGROUND_MUSIC.volume = 0.1;
+                this.BACKGROUND_MUSIC.play();
+            } else {
+                this.BACKGROUND_MUSIC.pause();
+            }
+        }, 100);
+    }
+
     // bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.
     deleteObject(arr, mo) {
         let index = arr.indexOf(mo);
         arr.splice(index, 1);
     }
-
-    stopAnimations() {
-        this.character.stopAnimations();
-        this.endboss.stopAnimations();
-    }
-
 }
