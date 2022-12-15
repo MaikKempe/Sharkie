@@ -338,14 +338,6 @@ class Character extends MovealbeObject {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
     }
 
-    playCharacterSounds() {
-        setInterval(() => {
-            if (this.world.keyboard.SPACE) {
-                this.AUDIO_SLAP.play();
-            }
-        }, 1000);
-    }
-
     isLongIdle() {
         let timePassed = new Date().getTime() - this.world.keyboard.lastEvent;
         return timePassed > 3000;

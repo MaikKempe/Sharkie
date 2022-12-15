@@ -90,24 +90,28 @@ class World {
     // check if enemy are dad and despawn them, character and Endboss dont need to despawned
     checkIfDead() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (enemy.isDead() && enemy instanceof Pufferfish) {
-                    setTimeout(() => {
-                        this.deleteObject(this.level.enemies, enemy);
-                    }, 400);
-                }
-            });
+            if (gameIsRunning) {
+                this.level.enemies.forEach((enemy) => {
+                    if (enemy.isDead() && enemy instanceof Pufferfish) {
+                        setTimeout(() => {
+                            this.deleteObject(this.level.enemies, enemy);
+                        }, 400);
+                    }
+                });
+            }
         }, 650);
     }
 
     checkCollisions() {
         //character meets enemy
         setInterval(() => {
-            this.enemyHitsCharacter();
-            this.bubbleHitsEnemy();
-            this.poisonedBubbleHitsEnemy();
-            this.characterSlapsEnemy();
-            this.characterCollectsObject();
+            if (gameIsRunning) {
+                this.enemyHitsCharacter();
+                this.bubbleHitsEnemy();
+                this.poisonedBubbleHitsEnemy();
+                this.characterSlapsEnemy();
+                this.characterCollectsObject();
+            }
         }, 100);
     }
 
