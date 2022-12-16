@@ -168,7 +168,6 @@ class World {
                 this.deleteObject(this.poisonedBubbles, poisonedBubble);
             }
             if (poisonedBubble.isColliding(this.level.endboss)) {
-                if (soundOn) { this.playBubbleBurstSound(); }
                 this.level.endboss.hit(poisonedBubble.attack);
                 this.statusbarEndboss.setPercentage(this.level.endboss.energy);
                 this.deleteObject(this.poisonedBubbles, poisonedBubble);

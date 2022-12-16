@@ -190,7 +190,9 @@ class Character extends MovealbeObject {
             if (gameIsRunning) {
                 if (this.isDead()) {
                     this.playAnimation(this.IMAGES_DEAD, 'once');
-                    this.gameOver();
+                    setTimeout(() => {
+                        stopGame(false);
+                    }, 3500);
                 } else if (this.isHurt1()) {
                     this.playAnimation(this.IMAGES_HURT, 'multiple');
                 } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
@@ -214,12 +216,6 @@ class Character extends MovealbeObject {
                 }
             }
         }, 100);
-    }
-
-    gameOver() {
-        setTimeout(() => {
-            stopGame(false);
-        }, 2500);
     }
 
     slapAttack() {
@@ -289,7 +285,7 @@ class Character extends MovealbeObject {
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
-        if (soundOn) {this.bubbleAttackSound()};
+        if (soundOn) { this.bubbleAttackSound() };
     }
 
     poisonedBubbleAttack() {
@@ -321,7 +317,7 @@ class Character extends MovealbeObject {
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
             this.world.updateStatusbarPoisons();
-            if (soundOn) {this.bubbleAttackSound()};
+            if (soundOn) { this.bubbleAttackSound() };
         }
     }
 
