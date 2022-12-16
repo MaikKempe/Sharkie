@@ -19,6 +19,21 @@ let gameFinished = false;
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
 
+/**
+ * 
+ * is landscape
+ * function isLandscape() {
+  return window.innerHeight < window.innerWidth;
+}
+wenn vertikal bei smartphone: funktion: bitte drehe deinen Bilschirm
+function: is smartphone vorhanden
+
+fullscreen, geht nur wenn geklickt wird.
+
+
+keinen joystick
+ */
+
 function init() {
     showStartScreen();
 }
@@ -282,6 +297,7 @@ function toggleDescription() {
  * Music
  * game effekt sound werden an der entsprechenden Stelle einer classe gestartet
  * verschiedene GamePhasen
+ * implement sound loop
  * ###########################################
  */
 
