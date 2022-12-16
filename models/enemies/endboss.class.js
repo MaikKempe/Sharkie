@@ -92,7 +92,7 @@ class Endboss extends MovealbeObject {
                 if (this.isIntroduced) {
                     if (i < this.IMAGES_INTRODUCE.length) {
                         this.playAnimation(this.IMAGES_INTRODUCE, 'once')
-                        //introduce water sound
+                        this.switchToFightMusic();
                     } else if (this.isDead()) {
                         this.attack = 0;
                         this.speedX = 0;
@@ -106,7 +106,7 @@ class Endboss extends MovealbeObject {
                         this.speedX = 0;
                     } else {
                         this.playAnimation(this.IMAGES_SWIM, 'multiple');
-                        this.speedX = 0.3;
+                        this.speedX = 0.5;
                     }
                     i++;
                 }
@@ -120,9 +120,7 @@ class Endboss extends MovealbeObject {
                 if (this.firstContact()) {
                     this.moveLeft();
                     this.isIntroduced = true;
-                    //booleans switches music
-                    onTheWayToEndboss = false;
-                    characterFightsEndboss = true;
+                    this.pauseBackgroundMusic();
                 }
             }
         }, 100)
@@ -147,5 +145,23 @@ class Endboss extends MovealbeObject {
 
     firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
+    }
+
+    /**
+     * functions stops backgroundmusic while the endboss is introduced
+     */
+    pauseBackgroundMusic() {
+        onTheWayToEndboss = false;
+        endbossIsAppearing = true;
+    }
+
+    /**
+     * boolean switch starts fight backgorund-music, when the endboss is introduced
+    */
+    switchToFightMusic() {
+        setTimeout(() => {
+            endbossIsAppearing = false;
+            characterFightsEndboss = true;
+        }, 1500);
     }
 }

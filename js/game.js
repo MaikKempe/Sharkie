@@ -9,6 +9,7 @@ let standbyOn = false;
 let descriptionOn = true;
 
 let onTheWayToEndboss = true;
+let endbossIsAppearing = false;
 let characterFightsEndboss = false;
 let playerWins = false;
 let gameIsRunning = false;
@@ -64,7 +65,7 @@ function showGameScreen() {
         showIngameDescription();
         showSidebar();
     }, 1700);
-    // CSS Animations takes longer
+    // give animations some timespace before music starts
     setTimeout(() => {
         playBackgroundMusic();
     }, 2000);
@@ -285,33 +286,26 @@ function toggleDescription() {
  */
 
 function playBackgroundMusic() {
-    let endbossAlreadyAppeared = false;
     setInterval(() => {
-
         //Game Phase 1: Character is on the way to endboss
         if (soundOn && onTheWayToEndboss) {
-            LEVEL_MUSIC.volume = 0.05;
+            LEVEL_MUSIC.volume = 0.03;
             LEVEL_MUSIC.play();
         } else if (!soundOn && onTheWayToEndboss) {
             LEVEL_MUSIC.pause();
 
-            //Game Phase 2: Endbossfight
-        } else if (soundOn && characterFightsEndboss) {
+        //If the endboss is just being introduced, music stops shortly to give endboss introduce-sound some timespace
+        } else if (soundOn && endbossIsAppearing) {
             LEVEL_MUSIC.pause();
-            if (endbossAlreadyAppeared) {
-                ENDBOSS_FIGHT_MUSIC.play();
-                ENDBOSS_FIGHT_MUSIC.volume = 0.1;
-            } else {
-                //start later if sound was paused and player decided switch Button later, give introduce sound some space
-                setTimeout(() => {
-                    ENDBOSS_FIGHT_MUSIC.play();
-                    ENDBOSS_FIGHT_MUSIC.volume = 0.1;
-                }, 1000);
-            }
-
+        } else if (!soundOn && endbossIsAppearing) {
+            LEVEL_MUSIC.pause();
+        }
+        //Game Phase 2: Endbossfight
+        else if (soundOn && characterFightsEndboss) {
+            ENDBOSS_FIGHT_MUSIC.volume = 0.07;
+            ENDBOSS_FIGHT_MUSIC.play();
         } else if (!soundOn && characterFightsEndboss) {
             ENDBOSS_FIGHT_MUSIC.pause();
-            endbossAlreadyAppeared = true;
         }
     }, 100);
 }
