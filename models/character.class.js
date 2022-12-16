@@ -190,9 +190,7 @@ class Character extends MovealbeObject {
             if (gameIsRunning) {
                 if (this.isDead()) {
                     this.playAnimation(this.IMAGES_DEAD, 'once');
-                    setTimeout(() => {
-                        stopGame(false);
-                    }, 3500);
+                    this.gameOver();
                 } else if (this.isHurt1()) {
                     this.playAnimation(this.IMAGES_HURT, 'multiple');
                 } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
@@ -216,6 +214,14 @@ class Character extends MovealbeObject {
                 }
             }
         }, 100);
+    }
+
+    gameOver() {
+        characterFightsEndboss = false;
+        endbossFightIsOver = true;
+        setTimeout(() => {
+            stopGame(false);
+        }, 3500);
     }
 
     slapAttack() {

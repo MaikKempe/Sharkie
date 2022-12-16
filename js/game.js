@@ -11,7 +11,7 @@ let descriptionOn = true;
 let onTheWayToEndboss = true;
 let endbossIsAppearing = false;
 let characterFightsEndboss = false;
-let playerWins = false;
+let endbossFightIsOver = false;
 let gameIsRunning = false;
 let gameFinished = false;
 
@@ -316,7 +316,9 @@ function playBackgroundMusic() {
             LEVEL_MUSIC.play();
         } else if (!soundOn && onTheWayToEndboss) {
             LEVEL_MUSIC.pause();
-        } 
+        }
+        // character dies before endboss
+
         //music stops shortly to give endboss introduce-sound some timespace
         else if (soundOn && endbossIsAppearing) {
             LEVEL_MUSIC.pause();
@@ -328,6 +330,10 @@ function playBackgroundMusic() {
             ENDBOSS_FIGHT_MUSIC.volume = 0.07;
             ENDBOSS_FIGHT_MUSIC.play();
         } else if (!soundOn && characterFightsEndboss) {
+            ENDBOSS_FIGHT_MUSIC.pause();
+        } else if (soundOn && endbossFightIsOver) {
+            ENDBOSS_FIGHT_MUSIC.pause();
+        } else if (!soundOn && endbossFightIsOver) {
             ENDBOSS_FIGHT_MUSIC.pause();
         }
     }, 100);
