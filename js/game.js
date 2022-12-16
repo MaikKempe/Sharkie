@@ -2,14 +2,18 @@ let canvas;
 let world;
 let back
 let keyboard = new Keyboard();
-let win = false;
-let gameIsRunning = false;
-let gameFinished = false;
 let fullscreenOn = false;
 let soundOn = true;
 let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
+
+let onTheWayToEndboss = true;
+let characterFightsEndboss = false;
+let playerWins = false;
+let gameIsRunning = false;
+let gameFinished = false;
+
 
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
@@ -276,16 +280,38 @@ function toggleDescription() {
  * ###########################################
  * Music
  * game effekt sound werden an der entsprechenden Stelle einer classe gestartet
+ * verschiedene GamePhasen
  * ###########################################
  */
 
 function playBackgroundMusic() {
+    let endbossAlreadyAppeared = false;
     setInterval(() => {
-        if (soundOn) {
-            LEVEL_MUSIC.volume = 0.1;
+
+        //Game Phase 1: Character is on the way to endboss
+        if (soundOn && onTheWayToEndboss) {
+            LEVEL_MUSIC.volume = 0.05;
             LEVEL_MUSIC.play();
-        } else {
+        } else if (!soundOn && onTheWayToEndboss) {
             LEVEL_MUSIC.pause();
+
+            //Game Phase 2: Endbossfight
+        } else if (soundOn && characterFightsEndboss) {
+            LEVEL_MUSIC.pause();
+            if (endbossAlreadyAppeared) {
+                ENDBOSS_FIGHT_MUSIC.play();
+                ENDBOSS_FIGHT_MUSIC.volume = 0.1;
+            } else {
+                //start later if sound was paused and player decided switch Button later, give introduce sound some space
+                setTimeout(() => {
+                    ENDBOSS_FIGHT_MUSIC.play();
+                    ENDBOSS_FIGHT_MUSIC.volume = 0.1;
+                }, 1000);
+            }
+
+        } else if (!soundOn && characterFightsEndboss) {
+            ENDBOSS_FIGHT_MUSIC.pause();
+            endbossAlreadyAppeared = true;
         }
     }, 100);
 }

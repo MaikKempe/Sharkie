@@ -92,6 +92,7 @@ class Endboss extends MovealbeObject {
                 if (this.isIntroduced) {
                     if (i < this.IMAGES_INTRODUCE.length) {
                         this.playAnimation(this.IMAGES_INTRODUCE, 'once')
+                        //introduce water sound
                     } else if (this.isDead()) {
                         this.attack = 0;
                         this.speedX = 0;
@@ -119,6 +120,9 @@ class Endboss extends MovealbeObject {
                 if (this.firstContact()) {
                     this.moveLeft();
                     this.isIntroduced = true;
+                    //booleans switches music
+                    onTheWayToEndboss = false;
+                    characterFightsEndboss = true;
                 }
             }
         }, 100)
