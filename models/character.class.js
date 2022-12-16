@@ -23,6 +23,7 @@ class Character extends MovealbeObject {
     poisonCollected = 0;
 
     AUDIO_SLAP = new Audio('audio/slap.mp3');
+    BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -288,6 +289,7 @@ class Character extends MovealbeObject {
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
+        if (soundOn) {this.bubbleAttackSound()};
     }
 
     poisonedBubbleAttack() {
@@ -319,6 +321,7 @@ class Character extends MovealbeObject {
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
             this.world.updateStatusbarPoisons();
+            if (soundOn) {this.bubbleAttackSound()};
         }
     }
 
@@ -332,7 +335,6 @@ class Character extends MovealbeObject {
         }
     }
 
-
     noKeyIsPressed() {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
     }
@@ -340,5 +342,10 @@ class Character extends MovealbeObject {
     isLongIdle() {
         let timePassed = new Date().getTime() - this.world.keyboard.lastEvent;
         return timePassed > 3000;
+    }
+
+    bubbleAttackSound() {
+        this.BUBBLE_ATTACK_SOUND.volume = 0.4;
+        this.BUBBLE_ATTACK_SOUND.play();
     }
 }

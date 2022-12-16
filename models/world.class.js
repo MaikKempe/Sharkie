@@ -15,6 +15,7 @@ class World {
     endboss = level1.endboss;
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
+    BUBBLE_BURST_SOUND = new Audio('audio/bubble_burst.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -93,6 +94,7 @@ class World {
             if (gameIsRunning) {
                 this.level.enemies.forEach((enemy) => {
                     if (enemy.isDead() && enemy instanceof Pufferfish) {
+                        //timespace for animation
                         setTimeout(() => {
                             this.deleteObject(this.level.enemies, enemy);
                         }, 400);
@@ -136,17 +138,21 @@ class World {
                 this.deleteObject(this.bubbles, bubble);
             }
             if (bubble.isColliding(this.level.endboss)) {
+                if (soundOn) { this.playBubbleBurstSound(); }
                 this.deleteObject(this.bubbles, bubble);
+
             }
             this.level.enemies.forEach((enemy) => {
                 if (bubble.isColliding(enemy)) {
                     if (enemy instanceof PufferfishNormal) {
+                        if (soundOn) { this.playBubbleBurstSound(); }
                         enemy.hit(bubble.attack);
                         this.deleteObject(this.bubbles, bubble);
                     }
 
                     if (enemy instanceof PufferfishHard) {
                         enemy.hitByBubble++;
+                        if (soundOn) { this.playBubbleBurstSound(); }
                         enemy.hit(bubble.attack);
                         this.deleteObject(this.bubbles, bubble);
                     }
@@ -162,6 +168,7 @@ class World {
                 this.deleteObject(this.poisonedBubbles, poisonedBubble);
             }
             if (poisonedBubble.isColliding(this.level.endboss)) {
+                if (soundOn) { this.playBubbleBurstSound(); }
                 this.level.endboss.hit(poisonedBubble.attack);
                 this.statusbarEndboss.setPercentage(this.level.endboss.energy);
                 this.deleteObject(this.poisonedBubbles, poisonedBubble);
@@ -169,6 +176,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (poisonedBubble.isColliding(enemy)) {
                     if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
+                        if (soundOn) { this.playBubbleBurstSound(); }
                         this.deleteObject(this.poisonedBubbles, poisonedBubble);
                     }
                 }
@@ -217,5 +225,10 @@ class World {
     deleteObject(arr, mo) {
         let index = arr.indexOf(mo);
         arr.splice(index, 1);
+    }
+
+    playBubbleBurstSound() {
+        this.BUBBLE_BURST_SOUND.volume = 0.5;
+        this.BUBBLE_BURST_SOUND.play();
     }
 }

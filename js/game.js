@@ -18,6 +18,7 @@ let gameFinished = false;
 
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
+let START_BUTTON_SOUND = new Audio('audio/bubble.mp3');
 
 /**
  * 
@@ -57,6 +58,7 @@ function removeIntroduction() {
 }
 
 function startGame() {
+    playStartButtonSound();
     initLevel();
     loadingAnimation();
     setTimeout(() => {
@@ -83,7 +85,7 @@ function showGameScreen() {
     // give animations some timespace before music starts
     setTimeout(() => {
         playBackgroundMusic();
-    }, 2000);
+    }, 1900);
 }
 
 function showIngameHeadline() {
@@ -301,17 +303,22 @@ function toggleDescription() {
  * ###########################################
  */
 
+function playStartButtonSound() {
+    START_BUTTON_SOUND.volume = 0.7;
+    START_BUTTON_SOUND.play();
+}
+
 function playBackgroundMusic() {
     setInterval(() => {
         //Game Phase 1: Character is on the way to endboss
         if (soundOn && onTheWayToEndboss) {
-            LEVEL_MUSIC.volume = 0.03;
+            LEVEL_MUSIC.volume = 0.05;
             LEVEL_MUSIC.play();
         } else if (!soundOn && onTheWayToEndboss) {
             LEVEL_MUSIC.pause();
-
-        //If the endboss is just being introduced, music stops shortly to give endboss introduce-sound some timespace
-        } else if (soundOn && endbossIsAppearing) {
+        } 
+        //music stops shortly to give endboss introduce-sound some timespace
+        else if (soundOn && endbossIsAppearing) {
             LEVEL_MUSIC.pause();
         } else if (!soundOn && endbossIsAppearing) {
             LEVEL_MUSIC.pause();

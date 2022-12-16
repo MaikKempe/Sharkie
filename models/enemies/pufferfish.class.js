@@ -2,6 +2,7 @@ class Pufferfish extends MovealbeObject {
     isSlapped = false;
     speedX = 0.2 + Math.random() * 0.5;
     speedFloatingAway = 2;
+   
 
     slappedAway(characterMirrored) {
         setInterval(() => {
