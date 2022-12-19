@@ -16,7 +16,7 @@ class Endboss extends MovealbeObject {
     attackSoundPlayed = false;
     distance = 350;
 
-    ENDBOSS_SPLASH_SOUND = new Audio('audio/endboss_appears.wav');
+    ENDBOSS_APPEARS_SOUND = new Audio('audio/endboss_appears.wav');
     ENDBOSS_ATTACK_SOUND = new Audio('audio/endboss_attack.wav');
 
     IMAGES_INTRODUCE = [
@@ -164,8 +164,8 @@ class Endboss extends MovealbeObject {
 
     /** */
     playEndbossAppearsSound() {
-        this.ENDBOSS_SPLASH_SOUND.volume = 0.4;
-        this.ENDBOSS_SPLASH_SOUND.play();
+        this.ENDBOSS_APPEARS_SOUND.volume = 0.4;
+        this.ENDBOSS_APPEARS_SOUND.play();
     }
 
     /**
