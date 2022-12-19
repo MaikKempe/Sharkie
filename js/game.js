@@ -18,7 +18,7 @@ let gameFinished = false;
 
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
-let START_BUTTON_SOUND = new Audio('audio/bubble.mp3');
+let START_BUTTON_SOUND = new Audio('audio/water_drop.wav');
 
 /**
  * 
@@ -304,7 +304,7 @@ function toggleDescription() {
  */
 
 function playStartButtonSound() {
-    START_BUTTON_SOUND.volume = 0.7;
+    START_BUTTON_SOUND.volume = 0.6;
     START_BUTTON_SOUND.play();
 }
 
@@ -319,7 +319,7 @@ function playBackgroundMusic() {
         }
         // character dies before endboss
 
-        //music stops shortly to give endboss introduce-sound some timespace
+        //background music stops shortly to give endboss introduce-sound some timespace
         else if (soundOn && endbossIsAppearing) {
             LEVEL_MUSIC.pause();
         } else if (!soundOn && endbossIsAppearing) {

@@ -439,9 +439,9 @@ h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 40px;
-    border-radius: 6px;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
     cursor: pointer;
     opacity: 100%;
     transition: all 125ms ease-in-out;

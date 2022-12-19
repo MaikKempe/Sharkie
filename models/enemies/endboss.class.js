@@ -13,7 +13,11 @@ class Endboss extends MovealbeObject {
     energy = 100;
     isIntroduced = false;
     isAttacking = false;
+    attackSoundPlayed = false;
     distance = 350;
+
+    ENDBOSS_SPLASH_SOUND = new Audio('audio/endboss_appears.wav');
+    ENDBOSS_ATTACK_SOUND = new Audio('audio/endboss_attack.wav');
 
     IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -112,6 +116,7 @@ class Endboss extends MovealbeObject {
                 }
                 if (this.characterIsInRange() && this.isIntroduced) {
                     this.isAttacking = true;
+                    if (soundOn) { this.playAttackSound() };
                 }
                 if (this.world.character.isDead()) {
                     this.isAttacking = false;
@@ -121,6 +126,7 @@ class Endboss extends MovealbeObject {
                     this.moveLeft();
                     this.isIntroduced = true;
                     this.pauseBackgroundMusic();
+                    if (soundOn) { this.playEndbossAppearsSound() };
                 }
             }
         }, 100)
@@ -140,7 +146,7 @@ class Endboss extends MovealbeObject {
 
     huntCharacter() {
         this.y += ((this.world.character.y - 100) - this.y) / 5;
-        this.speedX = this.world.character.speedX + 0.5;
+        this.speedX = this.world.character.speedX + 0.7;
     }
 
 
@@ -156,6 +162,12 @@ class Endboss extends MovealbeObject {
         endbossIsAppearing = true;
     }
 
+    /** */
+    playEndbossAppearsSound() {
+        this.ENDBOSS_SPLASH_SOUND.volume = 0.4;
+        this.ENDBOSS_SPLASH_SOUND.play();
+    }
+
     /**
      * boolean switch starts fight backgorund-music, when the endboss is introduced
     */
@@ -164,5 +176,13 @@ class Endboss extends MovealbeObject {
             endbossIsAppearing = false;
             characterFightsEndboss = true;
         }, 1500);
+    }
+
+    playAttackSound() {
+        if (!this.attackSoundPlayed) {
+            this.ENDBOSS_ATTACK_SOUND.volume = 0.2;
+            this.ENDBOSS_ATTACK_SOUND.play();
+            this.attackSoundPlayed = true;
+        }
     }
 }
