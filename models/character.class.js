@@ -22,10 +22,10 @@ class Character extends MovealbeObject {
     coinsCollected = 0;
     poisonCollected = 0;
 
-    AUDIO_SLAP = new Audio('audio/slap.mp3');
     BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
     COLLECT_COIN_SOUND = new Audio('audio/collect_coin.wav');
     COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
+    CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.wav');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -195,6 +195,7 @@ class Character extends MovealbeObject {
                     this.gameOver();
                 } else if (this.isHurt1()) {
                     this.playAnimation(this.IMAGES_HURT, 'multiple');
+                    if (soundOn) { this.playCharacterIsHurtSound() };
                 } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
                     this.playAnimation(this.IMAGES_SWIMMING, 'multiple');
                 } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.keyboardBlocked) { // end of map
@@ -362,6 +363,11 @@ class Character extends MovealbeObject {
     playPoisonCollectedSound() {
         this.COLLECT_POISON_SOUND.volume = 0.4;
         this.COLLECT_POISON_SOUND.play();
+    }
+
+    playCharacterIsHurtSound() {
+        this.CHARACTER_HURT_SOUND.volume = 0.4;
+        this.CHARACTER_HURT_SOUND.play();
     }
 
 }

@@ -230,4 +230,5 @@ class World {
         this.BUBBLE_BURST_SOUND.volume = 0.5;
         this.BUBBLE_BURST_SOUND.play();
     }
+
 }
