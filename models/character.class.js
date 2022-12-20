@@ -24,6 +24,8 @@ class Character extends MovealbeObject {
 
     AUDIO_SLAP = new Audio('audio/slap.mp3');
     BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
+    COLLECT_COIN_SOUND = new Audio('audio/collect_coin.wav');
+    COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -290,7 +292,7 @@ class Character extends MovealbeObject {
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
-        if (soundOn) { this.bubbleAttackSound() };
+        if (soundOn) { this.playBubbleAttackSound() };
     }
 
     poisonedBubbleAttack() {
@@ -322,17 +324,19 @@ class Character extends MovealbeObject {
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
             this.world.updateStatusbarPoisons();
-            if (soundOn) { this.bubbleAttackSound() };
+            if (soundOn) { this.playBubbleAttackSound() };
         }
     }
 
     collect(o) {
         if (o instanceof Coin) {
             this.coinsCollected++;
+            if (soundOn) { this.playCoinCollectedSound() };
         }
 
         if (o instanceof Poison) {
             this.poisonCollected++;
+            if (soundOn) { this.playPoisonCollectedSound() };
         }
     }
 
@@ -345,8 +349,19 @@ class Character extends MovealbeObject {
         return timePassed > 3000;
     }
 
-    bubbleAttackSound() {
+    playBubbleAttackSound() {
         this.BUBBLE_ATTACK_SOUND.volume = 0.4;
         this.BUBBLE_ATTACK_SOUND.play();
     }
+
+    playCoinCollectedSound() {
+        this.COLLECT_COIN_SOUND.volume = 0.4;
+        this.COLLECT_COIN_SOUND.play();
+    }
+
+    playPoisonCollectedSound() {
+        this.COLLECT_POISON_SOUND.volume = 0.4;
+        this.COLLECT_POISON_SOUND.play();
+    }
+
 }
