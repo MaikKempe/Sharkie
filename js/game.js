@@ -8,23 +8,24 @@ let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
 let gameIntervalsRunning = false;
-
-// booleans to switch backgroundmusic
-let characterIsAlive = true;
-let onTheWayToEndboss = true;
-let endbossIsAppearing = false;
-let characterFightsEndboss = false;
-let endbossFightJustOver = false;
+let gameIsRunning = true;
 let gameFinished = false;
 let playerWins = false;
 let playerLost = false;
+
+
+// booleans to switch backgroundmusic
+let onTheWayToEndboss = true;
+let endbossIsAppearing = false;
+let characterFightsEndboss = false;
 let winSoundPlayed = false;
 let looseSoundPlayed = false;
 
-
+let START_BUTTON_SOUND = new Audio('audio/water_drop.wav');
+//Ingame background music
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
-let START_BUTTON_SOUND = new Audio('audio/water_drop.wav');
+//endscreen music
 let WIN_SOUND = new Audio('audio/win_sound.mp3');
 
 /**
@@ -133,7 +134,6 @@ function reload() {
 
 //function can only called once
 function stopGame(win) {
-    endbossFightJustOver = false;
     gameIntervalsRunning = false;
     if (win && !gameFinished) {
         gameFinished = true;
@@ -318,47 +318,48 @@ function playStartButtonSound() {
 //create loop
 function playBackgroundMusic() {
     setInterval(() => {
-        //Game Phase 1: Character is on the way to endboss
-        if (characterIsAlive) {
-            if (soundOn && onTheWayToEndboss) {
-                LEVEL_MUSIC.volume = 0.05;
-                LEVEL_MUSIC.play();
-            } else if (!soundOn && onTheWayToEndboss) {
-                LEVEL_MUSIC.pause();
-            }
-            // character dies before endboss
-
-            //background music stops shortly to give endboss introduce-sound some timespace
-            else if (soundOn && endbossIsAppearing) {
-                LEVEL_MUSIC.pause();
-            } else if (!soundOn && endbossIsAppearing) {
-                LEVEL_MUSIC.pause();
-            }
-            //Game Phase 2: Endbossfight
-            else if (soundOn && characterFightsEndboss) {
-                ENDBOSS_FIGHT_MUSIC.volume = 0.07;
-                ENDBOSS_FIGHT_MUSIC.play();
-            } else if (!soundOn && characterFightsEndboss) {
-                ENDBOSS_FIGHT_MUSIC.pause();
-            }
-            // short music brreak
-            else if (soundOn && endbossFightJustOver) {
-                ENDBOSS_FIGHT_MUSIC.pause();
-            } else if (!soundOn && endbossFightJustOver) {
-                ENDBOSS_FIGHT_MUSIC.pause();
-            } else if (soundOn && playerWins) {
-                playWinSound();
-            }
+        if (gameIsRunning) {
+            playIngameMusic();
         } else {
-            LEVEL_MUSIC.pause();
-            ENDBOSS_FIGHT_MUSIC.pause();
-            if (soundOn && playerLost) {
-                playLooseSound();
-            }
+            stopIngameMusic();
+            playEndscreenMusic();
         }
     }, 100);
 }
 
+function playIngameMusic() {
+    //Game Phase 1: Character is on the way to endboss
+    if (soundOn && onTheWayToEndboss) {
+        playLevelmusic();
+    } else if (!soundOn && onTheWayToEndboss) {
+        stopLevelMusic();
+    }
+    //background music stops shortly, when endboss appears
+    else if (soundOn && endbossIsAppearing) {
+        stopLevelMusic();
+    } else if (!soundOn && endbossIsAppearing) {
+        stopLevelMusic();
+    }
+    //Game Phase 2: Endbossfight
+    else if (soundOn && characterFightsEndboss) {
+        playFightMusic();
+    } else if (!soundOn && characterFightsEndboss) {
+        stopFightMusic();
+    }
+}
+
+function stopIngameMusic() {
+    LEVEL_MUSIC.pause();
+    ENDBOSS_FIGHT_MUSIC.pause();
+}
+
+function playEndscreenMusic() {
+    if (soundOn && playerLost) {
+        playLooseSound();
+    } else if (soundOn && playerWins) {
+        playWinSound();
+    }
+}
 
 // plays win sound once
 function playWinSound() {
@@ -374,6 +375,24 @@ function playLooseSound() {
         console.log('play loose sound');
         looseSoundPlayed = true;
     }
+}
+
+function playLevelmusic() {
+    LEVEL_MUSIC.volume = 0.05;
+    LEVEL_MUSIC.play();
+}
+
+function stopLevelMusic() {
+    LEVEL_MUSIC.pause();
+}
+
+function playFightMusic() {
+    ENDBOSS_FIGHT_MUSIC.volume = 0.07;
+    ENDBOSS_FIGHT_MUSIC.play();
+}
+
+function stopFightMusic() {
+    ENDBOSS_FIGHT_MUSIC.pause();
 }
 
 

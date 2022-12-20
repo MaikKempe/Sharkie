@@ -53,7 +53,7 @@ function initLevel() {
             new BackgroundObject('img/3_background/layers/4_fondo2/D.png', -720, 720 * 2, 480),
             new BackgroundObject('img/3_background/layers/3_fondo1/D.png', -720, 720 * 2, 480),
             new BackgroundObject('img/3_background/layers/2_floor/D.png', -720, 720 * 2, 480),
-            new BackgroundObject('img/3_background/layers/1_light/D.png', -720, 720 * 2, 480),
+          
 
             new BackgroundObject('img/3_background/layers/5_water/D.png', 720, 720 * 2, 480),
             new BackgroundObject('img/3_background/layers/4_fondo2/D.png', 720, 720 * 2, 480),
@@ -65,7 +65,7 @@ function initLevel() {
             new BackgroundObject('img/3_background/layers/4_fondo2/D.png', 720 * 3, 720 * 2, 480),
             new BackgroundObject('img/3_background/layers/3_fondo1/D.png', 720 * 3, 720 * 2, 480),
             new BackgroundObject('img/3_background/layers/2_floor/D.png', 720 * 3, 720 * 2, 480),
-            new BackgroundObject('img/3_background/layers/1_light/D.png', 720 * 3, 720 * 2, 480),
+           
 
         ]);
 }
