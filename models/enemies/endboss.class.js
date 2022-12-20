@@ -114,7 +114,7 @@ class Endboss extends MovealbeObject {
                     }
                     i++;
                 }
-                if (this.characterIsInRange() && this.isIntroduced) {
+                if (this.characterIsInRange() && this.isIntroduced && !this.isDead()) {
                     this.isAttacking = true;
                     if (soundOn) { this.playAttackSound() };
                 }
@@ -134,7 +134,7 @@ class Endboss extends MovealbeObject {
 
     gameWon() {
         characterFightsEndboss = false;
-        endbossFightIsOver = true;
+        endbossFightJustOver = true;
         setTimeout(() => {
             stopGame(true);
         }, 3500);

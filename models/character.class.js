@@ -217,8 +217,7 @@ class Character extends MovealbeObject {
     }
 
     gameOver() {
-        characterFightsEndboss = false;
-        endbossFightIsOver = true;
+        characterIsAlive = false;
         setTimeout(() => {
             stopGame(false);
         }, 3500);

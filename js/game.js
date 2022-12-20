@@ -8,17 +8,23 @@ let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
 
+// booleans to switch backgroundmusic
+let characterIsAlive = true;
 let onTheWayToEndboss = true;
 let endbossIsAppearing = false;
 let characterFightsEndboss = false;
-let endbossFightIsOver = false;
+let endbossFightJustOver = false;
 let gameIsRunning = false;
 let gameFinished = false;
+let playerWins = false;
+let playerLost = false;
+let winSoundPlayed = false;
 
 
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
 let START_BUTTON_SOUND = new Audio('audio/water_drop.wav');
+let WIN_SOUND = new Audio('audio/win_sound.mp3');
 
 /**
  * 
@@ -30,8 +36,6 @@ wenn vertikal bei smartphone: funktion: bitte drehe deinen Bilschirm
 function: is smartphone vorhanden
 
 fullscreen, geht nur wenn geklickt wird.
-
-
 keinen joystick
  */
 
@@ -128,12 +132,15 @@ function reload() {
 
 //function can only called once
 function stopGame(win) {
+    endbossFightJustOver = false;
     gameIsRunning = false;
     if (win && !gameFinished) {
         gameFinished = true;
+        playerWins = true;
         showWinScreen();
     } else if (!win && !gameFinished) {
         gameFinished = true;
+        playerLost = true;
         showGameOverScreen();
     }
 }
@@ -307,36 +314,57 @@ function playStartButtonSound() {
     START_BUTTON_SOUND.volume = 0.6;
     START_BUTTON_SOUND.play();
 }
-
+//create loop
 function playBackgroundMusic() {
     setInterval(() => {
         //Game Phase 1: Character is on the way to endboss
-        if (soundOn && onTheWayToEndboss) {
-            LEVEL_MUSIC.volume = 0.05;
-            LEVEL_MUSIC.play();
-        } else if (!soundOn && onTheWayToEndboss) {
-            LEVEL_MUSIC.pause();
-        }
-        // character dies before endboss
+        if (characterIsAlive) {
+            if (soundOn && onTheWayToEndboss) {
+                LEVEL_MUSIC.volume = 0.05;
+                LEVEL_MUSIC.play();
+            } else if (!soundOn && onTheWayToEndboss) {
+                LEVEL_MUSIC.pause();
+            }
+            // character dies before endboss
 
-        //background music stops shortly to give endboss introduce-sound some timespace
-        else if (soundOn && endbossIsAppearing) {
+            //background music stops shortly to give endboss introduce-sound some timespace
+            else if (soundOn && endbossIsAppearing) {
+                LEVEL_MUSIC.pause();
+            } else if (!soundOn && endbossIsAppearing) {
+                LEVEL_MUSIC.pause();
+            }
+            //Game Phase 2: Endbossfight
+            else if (soundOn && characterFightsEndboss) {
+                ENDBOSS_FIGHT_MUSIC.volume = 0.07;
+                ENDBOSS_FIGHT_MUSIC.play();
+            } else if (!soundOn && characterFightsEndboss) {
+                ENDBOSS_FIGHT_MUSIC.pause();
+            }
+            // short music brreak
+            else if (soundOn && endbossFightJustOver) {
+                ENDBOSS_FIGHT_MUSIC.pause();
+            } else if (!soundOn && endbossFightJustOver) {
+                ENDBOSS_FIGHT_MUSIC.pause();
+            } else if (soundOn && playerWins) {
+                playWinSound();
+            } else if (!soundOn && playerWins) {
+                WIN_SOUND.pause();
+            }
+        } else {
             LEVEL_MUSIC.pause();
-        } else if (!soundOn && endbossIsAppearing) {
-            LEVEL_MUSIC.pause();
-        }
-        //Game Phase 2: Endbossfight
-        else if (soundOn && characterFightsEndboss) {
-            ENDBOSS_FIGHT_MUSIC.volume = 0.07;
-            ENDBOSS_FIGHT_MUSIC.play();
-        } else if (!soundOn && characterFightsEndboss) {
-            ENDBOSS_FIGHT_MUSIC.pause();
-        } else if (soundOn && endbossFightIsOver) {
-            ENDBOSS_FIGHT_MUSIC.pause();
-        } else if (!soundOn && endbossFightIsOver) {
             ENDBOSS_FIGHT_MUSIC.pause();
         }
     }, 100);
+}
+
+
+// plays win sound once
+function playWinSound() {
+    if (!winSoundPlayed) {
+        WIN_SOUND.volume = 0.05;
+        WIN_SOUND.play();
+        winSoundPlayed = true;
+    }
 }
 
 
