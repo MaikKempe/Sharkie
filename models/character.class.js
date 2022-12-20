@@ -148,7 +148,7 @@ class Character extends MovealbeObject {
     //animate movement, FPS
     animateMovement() {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 //   this.AUDIO_SLAP.pause();
                 if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
                     this.y -= this.speedY;
@@ -176,7 +176,7 @@ class Character extends MovealbeObject {
     //listen for Single Animationstart
     singleMoves() {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 this.slapAttack();
                 this.bubbleAttack();
                 this.poisonedBubbleAttack();
@@ -187,7 +187,7 @@ class Character extends MovealbeObject {
     animateImages() {
         //animate images of character
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 if (this.isDead()) {
                     this.playAnimation(this.IMAGES_DEAD, 'once');
                     this.gameOver();

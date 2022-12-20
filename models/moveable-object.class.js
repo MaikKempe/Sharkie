@@ -17,7 +17,7 @@ class MovealbeObject extends DrawableObject {
 
     animate(images, option) {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 this.playAnimation(images, option);
             }
         }, 1000 / 10);
@@ -60,7 +60,7 @@ class MovealbeObject extends DrawableObject {
     moveLeft() {
         if (!this.isDead()) {
             setInterval(() => {
-                if (gameIsRunning) {
+                if (gameIntervalsRunning) {
                     this.x -= this.speedX;
                 }
             }, 1000 / 60);

@@ -6,7 +6,7 @@ class Pufferfish extends MovealbeObject {
 
     slappedAway(characterMirrored) {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 if (characterMirrored) {
                     this.x += this.speedFloatingAway;
                     this.y -= this.speedFloatingAway;

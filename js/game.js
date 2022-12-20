@@ -7,6 +7,7 @@ let soundOn = true;
 let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
+let gameIntervalsRunning = false;
 
 // booleans to switch backgroundmusic
 let characterIsAlive = true;
@@ -14,11 +15,11 @@ let onTheWayToEndboss = true;
 let endbossIsAppearing = false;
 let characterFightsEndboss = false;
 let endbossFightJustOver = false;
-let gameIsRunning = false;
 let gameFinished = false;
 let playerWins = false;
 let playerLost = false;
 let winSoundPlayed = false;
+let looseSoundPlayed = false;
 
 
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
@@ -70,7 +71,7 @@ function startGame() {
         showGameScreen();
         canvas = document.getElementById('canvas');
         world = new World(canvas, keyboard);
-        gameIsRunning = true;
+        gameIntervalsRunning = true;
     }, 2000);
 }
 
@@ -133,7 +134,7 @@ function reload() {
 //function can only called once
 function stopGame(win) {
     endbossFightJustOver = false;
-    gameIsRunning = false;
+    gameIntervalsRunning = false;
     if (win && !gameFinished) {
         gameFinished = true;
         playerWins = true;
@@ -248,7 +249,7 @@ function toggleStandby() {
         showStandbyOnIcon();
         showPausedScreen();
         standbyOn = true;
-        gameIsRunning = false; // game intervalls stops
+        gameIntervalsRunning = false; // game intervalls stops
         soundOn = false; //backgorund music stops
         showSoundOffIcon();
         soundButtonDisabledStyle();
@@ -256,7 +257,7 @@ function toggleStandby() {
         showStandbyOffIcon();
         removePausedScreen();
         standbyOn = false;
-        gameIsRunning = true;
+        gameIntervalsRunning = true;
         soundButtonEnabledStyle();
         if (soundWasOff) {
             showSoundOffIcon();
@@ -347,12 +348,13 @@ function playBackgroundMusic() {
                 ENDBOSS_FIGHT_MUSIC.pause();
             } else if (soundOn && playerWins) {
                 playWinSound();
-            } else if (!soundOn && playerWins) {
-                WIN_SOUND.pause();
             }
         } else {
             LEVEL_MUSIC.pause();
             ENDBOSS_FIGHT_MUSIC.pause();
+            if (soundOn && playerLost) {
+                playLooseSound();
+            }
         }
     }, 100);
 }
@@ -364,6 +366,13 @@ function playWinSound() {
         WIN_SOUND.volume = 0.05;
         WIN_SOUND.play();
         winSoundPlayed = true;
+    }
+}
+// plays loose sound once
+function playLooseSound() {
+    if (!looseSoundPlayed) {
+        console.log('play loose sound');
+        looseSoundPlayed = true;
     }
 }
 

@@ -55,7 +55,7 @@ class PufferfishNormal extends Pufferfish {
 
     animate() {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 if (this.isDead()) {
                     this.attack = 0;
                     this.playAnimation(this.IMAGES_DEAD, 'once');

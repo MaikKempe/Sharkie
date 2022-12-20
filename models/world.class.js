@@ -91,7 +91,7 @@ class World {
     // check if enemy are dad and despawn them, character and Endboss dont need to be despawned
     checkIfDead() {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 this.level.enemies.forEach((enemy) => {
                     if (enemy.isDead() && enemy instanceof Pufferfish) {
                         //timespace for animation
@@ -107,7 +107,7 @@ class World {
     checkCollisions() {
         //character meets enemy
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 this.enemyHitsCharacter();
                 this.bubbleHitsEnemy();
                 this.poisonedBubbleHitsEnemy();

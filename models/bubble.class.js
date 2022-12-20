@@ -26,7 +26,7 @@ class Bubble extends MovealbeObject {
             this.x -= 200;
         }
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 if (this.otherDirection) {
                     this.x -= this.speedX;
                     this.y -= this.speedY;

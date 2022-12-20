@@ -92,7 +92,7 @@ class Endboss extends MovealbeObject {
     animate() {
         let i = 0;
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 if (this.isIntroduced) {
                     if (i < this.IMAGES_INTRODUCE.length) {
                         this.playAnimation(this.IMAGES_INTRODUCE, 'once')

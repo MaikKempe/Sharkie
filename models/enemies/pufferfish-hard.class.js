@@ -80,7 +80,7 @@ class PufferfishHard extends Pufferfish {
 
     animate() {
         setInterval(() => {
-            if (gameIsRunning) {
+            if (gameIntervalsRunning) {
                 if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
                     this.attack = 0;
                     this.playAnimation(this.IMAGES_DEAD_ANGRY, 'once');
