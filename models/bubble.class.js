@@ -26,12 +26,14 @@ class Bubble extends MovealbeObject {
             this.x -= 200;
         }
         setInterval(() => {
-            if (this.otherDirection) {
-                this.x -= this.speedX;
-                this.y -= this.speedY;
-            } else {
-                this.x += this.speedX;
-                this.y -= this.speedY;
+            if (gameIsRunning) {
+                if (this.otherDirection) {
+                    this.x -= this.speedX;
+                    this.y -= this.speedY;
+                } else {
+                    this.x += this.speedX;
+                    this.y -= this.speedY;
+                }
             }
         }, 1000 / 60)
     }
