@@ -16,7 +16,7 @@ class World {
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
     BUBBLE_BURST_SOUND = new Audio('audio/bubble_burst.mp3');
-
+    SLAPPED_SOUND = new Audio('audio/slapped.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -187,6 +187,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
                 enemy.isSlapped = true;
+                if (soundOn) { this.playSlapSound(); }
                 setTimeout(() => {
                     enemy.hit(this.character.attack);
                     enemy.slappedAway(this.character.otherDirection);
@@ -230,5 +231,11 @@ class World {
         this.BUBBLE_BURST_SOUND.volume = 0.5;
         this.BUBBLE_BURST_SOUND.play();
     }
+
+    playSlapSound() {
+        this.SLAPPED_SOUND.volume = 0.3;
+        this.SLAPPED_SOUND.play();
+    }
+
 
 }
