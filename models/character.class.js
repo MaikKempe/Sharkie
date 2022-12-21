@@ -21,11 +21,12 @@ class Character extends MovealbeObject {
     keyboardBlocked = false;
     coinsCollected = 0;
     poisonCollected = 0;
+    hurtSoundPlayed = false;
 
     BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
     COLLECT_COIN_SOUND = new Audio('audio/collect_coin.wav');
     COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
-    CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.wav');
+    CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -356,18 +357,25 @@ class Character extends MovealbeObject {
     }
 
     playCoinCollectedSound() {
-        this.COLLECT_COIN_SOUND.volume = 0.4;
+        this.COLLECT_COIN_SOUND.volume = 0.2;
         this.COLLECT_COIN_SOUND.play();
     }
 
     playPoisonCollectedSound() {
-        this.COLLECT_POISON_SOUND.volume = 0.4;
+        this.COLLECT_POISON_SOUND.volume = 0.2;
         this.COLLECT_POISON_SOUND.play();
     }
 
-    playCharacterIsHurtSound() {
-        this.CHARACTER_HURT_SOUND.volume = 0.4;
-        this.CHARACTER_HURT_SOUND.play();
-    }
 
+    playCharacterIsHurtSound() {
+        if (!this.hurtSoundPlayed) {
+            this.CHARACTER_HURT_SOUND.volume = 0.2;
+            this.CHARACTER_HURT_SOUND.play();
+            this.soundPlayed = true;
+            setTimeout(() => {
+                this.soundPlayed = false
+            }, 700);
+        }
+
+    }
 }
