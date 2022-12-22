@@ -240,7 +240,6 @@ class Character extends MovealbeObject {
             this.isSlapping = true;
             this.increaseOffset();
 
-
             let keepKeyActive = setInterval(() => {
                 this.world.keyboard.SPACE = true;
                 this.activeKeyEvent = true;
@@ -254,6 +253,10 @@ class Character extends MovealbeObject {
                 this.decreaseOffset();
                 this.keyboardBlocked = false;
             }, 750);
+            if (soundOn) {
+                this.swimSoundPlayed = false;
+                this.playCharacterSwimSound();
+            }
         }
     }
 
