@@ -21,7 +21,7 @@ let characterFightsEndboss = false;
 let winSoundPlayed = false;
 let looseSoundPlayed = false;
 
-let START_BUTTON_SOUND = new Audio('audio/water_drop.wav');
+let START_BUTTON_SOUND = new Audio('audio/water_drop2.wav');
 //Ingame background music
 let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
