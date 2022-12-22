@@ -22,11 +22,13 @@ class Character extends MovealbeObject {
     coinsCollected = 0;
     poisonCollected = 0;
     hurtSoundPlayed = false;
+    swimSoundPlayed = false;
 
     BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
     COLLECT_COIN_SOUND = new Audio('audio/collect_coin.wav');
     COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
     CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
+    CHARACTER_SWIM_SOUND = new Audio('audio/swim.wav');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -155,16 +157,20 @@ class Character extends MovealbeObject {
                 //   this.AUDIO_SLAP.pause();
                 if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
                     this.y -= this.speedY;
+                    if (soundOn) { this.playCharacterSwimSound() };
                 }
                 if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked) {
                     this.y += this.speedY;
+                    if (soundOn) { this.playCharacterSwimSound() };
                 }
                 if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked) {//end of map
                     this.x -= this.speedX;
+                    if (soundOn) { this.playCharacterSwimSound() };
                     this.otherDirection = true;
                 }
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked) {
                     this.x += this.speedX;
+                    if (soundOn) { this.playCharacterSwimSound() };
                     this.otherDirection = false;
                 }
                 this.moveBackground();
@@ -371,11 +377,21 @@ class Character extends MovealbeObject {
         if (!this.hurtSoundPlayed) {
             this.CHARACTER_HURT_SOUND.volume = 0.2;
             this.CHARACTER_HURT_SOUND.play();
-            this.soundPlayed = true;
+            this.hurtSoundPlayed = true;
             setTimeout(() => {
-                this.soundPlayed = false
-            }, 700);
+                this.hurtSoundPlayed = false
+            }, 1000);
         }
+    }
 
+    playCharacterSwimSound() {
+        if (!this.swimSoundPlayed) {
+            this.CHARACTER_SWIM_SOUND.volume = 0.2;
+            this.CHARACTER_SWIM_SOUND.play();
+            this.swimSoundPlayed = true;
+            setTimeout(() => {
+                this.swimSoundPlayed = false
+            }, 1000);
+        }
     }
 }
