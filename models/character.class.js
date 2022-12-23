@@ -25,6 +25,7 @@ class Character extends MovealbeObject {
     swimSoundPlayed = false;
 
     BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
+    POISONED_BUBBLE_ATTACK_SOUND = new Audio('audio/poisoned_bubble.wav');
     COLLECT_COIN_SOUND = new Audio('audio/collect_coin.wav');
     COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
     CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
@@ -335,7 +336,7 @@ class Character extends MovealbeObject {
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
             this.world.updateStatusbarPoisons();
-            if (soundOn) { this.playBubbleAttackSound() };
+            if (soundOn) { this.playPoisonedBubbleAttackSound() };
         }
     }
 
@@ -363,6 +364,11 @@ class Character extends MovealbeObject {
     playBubbleAttackSound() {
         this.BUBBLE_ATTACK_SOUND.volume = 0.4;
         this.BUBBLE_ATTACK_SOUND.play();
+    }
+
+    playPoisonedBubbleAttackSound() {
+        this.POISONED_BUBBLE_ATTACK_SOUND.volume = 0.2;
+        this.POISONED_BUBBLE_ATTACK_SOUND.play();
     }
 
     playCoinCollectedSound() {
