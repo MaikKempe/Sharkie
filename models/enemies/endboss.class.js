@@ -14,10 +14,15 @@ class Endboss extends MovealbeObject {
     isIntroduced = false;
     isAttacking = false;
     attackSoundPlayed = false;
+    hurtSoundPlayed = false;
+    deadSoundsPlayed = false;
     distance = 350;
 
     ENDBOSS_APPEARS_SOUND = new Audio('audio/endboss_appears.wav');
     ENDBOSS_ATTACK_SOUND = new Audio('audio/endboss_attack.wav');
+    ENDBOSS_HURT_SOUND = new Audio('audio/endboss_hurt2.wav');
+    ENDBOSS_DEAD_SOUND = new Audio('audio/endboss_dead.wav');
+    ENDBOSS_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_long.wav');
 
     IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -101,11 +106,13 @@ class Endboss extends MovealbeObject {
                         this.attack = 0;
                         this.speedX = 0;
                         this.playAnimation(this.IMAGES_DEAD, 'once');
+                        if (soundOn) { this.playEndbossIsDeadSounds() };
                         this.gameWon();
                     } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
                         this.huntCharacter();
                         this.playAnimation(this.IMAGES_ATTACK, 'multiple');
                     } else if (this.isHurt1() && !this.isDead()) {
+                        if (soundOn) { this.playEndbossIsHurtSound() };
                         this.playAnimation(this.IMAGES_HURT, 'once');
                         this.speedX = 0;
                     } else {
@@ -166,6 +173,30 @@ class Endboss extends MovealbeObject {
     playEndbossAppearsSound() {
         this.ENDBOSS_APPEARS_SOUND.volume = 0.4;
         this.ENDBOSS_APPEARS_SOUND.play();
+    }
+
+    playEndbossIsHurtSound() {
+        if (!this.hurtSoundPlayed) {
+            this.ENDBOSS_HURT_SOUND.volume = 0.2;
+            this.ENDBOSS_HURT_SOUND.play();
+            this.hurtSoundPlayed = true;
+            setTimeout(() => {
+                this.hurtSoundPlayed = false
+            }, 750);
+        }
+    }
+
+    playEndbossIsDeadSounds() {
+        if (!this.deadSoundsPlayed) {
+            this.ENDBOSS_DEAD_SOUND.volume = 0.3;
+            this.ENDBOSS_DEAD_SOUND.play();
+
+            setTimeout(() => {
+                this.ENDBOSS_DEAD_BUBBLE_SOUND.volume = 0.2;
+                this.ENDBOSS_DEAD_BUBBLE_SOUND.play();
+            }, 500);
+            this.deadSoundsPlayed = true
+        }
     }
 
     /**

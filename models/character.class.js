@@ -23,6 +23,7 @@ class Character extends MovealbeObject {
     poisonCollected = 0;
     hurtSoundPlayed = false;
     swimSoundPlayed = false;
+    deadSoundsPlayed = false;
 
     BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
     POISONED_BUBBLE_ATTACK_SOUND = new Audio('audio/poisoned_bubble.wav');
@@ -30,6 +31,8 @@ class Character extends MovealbeObject {
     COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
     CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
     CHARACTER_SWIM_SOUND = new Audio('audio/swim.wav');
+    CHARACTER_DEAD_SOUND = new Audio('audio/character_dead.wav');
+    CHARACTER_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_long.wav');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
@@ -200,6 +203,7 @@ class Character extends MovealbeObject {
             if (gameIntervalsRunning) {
                 if (this.isDead()) {
                     this.playAnimation(this.IMAGES_DEAD, 'once');
+                    if (soundOn) { this.playCharacterIsDeadSounds() };
                     this.gameOver();
                 } else if (this.isHurt1()) {
                     this.playAnimation(this.IMAGES_HURT, 'multiple');
@@ -390,6 +394,19 @@ class Character extends MovealbeObject {
             setTimeout(() => {
                 this.hurtSoundPlayed = false
             }, 1000);
+        }
+    }
+
+    playCharacterIsDeadSounds() {
+        if (!this.deadSoundsPlayed) {
+            this.CHARACTER_DEAD_SOUND.volume = 0.3;
+            this.CHARACTER_DEAD_SOUND.play()
+
+            setTimeout(() => {
+                this.CHARACTER_DEAD_BUBBLE_SOUND.volume = 0.2;
+                this.CHARACTER_DEAD_BUBBLE_SOUND.play();
+            }, 1000);
+            this.deadSoundsPlayed = true
         }
     }
 
