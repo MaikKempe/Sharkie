@@ -22,7 +22,7 @@ class Endboss extends MovealbeObject {
     ENDBOSS_ATTACK_SOUND = new Audio('audio/endboss_attack.wav');
     ENDBOSS_HURT_SOUND = new Audio('audio/endboss_hurt2.wav');
     ENDBOSS_DEAD_SOUND = new Audio('audio/endboss_dead.wav');
-    ENDBOSS_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_long.wav');
+    ENDBOSS_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
 
     IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -180,9 +180,7 @@ class Endboss extends MovealbeObject {
             this.ENDBOSS_HURT_SOUND.volume = 0.2;
             this.ENDBOSS_HURT_SOUND.play();
             this.hurtSoundPlayed = true;
-      
-                this.hurtSoundPlayed = false
-        
+            this.hurtSoundPlayed = false
         }
     }
 

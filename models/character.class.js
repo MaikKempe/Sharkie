@@ -32,7 +32,7 @@ class Character extends MovealbeObject {
     CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
     CHARACTER_SWIM_SOUND = new Audio('audio/swim.wav');
     CHARACTER_DEAD_SOUND = new Audio('audio/character_dead.wav');
-    CHARACTER_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_long.wav');
+    CHARACTER_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
 
     IMAGES_IDLE = [
         'img/1_sharkie/1_IDLE/1.png',
