@@ -6,8 +6,8 @@ function startScreenTemplate() {
         <img class="sharkie-startscreen" src="img/1_sharkie/1_IDLE/1.png">
         <h1 id="h1">Sharkie</h1>
       </div>
-      <button class="start-btn" onclick="startGame()">START GAME</button>
-      <button class="btn" onclick="showIntroduction()">HELP</button>
+      <button id="start-btn" class="start-btn" onclick="startGame()">START GAME</button>
+      <button id="help-btn" class="btn" onclick="showIntroduction()">HELP</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>

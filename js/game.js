@@ -66,6 +66,7 @@ function removeIntroduction() {
 
 function startGame() {
     playStartButtonSound();
+    disableButtons();
     initLevel();
     loadingAnimation();
     setTimeout(() => {
@@ -80,6 +81,12 @@ function startGame() {
 function loadingAnimation() {
     document.getElementById('h1').classList.add('filling-water');
 }
+
+function disableButtons() {
+    //document.getElementById('start-btn').disabled = true;
+    document.getElementById('help-btn').disabled = true;
+}
+
 
 function showGameScreen() {
     document.getElementById('game').innerHTML += gameScreenTemplate();
