@@ -180,9 +180,9 @@ class Endboss extends MovealbeObject {
             this.ENDBOSS_HURT_SOUND.volume = 0.2;
             this.ENDBOSS_HURT_SOUND.play();
             this.hurtSoundPlayed = true;
-            setTimeout(() => {
+      
                 this.hurtSoundPlayed = false
-            }, 750);
+        
         }
     }
 
