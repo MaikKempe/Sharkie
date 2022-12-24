@@ -27,6 +27,7 @@ let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
 let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
 //endscreen music
 let WIN_SOUND = new Audio('audio/win_sound.mp3');
+let LOOSE_SOUND = new Audio('audio/bubbles_long.wav');
 
 /**
  * 
@@ -372,7 +373,8 @@ function playWinSound() {
 // plays loose sound once
 function playLooseSound() {
     if (!looseSoundPlayed) {
-        console.log('play loose sound');
+        LOOSE_SOUND.volume = 0.3;
+        LOOSE_SOUND.play();
         looseSoundPlayed = true;
     }
 }

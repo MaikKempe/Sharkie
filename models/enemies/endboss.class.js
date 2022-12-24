@@ -192,7 +192,7 @@ class Endboss extends MovealbeObject {
             setTimeout(() => {
                 this.ENDBOSS_DEAD_BUBBLE_SOUND.volume = 0.2;
                 this.ENDBOSS_DEAD_BUBBLE_SOUND.play();
-            }, 500);
+            }, 350);
             this.deadSoundsPlayed = true
         }
     }
