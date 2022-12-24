@@ -31,7 +31,6 @@ class Character extends MovealbeObject {
     COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
     CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
     CHARACTER_SWIM_SOUND = new Audio('audio/swim.wav');
-    CHARACTER_DEAD_SOUND = new Audio('audio/character_dead.wav');
     CHARACTER_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
 
     IMAGES_IDLE = [
@@ -396,11 +395,11 @@ class Character extends MovealbeObject {
             }, 1000);
         }
     }
-
+    //huer sound just louder
     playCharacterIsDeadSounds() {
         if (!this.deadSoundsPlayed) {
-            this.CHARACTER_DEAD_SOUND.volume = 0.3;
-            this.CHARACTER_DEAD_SOUND.play()
+            this.CHARACTER_HURT_SOUND.volume = 0.5;
+            this.CHARACTER_HURT_SOUND.play()
 
             setTimeout(() => {
                 this.CHARACTER_DEAD_BUBBLE_SOUND.volume = 0.2;
