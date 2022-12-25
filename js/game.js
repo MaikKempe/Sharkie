@@ -7,6 +7,7 @@ let soundOn = true;
 let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
+let gameStarted = false;
 let gameIntervalsRunning = false;
 let gameIsRunning = true;
 let gameFinished = false;
@@ -65,25 +66,29 @@ function removeIntroduction() {
 }
 
 function startGame() {
-    playStartButtonSound();
-    disableButtons();
-    initLevel();
-    loadingAnimation();
-    setTimeout(() => {
-        removeStartScreen();
-        showGameScreen();
-        canvas = document.getElementById('canvas');
-        world = new World(canvas, keyboard);
-        gameIntervalsRunning = true;
-    }, 2000);
+    if (!gameStarted) {
+        disableButtons();
+        playStartButtonSound();
+        initLevel();
+        loadingAnimation();
+        setTimeout(() => {
+            removeStartScreen();
+            showGameScreen();
+            canvas = document.getElementById('canvas');
+            world = new World(canvas, keyboard);
+            gameIntervalsRunning = true;
+        }, 2000);
+    }
 }
 
 function loadingAnimation() {
     document.getElementById('h1').classList.add('filling-water');
 }
 
+// start btn cant be disabled, becouse the css animtion would not run
+
 function disableButtons() {
-    //document.getElementById('start-btn').disabled = true;
+    gameStarted = true;
     document.getElementById('help-btn').disabled = true;
 }
 
