@@ -1,7 +1,7 @@
 let canvas;
 let world;
-let back
 let keyboard = new Keyboard();
+let isTouchDevice = false;
 let fullscreenOn = false;
 let soundOn = true;
 let soundWasOff = false; // used in standby mode
@@ -65,9 +65,26 @@ function removeIntroduction() {
     document.getElementById('help').innerHTML = '';
 }
 
+
+window.addEventListener('click', () => {
+    if (touchEvent()) {
+        isTouchDevice = true;
+        console.log(isTouchDevice);
+    } else {
+        isTouchDevice = false;
+        console.log(isTouchDevice);
+    }
+});
+
+function touchEvent() {
+    return "ontouchstart" in document.documentElement || window.navigator.maxTouchPoints;
+}
+
+
 function startGame() {
     if (!gameStarted) {
-        disableButtons();
+        gameStarted = true;
+        disableHelpButton();
         playStartButtonSound();
         initLevel();
         loadingAnimation();
@@ -87,8 +104,7 @@ function loadingAnimation() {
 
 // start btn cant be disabled, becouse the css animtion would not run
 
-function disableButtons() {
-    gameStarted = true;
+function disableHelpButton() {
     document.getElementById('help-btn').disabled = true;
 }
 
@@ -99,7 +115,7 @@ function showGameScreen() {
     setTimeout(() => {
         showIngameHeadline();
         showIngameDescription();
-        showSidebar();
+        showMenu();
     }, 1700);
     // give animations some timespace before music starts
     setTimeout(() => {
@@ -123,8 +139,8 @@ function removeIngameDescription() {
     document.getElementById('gamescreen-description').style.display = "none";
 }
 
-function showSidebar() {
-    document.getElementById('gamescreen-sidebar').style.display = "flex";
+function showMenu() {
+    document.getElementById('gamescreen-menu').style.display = "flex";
 }
 
 function removeGameScreen() {

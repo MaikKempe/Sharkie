@@ -40,7 +40,7 @@ function gameScreenTemplate() {
        <div id="gamescreen-paused">
          <h2>Game Paused</h2>
        </div>
-       <div id="gamescreen-sidebar">
+       <div id="gamescreen-menu">
           <div class="setting-btn" onclick="toggleScreen()">
             <img id="fullscreen-on-icon" class="setting-icon" src="img/8_icons/fullscreen_on.png">
             <img id="fullscreen-off-icon" class="setting-icon d-none" src="img/8_icons/fullscreen_off.png">

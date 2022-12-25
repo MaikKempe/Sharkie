@@ -425,7 +425,7 @@ h4 {
     align-items: center;
 }
 
-#gamescreen-sidebar {
+#gamescreen-menu {
     display: none;
     animation: opacity 225ms ease-in-out;
     z-index: 1;
