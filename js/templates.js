@@ -28,6 +28,8 @@ function startScreenTemplate() {
     </div>`;
 }
 
+// gamescreen snippet for touch and desktop.
+
 function gameScreenTemplate() {
   return `
   <div class="gamescreen-container">

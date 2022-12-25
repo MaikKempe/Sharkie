@@ -50,7 +50,8 @@ canvas {
 .canvas-fullscreen {
     object-fit: contain;
     height: 100vh;
-    width: 100vw;
+    width: 85vw;
+    box-shadow: 1px 2px 13px -2px rgb(0 0 0 / 0%) !important;
 }
 
 .d-none {
@@ -403,6 +404,8 @@ h4 {
 
 .game-content {
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 #gamescreen-description {
@@ -417,7 +420,7 @@ h4 {
     top: 0;
     right: 0;
     left: 0;
-    bottom: 4px;
+    bottom: 0;
     background-color:rgba(0, 0, 0, 0.3);
     z-index: 1;
     display: none;
