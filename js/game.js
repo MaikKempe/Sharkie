@@ -115,7 +115,7 @@ function showGameScreen() {
     setTimeout(() => {
         showIngameHeadline();
         showIngameDescription();
-        showMenu();
+        showDesktopMenu();
     }, 1700);
     // give animations some timespace before music starts
     setTimeout(() => {
@@ -139,8 +139,8 @@ function removeIngameDescription() {
     document.getElementById('gamescreen-description').style.display = "none";
 }
 
-function showMenu() {
-    document.getElementById('gamescreen-menu').style.display = "flex";
+function showDesktopMenu() {
+    document.getElementById('gamescreen-desktop-menu').style.display = "flex";
 }
 
 function removeGameScreen() {
