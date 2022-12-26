@@ -45,6 +45,7 @@ keinen joystick
 
 function init() {
     showStartScreen();
+    checkDevice();
 }
 
 function showStartScreen() {
@@ -65,7 +66,7 @@ function removeIntroduction() {
     document.getElementById('help').innerHTML = '';
 }
 
-
+/** 
 window.addEventListener('click', () => {
     if (touchEvent()) {
         isTouchDevice = true;
@@ -79,7 +80,17 @@ window.addEventListener('click', () => {
 function touchEvent() {
     return "ontouchstart" in document.documentElement || window.navigator.maxTouchPoints;
 }
+*/
 
+function checkDevice() {
+    try {
+        //We try to create touch event. It would fail for desktops and throw an error.
+        document.createEvent("TouchEvent");
+        isTouchDevice = true;
+    } catch (e) {
+        isTouchDevice = false;
+    }
+};
 
 function startGame() {
     if (!gameStarted) {
@@ -91,6 +102,7 @@ function startGame() {
         setTimeout(() => {
             removeStartScreen();
             showGameScreen();
+            startBackgroundmusic();
             canvas = document.getElementById('canvas');
             world = new World(canvas, keyboard);
             gameIntervalsRunning = true;
@@ -110,17 +122,29 @@ function disableHelpButton() {
 
 
 function showGameScreen() {
-    document.getElementById('game').innerHTML += gameScreenTemplate();
-    // Fade-in effect for headline and description
+    if (isTouchDevice) {
+        showMobileScreen();
+    } else {
+        showDesktopScreen();
+    }
+}
+
+function showMobileScreen() {
+    document.getElementById('game').innerHTML += gameScreenTouchTemplate();
+    // short timeout to give Mobile menu a fade in effect
+    setTimeout(() => {
+        showMobileMenu();
+    }, 1700);
+}
+
+function showDesktopScreen() {
+    document.getElementById('game').innerHTML += gameScreenDesktopTemplate();
+    // Fade-in effect for headline, menu and description
     setTimeout(() => {
         showIngameHeadline();
         showIngameDescription();
         showDesktopMenu();
     }, 1700);
-    // give animations some timespace before music starts
-    setTimeout(() => {
-        playBackgroundMusic();
-    }, 1900);
 }
 
 function showIngameHeadline() {
@@ -140,6 +164,10 @@ function removeIngameDescription() {
 }
 
 function showDesktopMenu() {
+    document.getElementById('gamescreen-desktop-menu').style.display = "flex";
+}
+
+function showMobileMenu() {
     document.getElementById('gamescreen-desktop-menu').style.display = "flex";
 }
 
@@ -343,6 +371,12 @@ function toggleDescription() {
 function playStartButtonSound() {
     START_BUTTON_SOUND.volume = 0.6;
     START_BUTTON_SOUND.play();
+}
+
+function startBackgroundmusic() {
+    setTimeout(() => {
+        playBackgroundMusic();
+    }, 1900);
 }
 //create loop
 function playBackgroundMusic() {

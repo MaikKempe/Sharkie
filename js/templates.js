@@ -30,7 +30,7 @@ function startScreenTemplate() {
 
 // gamescreen snippet for touch and desktop.
 
-function gameScreenTemplate() {
+function gameScreenDesktopTemplate() {
   return `
   <div class="gamescreen-container">
      <h2 id="gamescreen-headline">Sharkie</h2>
@@ -72,6 +72,33 @@ function gameScreenTemplate() {
         <span>B: Bubble Attack</span>
         <span>V: Poisoned Bubble Attack</span>
       </div>
+  </div>`;
+}
+
+function gameScreenTouchTemplate() {
+  return `
+  <div id="fullscreen">
+    <img class="bg-blurred" src="img/3_background/dark/1.png">
+    <div class="game-content">
+       <canvas id="canvas" width="720" height="480"></canvas>
+       <div id="gamescreen-paused">
+         <h2>Game Paused</h2>
+       </div>
+       <div id="gamescreen-desktop-menu">
+          <div class="setting-btn" onclick="toggleScreen()">
+            <img id="fullscreen-on-icon" class="setting-icon" src="img/8_icons/fullscreen_on.png">
+            <img id="fullscreen-off-icon" class="setting-icon d-none" src="img/8_icons/fullscreen_off.png">
+          </div>
+          <div id="sound-btn" class="setting-btn" onclick="toggleSound()">
+            <img id="sound-on-icon" class="setting-icon" src="img/8_icons/sound_on.png">
+            <img id="sound-off-icon" class="setting-icon d-none" src="img/8_icons/sound_off.png">
+          </div>
+          <div class="setting-btn" onclick="toggleStandby()">
+            <img id="standby-off-icon" class="setting-icon" src="img/8_icons/standby_off.png">
+            <img id="standby-on-icon" class="setting-icon d-none" src="img/8_icons/standby_on.png">
+          </div>
+        </div>
+     </div>
   </div>`;
 }
 
