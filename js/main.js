@@ -87,15 +87,13 @@ function startGame() {
         gameStarted = true;
         disableHelpButton();
         playStartButtonSound();
-        initLevel();
         loadingAnimation();
+        initLevel();
+        // short timout for CSS animations
         setTimeout(() => {
             removeStartScreen();
-            showGameScreen();
+            initGame();
             startBackgroundmusic();
-            canvas = document.getElementById('canvas');
-            world = new World(canvas, keyboard);
-            gameIntervalsRunning = true;
         }, 2000);
     }
 }
@@ -110,13 +108,20 @@ function disableHelpButton() {
     document.getElementById('help-btn').disabled = true;
 }
 
-
-function showGameScreen() {
+function initGame() {
     if (isTouchDevice) {
-        showMobileScreen();
+        initMobileSettings();
     } else {
-        showDesktopScreen();
+        initDesktopSettings();
     }
+}
+
+function initMobileSettings() {
+    showMobileScreen();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    gameIntervalsRunning = true;
+    openFullscreen(); // or canvasfullscreenmode
 }
 
 function showMobileScreen() {
@@ -125,6 +130,13 @@ function showMobileScreen() {
     setTimeout(() => {
         showMobileMenu();
     }, 1700);
+}
+
+function initDesktopSettings() {
+    showDesktopScreen();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    gameIntervalsRunning = true;
 }
 
 function showDesktopScreen() {
@@ -205,11 +217,13 @@ function toggleScreen() {
         document.getElementById('fullscreen-off-icon').classList.remove('d-none');
         fullscreenOn = true;
         openFullscreen();
+        hideDescriptionButton();
     } else {
         document.getElementById('fullscreen-off-icon').classList.add('d-none');
         document.getElementById('fullscreen-on-icon').classList.remove('d-none');
         fullscreenOn = false;
         closeFullscreen();
+        showDescriptionButton();
     }
 }
 
@@ -224,7 +238,6 @@ function openFullscreen() {
         fullscreen.msRequestFullscreen();
     }
     canvasFullscreenModeOn();
-    hideDescriptionButton();
 }
 
 
@@ -237,7 +250,6 @@ function closeFullscreen() {
         document.msExitFullscreen();
     }
     canvasFullscreenModeOff();
-    showDescriptionButton();
 }
 
 function canvasFullscreenModeOn() {
