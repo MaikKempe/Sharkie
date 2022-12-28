@@ -170,7 +170,7 @@ function showDesktopMenu() {
 }
 
 function showMobileMenu() {
-    document.getElementById('gamescreen-desktop-menu').style.display = "flex";
+    document.getElementById('gamescreen-mobile-menu').style.display = "flex";
 }
 
 function removeGameScreen() {
