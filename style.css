@@ -556,8 +556,24 @@ h4 {
     object-fit: contain;
     width: 42px;
     opacity: 100%;
-} 
+}
+/*
+#mobile-btn-up {
+    margin-top: 5px;
+}
 
+#mobile-btn-right {
+    margin-right: 5px;
+}
+
+#mobile-btn-left {
+   margin-left: 5px;
+}
+
+#mobile-btn-down {
+    margin-bottom: 5px;
+}
+*/
 .coin-info {
     font-size: 22px;
     color: white;

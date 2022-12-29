@@ -93,33 +93,33 @@ function gameScreenTouchTemplate() {
               </div>
             </div>
             <div class="action-btns">
-              <div class="action-btn">
+              <div id="mobile-btn-poisoned-bubble" class="action-btn">
                 <img class="action-icon" src="img/8_icons/poisoned_bubble.png">
               </div>
-              <div class="action-btn">
+              <div id="mobile-btn-bubble" class="action-btn">
                 <img class="action-icon" src="img/8_icons/bubble.png">
               </div>
-              <div class="action-btn">
+              <div id="mobile-btn-slapmove" class="action-btn">
                 <img class="action-icon" src="img/8_icons/slap_attack_icon.png">
               </div>
             </div>
             <div class="control-pad">
                <div class="control-pad-row">
                  <div class="control-pad-btn">
-                   <img class="action-icon" src="img/8_icons/arrow_up.png">
+                   <img id="mobile-btn-up" class="action-icon" src="img/8_icons/arrow_up2.png">
                  </div>
                </div>
                <div class="control-pad-row-mid">
                   <div class="control-pad-btn">
-                    <img class="action-icon" src="img/8_icons/arrow_left.png">
+                    <img id="mobile-btn-left" class="action-icon" src="img/8_icons/arrow_left2.png">
                   </div>
                   <div class="control-pad-btn">
-                    <img class="action-icon" src="img/8_icons/arrow_right.png">
+                    <img id="mobile-btn-right" class="action-icon" src="img/8_icons/arrow_right2.png">
                   </div>
                </div>
                <div class="control-pad-row">
                   <div class="control-pad-btn">
-                    <img class="action-icon" src="img/8_icons/arrow_down.png">
+                    <img id="mobile-btn-down" class="action-icon" src="img/8_icons/arrow_down2.png">
                   </div>
                </div>
             </div>

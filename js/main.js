@@ -121,6 +121,7 @@ function initMobileSettings() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     gameIntervalsRunning = true;
+    bindKeyEventsToMobileButtons();
     openFullscreen(); // or canvasfullscreenmode
 }
 

@@ -52,3 +52,75 @@ window.addEventListener('keyup', (event) => {
         keyboard.B = false;
     }
 });
+
+function bindKeyEventsToMobileButtons() {
+    // Arrow Up
+    document.getElementById('mobile-btn-up').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.UP = true;
+    });
+    document.getElementById('mobile-btn-up').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.UP = false;
+    });
+
+    // Arrow Down
+    document.getElementById('mobile-btn-down').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.DOWN = true;
+    });
+    document.getElementById('mobile-btn-down').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.DOWN = false;
+    });
+
+    // Arrow Left
+    document.getElementById('mobile-btn-left').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.LEFT = true;
+    });
+    document.getElementById('mobile-btn-left').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+    // Arrow right
+    document.getElementById('mobile-btn-right').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    document.getElementById('mobile-btn-right').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.RIGHT = false;
+    });
+
+    // Space (slap attack button)
+    document.getElementById('mobile-btn-slapmove').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.SPACE = true;
+    });
+    document.getElementById('mobile-btn-slapmove').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.SPACE = false;
+    });
+
+    // B (bubble attack button)
+    document.getElementById('mobile-btn-bubble').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.B = true;
+    });
+    document.getElementById('mobile-btn-bubble').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.B = false;
+    });
+
+    // V (poisoned bubble attack button)
+    document.getElementById('mobile-btn-poisoned-bubble').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.V = true;
+    });
+    document.getElementById('mobile-btn-poisoned-bubble').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.V = false;
+    });
+}
