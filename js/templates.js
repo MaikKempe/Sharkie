@@ -104,24 +104,20 @@ function gameScreenTouchTemplate() {
               </div>
             </div>
             <div class="control-pad">
-               <div class="control-pad-row">
-                 <div class="control-pad-btn">
-                   <img id="mobile-btn-up" class="action-icon" src="img/8_icons/arrow_up2.png">
+              <div class="control-pad-container">
+                 <div id="mobile-btn-up" class="action-btn">
+                   <img class="control-pad-icon" src="img/8_icons/arrow_up3.png">
                  </div>
-               </div>
-               <div class="control-pad-row-mid">
-                  <div class="control-pad-btn">
-                    <img id="mobile-btn-left" class="action-icon" src="img/8_icons/arrow_left2.png">
+                  <div id="mobile-btn-left" class="action-btn">
+                    <img class="control-pad-icon" src="img/8_icons/arrow_left3.png">
                   </div>
-                  <div class="control-pad-btn">
-                    <img id="mobile-btn-right" class="action-icon" src="img/8_icons/arrow_right2.png">
+                  <div id="mobile-btn-right" class="action-btn">
+                    <img class="control-pad-icon" src="img/8_icons/arrow_right3.png">
                   </div>
-               </div>
-               <div class="control-pad-row">
-                  <div class="control-pad-btn">
-                    <img id="mobile-btn-down" class="action-icon" src="img/8_icons/arrow_down2.png">
+                  <div id="mobile-btn-down" class="action-btn">
+                    <img class="control-pad-icon" src="img/8_icons/arrow_down3.png">
                   </div>
-               </div>
+              </div>
             </div>
        </div>
      </div>
