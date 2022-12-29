@@ -11,7 +11,7 @@ class PufferfishHard extends Pufferfish {
     energy = 150;
     hitByBubble = 0;
 
-    IMAGES_SWIM = [
+    PUFFERFISH_HARD_IMAGES_SWIM = [
         'img/2_enemy/1_pufferfish/1_swim/2.swim1.png',
         'img/2_enemy/1_pufferfish/1_swim/2.swim2.png',
         'img/2_enemy/1_pufferfish/1_swim/2.swim3.png',
@@ -19,7 +19,7 @@ class PufferfishHard extends Pufferfish {
         'img/2_enemy/1_pufferfish/1_swim/2.swim5.png'
     ];
 
-    IMAGES_ANGRY = [
+    PUFFERFISH_HARD_IMAGES_ANGRY = [
         'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition2.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition3.png',
@@ -52,13 +52,13 @@ class PufferfishHard extends Pufferfish {
         'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
     ];
 
-    IMAGES_DEAD_ANGRY = [
+    PUFFERFISH_HARD_IMAGES_DEAD_ANGRY = [
         'img/2_enemy/1_pufferfish/4_DIE/3.1.png',
         'img/2_enemy/1_pufferfish/4_DIE/3.2.png',
         'img/2_enemy/1_pufferfish/4_DIE/3.3.png'
     ];
 
-    IMAGES_DEAD = [
+    PUFFERFISH_HARD_IMAGES_DEAD = [
         'img/2_enemy/1_pufferfish/4_DIE/2.1.png',
         'img/2_enemy/1_pufferfish/4_DIE/2.2.png',
         'img/2_enemy/1_pufferfish/4_DIE/2.3.png'
@@ -68,10 +68,10 @@ class PufferfishHard extends Pufferfish {
     constructor(x, y) {
         super();
         this.loadImage('img/2_enemy/1_pufferfish/1_swim/2.swim1.png');
-        this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_ANGRY);
-        this.loadImages(this.IMAGES_DEAD);
-        this.loadImages(this.IMAGES_DEAD_ANGRY);
+        this.loadImages(this.PUFFERFISH_HARD_IMAGES_SWIM);
+        this.loadImages(this.PUFFERFISH_HARD_IMAGES_ANGRY);
+        this.loadImages(this.PUFFERFISH_HARD_IMAGES_DEAD);
+        this.loadImages(this.PUFFERFISH_HARD_IMAGES_DEAD_ANGRY);
         this.x = x;
         this.y = y;
         this.animate();
@@ -83,19 +83,19 @@ class PufferfishHard extends Pufferfish {
             if (gameIntervalsRunning) {
                 if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
                     this.attack = 0;
-                    this.playAnimation(this.IMAGES_DEAD_ANGRY, 'once');
+                    this.playAnimation(this.PUFFERFISH_HARD_IMAGES_DEAD_ANGRY, 'once');
                 } else if (this.isDead() && this.hitByBubble == 0) { // death after changed color
                     this.attack = 0;
-                    this.playAnimation(this.IMAGES_DEAD, 'once');
+                    this.playAnimation(this.PUFFERFISH_HARD_IMAGES_DEAD, 'once');
                 } else if (this.hitByBubble == 1 && !this.isSlapped && !this.isDead()) {
-                    this.playAnimation(this.IMAGES_ANGRY, 'multiple');
+                    this.playAnimation(this.PUFFERFISH_HARD_IMAGES_ANGRY, 'multiple');
                     this.offset.height = 60;
                 } else if (this.hitByBubble == 2 && !this.isSlapped && !this.isDead()) {
-                    this.playAnimation(this.IMAGES_ANGRY, 'multiple');
+                    this.playAnimation(this.PUFFERFISH_HARD_IMAGES_ANGRY, 'multiple');
                     this.offset.height = 60;
                     this.speedX = 1.5;
                 } else {
-                    this.playAnimation(this.IMAGES_SWIM, 'multiple');
+                    this.playAnimation(this.PUFFERFISH_HARD_IMAGES_SWIM, 'multiple');
                 }
             }
         }, 1000 / 10);

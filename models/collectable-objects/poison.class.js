@@ -7,7 +7,7 @@ class Poison extends CollectableObject {
         width: 18,
         height: -7
     };
-    IMAGES = [
+    POISON_IMAGES = [
         'img/4_marcadores/poison/animada/1.png',
         'img/4_marcadores/poison/animada/2.png',
         'img/4_marcadores/poison/animada/3.png',
@@ -20,9 +20,9 @@ class Poison extends CollectableObject {
     constructor(x, y){
         super();
         this.loadImage('img/4_marcadores/poison/animada/1.png');
-        this.loadImages(this.IMAGES);
+        this.loadImages(this.POISON_IMAGES);
         this.x = x;
         this.y = y;
-        this.animate(this.IMAGES, 'multiple');
+        this.animate(this.POISON_IMAGES, 'multiple');
     }
 }

@@ -12,9 +12,11 @@ class Bubble extends MovealbeObject {
         width: 2,
         height: 2
     };
+    BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/bubble.png'];
+    
     constructor(x, y, otherDirection) {
         super();
-        this.loadImage('img/1_sharkie/4_attack/bubble_trap/bubble.png');
+        this.loadImage(this.BUBBLE_IMAGE[0]);
         this.otherDirection = otherDirection;
         this.floating(x, y)
     }

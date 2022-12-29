@@ -10,9 +10,11 @@ class PoisonedBubble extends MovealbeObject {
         width: 8,
         height: 8
     };
+    IMAGES_POISONED_BUBBLE = ['img/1_sharkie/4_attack/bubble_trap/poisoned_bubble_for_whale.png'];
+
     constructor(x, y, otherDirection) {
         super();
-        this.loadImage('img/1_sharkie/4_attack/bubble_trap/poisoned_bubble_for_whale.png');
+        this.loadImage(this.IMAGES_POISONED_BUBBLE[0]);
         this.otherDirection = otherDirection;
         this.floating(x, y)
     }

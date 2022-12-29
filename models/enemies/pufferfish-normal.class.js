@@ -9,7 +9,7 @@ class PufferfishNormal extends Pufferfish {
     };
     attack = 5;
     energy = 100;
-    IMAGES_SWIM = [
+    PUFFERFISH_NORMAL_IMAGES_SWIM = [
         'img/2_enemy/1_pufferfish/1_swim/1.swim1.png',
         'img/2_enemy/1_pufferfish/1_swim/1.swim2.png',
         'img/2_enemy/1_pufferfish/1_swim/1.swim3.png',
@@ -17,13 +17,13 @@ class PufferfishNormal extends Pufferfish {
         'img/2_enemy/1_pufferfish/1_swim/1.swim5.png',
     ];
 
-    IMAGES_DEAD = [
+    PUFFERFISH_NORMAL_IMAGES_SWIMIMAGES_DEAD = [
         'img/2_enemy/1_pufferfish/4_DIE/1.1.png',
         'img/2_enemy/1_pufferfish/4_DIE/1.2.png',
         'img/2_enemy/1_pufferfish/4_DIE/1.3.png',
     ]
 
-    IMAGES_HURT = [
+    PUFFERFISH_NORMAL_IMAGES_SWIMIMAGES_HURT = [
         'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition2.png',
         'img/2_enemy/1_pufferfish/2_transition/3.transition3.png',
@@ -43,10 +43,10 @@ class PufferfishNormal extends Pufferfish {
 
     constructor(x, y) {
         super();
-        this.loadImage(this.IMAGES_SWIM[0]);
-        this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImage(this.PUFFERFISH_NORMAL_IMAGES_SWIM[0]);
+        this.loadImages(this.PUFFERFISH_NORMAL_IMAGES_SWIM);
+        this.loadImages(this.PUFFERFISH_NORMAL_IMAGES_SWIMIMAGES_HURT);
+        this.loadImages(this.PUFFERFISH_NORMAL_IMAGES_SWIMIMAGES_DEAD);
         this.x = x;
         this.y = y;
         this.animate();
@@ -58,9 +58,9 @@ class PufferfishNormal extends Pufferfish {
             if (gameIntervalsRunning) {
                 if (this.isDead()) {
                     this.attack = 0;
-                    this.playAnimation(this.IMAGES_DEAD, 'once');
+                    this.playAnimation(this.PUFFERFISH_NORMAL_IMAGES_SWIMIMAGES_DEAD, 'once');
                 } else if (this.isHurt1() && !this.isDead() && !this.isSlapped) {
-                    this.playAnimation(this.IMAGES_HURT, 'once');
+                    this.playAnimation(this.PUFFERFISH_NORMAL_IMAGES_SWIMIMAGES_HURT, 'once');
                     this.offset.height = 35;
                     this.speedX = 1.7;
                     setTimeout(() => {
@@ -68,7 +68,7 @@ class PufferfishNormal extends Pufferfish {
                         this.offset.height = 45;
                     }, 1500); //time passed isHurt() 1200;
                 } else {
-                    this.playAnimation(this.IMAGES_SWIM, 'multiple');
+                    this.playAnimation(this.PUFFERFISH_NORMAL_IMAGES_SWIM, 'multiple');
                 }
             }
         }, 100);

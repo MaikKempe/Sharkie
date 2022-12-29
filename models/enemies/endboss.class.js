@@ -24,7 +24,7 @@ class Endboss extends MovealbeObject {
     ENDBOSS_DEAD_SOUND = new Audio('audio/endboss_dead.wav');
     ENDBOSS_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
 
-    IMAGES_INTRODUCE = [
+    ENDBOSS_IMAGES_INTRODUCE = [
         'img/2_enemy/3_final_enemy/1_introduce/1.png',
         'img/2_enemy/3_final_enemy/1_introduce/2.png',
         'img/2_enemy/3_final_enemy/1_introduce/3.png',
@@ -37,7 +37,7 @@ class Endboss extends MovealbeObject {
         'img/2_enemy/3_final_enemy/1_introduce/10.png'
     ];
 
-    IMAGES_SWIM = [
+    ENDBOSS_IMAGES_SWIM = [
         'img/2_enemy/3_final_enemy/2_floating/1.png',
         'img/2_enemy/3_final_enemy/2_floating/2.png',
         'img/2_enemy/3_final_enemy/2_floating/3.png',
@@ -51,14 +51,14 @@ class Endboss extends MovealbeObject {
         'img/2_enemy/3_final_enemy/2_floating/11.png'
     ];
 
-    IMAGES_HURT = [
+    ENDBOSS_IMAGES_HURT = [
         'img/2_enemy/3_final_enemy/hurt/1.png',
         'img/2_enemy/3_final_enemy/hurt/2.png',
         'img/2_enemy/3_final_enemy/hurt/3.png',
         'img/2_enemy/3_final_enemy/hurt/4.png'
     ];
 
-    IMAGES_ATTACK = [
+    ENDBOSS_IMAGES_ATTACK = [
         'img/2_enemy/3_final_enemy/attack/1.png',
         'img/2_enemy/3_final_enemy/attack/2.png',
         'img/2_enemy/3_final_enemy/attack/3.png',
@@ -67,7 +67,7 @@ class Endboss extends MovealbeObject {
         'img/2_enemy/3_final_enemy/attack/6.png'
     ];
 
-    IMAGES_DEAD = [
+    ENDBOSS_IMAGES_DEAD = [
         'img/2_enemy/3_final_enemy/dead/1.png',
         'img/2_enemy/3_final_enemy/dead/2.png',
         'img/2_enemy/3_final_enemy/dead/1.png',
@@ -84,11 +84,11 @@ class Endboss extends MovealbeObject {
     constructor(x, y) {
         super();
         this.loadImage('img/2_enemy/3_final_enemy/1_introduce/1.png');
-        this.loadImages(this.IMAGES_INTRODUCE);
-        this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_ATTACK);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.ENDBOSS_IMAGES_INTRODUCE);
+        this.loadImages(this.ENDBOSS_IMAGES_SWIM);
+        this.loadImages(this.ENDBOSS_IMAGES_HURT);
+        this.loadImages(this.ENDBOSS_IMAGES_ATTACK);
+        this.loadImages(this.ENDBOSS_IMAGES_DEAD);
         this.x = x;
         this.y = y;
         this.animate();
@@ -99,24 +99,24 @@ class Endboss extends MovealbeObject {
         setInterval(() => {
             if (gameIntervalsRunning) {
                 if (this.isIntroduced) {
-                    if (i < this.IMAGES_INTRODUCE.length) {
-                        this.playAnimation(this.IMAGES_INTRODUCE, 'once')
+                    if (i < this.ENDBOSS_IMAGES_INTRODUCE.length) {
+                        this.playAnimation(this.ENDBOSS_IMAGES_INTRODUCE, 'once')
                         this.switchToFightMusic();
                     } else if (this.isDead()) {
                         this.attack = 0;
                         this.speedX = 0;
-                        this.playAnimation(this.IMAGES_DEAD, 'once');
+                        this.playAnimation(this.ENDBOSS_IMAGES_DEAD, 'once');
                         if (soundOn) { this.playEndbossIsDeadSounds() };
                         this.gameWon();
                     } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
                         this.huntCharacter();
-                        this.playAnimation(this.IMAGES_ATTACK, 'multiple');
+                        this.playAnimation(this.ENDBOSS_IMAGES_ATTACK, 'multiple');
                     } else if (this.isHurt1() && !this.isDead()) {
                         if (soundOn) { this.playEndbossIsHurtSound() };
-                        this.playAnimation(this.IMAGES_HURT, 'once');
+                        this.playAnimation(this.ENDBOSS_IMAGES_HURT, 'once');
                         this.speedX = 0;
                     } else {
-                        this.playAnimation(this.IMAGES_SWIM, 'multiple');
+                        this.playAnimation(this.ENDBOSS_IMAGES_SWIM, 'multiple');
                         this.speedX = 0.5;
                     }
                     i++;
