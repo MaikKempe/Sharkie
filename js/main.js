@@ -33,6 +33,20 @@ function init() {
     checkDevice();
 }
 
+function preloadFiles() {
+   // loadImages(world.character.IMAGES_IDLE);
+}
+
+function loadImages() {
+    for (let i = 0; i < array.length; i++) {
+        loadImage(array[i]);
+    }
+}
+function loadImage(url) {
+    const img = new Image();
+    img.src = url;
+}
+
 function showStartScreen() {
     removeIntroduction();
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
