@@ -24,99 +24,42 @@ class Endboss extends MovealbeObject {
     ENDBOSS_DEAD_SOUND = new Audio('audio/endboss_dead.wav');
     ENDBOSS_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
 
-    ENDBOSS_IMAGES_INTRODUCE = [
-        'img/2_enemy/3_final_enemy/1_introduce/1.png',
-        'img/2_enemy/3_final_enemy/1_introduce/2.png',
-        'img/2_enemy/3_final_enemy/1_introduce/3.png',
-        'img/2_enemy/3_final_enemy/1_introduce/4.png',
-        'img/2_enemy/3_final_enemy/1_introduce/5.png',
-        'img/2_enemy/3_final_enemy/1_introduce/6.png',
-        'img/2_enemy/3_final_enemy/1_introduce/7.png',
-        'img/2_enemy/3_final_enemy/1_introduce/8.png',
-        'img/2_enemy/3_final_enemy/1_introduce/9.png',
-        'img/2_enemy/3_final_enemy/1_introduce/10.png'
-    ];
-
-    ENDBOSS_IMAGES_SWIM = [
-        'img/2_enemy/3_final_enemy/2_floating/1.png',
-        'img/2_enemy/3_final_enemy/2_floating/2.png',
-        'img/2_enemy/3_final_enemy/2_floating/3.png',
-        'img/2_enemy/3_final_enemy/2_floating/4.png',
-        'img/2_enemy/3_final_enemy/2_floating/5.png',
-        'img/2_enemy/3_final_enemy/2_floating/6.png',
-        'img/2_enemy/3_final_enemy/2_floating/7.png',
-        'img/2_enemy/3_final_enemy/2_floating/8.png',
-        'img/2_enemy/3_final_enemy/2_floating/9.png',
-        'img/2_enemy/3_final_enemy/2_floating/10.png',
-        'img/2_enemy/3_final_enemy/2_floating/11.png'
-    ];
-
-    ENDBOSS_IMAGES_HURT = [
-        'img/2_enemy/3_final_enemy/hurt/1.png',
-        'img/2_enemy/3_final_enemy/hurt/2.png',
-        'img/2_enemy/3_final_enemy/hurt/3.png',
-        'img/2_enemy/3_final_enemy/hurt/4.png'
-    ];
-
-    ENDBOSS_IMAGES_ATTACK = [
-        'img/2_enemy/3_final_enemy/attack/1.png',
-        'img/2_enemy/3_final_enemy/attack/2.png',
-        'img/2_enemy/3_final_enemy/attack/3.png',
-        'img/2_enemy/3_final_enemy/attack/4.png',
-        'img/2_enemy/3_final_enemy/attack/5.png',
-        'img/2_enemy/3_final_enemy/attack/6.png'
-    ];
-
-    ENDBOSS_IMAGES_DEAD = [
-        'img/2_enemy/3_final_enemy/dead/1.png',
-        'img/2_enemy/3_final_enemy/dead/2.png',
-        'img/2_enemy/3_final_enemy/dead/1.png',
-        'img/2_enemy/3_final_enemy/dead/2.png',
-        'img/2_enemy/3_final_enemy/dead/1.png',
-        'img/2_enemy/3_final_enemy/dead/2.png',
-        'img/2_enemy/3_final_enemy/dead/1.png',
-        'img/2_enemy/3_final_enemy/dead/2.png',
-        'img/2_enemy/3_final_enemy/dead/3.png',
-        'img/2_enemy/3_final_enemy/dead/4.png',
-        'img/2_enemy/3_final_enemy/dead/5.png'
-    ];
-
     constructor(x, y) {
         super();
-        this.loadImage('img/2_enemy/3_final_enemy/1_introduce/1.png');
-        this.loadImages(this.ENDBOSS_IMAGES_INTRODUCE);
-        this.loadImages(this.ENDBOSS_IMAGES_SWIM);
-        this.loadImages(this.ENDBOSS_IMAGES_HURT);
-        this.loadImages(this.ENDBOSS_IMAGES_ATTACK);
-        this.loadImages(this.ENDBOSS_IMAGES_DEAD);
+        this.loadImage(ENDBOSS_IMAGES_INTRODUCE[0]);
+        this.loadImages(ENDBOSS_IMAGES_INTRODUCE);
+        this.loadImages(ENDBOSS_IMAGES_SWIM);
+        this.loadImages(ENDBOSS_IMAGES_HURT);
+        this.loadImages(ENDBOSS_IMAGES_ATTACK);
+        this.loadImages(ENDBOSS_IMAGES_DEAD);
         this.x = x;
         this.y = y;
         this.animate();
-    }
+    };
 
     animate() {
         let i = 0;
         setInterval(() => {
             if (gameIntervalsRunning) {
                 if (this.isIntroduced) {
-                    if (i < this.ENDBOSS_IMAGES_INTRODUCE.length) {
-                        this.playAnimation(this.ENDBOSS_IMAGES_INTRODUCE, 'once')
+                    if (i < ENDBOSS_IMAGES_INTRODUCE.length) {
+                        this.playAnimation(ENDBOSS_IMAGES_INTRODUCE, 'once')
                         this.switchToFightMusic();
                     } else if (this.isDead()) {
                         this.attack = 0;
                         this.speedX = 0;
-                        this.playAnimation(this.ENDBOSS_IMAGES_DEAD, 'once');
+                        this.playAnimation(ENDBOSS_IMAGES_DEAD, 'once');
                         if (soundOn) { this.playEndbossIsDeadSounds() };
                         this.gameWon();
                     } else if (this.isAttacking && !this.isHurt1() && !this.isDead()) {
                         this.huntCharacter();
-                        this.playAnimation(this.ENDBOSS_IMAGES_ATTACK, 'multiple');
+                        this.playAnimation(ENDBOSS_IMAGES_ATTACK, 'multiple');
                     } else if (this.isHurt1() && !this.isDead()) {
                         if (soundOn) { this.playEndbossIsHurtSound() };
-                        this.playAnimation(this.ENDBOSS_IMAGES_HURT, 'once');
+                        this.playAnimation(ENDBOSS_IMAGES_HURT, 'once');
                         this.speedX = 0;
                     } else {
-                        this.playAnimation(this.ENDBOSS_IMAGES_SWIM, 'multiple');
+                        this.playAnimation(ENDBOSS_IMAGES_SWIM, 'multiple');
                         this.speedX = 0.5;
                     }
                     i++;
@@ -137,7 +80,7 @@ class Endboss extends MovealbeObject {
                 }
             }
         }, 100)
-    }
+    };
 
     gameWon() {
         characterFightsEndboss = false;
@@ -145,21 +88,21 @@ class Endboss extends MovealbeObject {
         setTimeout(() => {
             stopGame(true);
         }, 3500);
-    }
+    };
 
     characterIsInRange() {
         return ((this.world.character.x + this.world.character.offset.width)) > (this.x + this.offset.x) - this.distance;
-    }
+    };
 
     huntCharacter() {
         this.y += ((this.world.character.y - 100) - this.y) / 5;
         this.speedX = this.world.character.speedX + 0.3;
-    }
+    };
 
 
     firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
-    }
+    };
 
     /**
      * functions stops backgroundmusic while the endboss is introduced
@@ -167,13 +110,13 @@ class Endboss extends MovealbeObject {
     pauseBackgroundMusic() {
         onTheWayToEndboss = false;
         endbossIsAppearing = true;
-    }
+    };
 
     /** */
     playEndbossAppearsSound() {
         this.ENDBOSS_APPEARS_SOUND.volume = 0.4;
         this.ENDBOSS_APPEARS_SOUND.play();
-    }
+    };
 
     playEndbossIsHurtSound() {
         if (!this.hurtSoundPlayed) {
@@ -182,7 +125,7 @@ class Endboss extends MovealbeObject {
             this.hurtSoundPlayed = true;
             this.hurtSoundPlayed = false
         }
-    }
+    };
 
     playEndbossIsDeadSounds() {
         if (!this.deadSoundsPlayed) {
@@ -195,7 +138,7 @@ class Endboss extends MovealbeObject {
             }, 350);
             this.deadSoundsPlayed = true
         }
-    }
+    };
 
     /**
      * boolean switch starts fight backgorund-music, when the endboss is introduced
@@ -205,7 +148,7 @@ class Endboss extends MovealbeObject {
             endbossIsAppearing = false;
             characterFightsEndboss = true;
         }, 1500);
-    }
+    };
 
     playAttackSound() {
         if (!this.attackSoundPlayed) {
@@ -213,5 +156,5 @@ class Endboss extends MovealbeObject {
             this.ENDBOSS_ATTACK_SOUND.play();
             this.attackSoundPlayed = true;
         }
-    }
+    };
 }

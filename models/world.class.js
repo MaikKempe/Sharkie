@@ -121,12 +121,12 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isSlapping) {
                 this.character.hit(enemy.attack);
-                this.statusbarLife.setPercentage(this.character.energy);
+                this.updateStatusbarLife();
             }
         });
         if (this.character.isColliding(this.level.endboss)) {
             this.character.hit(this.level.endboss.attack);
-            this.statusbarLife.setPercentage(this.character.energy);
+            this.updateStatusbarLife();
         }
     }
     /**
@@ -169,7 +169,7 @@ class World {
             }
             if (poisonedBubble.isColliding(this.level.endboss)) {
                 this.level.endboss.hit(poisonedBubble.attack);
-                this.statusbarEndboss.setPercentage(this.level.endboss.energy);
+                this.updateStatusbarEndboss(this.level.endboss.energy);
                 this.deleteObject(this.poisonedBubbles, poisonedBubble);
             }
             this.level.enemies.forEach((enemy) => {
@@ -213,29 +213,35 @@ class World {
         });
     }
 
+    updateStatusbarLife() {
+        this.statusbarLife.setPercentage(this.character.energy, STATUSBAR_LIFE_IMAGES);
+    };
+
     updateStatusbarCoins() {
-        this.statusbarCoins.setPercentage(this.character.coinsCollected / this.level.allCoins * 100);
-    }
+        this.statusbarCoins.setPercentage(this.character.coinsCollected / this.level.allCoins * 100, STATUSBAR_COINS_IMAGES);
+    };
 
     updateStatusbarPoisons() {
-        this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100);
-    }
+        this.statusbarPoison.setPercentage(this.character.poisonCollected / this.level.allPoisons * 100, STATUSBAR_POISON_IMAGES);
+    };
+
+    updateStatusbarEndboss() {
+        this.statusbarEndboss.setPercentage(this.level.endboss.energy, STATUSBAR_ENDBOSS_IMAGES);
+    };
 
     // bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.
     deleteObject(arr, mo) {
         let index = arr.indexOf(mo);
         arr.splice(index, 1);
-    }
+    };
 
     playBubbleBurstSound() {
         this.BUBBLE_BURST_SOUND.volume = 0.5;
         this.BUBBLE_BURST_SOUND.play();
-    }
+    };
 
     playSlapSound() {
         this.SLAPPED_SOUND.volume = 0.3;
         this.SLAPPED_SOUND.play();
-    }
-
-
+    };
 }
