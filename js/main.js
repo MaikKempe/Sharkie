@@ -29,41 +29,45 @@ keinen joystick
  */
 
 function init() {
+    preloadFiles();
     showStartScreen();
     checkDevice();
-}
+};
 
 function preloadFiles() {
-   // loadImages(world.character.IMAGES_IDLE);
-}
+    preloadImages();
+};
 
-function loadImages() {
-    for (let i = 0; i < array.length; i++) {
-        loadImage(array[i]);
-    }
-}
-function loadImage(url) {
-    const img = new Image();
-    img.src = url;
-}
+function preloadImages() {
+    allImages.forEach((images) => {
+        loadImagePath(images);
+    });
+};
+
+function loadImagePath(images) {
+    images.forEach((path) => {
+        const img = new Image();
+        img.src = path;
+    });
+};
 
 function showStartScreen() {
     removeIntroduction();
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
-}
+};
 
 function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
-}
+};
 
 function showIntroduction() {
     removeStartScreen();
     document.getElementById('help').innerHTML += helpSectionTemplate();
-}
+};
 
 function removeIntroduction() {
     document.getElementById('help').innerHTML = '';
-}
+};
 
 /** 
 window.addEventListener('click', () => {
