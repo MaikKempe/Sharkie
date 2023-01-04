@@ -1,5 +1,6 @@
 @media(max-width: 990px) {
 
+  /* startscreen */
   .h1-container {
     margin-bottom: 24px;
   }
@@ -21,13 +22,16 @@
     font-size: 18px;
   }
 
-}
-
-@media(max-width: 600px) {
-  .h1-container {
+  /* endscreens */
+  .headline-container {
     margin-bottom: 24px;
   }
 
+}
+
+@media(max-width: 600px) {
+
+  /* startscreen */
   h1 {
     font-size: 52px;
   }
@@ -50,9 +54,22 @@
     padding: 6px 22px;
     border: 4px solid white;
   }
+
+  /* endscreens */
+  h2 {
+    font-size: 52px;
+  }
+
+  .sharkie-game-over {
+    width: 185px;
+    top: -237%;
+    left: -45%;
+  }
 }
 
 @media(max-width: 420px) {
+
+  /* startscreen */
   h1 {
     font-size: 48px;
   }
@@ -71,36 +88,74 @@
     padding: 5px 20px;
 
   }
+
+  /* endscreens */
+  h2 {
+    font-size: 48px;
+  }
+
+  .sharkie-game-over {
+    width: 155px;
+    top: -214%;
+    left: -41%;
+  }
 }
 
 @media(max-width: 330px) {
+
+  /* startscreen */
   .sharkie-startscreen {
     width: 145px;
     top: -175%;
     left: -56%;
   }
+
+  /* endscreens */
+  .sharkie-game-over {
+    width: 135px;
+    top: -185%;
+    left: -35%;
+  }
 }
 
 @media(max-width: 320px) {
+
+  /* startscreen */
   .sharkie-startscreen {
     width: 125px;
     top: -159%;
     left: -42%;
   }
+
+  /* endscreens */
+  .sharkie-game-over {
+    width: 115px;
+    top: -156%;
+    left: -30%;
+  }
 }
 
 @media(max-width: 300px) {
+
+  /* startscreen */
   #startscreen-animation {
     width: 80vw !important;
   }
 }
 
 @media(max-width: 285px) {
+
+  /* startscreen */
   #startscreen-animation {
     width: 65vw !important;
   }
 
   .sharkie-startscreen {
+    display: none;
+  }
+
+  /* endscreens */
+  .sharkie-game-over {
     display: none;
   }
 }

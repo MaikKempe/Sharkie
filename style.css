@@ -370,7 +370,7 @@ h4 {
 .help-menu {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 24px;
+    padding-bottom: 12px;
 }
 
 #game {
