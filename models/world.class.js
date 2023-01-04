@@ -15,8 +15,6 @@ class World {
     endboss = level1.endboss;
     collectableObjects = level1.collectableObjects;
     backgroundObjects = level1.backgroundObjects;
-    BUBBLE_BURST_SOUND = new Audio('audio/bubble_burst.mp3');
-    SLAPPED_SOUND = new Audio('audio/slapped.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -236,12 +234,12 @@ class World {
     };
 
     playBubbleBurstSound() {
-        this.BUBBLE_BURST_SOUND.volume = 0.5;
-        this.BUBBLE_BURST_SOUND.play();
+        BUBBLE_BURST_SOUND.volume = 0.5;
+        BUBBLE_BURST_SOUND.play();
     };
 
     playSlapSound() {
-        this.SLAPPED_SOUND.volume = 0.3;
-        this.SLAPPED_SOUND.play();
+        SLAPPED_SOUND.volume = 0.3;
+        SLAPPED_SOUND.play();
     };
 }

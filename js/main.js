@@ -14,7 +14,6 @@ let gameFinished = false;
 let playerWins = false;
 let playerLost = false;
 
-let START_BUTTON_SOUND = new Audio('audio/water_drop2.wav');
 /**
  * 
  * is landscape
@@ -40,11 +39,11 @@ function preloadFiles() {
 
 function preloadImages() {
     allImages.forEach((images) => {
-        loadImagePath(images);
+        preloadImage(images);
     });
 };
 
-function loadImagePath(images) {
+function preloadImage(images) {
     images.forEach((path) => {
         const img = new Image();
         img.src = path;

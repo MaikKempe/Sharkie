@@ -18,12 +18,6 @@ class Endboss extends MovealbeObject {
     deadSoundsPlayed = false;
     distance = 350;
 
-    ENDBOSS_APPEARS_SOUND = new Audio('audio/endboss_appears.wav');
-    ENDBOSS_ATTACK_SOUND = new Audio('audio/endboss_attack.wav');
-    ENDBOSS_HURT_SOUND = new Audio('audio/endboss_hurt2.wav');
-    ENDBOSS_DEAD_SOUND = new Audio('audio/endboss_dead.wav');
-    ENDBOSS_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
-
     constructor(x, y) {
         super();
         this.loadImage(ENDBOSS_IMAGES_INTRODUCE[0]);
@@ -114,14 +108,14 @@ class Endboss extends MovealbeObject {
 
     /** */
     playEndbossAppearsSound() {
-        this.ENDBOSS_APPEARS_SOUND.volume = 0.4;
-        this.ENDBOSS_APPEARS_SOUND.play();
+        ENDBOSS_APPEARS_SOUND.volume = 0.4;
+        ENDBOSS_APPEARS_SOUND.play();
     };
 
     playEndbossIsHurtSound() {
         if (!this.hurtSoundPlayed) {
-            this.ENDBOSS_HURT_SOUND.volume = 0.2;
-            this.ENDBOSS_HURT_SOUND.play();
+            ENDBOSS_HURT_SOUND.volume = 0.2;
+            ENDBOSS_HURT_SOUND.play();
             this.hurtSoundPlayed = true;
             this.hurtSoundPlayed = false
         }
@@ -129,12 +123,12 @@ class Endboss extends MovealbeObject {
 
     playEndbossIsDeadSounds() {
         if (!this.deadSoundsPlayed) {
-            this.ENDBOSS_DEAD_SOUND.volume = 0.3;
-            this.ENDBOSS_DEAD_SOUND.play();
+            ENDBOSS_DEAD_SOUND.volume = 0.3;
+            ENDBOSS_DEAD_SOUND.play();
 
             setTimeout(() => {
-                this.ENDBOSS_DEAD_BUBBLE_SOUND.volume = 0.2;
-                this.ENDBOSS_DEAD_BUBBLE_SOUND.play();
+                ENDBOSS_DEAD_BUBBLE_SOUND.volume = 0.2;
+                ENDBOSS_DEAD_BUBBLE_SOUND.play();
             }, 350);
             this.deadSoundsPlayed = true
         }
@@ -152,8 +146,8 @@ class Endboss extends MovealbeObject {
 
     playAttackSound() {
         if (!this.attackSoundPlayed) {
-            this.ENDBOSS_ATTACK_SOUND.volume = 0.2;
-            this.ENDBOSS_ATTACK_SOUND.play();
+            ENDBOSS_ATTACK_SOUND.volume = 0.2;
+            ENDBOSS_ATTACK_SOUND.play();
             this.attackSoundPlayed = true;
         }
     };

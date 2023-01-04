@@ -7,28 +7,18 @@
  * ###########################################
  */
 
-// booleans to start and switch backgroundmusic
 let onTheWayToEndboss = true;
 let endbossIsAppearing = false;
 let characterFightsEndboss = false;
 let winSoundPlayed = false;
 let looseSoundPlayed = false;
 
-//Ingame background music
-let LEVEL_MUSIC = new Audio('audio/background_sound.mp3');
-let ENDBOSS_FIGHT_MUSIC = new Audio('audio/endboss_fight.mp3');
-
-//endscreen music
-let WIN_SOUND = new Audio('audio/win_sound.mp3');
-let LOOSE_SOUND = new Audio('audio/bubbles_long.wav');
-
-
 function startBackgroundmusic() {
     setTimeout(() => {
         playBackgroundMusic();
     }, 1900);
-}
-//create loop
+};
+
 function playBackgroundMusic() {
     setInterval(() => {
         if (gameIsRunning) {
@@ -38,7 +28,7 @@ function playBackgroundMusic() {
             playEndscreenMusic();
         }
     }, 100);
-}
+};
 
 function playIngameMusic() {
     //Game Phase 1: Character is on the way to endboss
@@ -59,12 +49,12 @@ function playIngameMusic() {
     } else if (!soundOn && characterFightsEndboss) {
         stopFightMusic();
     }
-}
+};
 
 function stopIngameMusic() {
     LEVEL_MUSIC.pause();
     ENDBOSS_FIGHT_MUSIC.pause();
-}
+};
 
 function playEndscreenMusic() {
     if (soundOn && playerLost) {
@@ -72,7 +62,7 @@ function playEndscreenMusic() {
     } else if (soundOn && playerWins) {
         playWinSound();
     }
-}
+};
 
 // plays win sound once
 function playWinSound() {
@@ -81,7 +71,7 @@ function playWinSound() {
         WIN_SOUND.play();
         winSoundPlayed = true;
     }
-}
+};
 // plays loose sound once
 function playLooseSound() {
     if (!looseSoundPlayed) {
@@ -89,22 +79,22 @@ function playLooseSound() {
         LOOSE_SOUND.play();
         looseSoundPlayed = true;
     }
-}
+};
 
 function playLevelmusic() {
     LEVEL_MUSIC.volume = 0.05;
     LEVEL_MUSIC.play();
-}
+};
 
 function stopLevelMusic() {
     LEVEL_MUSIC.pause();
-}
+};
 
 function playFightMusic() {
     ENDBOSS_FIGHT_MUSIC.volume = 0.07;
     ENDBOSS_FIGHT_MUSIC.play();
-}
+};
 
 function stopFightMusic() {
     ENDBOSS_FIGHT_MUSIC.pause();
-}
+};

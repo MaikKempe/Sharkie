@@ -25,14 +25,6 @@ class Character extends MovealbeObject {
     swimSoundPlayed = false;
     deadSoundsPlayed = false;
 
-    BUBBLE_ATTACK_SOUND = new Audio('audio/bubble.mp3');
-    POISONED_BUBBLE_ATTACK_SOUND = new Audio('audio/poisoned_bubble.wav');
-    COLLECT_COIN_SOUND = new Audio('audio/collect_coin.wav');
-    COLLECT_POISON_SOUND = new Audio('audio/collect_poison.wav');
-    CHARACTER_HURT_SOUND = new Audio('audio/character_hurt.ogg');
-    CHARACTER_SWIM_SOUND = new Audio('audio/swim.wav');
-    CHARACTER_DEAD_BUBBLE_SOUND = new Audio('audio/bubbles_short.wav');
-
     constructor() {
         super();
         this.loadImage(CHARACTER_IMAGES_IDLE[0]);
@@ -264,30 +256,30 @@ class Character extends MovealbeObject {
     }
 
     playBubbleAttackSound() {
-        this.BUBBLE_ATTACK_SOUND.volume = 0.4;
-        this.BUBBLE_ATTACK_SOUND.play();
+        BUBBLE_ATTACK_SOUND.volume = 0.4;
+        BUBBLE_ATTACK_SOUND.play();
     }
 
     playPoisonedBubbleAttackSound() {
-        this.POISONED_BUBBLE_ATTACK_SOUND.volume = 0.2;
-        this.POISONED_BUBBLE_ATTACK_SOUND.play();
+        POISONED_BUBBLE_ATTACK_SOUND.volume = 0.2;
+        POISONED_BUBBLE_ATTACK_SOUND.play();
     }
 
     playCoinCollectedSound() {
-        this.COLLECT_COIN_SOUND.volume = 0.2;
-        this.COLLECT_COIN_SOUND.play();
+        COLLECT_COIN_SOUND.volume = 0.2;
+        COLLECT_COIN_SOUND.play();
     }
 
     playPoisonCollectedSound() {
-        this.COLLECT_POISON_SOUND.volume = 0.2;
-        this.COLLECT_POISON_SOUND.play();
+        COLLECT_POISON_SOUND.volume = 0.2;
+        COLLECT_POISON_SOUND.play();
     }
 
 
     playCharacterIsHurtSound() {
         if (!this.hurtSoundPlayed) {
-            this.CHARACTER_HURT_SOUND.volume = 0.2;
-            this.CHARACTER_HURT_SOUND.play();
+            CHARACTER_HURT_SOUND.volume = 0.2;
+            CHARACTER_HURT_SOUND.play();
             this.hurtSoundPlayed = true;
             setTimeout(() => {
                 this.hurtSoundPlayed = false
@@ -297,12 +289,12 @@ class Character extends MovealbeObject {
     //huer sound just louder
     playCharacterIsDeadSounds() {
         if (!this.deadSoundsPlayed) {
-            this.CHARACTER_HURT_SOUND.volume = 0.5;
-            this.CHARACTER_HURT_SOUND.play()
+            CHARACTER_HURT_SOUND.volume = 0.5;
+            CHARACTER_HURT_SOUND.play()
 
             setTimeout(() => {
-                this.CHARACTER_DEAD_BUBBLE_SOUND.volume = 0.2;
-                this.CHARACTER_DEAD_BUBBLE_SOUND.play();
+                CHARACTER_DEAD_BUBBLE_SOUND.volume = 0.2;
+                CHARACTER_DEAD_BUBBLE_SOUND.play();
             }, 1000);
             this.deadSoundsPlayed = true
         }
@@ -310,8 +302,8 @@ class Character extends MovealbeObject {
 
     playCharacterSwimSound() {
         if (!this.swimSoundPlayed) {
-            this.CHARACTER_SWIM_SOUND.volume = 0.2;
-            this.CHARACTER_SWIM_SOUND.play();
+            CHARACTER_SWIM_SOUND.volume = 0.2;
+            CHARACTER_SWIM_SOUND.play();
             this.swimSoundPlayed = true;
             setTimeout(() => {
                 this.swimSoundPlayed = false
