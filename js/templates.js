@@ -163,8 +163,7 @@ function helpSectionTemplate() {
      <div class="help-headline">
        <h3>Keys</h3>
      </div>
-     <div class="help-container">
-       <div class="help-row">
+     <div class="help-row">
         <div class="help-child">
           <div class="key">
             <img src="img/8_icons/arrows.png" class="key-img">
@@ -172,7 +171,6 @@ function helpSectionTemplate() {
           <h4>Move</h4>
           <img class="sharkie-preview" src="img/7_introduction/sharkie.png">
         </div>
-       </div>
      </div>
      <div class="help-row">
         <div class="help-child">

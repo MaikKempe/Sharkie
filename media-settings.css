@@ -22,11 +22,78 @@
     font-size: 18px;
   }
 
+  /* help section */
+  h3 {
+    font-size: 34px;
+  }
+
+  .help-description span {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .help-headline {
+    margin-bottom: 18px;
+    margin-top: 18px;
+  }
+
+  .help-row {
+    height: 110px;
+  }
+
+  h4 {
+    font-size: 24px;
+  }
+
+  .key {
+    width: 48px;
+    height: 48px;
+  }
+
+  .key-letter {
+    font-size: 24px;
+  }
+
+  .key-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .space {
+    height: 50px;
+    width: 200px;
+  }
+
+  .sharkie-preview {
+    width: 110px;
+  }
+
+  .sharkie-attack-preview {
+    width: 135px;
+  }
+
+  .enemy-preview {
+    width: 125px;
+  }
+
+  .coin {
+    width: 45px;
+  }
+
+  .poison {
+    width: 27px;
+  }
+
   /* endscreens */
   .headline-container {
     margin-bottom: 24px;
   }
+}
 
+@media(max-width: 800px) {
+  .help-row {
+    justify-content: center;
+  }
 }
 
 @media(max-width: 600px) {
