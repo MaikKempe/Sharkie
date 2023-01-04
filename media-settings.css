@@ -1,95 +1,106 @@
-
 @media(max-width: 990px) {
 
-    .h1-container {
-        margin-bottom: 24px;
-    }
+  .h1-container {
+    margin-bottom: 24px;
+  }
 
-   h1 {
+  h1 {
     font-size: 62px;
-   }
+  }
 
-   .sharkie-startscreen {
-     width: 235px;
-   }
+  .sharkie-startscreen {
+    width: 235px;
+  }
 
-   .start-btn {
+  .start-btn {
     font-size: 24px;
     margin-bottom: 32px;
-   }
+  }
 
-   .btn {
+  .btn {
     font-size: 18px;
-   }
+  }
 
 }
 
 @media(max-width: 600px) {
-    .h1-container {
-        margin-bottom: 24px;
-    }
+  .h1-container {
+    margin-bottom: 24px;
+  }
 
-   h1 {
+  h1 {
     font-size: 52px;
-   }
+  }
 
-   .sharkie-startscreen {
-     width: 195px;
-   }
+  .sharkie-startscreen {
+    width: 195px;
+  }
 
-   .start-btn {
+  .start-btn {
     font-size: 20px;
     margin-bottom: 32px;
     padding: 8px 32px;
     border: 4px solid white;
     outline: 4px solid;
     outline-offset: -4px;
-   }
+  }
 
-   .btn {
+  .btn {
     font-size: 16px;
     padding: 6px 22px;
     border: 4px solid white;
-   }
+  }
 }
 
 @media(max-width: 420px) {
-    h1 {
-        font-size: 48px;
-       }
-       .sharkie-startscreen {
-        width: 165px;
-        top: -212%;
-       left: -60%;
-      }
-       .start-btn {
-        padding: 7px 28px;
-    }
+  h1 {
+    font-size: 48px;
+  }
 
-      .btn {
-        padding: 5px 20px;
-    
-       }
+  .sharkie-startscreen {
+    width: 165px;
+    top: -212%;
+    left: -60%;
+  }
+
+  .start-btn {
+    padding: 7px 28px;
+  }
+
+  .btn {
+    padding: 5px 20px;
+
+  }
 }
 
 @media(max-width: 330px) {
-    .sharkie-startscreen {
+  .sharkie-startscreen {
     width: 145px;
     top: -175%;
     left: -56%;
-    }
+  }
 }
 
 @media(max-width: 320px) {
-    .sharkie-startscreen {
+  .sharkie-startscreen {
     width: 125px;
     top: -159%;
     left: -42%;
-    }
+  }
+}
+
+@media(max-width: 300px) {
+  #startscreen-animation {
+    width: 80vw !important;
+  }
 }
 
 @media(max-width: 285px) {
-    .sharkie-startscreen {
-  display: none;
-    }
+  #startscreen-animation {
+    width: 65vw !important;
+  }
+
+  .sharkie-startscreen {
+    display: none;
+  }
 }
