@@ -105,8 +105,7 @@ function startGame() {
         disableHelpButton();
         playStartButtonSound();
         loadingAnimation();
-        initLevel();
-        // short timout for CSS animations
+        // short timout for CSS loading animations
         setTimeout(() => {
             removeStartScreen();
             initGame();
@@ -119,13 +118,12 @@ function loadingAnimation() {
     document.getElementById('h1').classList.add('filling-water');
 }
 
-// start btn cant be disabled, becouse the css animtion would not run
-
 function disableHelpButton() {
     document.getElementById('help-btn').disabled = true;
 }
 
 function initGame() {
+    initLevel();
     if (isTouchDevice) {
         initMobileSettings();
     } else {

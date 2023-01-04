@@ -24,7 +24,7 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.checkIfDead();
-    }
+    };
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
@@ -50,25 +50,25 @@ class World {
         requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
             self.draw();
         })
-    }
+    };
 
     addObjectsToMap(o) {
         o.forEach(o => {
             this.addToMap(o);
         })
-    }
+    };
 
     addToMap(o) {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
         //o.drawHitbox(this.ctx);
-    }
+    };
 
     setWorld() { //Keyboard acess to character
         this.endboss.world = this;
         this.character.world = this;
-    }
+    };
 
     flipImage(o) {
         if (o.otherDirection) {
@@ -77,14 +77,14 @@ class World {
             this.ctx.scale(-1, 1);
             o.x = o.x * -1;
         };
-    }
+    };
 
     flipImageBack(o) {
         if (o.otherDirection) {
             o.x = o.x * -1;
             this.ctx.restore();
         }
-    }
+    };
 
     // check if enemy are dad and despawn them, character and Endboss dont need to be despawned
     checkIfDead() {
@@ -100,7 +100,7 @@ class World {
                 });
             }
         }, 650);
-    }
+    };
 
     checkCollisions() {
         //character meets enemy
@@ -113,7 +113,7 @@ class World {
                 this.characterCollectsObject();
             }
         }, 100);
-    }
+    };
 
     enemyHitsCharacter() {
         this.level.enemies.forEach((enemy) => {
@@ -126,7 +126,7 @@ class World {
             this.character.hit(this.level.endboss.attack);
             this.updateStatusbarLife();
         }
-    }
+    };
     /**
      * bubbles only effect normal Pufferfishes
      */
@@ -157,7 +157,7 @@ class World {
                 }
             });
         });
-    }
+    };
 
 
     poisonedBubbleHitsEnemy() {
@@ -179,7 +179,7 @@ class World {
                 }
             });
         });
-    }
+    };
 
     characterSlapsEnemy() {
         this.level.enemies.forEach((enemy) => {
@@ -192,7 +192,7 @@ class World {
                 }, 100);
             }
         });
-    }
+    };
 
     characterCollectsObject() {
         this.level.collectableObjects.forEach((object) => {
@@ -209,7 +209,7 @@ class World {
                 }
             }
         });
-    }
+    };
 
     updateStatusbarLife() {
         this.statusbarLife.setPercentage(this.character.energy, STATUSBAR_LIFE_IMAGES);
@@ -227,7 +227,6 @@ class World {
         this.statusbarEndboss.setPercentage(this.level.endboss.energy, STATUSBAR_ENDBOSS_IMAGES);
     };
 
-    // bubble Collisions, Bubble meets enemy, dann set Bubble, dann unterfunktionen: Puffersih meets buble, endboss meets bubble etc.
     deleteObject(arr, mo) {
         let index = arr.indexOf(mo);
         arr.splice(index, 1);
