@@ -218,7 +218,7 @@ function helpSectionTemplate() {
         </div>
         <div class="collectible-element">
           <img class="poison" src="img/7_introduction/poison.png">
-          <span>Poison (to use Poisoned Bubble Attack)</span>
+          <span>Poison</span>
         </div>
      </div>
      <div class="help-menu">
