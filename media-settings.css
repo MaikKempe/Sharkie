@@ -91,8 +91,77 @@
 }
 
 @media(max-width: 800px) {
+
+  /* help section */
   .help-row {
     justify-content: center;
+  }
+
+  .help-child {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .help-child h4 {
+    margin-left: 12px;
+    font-size: 22px;
+  }
+
+  .sharkie-preview {
+    margin-left: 12px;
+  }
+
+  .sharkie-attack-preview {
+    margin-left: 12px;
+  }
+
+  .collectible-element {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+@media(max-width: 700px) {
+
+  /* help section */
+  .help-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .help-child h4 {
+    font-size: 20px;
+  }
+
+  .sharkie-preview {
+    width: 90px;
+  }
+
+  .sharkie-attack-preview {
+    width: 110px;
+  }
+
+  .enemy-preview {
+    width: 100px;
+  }
+
+  .key {
+    width: 40px;
+    height: 40px;
+  }
+
+  .key-letter {
+    font-size: 22px;
+  }
+
+  .key-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .space {
+    height: 42px;
+    width: 175px;
   }
 }
 
@@ -122,6 +191,65 @@
     border: 4px solid white;
   }
 
+  /* help section */
+  .help-row {
+    height: 85px;
+  }
+
+  .help-child {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .help-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .help-child h4 {
+    font-size: 18px;
+  }
+
+  .sharkie-preview {
+    width: 80px;
+  }
+
+  .sharkie-attack-preview {
+    width: 100px;
+  }
+
+  .enemy-preview {
+    width: 90px;
+  }
+
+  .key {
+    width: 36px;
+    height: 36px;
+    border: 4px solid white;
+  }
+
+  .key-letter {
+    font-size: 20px;
+  }
+
+  .key-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .space {
+    height: 36px;
+    width: 160px;
+  }
+
+  .collectible-element {
+    height: 85px;
+  }
+
+  .collectible-element span {
+    margin-left: 12px;
+}
+
   /* endscreens */
   h2 {
     font-size: 52px;
@@ -131,6 +259,27 @@
     width: 185px;
     top: -237%;
     left: -45%;
+  }
+}
+
+@media(max-width: 500px) {
+
+  /* help section */
+  .help-row {
+    height: unset;
+    flex-direction: column;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .enemy-preview {
+    margin-top: 12px;
+    width: 110px;
+  }
+
+  .help-child h4 {
+    margin-block-start: 0;
+    margin-block-end: 0;
   }
 }
 

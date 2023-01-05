@@ -161,7 +161,7 @@ function helpSectionTemplate() {
        </span>
      </div>
      <div class="help-headline">
-       <h3>Keys</h3>
+       <h3>Keyboard</h3>
      </div>
      <div class="help-row">
         <div class="help-child">
