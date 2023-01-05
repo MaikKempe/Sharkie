@@ -6,6 +6,7 @@ let fullscreenOn = false;
 let soundOn = true;
 let soundWasOff = false; // used in standby mode
 let standbyOn = false;
+let descriptionInitialized = false;
 let descriptionOn = true;
 let gameStarted = false;
 let gameIntervalsRunning = false;
@@ -175,6 +176,7 @@ function removeIngameHeadline() {
 
 function showIngameDescription() {
     document.getElementById('gamescreen-description').style.display = "flex";
+    descriptionInitialized = true;
 }
 
 function removeIngameDescription() {
@@ -283,6 +285,20 @@ function hideDescriptionButton() {
 function showDescriptionButton() {
     document.getElementById('description-btn').style.display = "flex";
 }
+/**
+ * The ingame Keyboard-description for desktop-mode is only visible out of fullscreen
+ * and on a screen larger than 990px wide. At 990px starts the first CSS media query.
+ */
+
+window.addEventListener("resize", () => {
+    if (descriptionInitialized) {
+        if (window.innerWidth <= 990 && !isTouchDevice) {
+            hideDescriptionButton();
+        } else if (!fullscreenOn) {
+            showDescriptionButton();
+        }
+    }
+});
 
 
 function toggleSound() {
