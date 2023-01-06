@@ -6,27 +6,16 @@ let fullscreenOn = false;
 let soundOn = true;
 let soundWasOff = false; // used in standby mode
 let standbyOn = false;
-let descriptionInitialized = false;
 let descriptionOn = true;
-let gameStarted = false;
+let startButtonPressed = false;
+let gameScreenLoaded = false;
 let gameIntervalsRunning = false;
 let gameIsRunning = true;
 let gameFinished = false;
 let playerWins = false;
 let playerLost = false;
+let portrait = window.matchMedia("(orientation: portrait)");
 
-/**
- * 
- * is landscape
- * function isLandscape() {
-  return window.innerHeight < window.innerWidth;
-}
-wenn vertikal bei smartphone: funktion: bitte drehe deinen Bilschirm
-function: is smartphone vorhanden
-
-fullscreen, geht nur wenn geklickt wird.
-keinen joystick
- */
 
 function init() {
     preloadFiles();
@@ -69,21 +58,6 @@ function removeIntroduction() {
     document.getElementById('help').innerHTML = '';
 };
 
-/** 
-window.addEventListener('click', () => {
-    if (touchEvent()) {
-        isTouchDevice = true;
-        console.log(isTouchDevice);
-    } else {
-        isTouchDevice = false;
-        console.log(isTouchDevice);
-    }
-});
-
-function touchEvent() {
-    return "ontouchstart" in document.documentElement || window.navigator.maxTouchPoints;
-}
-*/
 
 function checkDevice() {
     try {
@@ -101,8 +75,8 @@ function playStartButtonSound() {
 }
 
 function startGame() {
-    if (!gameStarted) {
-        gameStarted = true;
+    if (!startButtonPressed) {
+        startButtonPressed = true;
         disableHelpButton();
         playStartButtonSound();
         loadingAnimation();
@@ -146,6 +120,7 @@ function showMobileScreen() {
     // short timeout to give Mobile menu a fade in effect
     setTimeout(() => {
         showMobileMenu();
+        gameScreenLoaded = true;
     }, 1700);
 }
 
@@ -163,6 +138,7 @@ function showDesktopScreen() {
         showIngameHeadline();
         showIngameDescription();
         showDesktopMenu();
+        gameScreenLoaded = true;
     }, 1700);
 }
 
@@ -176,7 +152,6 @@ function removeIngameHeadline() {
 
 function showIngameDescription() {
     document.getElementById('gamescreen-description').style.display = "flex";
-    descriptionInitialized = true;
 }
 
 function removeIngameDescription() {
@@ -270,6 +245,16 @@ function closeFullscreen() {
     canvasFullscreenModeOff();
 }
 
+portrait.addEventListener("change", function (event) {
+    if (gameScreenLoaded) {
+        if (event.matches) {
+            console.log('Portrait mode')
+        } else {
+            console.log('Landscape')
+        }
+    }
+});
+
 function canvasFullscreenModeOn() {
     canvas.classList.add('canvas-fullscreen');
 }
@@ -291,8 +276,8 @@ function showDescriptionButton() {
  */
 
 window.addEventListener("resize", () => {
-    if (descriptionInitialized) {
-        if (window.innerWidth <= 990 && !isTouchDevice) {
+    if (gameScreenLoaded && !isTouchDevice) {
+        if (window.innerWidth <= 990) {
             hideDescriptionButton();
         } else if (!fullscreenOn) {
             showDescriptionButton();
