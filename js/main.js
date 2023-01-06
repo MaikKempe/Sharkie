@@ -8,6 +8,7 @@ let soundWasOff = false; // used in standby mode
 let standbyOn = false;
 let descriptionOn = true;
 let startButtonPressed = false;
+let startScreenOn = true;
 let gameScreenLoaded = false;
 let gameIntervalsRunning = false;
 let gameIsRunning = true;
@@ -47,15 +48,18 @@ function showStartScreen() {
 
 function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
+    startScreenOn = false;
 };
 
 function showIntroduction() {
     removeStartScreen();
     document.getElementById('help').innerHTML += helpSectionTemplate();
+    startScreenOn = false;
 };
 
 function removeIntroduction() {
     document.getElementById('help').innerHTML = '';
+    startScreenOn = true;
 };
 
 
@@ -251,6 +255,12 @@ portrait.addEventListener("change", function (event) {
             console.log('Portrait mode')
         } else {
             console.log('Landscape')
+        }
+    } else if (startScreenOn) {
+        if (event.matches) {
+            console.log('Portrait mode is on')
+        } else {
+            console.log('Landscape is on')
         }
     }
 });
