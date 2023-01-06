@@ -249,18 +249,28 @@ function closeFullscreen() {
     canvasFullscreenModeOff();
 }
 
+document.addEventListener('fullscreenchange', ()=>{
+    if (document.fullscreenElement) {
+        console.log('Fullscreen');
+    } else {
+        console.log('Normal');
+    }
+});
+
 portrait.addEventListener("change", function (event) {
-    if (gameScreenLoaded) {
-        if (event.matches) {
-            console.log('Portrait mode')
-        } else {
-            console.log('Landscape')
-        }
-    } else if (startScreenOn) {
-        if (event.matches) {
-            console.log('Portrait mode is on')
-        } else {
-            console.log('Landscape is on')
+    if (isTouchDevice) {
+        if (gameScreenLoaded) {
+            if (event.matches) {
+                console.log('Portrait mode')
+            } else {
+                console.log('Landscape')
+            }
+        } else if (startScreenOn) {
+            if (event.matches) {
+                console.log('Portrait mode is on')
+            } else {
+                console.log('Landscape is on')
+            }
         }
     }
 });
