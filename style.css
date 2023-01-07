@@ -211,6 +211,24 @@ h4 {
     -webkit-background-clip: text;
 }
 
+#turn-screen-info {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.move-screen-infotext {
+    font-size: 16px;
+    color: white;
+}
+
+.sliding-arrow {
+    object-fit: contain;
+    width: 50px;
+    animation: slideright 500ms infinite alternate ease-in-out;
+    margin-top: 24px;
+}
+
 #help {
     overflow: auto;
     width: 100vw;
@@ -417,6 +435,7 @@ h4 {
     display: none;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #gamescreen-paused {
@@ -615,5 +634,17 @@ h4 {
 
     100% {
         background-position: 0% 100%, 100% 100%, 200% 100%;
+    }
+}
+
+@keyframes slideright {
+    0% {
+        -webkit-transform: translateX(0);
+        opacity: 0.3
+    }
+
+    100% {
+        -webkit-transform: translateX(-0.5em);
+        opacity: 0.9
     }
 }

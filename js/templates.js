@@ -7,7 +7,11 @@ function startScreenTemplate() {
         <h1 id="h1">Sharkie</h1>
       </div>
       <button id="start-btn" class="start-btn" onclick="startGame()">START GAME</button>
-      <button id="help-btn" class="btn" onclick="showIntroduction()">HELP</button>
+      <button id="help-btn" class="btn" onclick="showHelpSection()">HELP</button>
+      <div id="turn-screen-info">
+        <img class="sliding-arrow" src="img/8_icons/move_screen_arrow.png">
+        <span class="move-screen-infotext">Please turn your screen</span>
+      </div>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
           <div class="bubble bubble-2"></div>
@@ -80,6 +84,7 @@ function gameScreenTouchTemplate() {
        <canvas id="canvas" width="720" height="480"></canvas>
        <div id="gamescreen-blocked">
          <h2>Please turn your screen</h2>
+         <img class="sliding-arrow" src="img/8_icons/move_screen_arrow.png">
        </div>
        <div id="gamescreen-paused">
          <h2>Game Paused</h2>
@@ -225,7 +230,7 @@ function helpSectionTemplate() {
         </div>
      </div>
      <div class="help-menu">
-       <button class="btn" onclick="showStartScreen()">close</button>
+       <button class="btn" onclick="backToStart()">close</button>
      </div>    
  </div>`;
 }

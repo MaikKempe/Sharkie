@@ -42,7 +42,6 @@ function preloadImage(images) {
 };
 
 function showStartScreen() {
-    removeIntroduction();
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
 };
 
@@ -51,16 +50,24 @@ function removeStartScreen() {
     startScreenOn = false;
 };
 
-function showIntroduction() {
+function showHelpSection() {
     removeStartScreen();
     document.getElementById('help').innerHTML += helpSectionTemplate();
     startScreenOn = false;
 };
 
-function removeIntroduction() {
-    document.getElementById('help').innerHTML = '';
+function backToStart() {
+    removeHelpSection();
+    showStartScreen();
     startScreenOn = true;
+    if (isTouchDevice) {
+        checkIfScreenIsPortrait();
+    }
 };
+
+function removeHelpSection() {
+    document.getElementById('help').innerHTML = '';
+}
 
 function checkDevice() {
     checkIfTouchDevice();
@@ -70,9 +77,12 @@ function checkDevice() {
     };
 };
 
+/**
+ *  This function try to create touch event. It would fail for desktops and throw an error.
+ */
+
 function checkIfTouchDevice() {
     try {
-        //We try to create touch event. It would fail for desktops and throw an error.
         document.createEvent("TouchEvent");
         isTouchDevice = true;
     } catch (e) {
@@ -83,6 +93,7 @@ function checkIfTouchDevice() {
 function checkIfScreenIsPortrait() {
     if (window.innerHeight > window.innerWidth) {
         disableStartButton();
+        showTurnYourScreenInfo();
     };
 };
 
@@ -275,7 +286,7 @@ function checkScreenOrientationPermanently() {
         //only ingame
         if (gameScreenLoaded) {
             if (isPortrait(event)) {
-                pauseGameInPortraitModus();
+                pauseGameInPortrait();
                 showBlockedGameScreen();
             } else {
                 removeBlockedGameScreen();
@@ -284,8 +295,10 @@ function checkScreenOrientationPermanently() {
         } else if (startScreenOn) {
             if (isPortrait(event)) {
                 disableStartButton();
+                showTurnYourScreenInfo();
             } else {
                 enableStartButton();
+                removeTurnYourScreenInfo();
             }
         }
     })
@@ -295,7 +308,7 @@ function isPortrait(event) {
     return event.matches;
 }
 
-function pauseGameInPortraitModus() {
+function pauseGameInPortrait() {
     if (!standbyOn) {
         toggleStandby();
     }
@@ -317,6 +330,14 @@ function disableStartButton() {
 function enableStartButton() {
     document.getElementById('start-btn').disabled = false;
     document.getElementById('start-btn').style.opacity = "100%";
+}
+
+function showTurnYourScreenInfo() {
+    document.getElementById('turn-screen-info').style.display = "flex";
+}
+
+function removeTurnYourScreenInfo() {
+    document.getElementById('turn-screen-info').style.display = "none";
 }
 
 function canvasFullscreenModeOn() {
@@ -351,7 +372,7 @@ window.addEventListener("resize", () => {
 
 
 function toggleSound() {
-    if (!standbyOn) { // can only used out, off standyBy modus
+    if (!standbyOn) { //function is disabled in standbymodus
         if (soundOn) {
             showSoundOffIcon();
             soundOn = false;
