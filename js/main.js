@@ -236,13 +236,11 @@ function toggleScreen() {
     if (!fullscreenOn) {
         document.getElementById('fullscreen-on-icon').classList.add('d-none');
         document.getElementById('fullscreen-off-icon').classList.remove('d-none');
-        fullscreenOn = true;
         openFullscreen();
         hideDescriptionButton();
     } else {
         document.getElementById('fullscreen-off-icon').classList.add('d-none');
         document.getElementById('fullscreen-on-icon').classList.remove('d-none');
-        fullscreenOn = false;
         closeFullscreen();
         showDescriptionButton();
     }
@@ -251,6 +249,7 @@ function toggleScreen() {
 
 function openFullscreen() {
     let fullscreen = document.getElementById('fullscreen');
+    fullscreenOn = true;
     if (fullscreen.requestFullscreen) {
         fullscreen.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -263,6 +262,7 @@ function openFullscreen() {
 
 
 function closeFullscreen() {
+    fullscreenOn = false;
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) { /* Safari */
