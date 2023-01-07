@@ -284,7 +284,7 @@ document.addEventListener('fullscreenchange', () => {
 function checkScreenOrientationPermanently() {
     portrait.addEventListener("change", function (event) {
         //only ingame
-        if (gameScreenLoaded) {
+        if (gameScreenLoaded && !gameFinished) {
             if (isPortrait(event)) {
                 pauseGameInPortrait();
                 showBlockedGameScreen();
@@ -339,6 +339,9 @@ function showTurnYourScreenInfo() {
 function removeTurnYourScreenInfo() {
     document.getElementById('turn-screen-info').style.display = "none";
 }
+
+
+
 
 function canvasFullscreenModeOn() {
     canvas.classList.add('canvas-fullscreen');
