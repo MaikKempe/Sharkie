@@ -62,8 +62,15 @@ function removeIntroduction() {
     startScreenOn = true;
 };
 
-
 function checkDevice() {
+    checkIfTouchDevice();
+    if (isTouchDevice) {
+        checkIfScreenIsPortrait();
+        checkScreenOrientationPermanently();
+    };
+};
+
+function checkIfTouchDevice() {
     try {
         //We try to create touch event. It would fail for desktops and throw an error.
         document.createEvent("TouchEvent");
@@ -71,6 +78,12 @@ function checkDevice() {
     } catch (e) {
         isTouchDevice = false;
     }
+};
+
+function checkIfScreenIsPortrait() {
+    if (window.innerHeight > window.innerWidth) {
+        disableStartButton();
+    };
 };
 
 function playStartButtonSound() {
@@ -249,7 +262,7 @@ function closeFullscreen() {
     canvasFullscreenModeOff();
 }
 
-document.addEventListener('fullscreenchange', ()=>{
+document.addEventListener('fullscreenchange', () => {
     if (document.fullscreenElement) {
         console.log('Fullscreen');
     } else {
@@ -257,23 +270,54 @@ document.addEventListener('fullscreenchange', ()=>{
     }
 });
 
-portrait.addEventListener("change", function (event) {
-    if (isTouchDevice) {
+function checkScreenOrientationPermanently() {
+    portrait.addEventListener("change", function (event) {
+        //only ingame
         if (gameScreenLoaded) {
-            if (event.matches) {
-                console.log('Portrait mode')
+            if (isPortrait(event)) {
+                pauseGameInPortraitModus();
+                showBlockedGameScreen();
             } else {
-                console.log('Landscape')
+                removeBlockedGameScreen();
             }
+            //only startscreen
         } else if (startScreenOn) {
-            if (event.matches) {
-                console.log('Portrait mode is on')
+            if (isPortrait(event)) {
+                disableStartButton();
             } else {
-                console.log('Landscape is on')
+                enableStartButton();
             }
         }
+    })
+};
+
+function isPortrait(event) {
+    return event.matches;
+}
+
+function pauseGameInPortraitModus() {
+    if (!standbyOn) {
+        toggleStandby();
     }
-});
+};
+
+function showBlockedGameScreen() {
+    document.getElementById('gamescreen-blocked').style.display = "flex";
+};
+
+function removeBlockedGameScreen() {
+    document.getElementById('gamescreen-blocked').style.display = "none";
+};
+
+function disableStartButton() {
+    document.getElementById('start-btn').disabled = true;
+    document.getElementById('start-btn').style.opacity = "50%";
+}
+
+function enableStartButton() {
+    document.getElementById('start-btn').disabled = false;
+    document.getElementById('start-btn').style.opacity = "100%";
+}
 
 function canvasFullscreenModeOn() {
     canvas.classList.add('canvas-fullscreen');

@@ -6,7 +6,7 @@ function startScreenTemplate() {
         <img class="sharkie-startscreen" src="img/1_sharkie/1_IDLE/1.png">
         <h1 id="h1">Sharkie</h1>
       </div>
-      <button class="start-btn" onclick="startGame()">START GAME</button>
+      <button id="start-btn" class="start-btn" onclick="startGame()">START GAME</button>
       <button id="help-btn" class="btn" onclick="showIntroduction()">HELP</button>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
@@ -78,6 +78,9 @@ function gameScreenTouchTemplate() {
     <img class="bg-blurred" src="img/3_background/dark/1.png">
     <div class="game-content-mobile">
        <canvas id="canvas" width="720" height="480"></canvas>
+       <div id="gamescreen-blocked">
+         <h2>Please turn your screen</h2>
+       </div>
        <div id="gamescreen-paused">
          <h2>Game Paused</h2>
        </div>
