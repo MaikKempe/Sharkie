@@ -45,15 +45,14 @@ function showStartScreen() {
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
 };
 
-function removeStartScreen() {
-    document.getElementById('startscreen').innerHTML = '';
-    startScreenOn = false;
-};
-
 function showHelpSection() {
     removeStartScreen();
     document.getElementById('help').innerHTML += helpSectionTemplate();
     startScreenOn = false;
+};
+
+function removeStartScreen() {
+    document.getElementById('startscreen').innerHTML = '';
 };
 
 function backToStart() {
@@ -276,6 +275,7 @@ function closeFullscreen() {
 document.addEventListener('fullscreenchange', () => {
     if (document.fullscreenElement) {
         console.log('Fullscreen');
+        // is else isTouchDevice
     } else {
         console.log('Normal');
     }
@@ -283,7 +283,7 @@ document.addEventListener('fullscreenchange', () => {
 
 function checkScreenOrientationPermanently() {
     portrait.addEventListener("change", function (event) {
-        //only ingame
+        // ingame
         if (gameScreenLoaded && !gameFinished) {
             if (isPortrait(event)) {
                 pauseGameInPortrait();
@@ -291,7 +291,7 @@ function checkScreenOrientationPermanently() {
             } else {
                 removeBlockedGameScreen();
             }
-            //only startscreen
+        // startscreen
         } else if (startScreenOn) {
             if (isPortrait(event)) {
                 disableStartButton();

@@ -83,6 +83,7 @@ function gameScreenTouchTemplate() {
     <div class="game-content-mobile">
        <canvas id="canvas" width="720" height="480"></canvas>
        <div id="gamescreen-blocked">
+         <img class="bg" src="img/3_background/dark/1.png">
          <h2>Please turn your screen</h2>
          <img class="sliding-arrow" src="img/8_icons/move_screen_arrow.png">
        </div>
