@@ -100,6 +100,10 @@ function gameScreenTouchTemplate() {
                 <img id="standby-off-icon" class="setting-icon" src="img/8_icons/standby_off.png">
                 <img id="standby-on-icon" class="setting-icon d-none" src="img/8_icons/standby_on.png">
               </div>
+              <div class="setting-btn" onclick="toggleScreen()">
+                <img id="fullscreen-on-icon" class="setting-icon d-none" src="img/8_icons/fullscreen_on.png">
+                <img id="fullscreen-off-icon" class="setting-icon" src="img/8_icons/fullscreen_off.png">
+              </div>
             </div>
             <div class="action-btns">
               <div id="mobile-btn-poisoned-bubble" class="action-btn">

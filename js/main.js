@@ -16,6 +16,7 @@ let gameFinished = false;
 let playerWins = false;
 let playerLost = false;
 let portrait = window.matchMedia("(orientation: portrait)");
+let executedByEventlistener = false;
 
 
 function init() {
@@ -53,6 +54,7 @@ function showHelpSection() {
 
 function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
+    startScreenOn = false;
 };
 
 function backToStart() {
@@ -72,7 +74,7 @@ function checkDevice() {
     checkIfTouchDevice();
     if (isTouchDevice) {
         checkIfScreenIsPortrait();
-        checkScreenOrientationPermanently();
+        listenForScreenOrientation();
     };
 };
 
@@ -126,6 +128,7 @@ function disableHelpButton() {
 
 function initGame() {
     initLevel();
+    listenForFullscreenChange();
     if (isTouchDevice) {
         initMobileSettings();
     } else {
@@ -139,7 +142,7 @@ function initMobileSettings() {
     world = new World(canvas, keyboard);
     gameIntervalsRunning = true;
     bindKeyEventsToMobileButtons();
-    openFullscreen(); // or canvasfullscreenmode
+    openFullscreen();
 }
 
 function showMobileScreen() {
@@ -211,7 +214,7 @@ function reload() {
     window.location.reload();
 }
 
-//function can only called once
+//function ends game
 function stopGame(win) {
     gameIntervalsRunning = false;
     if (win && !gameFinished) {
@@ -227,61 +230,92 @@ function stopGame(win) {
 
 /***
  * ###########################################
- * Sidebar/ Navigation
+ * ########## Sidebar/ Navigation ############
  * ###########################################
  */
 
 function toggleScreen() {
     if (!fullscreenOn) {
-        document.getElementById('fullscreen-on-icon').classList.add('d-none');
-        document.getElementById('fullscreen-off-icon').classList.remove('d-none');
         openFullscreen();
-        hideDescriptionButton();
+        if (isTouchDevice) {
+            showFullscreenOffIcon();
+        } else {
+            hideDescriptionButton();
+            showFullscreenOffIcon();
+        }
     } else {
-        document.getElementById('fullscreen-off-icon').classList.add('d-none');
-        document.getElementById('fullscreen-on-icon').classList.remove('d-none');
         closeFullscreen();
-        showDescriptionButton();
+        if (isTouchDevice) {
+            showFullscreenOnIcon();
+        } else {
+            showDescriptionButton();
+            showFullscreenOnIcon();
+        }
     }
-}
+};
+
+function showFullscreenOffIcon() {
+    document.getElementById('fullscreen-on-icon').classList.add('d-none');
+    document.getElementById('fullscreen-off-icon').classList.remove('d-none');
+};
+
+function showFullscreenOnIcon() {
+    document.getElementById('fullscreen-off-icon').classList.add('d-none');
+    document.getElementById('fullscreen-on-icon').classList.remove('d-none');
+};
 
 
 function openFullscreen() {
     let fullscreen = document.getElementById('fullscreen');
     fullscreenOn = true;
-    if (fullscreen.requestFullscreen) {
-        fullscreen.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-        fullscreen.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-        fullscreen.msRequestFullscreen();
+    if (!executedByEventlistener) {
+        if (fullscreen.requestFullscreen) {
+            fullscreen.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            fullscreen.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            fullscreen.msRequestFullscreen();
+        }
     }
     canvasFullscreenModeOn();
-}
+    executedByEventlistener = false;
+};
 
 
 function closeFullscreen() {
     fullscreenOn = false;
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-        document.msExitFullscreen();
+    if (!executedByEventlistener) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
     }
     canvasFullscreenModeOff();
-}
+    executedByEventlistener = false;
+};
 
-document.addEventListener('fullscreenchange', () => {
-    if (document.fullscreenElement) {
-        console.log('Fullscreen');
-        // is else isTouchDevice
-    } else {
-        console.log('Normal');
-    }
-});
+function listenForFullscreenChange() {
+    document.addEventListener('fullscreenchange', () => {
+        if (gameScreenLoaded && !gameFinished) {
+            if (document.fullscreenElement) {
+                if (!fullscreenOn) {
+                    executedByEventlistener = true;
+                    toggleScreen();
+                }
+            } else {
+                if (fullscreenOn) {
+                    executedByEventlistener = true;
+                    toggleScreen();
+                }
+            }
+        }
+    })
+};
 
-function checkScreenOrientationPermanently() {
+function listenForScreenOrientation() {
     portrait.addEventListener("change", function (event) {
         // ingame
         if (gameScreenLoaded && !gameFinished) {
@@ -291,7 +325,7 @@ function checkScreenOrientationPermanently() {
             } else {
                 removeBlockedGameScreen();
             }
-        // startscreen
+            // startscreen
         } else if (startScreenOn) {
             if (isPortrait(event)) {
                 disableStartButton();
