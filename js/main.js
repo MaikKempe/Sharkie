@@ -325,7 +325,7 @@ function listenForScreenOrientation() {
             } else {
                 removeBlockedGameScreen();
             }
-            // startscreen
+        // startscreen
         } else if (startScreenOn) {
             if (isPortrait(event)) {
                 disableStartButton();

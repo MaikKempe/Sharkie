@@ -225,7 +225,7 @@ h4 {
 .sliding-arrow {
     object-fit: contain;
     width: 50px;
-    animation: slideright 500ms infinite alternate ease-in-out;
+    animation: slide-right 500ms infinite alternate ease-in-out;
     margin-top: 24px;
 }
 
@@ -612,7 +612,6 @@ h4 {
     from {
         opacity: 0%;
     }
-
     to {
         opacity: 100%;
     }
@@ -622,7 +621,6 @@ h4 {
     from {
         transform: scale(0);
     }
-
     to {
         transform: scale(1);
     }
@@ -632,22 +630,19 @@ h4 {
     33% {
         background-position: 0% 33%, 100% 33%, 200% 33%;
     }
-
     66% {
         background-position: -100% 66%, 0% 66%, 100% 66%;
     }
-
     100% {
         background-position: 0% 100%, 100% 100%, 200% 100%;
     }
 }
 
-@keyframes slideright {
+@keyframes slide-right {
     0% {
         -webkit-transform: translateX(0);
         opacity: 0.3
     }
-
     100% {
         -webkit-transform: translateX(-0.5em);
         opacity: 0.9
