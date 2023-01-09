@@ -1,5 +1,5 @@
 let level1;
-function initLevel() {
+function startLevel() {
     level1 = new Level(
         [
             new PufferfishNormal(200, 30),
@@ -64,7 +64,5 @@ function initLevel() {
             new BackgroundObject(1, 720 * 3, 720 * 2, 480),// seabed bg element
             new BackgroundObject(2, 720 * 3, 720 * 2, 480),// seabed bg element
             new BackgroundObject(3, 720 * 3, 720 * 2, 480),// seabed
-
-
         ]);
 }

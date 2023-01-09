@@ -1,3 +1,7 @@
+/**
+ * HTML template
+ * @returns HTML
+ */
 function startScreenTemplate() {
   return `
     <div class="startscreen">
@@ -32,8 +36,10 @@ function startScreenTemplate() {
     </div>`;
 }
 
-// gamescreen snippet for touch and desktop.
-
+/**
+ * HTML template
+ * @returns HTML
+ */
 function gameScreenDesktopTemplate() {
   return `
   <div class="gamescreen-container">
@@ -76,6 +82,10 @@ function gameScreenDesktopTemplate() {
   </div>`;
 }
 
+/**
+ * HTML template
+ * @returns HTML
+ */
 function gameScreenTouchTemplate() {
   return `
   <div id="fullscreen">
@@ -137,6 +147,10 @@ function gameScreenTouchTemplate() {
   </div>`;
 }
 
+/**
+ * HTML template
+ * @returns HTML
+ */
 function gameOverScreenTemplate() {
   return `
   <div class="endscreen">
@@ -149,6 +163,10 @@ function gameOverScreenTemplate() {
   </div>`;
 }
 
+/**
+ * HTML template
+ * @returns HTML
+ */
 function winScreenTemplate() {
   return `
   <div class="endscreen">
@@ -162,6 +180,10 @@ function winScreenTemplate() {
   </div>`;
 }
 
+/**
+ * HTML template
+ * @returns HTML
+ */
 function helpSectionTemplate() {
   return `
   <div class="help-section">

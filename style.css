@@ -100,6 +100,8 @@ h4 {
     color: white;
 }
 
+/*************** Startscreen, endscreens ***************/
+
 .sharkie-startscreen {
     top: -231%;
     left: -66%;
@@ -228,6 +230,14 @@ h4 {
     animation: slide-right 500ms infinite alternate ease-in-out;
     margin-top: 24px;
 }
+
+.coin-info {
+    font-size: 22px;
+    color: white;
+    margin-bottom: 32px;
+}
+
+/*************** help section ***************/
 
 #help {
     overflow: auto;
@@ -381,6 +391,8 @@ h4 {
     padding-bottom: 24px;
 }
 
+/*************** Gamescreen ***************/
+
 #game {
     display: flex;
     align-items: center;
@@ -492,7 +504,6 @@ h4 {
     background-color: rgba(0, 0, 0, 0.55);
 }
 
-/* mobile menu*/
 
 #gamescreen-mobile-menu {
     display: none;
@@ -601,12 +612,7 @@ h4 {
     transform: translate(-50%, 0%);
 }
 
-.coin-info {
-    font-size: 22px;
-    color: white;
-    margin-bottom: 32px;
-}
-
+/*************** animations ***************/
 
 @keyframes opacity {
     from {

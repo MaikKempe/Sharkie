@@ -1,6 +1,8 @@
 
+//############################### Keyboard ###############################
+
 /**
- * Keyboard, mobile Funktionsschalttasten
+ * Checks if a key is pressed
  */
 
 window.addEventListener('keydown', (event) => {
@@ -28,6 +30,10 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
+/**
+ * Checks if a key has been released
+ */
+
 window.addEventListener('keyup', (event) => {
     keyboard.lastEvent = new Date().getTime();
     if (event.key == 'ArrowUp') {
@@ -52,6 +58,12 @@ window.addEventListener('keyup', (event) => {
         keyboard.B = false;
     }
 });
+
+//############################### Controls on mobile devices ###############################
+
+/**
+ * Binds key evens to HTML-elements, so that the keyboard settings can be used on touch devices
+ */
 
 function bindKeyEventsToMobileButtons() {
     // Arrow Up

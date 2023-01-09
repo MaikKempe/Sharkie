@@ -1,3 +1,5 @@
+//############################### global scope ###############################
+
 let canvas;
 let world;
 let keyboard = new Keyboard();
@@ -19,22 +21,38 @@ let portrait = window.matchMedia("(orientation: portrait)");
 let executedByEventlistener = false;
 
 
+//############################### Initialize page ###############################
+
+
+/**
+ * function is called when the page is loading
+ */
 function init() {
     preloadFiles();
     showStartScreen();
     checkDevice();
 };
 
+/**
+ * preloads the most important game files
+ */
 function preloadFiles() {
     preloadImages();
 };
 
+/**
+ * calls image preload function for the given array
+ */
 function preloadImages() {
     allImages.forEach((images) => {
         preloadImage(images);
     });
 };
 
+/**
+ * creates new image objects
+ * @param {array} images with img urls
+ */
 function preloadImage(images) {
     images.forEach((path) => {
         const img = new Image();
@@ -42,18 +60,61 @@ function preloadImage(images) {
     });
 };
 
+/**
+ * generates startscreen HTML template
+ */
 function showStartScreen() {
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
 };
 
-function showHelpSection() {
-    removeStartScreen();
-    document.getElementById('help').innerHTML += helpSectionTemplate();
+
+/**
+ * clears startscreen container
+ */
+function removeStartScreen() {
+    document.getElementById('startscreen').innerHTML = '';
     startScreenOn = false;
 };
 
-function removeStartScreen() {
-    document.getElementById('startscreen').innerHTML = '';
+/**
+ * calls function to check if the player uses a mobile device
+ * if yes, it calls other functions that load additional settings
+ */
+function checkDevice() {
+    checkIfTouchDevice();
+    if (isTouchDevice) {
+        checkIfScreenIsPortrait();
+        listenForScreenOrientation();
+    };
+};
+
+/**
+ * This function try to create a touch event. It would fail for desktops and throw an error
+ */
+function checkIfTouchDevice() {
+    try {
+        document.createEvent("TouchEvent");
+        isTouchDevice = true;
+    } catch (e) {
+        isTouchDevice = false;
+    }
+};
+
+/**
+ * checks if the player's mobile screen is currently in portrait orientation
+ */
+function checkIfScreenIsPortrait() {
+    if (window.innerHeight > window.innerWidth) {
+        disableStartButton();
+        showTurnYourScreenInfo();
+    };
+};
+
+
+//############################### Main functions ###############################
+function showHelpSection() {
+    removeStartScreen();
+    document.getElementById('help').innerHTML += helpSectionTemplate();
     startScreenOn = false;
 };
 
@@ -70,33 +131,7 @@ function removeHelpSection() {
     document.getElementById('help').innerHTML = '';
 }
 
-function checkDevice() {
-    checkIfTouchDevice();
-    if (isTouchDevice) {
-        checkIfScreenIsPortrait();
-        listenForScreenOrientation();
-    };
-};
 
-/**
- *  This function try to create touch event. It would fail for desktops and throw an error.
- */
-
-function checkIfTouchDevice() {
-    try {
-        document.createEvent("TouchEvent");
-        isTouchDevice = true;
-    } catch (e) {
-        isTouchDevice = false;
-    }
-};
-
-function checkIfScreenIsPortrait() {
-    if (window.innerHeight > window.innerWidth) {
-        disableStartButton();
-        showTurnYourScreenInfo();
-    };
-};
 
 function playStartButtonSound() {
     START_BUTTON_SOUND.volume = 0.6;
@@ -109,10 +144,10 @@ function startGame() {
         disableHelpButton();
         playStartButtonSound();
         loadingAnimation();
-        // short timout for CSS loading animations
+        // short timout for CSS animations
         setTimeout(() => {
             removeStartScreen();
-            initGame();
+            initGameScreen();
             startBackgroundmusic();
         }, 2000);
     }
@@ -126,8 +161,8 @@ function disableHelpButton() {
     document.getElementById('help-btn').disabled = true;
 }
 
-function initGame() {
-    initLevel();
+function initGameScreen() {
+    startLevel();
     listenForFullscreenChange();
     if (isTouchDevice) {
         initMobileSettings();
@@ -325,7 +360,7 @@ function listenForScreenOrientation() {
             } else {
                 removeBlockedGameScreen();
             }
-        // startscreen
+            // startscreen
         } else if (startScreenOn) {
             if (isPortrait(event)) {
                 disableStartButton();
