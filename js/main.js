@@ -21,8 +21,7 @@ let portrait = window.matchMedia("(orientation: portrait)");
 let executedByEventlistener = false;
 
 
-//############################### Initialize page ###############################
-
+//############################### Initialize ###############################
 
 /**
  * function is called when the page is loading
@@ -31,14 +30,14 @@ function init() {
     preloadFiles();
     showStartScreen();
     checkDevice();
-};
+}
 
 /**
  * preloads the most important game files
  */
 function preloadFiles() {
     preloadImages();
-};
+}
 
 /**
  * calls image preload function for the given array
@@ -47,7 +46,7 @@ function preloadImages() {
     allImages.forEach((images) => {
         preloadImage(images);
     });
-};
+}
 
 /**
  * creates new image objects
@@ -58,15 +57,14 @@ function preloadImage(images) {
         const img = new Image();
         img.src = path;
     });
-};
+}
 
 /**
  * generates startscreen HTML template
  */
 function showStartScreen() {
     document.getElementById('startscreen').innerHTML += startScreenTemplate();
-};
-
+}
 
 /**
  * clears startscreen container
@@ -74,7 +72,7 @@ function showStartScreen() {
 function removeStartScreen() {
     document.getElementById('startscreen').innerHTML = '';
     startScreenOn = false;
-};
+}
 
 /**
  * calls function to check if the player uses a mobile device
@@ -86,7 +84,7 @@ function checkDevice() {
         checkIfScreenIsPortrait();
         listenForScreenOrientation();
     };
-};
+}
 
 /**
  * This function try to create a touch event. It would fail for desktops and throw an error
@@ -98,7 +96,7 @@ function checkIfTouchDevice() {
     } catch (e) {
         isTouchDevice = false;
     }
-};
+}
 
 /**
  * checks if the player's mobile screen is currently in portrait orientation
@@ -108,15 +106,17 @@ function checkIfScreenIsPortrait() {
         disableStartButton();
         showTurnYourScreenInfo();
     };
-};
+}
 
 
 //############################### Main functions ###############################
+
 function showHelpSection() {
     removeStartScreen();
     document.getElementById('help').innerHTML += helpSectionTemplate();
     startScreenOn = false;
-};
+}
+
 
 function backToStart() {
     removeHelpSection();
@@ -125,18 +125,19 @@ function backToStart() {
     if (isTouchDevice) {
         checkIfScreenIsPortrait();
     }
-};
+}
+
 
 function removeHelpSection() {
     document.getElementById('help').innerHTML = '';
 }
 
 
-
 function playStartButtonSound() {
     START_BUTTON_SOUND.volume = 0.6;
     START_BUTTON_SOUND.play();
 }
+
 
 function startGame() {
     if (!startButtonPressed) {
