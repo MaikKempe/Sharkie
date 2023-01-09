@@ -90,7 +90,7 @@ class Endboss extends MovealbeObject {
 
     huntCharacter() {
         this.y += ((this.world.character.y - 100) - this.y) / 5;
-        this.speedX = this.world.character.speedX + 0.3;
+        this.speedX = this.world.character.speedX + 1;
     };
 
 
