@@ -1,5 +1,9 @@
 let level1;
-function startLevel() {
+
+/**
+ * Initializes all level specific objects
+ */
+function initLevel() {
     level1 = new Level(
         [
             new PufferfishNormal(200, 30),

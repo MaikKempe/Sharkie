@@ -61,7 +61,7 @@ function gameScreenDesktopTemplate() {
             <img id="sound-on-icon" class="setting-icon" src="img/8_icons/sound_on.png">
             <img id="sound-off-icon" class="setting-icon d-none" src="img/8_icons/sound_off.png">
           </div>
-          <div class="setting-btn" onclick="toggleStandby()">
+          <div class="setting-btn" onclick="togglePausedMode()">
             <img id="standby-off-icon" class="setting-icon" src="img/8_icons/standby_off.png">
             <img id="standby-on-icon" class="setting-icon d-none" src="img/8_icons/standby_on.png">
           </div>
@@ -106,7 +106,7 @@ function gameScreenTouchTemplate() {
                 <img id="sound-on-icon" class="setting-icon" src="img/8_icons/sound_on.png">
                 <img id="sound-off-icon" class="setting-icon d-none" src="img/8_icons/sound_off.png">
               </div>
-              <div class="setting-btn" onclick="toggleStandby()">
+              <div class="setting-btn" onclick="togglePausedMode()">
                 <img id="standby-off-icon" class="setting-icon" src="img/8_icons/standby_off.png">
                 <img id="standby-on-icon" class="setting-icon d-none" src="img/8_icons/standby_on.png">
               </div>
