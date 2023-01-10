@@ -68,6 +68,9 @@ class World {
     setWorld() { //Keyboard acess to character
         this.endboss.world = this;
         this.character.world = this;
+        this.level.backgroundObjects.forEach((backgroundObject) => {
+            backgroundObject.world = this;
+        });
     };
 
     flipImage(o) {

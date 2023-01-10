@@ -53,20 +53,23 @@ function initLevel() {
             new Poison(2000, 280),
         ],
         [
-            new BackgroundObject(0, -720, 720 * 2, 480), //water img long
-            new BackgroundObject(1, -720, 720 * 2, 480),  // seabed bg element
-            new BackgroundObject(2, -720, 720 * 2, 480),  // seabed bg element
-            new BackgroundObject(3, -720, 720 * 2, 480), // seabed
+            new BackgroundObject(4, 720, 720 * 2, 480, 0),// light effect
 
-            new BackgroundObject(0, 720, 720 * 2, 480),//water img long
-            new BackgroundObject(1, 720, 720 * 2, 480),// seabed bg element
-            new BackgroundObject(2, 720, 720 * 2, 480),// seabed bg element
-            new BackgroundObject(3, 720, 720 * 2, 480),// seabed
-            new BackgroundObject(4, 720, 720 * 2, 480),// light effect
+            new BackgroundObject(0, -720, 720 * 2, 480, 0.2), //water img long
+            new BackgroundObject(0, 720, 720 * 2, 480, 0.2),//water img long
+            new BackgroundObject(0, 720 * 3, 720 * 2, 480, 0.2),//water img long
 
-            new BackgroundObject(0, 720 * 3, 720 * 2, 480),//water img long
-            new BackgroundObject(1, 720 * 3, 720 * 2, 480),// seabed bg element
-            new BackgroundObject(2, 720 * 3, 720 * 2, 480),// seabed bg element
-            new BackgroundObject(3, 720 * 3, 720 * 2, 480),// seabed
+            new BackgroundObject(1, -720, 720 * 2, 480, 0.4),  // seabed bg element
+            new BackgroundObject(1, 720, 720 * 2, 480, 0.4),// seabed bg element
+            new BackgroundObject(1, 720 * 3, 720 * 2, 480, 0.4),// seabed bg element
+
+            new BackgroundObject(2, -720, 720 * 2, 480, 0.7),  // seabed bg element
+            new BackgroundObject(2, 720, 720 * 2, 480, 0.7),// seabed bg element
+            new BackgroundObject(2, 720 * 3, 720 * 2, 480, 0.7),// seabed bg element
+
+            //seabed
+            new BackgroundObject(3, -720, 720 * 2, 480, 0),
+            new BackgroundObject(3, 720, 720 * 2, 480, 0),
+            new BackgroundObject(3, 720 * 3, 720 * 2, 480, 0),
         ]);
 }
