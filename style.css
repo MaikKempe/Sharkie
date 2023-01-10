@@ -533,7 +533,7 @@ h4 {
     right: 1%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .action-btn {
@@ -557,8 +557,8 @@ h4 {
 
 .control-pad {
     position: absolute;
-    height: 110px;
-    width: 110px;
+    height: 115px;
+    width: 115px;
     bottom: 1%;
     left: 1%;
 }
