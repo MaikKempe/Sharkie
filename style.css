@@ -100,6 +100,16 @@ h4 {
     color: white;
 }
 
+/*************** loadscreen ***************/
+.loader-active {
+    border: 8px solid white;
+    border-top: 8px solid #034783;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1000ms linear infinite;
+}
+
 /*************** Startscreen, endscreens ***************/
 
 .sharkie-startscreen {
@@ -138,7 +148,7 @@ h4 {
     margin-bottom: 32px;
 }
 
-.startscreen, .endscreen {
+.startscreen, .endscreen, .loadscreen {
     margin: 0;
     height: 100vh;
     display: flex;
@@ -614,10 +624,21 @@ h4 {
 
 /*************** animations ***************/
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @keyframes opacity {
     from {
         opacity: 0%;
     }
+
     to {
         opacity: 100%;
     }
@@ -627,6 +648,7 @@ h4 {
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1);
     }
@@ -636,9 +658,11 @@ h4 {
     33% {
         background-position: 0% 33%, 100% 33%, 200% 33%;
     }
+
     66% {
         background-position: -100% 66%, 0% 66%, 100% 66%;
     }
+
     100% {
         background-position: 0% 100%, 100% 100%, 200% 100%;
     }
@@ -649,6 +673,7 @@ h4 {
         -webkit-transform: translateX(0);
         opacity: 0.3
     }
+
     100% {
         -webkit-transform: translateX(-0.5em);
         opacity: 0.9

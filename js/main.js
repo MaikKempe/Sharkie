@@ -28,6 +28,7 @@ let executedByEventlistener = false;
 function init() {
     preloadFiles();
     if (allImagesPreloaded) {
+        removeLoadscreen();
         showStartScreen();
         checkDevice();
     }
@@ -61,6 +62,13 @@ function preloadImage(images) {
         const img = new Image();
         img.src = path;
     });
+}
+
+/**
+ * clears loadscreen HTML container when preload is done
+ */
+function removeLoadscreen() {
+    document.getElementById('loadscreen').innerHTML = '';
 }
 
 /**
