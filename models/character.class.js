@@ -12,7 +12,7 @@ class Character extends MovealbeObject {
         height: 80,
         slapMoveExtension: 6
     };
-    world; // set world on character, to use keyboard, getting Starting
+    world;
     energy = 100;
     attack = 100;
     isSlapping = false;
