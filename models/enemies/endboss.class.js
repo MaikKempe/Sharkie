@@ -29,8 +29,11 @@ class Endboss extends MovealbeObject {
         this.x = x;
         this.y = y;
         this.animate();
-    };
+    }
 
+    /**
+    * animates movement and images for endboss
+    */
     animate() {
         let i = 0;
         setInterval(() => {
@@ -74,29 +77,42 @@ class Endboss extends MovealbeObject {
                 }
             }
         }, 100)
-    };
+    }
 
+    /**
+     * ends game when endboss is dead.
+     */
     gameWon() {
         characterFightsEndboss = false;
         gameIsRunning = false;
         setTimeout(() => {
             stopGame(true);
         }, 3500);
-    };
+    }
 
+    /**
+     * function checks if the outer hitboxes of the character and the final boss are in a certain distance
+     * @returns boolean
+     */
     characterIsInRange() {
         return ((this.world.character.x + this.world.character.offset.width)) > (this.x + this.offset.x) - this.distance;
-    };
+    }
 
+    /**
+     * enboss moves to character when attack mode is activated
+     */
     huntCharacter() {
         this.y += ((this.world.character.y - 100) - this.y) / 5;
         this.speedX = this.world.character.speedX + 1;
-    };
+    }
 
-
+    /**
+    * checks if the character has entered the last part of the map
+    * @returns boolean
+    */
     firstContact() {
         return this.world.character.x > 2100 && !this.isIntroduced;
-    };
+    }
 
     /**
      * functions stops backgroundmusic while the endboss is introduced
@@ -104,14 +120,30 @@ class Endboss extends MovealbeObject {
     pauseBackgroundMusic() {
         onTheWayToEndboss = false;
         endbossIsAppearing = true;
-    };
+    }
 
-    /** */
+    /**
+    * switches background music after endboss is introduced
+    */
+    switchToFightMusic() {
+        // short timeout for endboss introduce animation
+        setTimeout(() => {
+            endbossIsAppearing = false;
+            characterFightsEndboss = true;
+        }, 1500);
+    }
+
+    /**
+    * plays sound when endboss is introduced
+    */
     playEndbossAppearsSound() {
         ENDBOSS_APPEARS_SOUND.volume = 0.4;
         ENDBOSS_APPEARS_SOUND.play();
-    };
+    }
 
+    /**
+    * plays sound when endboss is hurt
+    */
     playEndbossIsHurtSound() {
         if (!this.hurtSoundPlayed) {
             ENDBOSS_HURT_SOUND.volume = 0.2;
@@ -119,31 +151,26 @@ class Endboss extends MovealbeObject {
             this.hurtSoundPlayed = true;
             this.hurtSoundPlayed = false
         }
-    };
+    }
 
+    /**
+    * plays different sounds when endboss is dead
+    */
     playEndbossIsDeadSounds() {
         if (!this.deadSoundsPlayed) {
             ENDBOSS_DEAD_SOUND.volume = 0.3;
             ENDBOSS_DEAD_SOUND.play();
-
             setTimeout(() => {
                 ENDBOSS_DEAD_BUBBLE_SOUND.volume = 0.2;
                 ENDBOSS_DEAD_BUBBLE_SOUND.play();
             }, 350);
             this.deadSoundsPlayed = true
         }
-    };
+    }
 
     /**
-     * boolean switch starts fight backgorund-music, when the endboss is introduced
+    * plays different sound when endboss startet attack
     */
-    switchToFightMusic() {
-        setTimeout(() => {
-            endbossIsAppearing = false;
-            characterFightsEndboss = true;
-        }, 1500);
-    };
-
     playAttackSound() {
         if (!this.attackSoundPlayed) {
             ENDBOSS_ATTACK_SOUND.volume = 0.2;

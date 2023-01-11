@@ -347,7 +347,7 @@ const BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/bubble.png'];
 const POISONED_BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/poisoned_bubble_for_whale.png'];
 
 
- //############# Allimages array for preload ###################
+ //############# All images in array for preload ###################
 
 const allImages = [
     BACKGROUND_IMAGES,

@@ -62,7 +62,7 @@ window.addEventListener('keyup', (event) => {
 //############################### Controls on mobile devices ###############################
 
 /**
- * Binds key evens to HTML-elements, so that the keyboard settings can be used on touch devices
+ * Binds key evens to HTML-elements so that the keyboard settings can be used on touch devices
  */
 
 function bindKeyEventsToMobileButtons() {
