@@ -2,11 +2,11 @@
 //##################### Background #############################
  
 const BACKGROUND_IMAGES = [
-    'img/3_background/layers/5_water/D.png', //water img long
-    'img/3_background/layers/4_fondo2/D.png', // seabed bg element
-    'img/3_background/layers/3_fondo1/D.png', // seabed bg element
-    'img/3_background/layers/2_floor/D.png', // seabed
-    'img/3_background/layers/1_light/D.png' // light effect
+    'img/3_background/layers/5_water/D.png',
+    'img/3_background/layers/4_fondo2/D.png',
+    'img/3_background/layers/3_fondo1/D.png',
+    'img/3_background/layers/2_floor/D.png',
+    'img/3_background/layers/1_light/D.png'
 ];
 
 

@@ -5,6 +5,8 @@ let level1;
  */
 function initLevel() {
     level1 = new Level(
+
+        //########## enemies input: x, y ##########
         [
             new PufferfishNormal(200, 30),
             new PufferfishNormal(160, 140),
@@ -39,7 +41,11 @@ function initLevel() {
             new PufferfishNormal(5000, 180),
 
         ],
+        //########## endboss input: x, y ##########
+
         new Endboss(2700, -60),
+
+        //########## collectible objects input: x, y ##########
         [
             new Coin(140, 90),
             new Coin(600, 370),
@@ -52,24 +58,30 @@ function initLevel() {
             new Poison(1500, 90),
             new Poison(2000, 280),
         ],
+
+        //########## background objects input: imagepath array index, x, height, width, speedX, speedY ##########
         [
-            new BackgroundObject(4, 720, 720 * 2, 480, 0),// light effect
+            //water bg long
+            new BackgroundObject(0, -720, 720 * 2, 480, 0, 0),
+            new BackgroundObject(0, 720, 720 * 2, 480, 0, 0),
+            new BackgroundObject(0, 720 * 3, 720 * 2, 480, 0, 0),
+            
+            // light effect
+            new BackgroundObject(4, -720, 720 * 6, 480, 0.6, 0),
+            
+            // bg element 1
+            new BackgroundObject(1, -720, 720 * 2, 480, 0.4, 0),
+            new BackgroundObject(1, 720, 720 * 2, 480, 0.4, 0),
+            new BackgroundObject(1, 720 * 3, 720 * 2, 480, 0.4, 0),
 
-            new BackgroundObject(0, -720, 720 * 2, 480, 0.2), //water img long
-            new BackgroundObject(0, 720, 720 * 2, 480, 0.2),//water img long
-            new BackgroundObject(0, 720 * 3, 720 * 2, 480, 0.2),//water img long
+            // bg element 2
+            new BackgroundObject(2, -720, 720 * 2, 480, 0.9, 0),
+            new BackgroundObject(2, 720, 720 * 2, 480, 0.9, 0),
+            new BackgroundObject(2, 720 * 3, 720 * 2, 480, 0.9, 0),
 
-            new BackgroundObject(1, -720, 720 * 2, 480, 0.4),  // seabed bg element
-            new BackgroundObject(1, 720, 720 * 2, 480, 0.4),// seabed bg element
-            new BackgroundObject(1, 720 * 3, 720 * 2, 480, 0.4),// seabed bg element
-
-            new BackgroundObject(2, -720, 720 * 2, 480, 0.7),  // seabed bg element
-            new BackgroundObject(2, 720, 720 * 2, 480, 0.7),// seabed bg element
-            new BackgroundObject(2, 720 * 3, 720 * 2, 480, 0.7),// seabed bg element
-
-            //seabed
-            new BackgroundObject(3, -720, 720 * 2, 480, 0),
-            new BackgroundObject(3, 720, 720 * 2, 480, 0),
-            new BackgroundObject(3, 720 * 3, 720 * 2, 480, 0),
+            //floor
+            new BackgroundObject(3, -720, 720 * 2, 480, 0.5, 0),
+            new BackgroundObject(3, 720, 720 * 2, 480, 0.5, 0),
+            new BackgroundObject(3, 720 * 3, 720 * 2, 480, 0.5, 0)
         ]);
 }

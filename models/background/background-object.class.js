@@ -1,15 +1,19 @@
 class BackgroundObject extends MovealbeObject {
     y = 0;
-    constructor(path, x, height, width, speedX) {
+    constructor(path, x, height, width, speedX, speedY) {
         super();
         this.loadImage(BACKGROUND_IMAGES[path]);
         this.x = x;
         this.height = height;
         this.width = width;
         this.speedX = speedX;
+        this.speedY = speedY;
         this.moveBackground();
     }
 
+    /**
+     * moves background elements slowly when character is moving.
+     */
     moveBackground() {
         setInterval(() => {
             if (gameIntervalsRunning) {
