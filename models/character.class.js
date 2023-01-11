@@ -48,7 +48,6 @@ class Character extends MovealbeObject {
     animateMovement() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                //   this.AUDIO_SLAP.pause();
                 if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
                     this.y -= this.speedY;
                     if (soundOn) { this.playCharacterSwimSound() };
@@ -67,12 +66,12 @@ class Character extends MovealbeObject {
                     if (soundOn) { this.playCharacterSwimSound() };
                     this.otherDirection = false;
                 }
-                this.moveBackground();
+                this.moveCamera();
             }
         }, 1000 / 60);
     }
 
-    moveBackground() {
+    moveCamera() {
         return this.world.camera_x = -this.x + 10; //spawn position, movebackground
     }
 

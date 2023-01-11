@@ -17,17 +17,21 @@ class BackgroundObject extends MovealbeObject {
     moveBackground() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                if (this.world.keyboard.RIGHT && this.world.character.x < this.world.level.levelEndX && !this.world.character.isDead()) {
-                    this.x -= this.speedX;
+                // character moves up
+                if (this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead()) {
+                    this.y += this.speedY;
                 }
-                if (this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead()) {
-                    this.x += this.speedX;
-                }
+                // character moves down
                 if (this.world.keyboard.DOWN && this.world.character.y < this.world.level.endY && !this.world.character.isDead()) {
                     this.y -= this.speedY;
                 }
-                if (this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead()) {
-                    this.y += this.speedY;
+                // character moves left
+                if (this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead()) {
+                    this.x += this.speedX;
+                }
+                // character moves right
+                if (this.world.keyboard.RIGHT && this.world.character.x < this.world.level.levelEndX && !this.world.character.isDead()) {
+                    this.x -= this.speedX;
                 }
             }
         }, 1000 / 60);

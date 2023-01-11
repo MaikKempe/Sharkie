@@ -62,26 +62,26 @@ function initLevel() {
         //########## background objects input: imagepath array index, x, height, width, speedX, speedY ##########
         [
             //water bg long
-            new BackgroundObject(0, -720, 720 * 2, 480, 0, 0),
-            new BackgroundObject(0, 720, 720 * 2, 480, 0, 0),
-            new BackgroundObject(0, 720 * 3, 720 * 2, 480, 0, 0),
+            new BackgroundObject(0, -720, 721 * 2, 480, 0, 0),
+            new BackgroundObject(0, 720, 721 * 2, 480, 0, 0),
+            new BackgroundObject(0, 720 * 3, 721 * 2, 480, 0, 0),
             
             // light effect
             new BackgroundObject(4, -720, 720 * 6, 480, 0.5, 0),
             
             // bg element 1
-            new BackgroundObject(1, -720, 720 * 2, 480, 0.4, 0.1),
-            new BackgroundObject(1, 720, 720 * 2, 480, 0.4, 0.1),
-            new BackgroundObject(1, 720 * 3, 720 * 2, 480, 0.4, 0.1),
+            new BackgroundObject(1, -720, 721 * 2, 480, 0.4, 0.1),
+            new BackgroundObject(1, 720, 721 * 2, 480, 0.4, 0.1),
+            new BackgroundObject(1, 720 * 3, 721 * 2, 480, 0.4, 0.1),
 
             // bg element 2
-            new BackgroundObject(2, -720, 720 * 2, 480, 0.9, 0.2),
-            new BackgroundObject(2, 720, 720 * 2, 480, 0.9, 0.2),
-            new BackgroundObject(2, 720 * 3, 720 * 2, 480, 0.9, 0.2),
+            new BackgroundObject(2, -720, 721 * 2, 480, 0.9, 0.2),
+            new BackgroundObject(2, 720, 721 * 2, 480, 0.9, 0.2),
+            new BackgroundObject(2, 720 * 3, 721 * 2, 480, 0.9, 0.2),
 
             //floor
-            new BackgroundObject(3, -720, 720 * 2, 490, 0.5, 0.3),
-            new BackgroundObject(3, 720, 720 * 2, 490, 0.5, 0.3),
-            new BackgroundObject(3, 720 * 3, 720 * 2, 490, 0.5, 0.3)
+            new BackgroundObject(3, -720, 722 * 2, 490, 0.5, 0.3),
+            new BackgroundObject(3, 720, 722 * 2, 490, 0.5, 0.3),
+            new BackgroundObject(3, 720 * 3, 722 * 2, 490, 0.5, 0.3)
         ]);
 }
