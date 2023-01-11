@@ -3,7 +3,7 @@ class Level {
     endboss;
     collectableObjects;
     backgroundObjects;
-    levelStartX = -700;
+    levelStartX = -680;
     levelEndX = 4 * 720;
     startY = -150;
     endY = 210;

@@ -23,6 +23,12 @@ class BackgroundObject extends MovealbeObject {
                 if (this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead()) {
                     this.x += this.speedX;
                 }
+                if (this.world.keyboard.DOWN && this.world.character.y < this.world.level.endY && !this.world.character.isDead()) {
+                    this.y -= this.speedY;
+                }
+                if (this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead()) {
+                    this.y += this.speedY;
+                }
             }
         }, 1000 / 60);
     }
