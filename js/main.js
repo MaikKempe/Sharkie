@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let isTouchDevice = false;
+let allImagesPreloaded = false;
 let fullscreenOn = false;
 let soundOn = true;
 let soundWasOff = false; // used in standby mode
@@ -26,8 +27,10 @@ let executedByEventlistener = false;
  */
 function init() {
     preloadFiles();
-    showStartScreen();
-    checkDevice();
+    if (allImagesPreloaded) {
+        showStartScreen();
+        checkDevice();
+    }
 }
 
 /**
@@ -43,6 +46,9 @@ function preloadFiles() {
 function preloadImages() {
     allImages.forEach((images) => {
         preloadImage(images);
+        if (imagesPreloaded(images)) {
+            allImagesPreloaded = true;
+        }
     });
 }
 
@@ -135,6 +141,10 @@ function listenForScreenOrientation() {
 };
 
 //helpfunctions
+
+function imagesPreloaded(images) {
+    return allImages.indexOf(images) == allImages.length - 1;
+}
 
 function isPortrait(event) {
     return event.matches;
