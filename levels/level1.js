@@ -53,6 +53,7 @@ function initLevel() {
             new Coin(1400, 405),
             new Coin(1800, 140),
             new Poison(-280, 110),
+            new Poison(-180, 400),
             new Poison(500, 40),
             new Poison(1000, 350),
             new Poison(1500, 90),
