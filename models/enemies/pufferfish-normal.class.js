@@ -22,6 +22,9 @@ class PufferfishNormal extends Pufferfish {
         this.moveLeft();
     }
 
+    /**
+    * animates movement and images for pufferfishes
+    */
     animate() {
         setInterval(() => {
             if (gameIntervalsRunning) {
@@ -32,10 +35,11 @@ class PufferfishNormal extends Pufferfish {
                     this.playAnimation(PUFFERFISH_NORMAL_IMAGES_IMAGES_HURT, 'once');
                     this.offset.height = 35;
                     this.speedX = 1.7;
+                    //sets speedX and offset heigt back, when hurt animation is finished
                     setTimeout(() => {
                         this.speedX = 0.7;
                         this.offset.height = 45;
-                    }, 1500); //time passed isHurt() 1200;
+                    }, 1500); 
                 } else {
                     this.playAnimation(PUFFERFISH_NORMAL_IMAGES_SWIM, 'multiple');
                 }

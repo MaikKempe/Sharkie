@@ -3,6 +3,10 @@ class Pufferfish extends MovealbeObject {
     speedX = 0.2 + Math.random() * 0.5;
     speedFloatingAway = 2;
 
+    /**
+     * moves dead pufferfish from the map
+     * @param {boolean}
+     */
     slappedAway(characterMirrored) {
         setInterval(() => {
             if (gameIntervalsRunning) {

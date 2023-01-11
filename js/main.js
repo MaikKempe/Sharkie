@@ -216,6 +216,7 @@ function startGame() {
         disableHelpButton();
         playStartButtonSound();
         loadingAnimation();
+        initLevel();
         // short timout for CSS animations
         setTimeout(() => {
             removeStartScreen();
@@ -248,10 +249,9 @@ function loadingAnimation() {
 }
 
 /**
- * starts level and initialises settings for desktop or mobile divices.
+ * initialises settings for desktop or mobile divices.
  */
 function initGameScreen() {
-    initLevel();
     listenForFullscreenChange();
     if (isTouchDevice) {
         initMobileSettings();

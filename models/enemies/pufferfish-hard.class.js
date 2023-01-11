@@ -24,6 +24,9 @@ class PufferfishHard extends Pufferfish {
         this.moveLeft();
     };
 
+    /**
+    * animates movement and images for pufferfishes
+    */
     animate() {
         setInterval(() => {
             if (gameIntervalsRunning) {

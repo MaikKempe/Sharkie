@@ -20,6 +20,11 @@ class Bubble extends MovealbeObject {
         this.floating(x, y)
     }
 
+    /**
+     * let bubbles float
+     * @param {*} x coordinate from which the bubble is created
+     * @param {*} y coordinate from which the bubble is created
+     */
     floating(x, y) {
         this.x = x;
         this.y = y;
@@ -38,5 +43,4 @@ class Bubble extends MovealbeObject {
             }
         }, 1000 / 60)
     }
-
 }

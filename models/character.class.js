@@ -39,12 +39,18 @@ class Character extends MovealbeObject {
         this.animateCharacter();
     }
 
+    /**
+     * calls character's animation functions
+     */
     animateCharacter() {
         this.animateMovement();
         this.singleMoves();
         this.animateImages();
     }
-    //animate movement, FPS
+
+    /**
+     * animates characters movement
+     */
     animateMovement() {
         setInterval(() => {
             if (gameIntervalsRunning) {
@@ -71,11 +77,17 @@ class Character extends MovealbeObject {
         }, 1000 / 60);
     }
 
+    /**
+     * moves camera when character moves
+     * @returns integer
+     */
     moveCamera() {
         return this.world.camera_x = -this.x + 10; //spawn position, movebackground
     }
 
-    //listen for Single Animationstart
+    /**
+     * listen if a special move is activated
+     */
     singleMoves() {
         setInterval(() => {
             if (gameIntervalsRunning) {
@@ -86,8 +98,10 @@ class Character extends MovealbeObject {
         }, 100);
     }
 
+    /**
+     * animates characters images
+     */
     animateImages() {
-        //animate images of character
         setInterval(() => {
             if (gameIntervalsRunning) {
                 if (this.isDead()) {
@@ -120,6 +134,9 @@ class Character extends MovealbeObject {
         }, 100);
     }
 
+    /**
+     * ends game when character is dead.
+     */
     gameOver() {
         gameIsRunning = false;
         setTimeout(() => {
@@ -127,6 +144,9 @@ class Character extends MovealbeObject {
         }, 3500);
     }
 
+    /**
+     * special move: slap attack
+     */
     slapAttack() {
         if (this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.isHurt1() && !this.keyboardBlocked) {
             this.currentImage = 0;
@@ -154,7 +174,9 @@ class Character extends MovealbeObject {
         }
     }
 
-    //exend range of Slapmove, hitbox gets extended
+    /**
+     * increases the range of the character's hitbox in the direction in which the slap attack is performed
+     */
     increaseOffset() {
         if (this.otherDirection) {
             this.offset.x = this.offset.x - this.offset.slapMoveExtension;
@@ -163,6 +185,9 @@ class Character extends MovealbeObject {
         }
     }
 
+    /**
+     * decreases hitbox range when slap attack is finished
+     */
     decreaseOffset() {
         if (this.otherDirection) {
             this.offset.x = this.offset.x + this.offset.slapMoveExtension;
@@ -171,7 +196,9 @@ class Character extends MovealbeObject {
         }
     }
 
-
+    /**
+    * special move: bubble attack
+    */
     bubbleAttack() {
         if (this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
@@ -194,12 +221,18 @@ class Character extends MovealbeObject {
         }
     }
 
+    /**
+     * creates bubble object
+     */
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
         this.world.bubbles.push(bubble);
         if (soundOn) { this.playBubbleAttackSound() };
     }
 
+    /**
+    * special move: poisoned bubble attack
+    */
     poisonedBubbleAttack() {
         if (this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
             this.currentImage = 0;
@@ -222,7 +255,9 @@ class Character extends MovealbeObject {
         }
     }
 
-
+    /**
+     * creates poisoned bubble object and updates collected bubbles and status bar
+     */
     createPoisonedBubble() {
         if (this.poisonCollected > 0) {
             let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
@@ -233,6 +268,10 @@ class Character extends MovealbeObject {
         }
     }
 
+    /**
+     *  updates collected coins and poison and status bar
+     * @param {object} o coin or poison
+     */
     collect(o) {
         if (o instanceof Coin) {
             this.coinsCollected++;
@@ -245,36 +284,57 @@ class Character extends MovealbeObject {
         }
     }
 
+    /**
+     * checks if a key is pressed
+     * @returns boolean
+     */
     noKeyIsPressed() {
         return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
     }
 
+    /**
+     * true if more than 3 seconds passed between a key or a touch event
+     * @returns boolean
+     */
     isLongIdle() {
         let timePassed = new Date().getTime() - this.world.keyboard.lastEvent;
         return timePassed > 3000;
     }
 
+    /**
+     * plays sound when character started bubble attack
+     */
     playBubbleAttackSound() {
         BUBBLE_ATTACK_SOUND.volume = 0.4;
         BUBBLE_ATTACK_SOUND.play();
     }
 
+    /**
+     * plays sound when character started poisoned bubble attack
+     */
     playPoisonedBubbleAttackSound() {
         POISONED_BUBBLE_ATTACK_SOUND.volume = 0.2;
         POISONED_BUBBLE_ATTACK_SOUND.play();
     }
 
+    /**
+     * plays sound when character collected a coin
+     */
     playCoinCollectedSound() {
         COLLECT_COIN_SOUND.volume = 0.2;
         COLLECT_COIN_SOUND.play();
     }
 
+    /**
+     * plays sound when character collected a poison item
+     */
     playPoisonCollectedSound() {
         COLLECT_POISON_SOUND.volume = 0.2;
         COLLECT_POISON_SOUND.play();
     }
-
-
+    /**
+     * plays sound when character is hurt
+     */
     playCharacterIsHurtSound() {
         if (!this.hurtSoundPlayed) {
             CHARACTER_HURT_SOUND.volume = 0.2;
@@ -285,12 +345,14 @@ class Character extends MovealbeObject {
             }, 1000);
         }
     }
-    //huer sound just louder
+
+    /**
+     * plays different sounds when character is dead
+     */
     playCharacterIsDeadSounds() {
         if (!this.deadSoundsPlayed) {
             CHARACTER_HURT_SOUND.volume = 0.5;
             CHARACTER_HURT_SOUND.play()
-
             setTimeout(() => {
                 CHARACTER_DEAD_BUBBLE_SOUND.volume = 0.2;
                 CHARACTER_DEAD_BUBBLE_SOUND.play();
@@ -299,6 +361,9 @@ class Character extends MovealbeObject {
         }
     }
 
+    /**
+     * plays sound when character moves
+     */
     playCharacterSwimSound() {
         if (!this.swimSoundPlayed) {
             CHARACTER_SWIM_SOUND.volume = 0.2;

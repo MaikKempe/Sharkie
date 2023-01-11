@@ -7,12 +7,19 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
 
-    
+    /**
+     * loads a single image by creating a new image object
+     * @param {string} path img url
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * loads images from given array by creating new image objects
+     * @param {array} arr array with img urls
+     */
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
@@ -20,7 +27,11 @@ class DrawableObject {
             this.imageCache[path] = img;
         });
     }
-    
+
+    /**
+     * makes an object's hitbox visible
+     * @param {*} ctx contect of canvas
+     */
     drawHitbox(ctx) {
         if (this instanceof Character || this instanceof PufferfishNormal || this instanceof PufferfishHard || this instanceof Endboss || this instanceof CollectableObject || this instanceof Bubble || this instanceof PoisonedBubble) {
             ctx.beginPath();
@@ -30,5 +41,4 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-
 }
