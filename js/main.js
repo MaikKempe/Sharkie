@@ -27,11 +27,12 @@ let executedByEventlistener = false;
  */
 function init() {
     preloadFiles();
+    /** 
     if (allImagesPreloaded) {
         removeLoadscreen();
         showStartScreen();
         checkDevice();
-    }
+    }*/
 }
 
 /**
