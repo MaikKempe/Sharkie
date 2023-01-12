@@ -1,7 +1,7 @@
 class Level {
     enemies;
     endboss;
-    collectableObjects;
+    collectibleObjects;
     backgroundObjects;
     levelStartX = -680;
     levelEndX = 4 * 720;
@@ -11,10 +11,10 @@ class Level {
     allPoisons;
 
 
-    constructor(enemies, endboss, collectableObjects, backgroundObjects) {
+    constructor(enemies, endboss, collectibleObjects, backgroundObjects) {
         this.enemies = enemies;
         this.endboss = endboss;
-        this.collectableObjects = collectableObjects;
+        this.collectibleObjects = collectibleObjects;
         this.backgroundObjects = backgroundObjects;
         this.allCoins = this.countCoins();
         this.allPoisons = this.countPoisons();
@@ -25,7 +25,7 @@ class Level {
      * @returns integer
      */
     countCoins() {
-        return this.collectableObjects.filter(o => o instanceof Coin).length;
+        return this.collectibleObjects.filter(o => o instanceof Coin).length;
     }
 
     /**
@@ -33,6 +33,6 @@ class Level {
     * @returns integer
     */
     countPoisons() {
-        return this.collectableObjects.filter(o => o instanceof Poison).length;
+        return this.collectibleObjects.filter(o => o instanceof Poison).length;
     }
 }

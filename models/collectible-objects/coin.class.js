@@ -1,4 +1,4 @@
-class Coin extends CollectableObject {
+class Coin extends CollectibleObject {
     width = 50;
     height = 50;
     offset = {

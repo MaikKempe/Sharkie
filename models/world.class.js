@@ -13,7 +13,7 @@ class World {
     character = new Character();
     enemies = level1.enemies;
     endboss = level1.endboss;
-    collectableObjects = level1.collectableObjects;
+    collectibleObjects = level1.collectibleObjects;
     backgroundObjects = level1.backgroundObjects;
 
     constructor(canvas, keyboard) {
@@ -34,7 +34,7 @@ class World {
         // space for moveable objects
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.collectableObjects);
+        this.addObjectsToMap(this.level.collectibleObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.endboss);
         this.addToMap(this.character);
@@ -239,16 +239,16 @@ class World {
     * collision between character and collectible object. Deletes object after collision and updates statusbar.
     */
     characterCollectsObject() {
-        this.level.collectableObjects.forEach((object) => {
+        this.level.collectibleObjects.forEach((object) => {
             if (this.character.isColliding(object)) {
                 if (object instanceof Coin) {
                     this.character.collect(object);
-                    this.deleteObject(this.collectableObjects, object);
+                    this.deleteObject(this.collectibleObjects, object);
                     this.updateStatusbarCoins();
                 }
                 if (object instanceof Poison) {
                     this.character.collect(object);
-                    this.deleteObject(this.collectableObjects, object);
+                    this.deleteObject(this.collectibleObjects, object);
                     this.updateStatusbarPoisons();
                 }
             }
