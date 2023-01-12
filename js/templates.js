@@ -212,7 +212,10 @@ function helpSectionTemplate() {
      </div>
      <div class="help-description">
        <span>
-         Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltext Beispieltex
+         Sharkie loves adventures. But on his way through the ocean he encounters many enemies. Try to fight them. 
+         Slap-moves and clean bubbles will always work against poisonous pufferfishes. His strongest enemy, 
+         the deadly orca, can only be defeated with poisoned bubbles. 
+         Be prepaired and collect enough poison jars for the bossfight.
        </span>
      </div>
      <div class="help-headline">
