@@ -39,6 +39,10 @@
     display: none;
   }
 
+  .description-container {
+    display: none;
+  }
+
 
   /* help section */
   h3 {
