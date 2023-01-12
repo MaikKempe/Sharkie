@@ -74,7 +74,7 @@ class World {
         this.flipImage(o);
         this.ctx.drawImage(o.img, o.x, o.y, o.height, o.width);
         this.flipImageBack(o);
-        o.drawHitbox(this.ctx);
+        //o.drawHitbox(this.ctx);
     }
 
     /**
