@@ -416,7 +416,6 @@ h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height: 90px;
     width: 720px;
 }
@@ -424,14 +423,6 @@ h4 {
 #gamescreen-headline {
     display: none;
     animation: opacity 225ms ease-in-out;
-}
-
-.gamescreen-container span {
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    line-height: 1;
-    font-weight: lighter;
 }
 
 .game-content-desktop {
@@ -445,6 +436,64 @@ h4 {
     animation: opacity 225ms ease-in-out;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.description-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+    width: 720px;
+}
+
+.description-container span {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    line-height: 1;
+    font-weight: lighter;
+    margin-top: 8px;
+}
+
+.description-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.key-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 42px;
+    background: #2e057c;
+    border-radius: 12px;
+    border: 4px solid white;
+}
+
+.key-description-letter {
+    font-weight: lighter;
+    color: white;
+    font-size: 22px;
+}
+
+.key-description-img {
+    width: 32px;
+    height: 32px;
+}
+
+.space-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 180px;
+    background: #2e057c;
+    border-radius: 12px;
+    border: 4px solid white;
 }
 
 #gamescreen-blocked {

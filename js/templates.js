@@ -72,14 +72,34 @@ function gameScreenDesktopTemplate() {
         </div>
      </div>
   </div>
-  <div class="gamescreen-container">
-      <div id="gamescreen-description">
-        <span>Arrows: Move</span>
-        <span>Space: Slap-Attack</span>
-        <span>B: Bubble Attack</span>
-        <span>V: Poisoned Bubble Attack</span>
-      </div>
-  </div>`;
+  <div class="description-container">
+    <div id="gamescreen-description">
+        <div class="description-element">
+            <div class="key-description">
+                <img src="img/8_icons/arrows.png" class="key-description-img">
+            </div>
+            <span>Move<br>Sharkie</span>
+        </div>
+        <div class="description-element">
+            <div class="space-description">
+                <div class="key-description-letter">Space</div>
+            </div>
+            <span>Slap<br>Attack</span>
+        </div>
+        <div class="description-element">
+            <div class="key-description">
+                <div class="key-description-letter">B</div>
+            </div>
+            <span>Bubble<br>Attack</span>
+        </div>
+        <div class="description-element">
+            <div class="key-description">
+                <div class="key-description-letter">V</div>
+            </div>
+            <span>Poisoned<br>Bubble Attack</span>
+        </div>
+     </div>
+   </div>`;
 }
 
 /**

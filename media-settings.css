@@ -252,6 +252,7 @@
     width: 36px;
     height: 36px;
     border: 4px solid white;
+    border-radius: 12px;
   }
 
   .key-letter {
@@ -266,6 +267,7 @@
   .space {
     height: 36px;
     width: 160px;
+    border-radius: 12px;
   }
 
   .collectible-element {
@@ -377,7 +379,6 @@
     width: 32px;
     height: 32px;
     border: 4px solid white;
-    border-radius: 12px;
   }
 
   .key-letter {
@@ -392,7 +393,6 @@
   .space {
     height: 32px;
     width: 132px;
-    border-radius: 12px;
   }
 
   .collectible-element {
