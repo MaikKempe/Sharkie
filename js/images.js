@@ -46,7 +46,7 @@ const BACKGROUND_IMAGES = [
     'img/3_background/layers/4_fondo2/D.png',
     'img/3_background/layers/3_fondo1/D.png',
     'img/3_background/layers/2_floor/D.png',
-    'img/3_background/layers/1_light/D.png',
+    'img/3_background/layers/1_light/D.png'
 ];
 
 
@@ -141,7 +141,7 @@ const CHARACTER_IMAGES_HURT = [
     'img/1_sharkie/5_hurt/1_poisoned/1.png',
     'img/1_sharkie/5_hurt/1_poisoned/2.png',
     'img/1_sharkie/5_hurt/1_poisoned/3.png',
-    'img/1_sharkie/5_hurt/1_poisoned/4.png',
+    'img/1_sharkie/5_hurt/1_poisoned/4.png'
 ];
 
 
@@ -198,7 +198,7 @@ const STATUSBAR_ENDBOSS_IMAGES = [
     'img/4_marcadores/orange/40_copia1.png',
     'img/4_marcadores/orange/60_copia1.png',
     'img/4_marcadores/orange/80_copia1.png',
-    'img/4_marcadores/orange/100_copia1.png',
+    'img/4_marcadores/orange/100_copia1.png'
 ];
 
 
@@ -209,14 +209,14 @@ const PUFFERFISH_NORMAL_IMAGES_SWIM = [
     'img/2_enemy/1_pufferfish/1_swim/1.swim2.png',
     'img/2_enemy/1_pufferfish/1_swim/1.swim3.png',
     'img/2_enemy/1_pufferfish/1_swim/1.swim4.png',
-    'img/2_enemy/1_pufferfish/1_swim/1.swim5.png',
+    'img/2_enemy/1_pufferfish/1_swim/1.swim5.png'
 ];
 
 
 const PUFFERFISH_NORMAL_IMAGES_IMAGES_DEAD = [
     'img/2_enemy/1_pufferfish/4_DIE/1.1.png',
     'img/2_enemy/1_pufferfish/4_DIE/1.2.png',
-    'img/2_enemy/1_pufferfish/4_DIE/1.3.png',
+    'img/2_enemy/1_pufferfish/4_DIE/1.3.png'
 ];
 
 
@@ -235,7 +235,7 @@ const PUFFERFISH_NORMAL_IMAGES_IMAGES_HURT = [
     'img/2_enemy/1_pufferfish/2_transition/3.transition4.png',
     'img/2_enemy/1_pufferfish/2_transition/1.transition3.png',
     'img/2_enemy/1_pufferfish/2_transition/1.transition2.png',
-    'img/2_enemy/1_pufferfish/2_transition/1.transition1.png',
+    'img/2_enemy/1_pufferfish/2_transition/1.transition1.png'
 ];
 
 
@@ -280,7 +280,7 @@ const PUFFERFISH_HARD_IMAGES_ANGRY = [
     'img/2_enemy/1_pufferfish/2_transition/3.transition4.png',
     'img/2_enemy/1_pufferfish/2_transition/3.transition3.png',
     'img/2_enemy/1_pufferfish/2_transition/3.transition2.png',
-    'img/2_enemy/1_pufferfish/2_transition/3.transition1.png',
+    'img/2_enemy/1_pufferfish/2_transition/3.transition1.png'
 ];
 
 
@@ -387,7 +387,7 @@ const BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/bubble.png'];
 const POISONED_BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/poisoned_bubble_for_whale.png'];
 
 
-//############# All images in array for preload ###################
+//############# All images for preload ###################
 
 const allImages = [
     UI_IMAGES,

@@ -22,29 +22,29 @@ class BackgroundObject extends MovealbeObject {
 
     checkIfCharacterMoves() {
         if (gameIntervalsRunning) {
-            this.characterMovesUp();
-            this.characterMovesDown();
-            this.characterMovesLeft();
-            this.characterMovesRight();
+            this.checkIfCharacterMovesUp();
+            this.checkIfCharacterMovesDown();
+            this.checkIfCharacterMovesLeft();
+            this.checkIfCharacterMovesRight();
         }
     }
 
-    characterMovesUp() {
+    checkIfCharacterMovesUp() {
         if (this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.y += this.speedY;
         }
     }
-    characterMovesDown() {
+    checkIfCharacterMovesDown() {
         if (this.world.keyboard.DOWN && this.world.character.y < this.world.level.endY && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.y -= this.speedY;
         }
     }
-    characterMovesLeft() {
+    checkIfCharacterMovesLeft() {
         if (this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.x += this.speedX;
         }
     }
-    characterMovesRight() {
+    checkIfCharacterMovesRight() {
         if (this.world.keyboard.RIGHT && this.world.character.x < this.world.level.levelEndX && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.x -= this.speedX;
         }
