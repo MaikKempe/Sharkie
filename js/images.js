@@ -1,17 +1,57 @@
 
+//##################### UI images/icons #############################
+
+const UI_IMAGES = [
+    //Startscreen
+    'img/3_background/dark/1.png',
+    'img/8_icons/move_screen_arrow.png',
+
+    //Gamescreen
+    'img/8_icons/fullscreen_on.png',
+    'img/8_icons/fullscreen_off.png',
+    'img/8_icons/sound_on.png',
+    'img/8_icons/sound_off.png',
+    'img/8_icons/standby_off.png',
+    'img/8_icons/standby_on.png',
+    'img/8_icons/info_on.png',
+    'img/8_icons/info_off.png',
+    'img/8_icons/poisoned_bubble.png',
+    'img/8_icons/bubble.png',
+    'img/8_icons/slap_attack_icon.png',
+    'img/8_icons/arrow_up3.png',
+    'img/8_icons/arrow_left3.png',
+    'img/8_icons/arrow_right3.png',
+    'img/8_icons/arrow_down3.png',
+
+    //endscreens
+    'img/1_sharkie/6_dead/1_poisoned/sin_subir/DES 2_00011.png',
+    'img/6_botones/sharkie_win.png',
+
+    // help-sction
+    'img/8_icons/arrows.png',
+    'img/7_introduction/sharkie.png',
+    'img/7_introduction/sharkie_slap.png',
+    'img/7_introduction/pufferfishes.png',
+    'img/7_introduction/sharkie_bubble.png',
+    'img/7_introduction/sharkie_poisoned_bubble.png',
+    'img/7_introduction/endboss.png',
+    'img/7_introduction/coin.png',
+    'img/7_introduction/poison.png',
+];
+
 //##################### Background #############################
- 
+
 const BACKGROUND_IMAGES = [
     'img/3_background/layers/5_water/D.png',
     'img/3_background/layers/4_fondo2/D.png',
     'img/3_background/layers/3_fondo1/D.png',
     'img/3_background/layers/2_floor/D.png',
-    'img/3_background/layers/1_light/D.png'
+    'img/3_background/layers/1_light/D.png',
 ];
 
 
 //################## Character sharkie #########################
- 
+
 const CHARACTER_IMAGES_IDLE = [
     'img/1_sharkie/1_IDLE/1.png',
     'img/1_sharkie/1_IDLE/2.png',
@@ -122,7 +162,7 @@ const CHARACTER_IMAGES_DEAD = [
 
 
 //############ Statusbars character/endboss ################
- 
+
 const STATUSBAR_LIFE_IMAGES = [
     'img/4_marcadores/green/life/0_copia3.png',
     'img/4_marcadores/green/life/20_copia4.png',
@@ -163,7 +203,7 @@ const STATUSBAR_ENDBOSS_IMAGES = [
 
 
 //################## enemy: pufferfish normal #######################
- 
+
 const PUFFERFISH_NORMAL_IMAGES_SWIM = [
     'img/2_enemy/1_pufferfish/1_swim/1.swim1.png',
     'img/2_enemy/1_pufferfish/1_swim/1.swim2.png',
@@ -259,7 +299,7 @@ const PUFFERFISH_HARD_IMAGES_DEAD = [
 
 
 
- //###################### enemy: enboss #########################
+//###################### enemy: enboss #########################
 
 const ENDBOSS_IMAGES_INTRODUCE = [
     'img/2_enemy/3_final_enemy/1_introduce/1.png',
@@ -274,7 +314,7 @@ const ENDBOSS_IMAGES_INTRODUCE = [
     'img/2_enemy/3_final_enemy/1_introduce/10.png'
 ];
 
- const ENDBOSS_IMAGES_SWIM = [
+const ENDBOSS_IMAGES_SWIM = [
     'img/2_enemy/3_final_enemy/2_floating/1.png',
     'img/2_enemy/3_final_enemy/2_floating/2.png',
     'img/2_enemy/3_final_enemy/2_floating/3.png',
@@ -289,7 +329,7 @@ const ENDBOSS_IMAGES_INTRODUCE = [
 ];
 
 
- const ENDBOSS_IMAGES_HURT = [
+const ENDBOSS_IMAGES_HURT = [
     'img/2_enemy/3_final_enemy/hurt/1.png',
     'img/2_enemy/3_final_enemy/hurt/2.png',
     'img/2_enemy/3_final_enemy/hurt/3.png',
@@ -297,7 +337,7 @@ const ENDBOSS_IMAGES_INTRODUCE = [
 ];
 
 
- const ENDBOSS_IMAGES_ATTACK = [
+const ENDBOSS_IMAGES_ATTACK = [
     'img/2_enemy/3_final_enemy/attack/1.png',
     'img/2_enemy/3_final_enemy/attack/2.png',
     'img/2_enemy/3_final_enemy/attack/3.png',
@@ -307,7 +347,7 @@ const ENDBOSS_IMAGES_INTRODUCE = [
 ];
 
 
- const ENDBOSS_IMAGES_DEAD = [
+const ENDBOSS_IMAGES_DEAD = [
     'img/2_enemy/3_final_enemy/dead/1.png',
     'img/2_enemy/3_final_enemy/dead/2.png',
     'img/2_enemy/3_final_enemy/dead/1.png',
@@ -321,7 +361,7 @@ const ENDBOSS_IMAGES_INTRODUCE = [
     'img/2_enemy/3_final_enemy/dead/5.png'
 ];
 
- //################## collectible objects #######################
+//################## collectible objects #######################
 
 
 const COIN_IMAGE = ['img/4_marcadores/1_coins/1.png'];
@@ -339,17 +379,18 @@ const POISON_IMAGES = [
 ];
 
 
- //############### other moveable objects #######################
- 
+//############### other moveable objects #######################
+
 
 const BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/bubble.png'];
 
 const POISONED_BUBBLE_IMAGE = ['img/1_sharkie/4_attack/bubble_trap/poisoned_bubble_for_whale.png'];
 
 
- //############# All images in array for preload ###################
+//############# All images in array for preload ###################
 
 const allImages = [
+    UI_IMAGES,
     BACKGROUND_IMAGES,
     CHARACTER_IMAGES_IDLE,
     CHARACTER_IMAGES_SLEEPING,
