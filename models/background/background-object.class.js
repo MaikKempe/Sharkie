@@ -15,34 +15,36 @@ class BackgroundObject extends MovealbeObject {
      * moves background elements slowly when character is moving.
      */
     moveBackground() {
-        setInterval(() => {
-            if (gameIntervalsRunning) {
-                this.checkIfCharacterMovesUp();
-                this.checkIfCharacterMovesDown();
-                this.checkIfCharacterMovesLeft();
-                this.checkIfCharacterMovesRight();
-            }
-        }, 1000 / 60);
+        setInterval(() => this.checkIfCharacterMoves(), 1000 / 60);
     }
 
     //helpfunctions
 
-    checkIfCharacterMovesUp() {
+    checkIfCharacterMoves() {
+        if (gameIntervalsRunning) {
+            this.characterMovesUp();
+            this.characterMovesDown();
+            this.characterMovesLeft();
+            this.characterMovesRight();
+        }
+    }
+
+    characterMovesUp() {
         if (this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.y += this.speedY;
         }
     }
-    checkIfCharacterMovesDown() {
+    characterMovesDown() {
         if (this.world.keyboard.DOWN && this.world.character.y < this.world.level.endY && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.y -= this.speedY;
         }
     }
-    checkIfCharacterMovesLeft() {
+    characterMovesLeft() {
         if (this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.x += this.speedX;
         }
     }
-    checkIfCharacterMovesRight() {
+    characterMovesRight() {
         if (this.world.keyboard.RIGHT && this.world.character.x < this.world.level.levelEndX && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
             this.x -= this.speedX;
         }

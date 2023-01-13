@@ -501,6 +501,8 @@ function listenForFullscreenChange() {
     })
 };
 
+
+
 /**
  * function coordinates the toggleScreen function and the event listener
  * that no bug can arise between these functions
