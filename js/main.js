@@ -5,7 +5,7 @@ let isTouchDevice = false;
 let allImagesPreloaded = false;
 let fullscreenOn = false;
 let soundOn = true;
-let soundWasOff = false; // used in standby mode
+let soundWasOff = false;
 let descriptionOn = true;
 let startButtonPressed = false;
 let startScreenOn = true;
@@ -127,26 +127,39 @@ function checkIfScreenIsPortrait() {
  */
 function listenForScreenOrientation() {
     portrait.addEventListener("change", function (event) {
-        // ingame
         if (gameScreenLoaded && !gameFinished) {
-            if (isPortrait(event)) {
-                pauseGameInPortrait();
-                showBlockedGameScreen();
-            } else {
-                removeBlockedGameScreen();
-            }
-            // startscreen
+            updateGamescreen(event);
         } else if (startScreenOn) {
-            if (isPortrait(event)) {
-                disableStartButton();
-                showTurnYourScreenInfo();
-            } else {
-                enableStartButton();
-                removeTurnYourScreenInfo();
-            }
+            updateStartscreen(event);
         }
     })
 };
+
+/**
+ * updates gamescreen when mobile screen switches orientation
+ */
+
+function updateGamescreen(event) {
+    if (isPortrait(event)) {
+        pauseGameInPortrait();
+        showBlockedGameScreen();
+    } else {
+        removeBlockedGameScreen();
+    }
+}
+
+/**
+ * updates startscreen when mobile screen switches orientation
+ */
+function updateStartscreen(event) {
+    if (isPortrait(event)) {
+        disableStartButton();
+        showTurnYourScreenInfo();
+    } else {
+        enableStartButton();
+        removeTurnYourScreenInfo();
+    }
+}
 
 //helpfunctions
 
@@ -405,57 +418,34 @@ function removeGameScreen() {
 function toggleScreen() {
     if (!fullscreenOn) {
         openFullscreen();
-        if (isTouchDevice) {
-            showFullscreenOffIcon();
-        } else {
-            hideDescriptionButton();
-            showFullscreenOffIcon();
-        }
+        updateUIFullscreenOff();
     } else {
         closeFullscreen();
-        if (isTouchDevice) {
-            showFullscreenOnIcon();
-        } else {
-            showDescriptionButton();
-            showFullscreenOnIcon();
-        }
+        updateUIFullscreenOn();
     }
 };
 
 /**
- * opens or closes the full screen if the toggle menu button was not used and updates booleans and UI.
+ * updates UI for desktop or mobile device when fullscreen is on
  */
-function listenForFullscreenChange() {
-    document.addEventListener('fullscreenchange', () => {
-        if (gameScreenLoaded && !gameFinished) {
-            if (document.fullscreenElement) {
-                adjustFullscreenSettings();
-            } else {
-                adjustMinimizedScreenSettings();
-            }
-        }
-    })
-};
-
-/**
- * function coordinates the toggleScreen function and the event listener
- * that no bug can arise between these functions
- */
-function adjustFullscreenSettings() {
-    if (!fullscreenOn) {
-        executedByEventlistener = true;
-        toggleScreen();
+function updateUIFullscreenOff() {
+    if (isTouchDevice) {
+        showFullscreenOffIcon();
+    } else {
+        hideDescriptionButton();
+        showFullscreenOffIcon();
     }
 }
 
 /**
- * function coordinates the toggleScreen function and the event listener
- * that no bug can arise between these functions
+ * updates UI for desktop or mobile device when fullscreen is off
  */
-function adjustMinimizedScreenSettings() {
-    if (fullscreenOn) {
-        executedByEventlistener = true;
-        toggleScreen();
+function updateUIFullscreenOn() {
+    if (isTouchDevice) {
+        showFullscreenOnIcon();
+    } else {
+        showDescriptionButton();
+        showFullscreenOnIcon();
     }
 }
 
@@ -497,6 +487,43 @@ function closeFullscreen() {
 };
 
 /**
+ * opens or closes the full screen if the toggle menu button was not used and updates booleans and UI.
+ */
+function listenForFullscreenChange() {
+    document.addEventListener('fullscreenchange', () => {
+        if (gameScreenLoaded && !gameFinished) {
+            if (document.fullscreenElement) {
+                adjustFullscreenSettings();
+            } else {
+                adjustMinimizedScreenSettings();
+            }
+        }
+    })
+};
+
+/**
+ * function coordinates the toggleScreen function and the event listener
+ * that no bug can arise between these functions
+ */
+function adjustFullscreenSettings() {
+    if (!fullscreenOn) {
+        executedByEventlistener = true;
+        toggleScreen();
+    }
+}
+
+/**
+ * function coordinates the toggleScreen function and the event listener
+ * that no bug can arise between these functions
+ */
+function adjustMinimizedScreenSettings() {
+    if (fullscreenOn) {
+        executedByEventlistener = true;
+        toggleScreen();
+    }
+}
+
+/**
  * add special CSS settings on canvas when fullscreenmode is active
  */
 function canvasFullscreenModeOn() {
@@ -533,27 +560,50 @@ function toggleSound() {
  */
 function togglePausedMode() {
     if (!gamePaused) {
-        showStandbyOnIcon();
         showPausedScreen();
+        updateUIPausedModeOn();
         gamePaused = true;
         gameIntervalsRunning = false;
         soundOn = false;
-        showSoundOffIcon();
-        soundButtonDisabledStyle();
+
     } else {
-        showStandbyOffIcon();
         removePausedScreen();
         gamePaused = false;
         gameIntervalsRunning = true;
-        soundButtonEnabledStyle();
-        //If player turned sound off before
-        if (soundWasOff) {
-            showSoundOffIcon();
-            soundOn = false;
-        } else {
-            showSoundOnIcon();
-            soundOn = true;
-        }
+        updateUIPausedModeOff();
+        checkIfSoundWasOff();
+    }
+}
+
+/**
+ * updates UI when game is paused
+ */
+function updateUIPausedModeOn() {
+    showStandbyOnIcon();
+    showSoundOffIcon();
+    soundButtonDisabledStyle();
+}
+
+/**
+ * updates UI when game is paused mode is disabled
+ */
+function updateUIPausedModeOff() {
+    showStandbyOffIcon();
+    soundButtonEnabledStyle();
+}
+
+
+/**
+ * Checks if player turned sound off before the game was pausend.
+ * If true, functions keeps sound off.
+ */
+function checkIfSoundWasOff() {
+    if (soundWasOff) {
+        showSoundOffIcon();
+        soundOn = false;
+    } else {
+        showSoundOnIcon();
+        soundOn = true;
     }
 }
 
