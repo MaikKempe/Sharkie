@@ -423,25 +423,41 @@ function toggleScreen() {
 };
 
 /**
- * opens or closes the full screen if the toggle menu button was not used
+ * opens or closes the full screen if the toggle menu button was not used and updates booleans and UI.
  */
 function listenForFullscreenChange() {
     document.addEventListener('fullscreenchange', () => {
         if (gameScreenLoaded && !gameFinished) {
             if (document.fullscreenElement) {
-                if (!fullscreenOn) {
-                    executedByEventlistener = true;
-                    toggleScreen();
-                }
+                adjustFullscreenSettings();
             } else {
-                if (fullscreenOn) {
-                    executedByEventlistener = true;
-                    toggleScreen();
-                }
+                adjustMinimizedScreenSettings();
             }
         }
     })
 };
+
+/**
+ * function coordinates the toggleScreen function and the event listener
+ * that no bug can arise between these functions
+ */
+function adjustFullscreenSettings() {
+    if (!fullscreenOn) {
+        executedByEventlistener = true;
+        toggleScreen();
+    }
+}
+
+/**
+ * function coordinates the toggleScreen function and the event listener
+ * that no bug can arise between these functions
+ */
+function adjustMinimizedScreenSettings() {
+    if (fullscreenOn) {
+        executedByEventlistener = true;
+        toggleScreen();
+    }
+}
 
 /**
  * activate fullscreenmode
