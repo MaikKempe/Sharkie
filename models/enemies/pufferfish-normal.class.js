@@ -18,14 +18,14 @@ class PufferfishNormal extends Pufferfish {
         this.loadImages(PUFFERFISH_NORMAL_IMAGES_IMAGES_DEAD);
         this.x = x;
         this.y = y;
-        this.animate();
-        this.moveLeft();
+        this.animateMovement();
+        this.animateImages();
     }
 
     /**
     * animates movement and images for pufferfishes
     */
-    animate() {
+    animateImages() {
         setInterval(() => {
             if (gameIntervalsRunning) {
                 if (this.isDead()) {

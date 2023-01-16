@@ -36,15 +36,15 @@ class Character extends MovealbeObject {
         this.loadImages(CHARACTER_IMAGES_POISONED_BUBBLE_ATTACK);
         this.loadImages(CHARACTER_IMAGES_HURT);
         this.loadImages(CHARACTER_IMAGES_DEAD);
-        this.animateCharacter();
+        this.animate();
     }
 
     /**
      * calls character's animation functions
      */
-    animateCharacter() {
+    animate() {
         this.animateMovement();
-        this.singleMoves();
+        this.playSingleMoves();
         this.animateImages();
     }
 
@@ -54,27 +54,34 @@ class Character extends MovealbeObject {
     animateMovement() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked) {
-                    this.y -= this.speedY;
-                    if (soundOn) { this.playCharacterSwimSound() };
-                }
-                if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked) {
-                    this.y += this.speedY;
-                    if (soundOn) { this.playCharacterSwimSound() };
-                }
-                if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked) {//end of map
-                    this.x -= this.speedX;
-                    if (soundOn) { this.playCharacterSwimSound() };
-                    this.otherDirection = true;
-                }
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked) {
-                    this.x += this.speedX;
-                    if (soundOn) { this.playCharacterSwimSound() };
-                    this.otherDirection = false;
-                }
+                this.listenForMoveDirections();
                 this.moveCamera();
             }
         }, 1000 / 60);
+    }
+
+    /**
+    * checks if the player gives a move direction by pressing an arrow key and moves character
+    */
+    listenForMoveDirections() {
+        if (this.moveDirectionUp()) {
+            super.moveUP();
+            if (soundOn) { this.playCharacterSwimSound() };
+        }
+        if (this.moveDirectionDOWN()) {
+            super.moveDOWN();
+            if (soundOn) { this.playCharacterSwimSound() };
+        }
+        if (this.moveDirectionLEFT()) {
+            super.moveLEFT();
+            if (soundOn) { this.playCharacterSwimSound() };
+            this.otherDirection = true;
+        }
+        if (this.moveDirectionRIGHT()) {
+            super.moveRIGHT();
+            if (soundOn) { this.playCharacterSwimSound() };
+            this.otherDirection = false;
+        }
     }
 
     /**
@@ -88,7 +95,7 @@ class Character extends MovealbeObject {
     /**
      * listen if a special move is activated
      */
-    singleMoves() {
+    playSingleMoves() {
         setInterval(() => {
             if (gameIntervalsRunning) {
                 this.slapAttack();
@@ -373,5 +380,23 @@ class Character extends MovealbeObject {
                 this.swimSoundPlayed = false
             }, 1000);
         }
+    }
+
+    //helpfunctions
+
+    moveDirectionUp() {
+        return this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked;
+    }
+
+    moveDirectionDOWN() {
+        return this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked;
+    }
+
+    moveDirectionLEFT() {
+        return this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked;
+    }
+
+    moveDirectionRIGHT() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked;
     }
 }

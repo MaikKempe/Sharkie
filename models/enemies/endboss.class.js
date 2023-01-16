@@ -28,13 +28,13 @@ class Endboss extends MovealbeObject {
         this.loadImages(ENDBOSS_IMAGES_DEAD);
         this.x = x;
         this.y = y;
-        this.animate();
+        this.animateImages();
     }
 
     /**
     * animates movement and images for endboss
     */
-    animate() {
+    animateImages() {
         let i = 0;
         setInterval(() => {
             if (gameIntervalsRunning) {
@@ -61,6 +61,7 @@ class Endboss extends MovealbeObject {
                     }
                     i++;
                 }
+                //interations with character
                 if (this.characterIsInRange() && this.isIntroduced && !this.isDead()) {
                     this.isAttacking = true;
                     if (soundOn) { this.playAttackSound() };
@@ -70,13 +71,24 @@ class Endboss extends MovealbeObject {
                     this.speedX = 0;
                 }
                 if (this.firstContact()) {
-                    this.moveLeft();
+                    this.animateMovement();
                     this.isIntroduced = true;
                     this.pauseBackgroundMusic();
                     if (soundOn) { this.playEndbossAppearsSound() };
                 }
             }
         }, 100)
+    }
+
+    /**
+     * animates endboss movement
+     */
+    animateMovement() {
+        setInterval(() => {
+            if (gameIntervalsRunning) {
+                super.moveLEFT();
+            }
+        }, 1000 / 60);
     }
 
     /**

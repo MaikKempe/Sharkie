@@ -3,11 +3,21 @@ class StatusBar extends DrawableObject {
     height = 150;
     percentage;
 
+    /**
+     * updates statusbarimages
+     * @param {initeger} percentage 0 to 100
+     * @param {array} IMAGES array with img urls
+     */
     setPercentage(percentage, IMAGES) {
         this.percentage = percentage;
         let path = IMAGES[this.resolveImageIndex()]
         this.img = this.imageCache[path];
     }
+
+    /**
+     * calculates the index of a statusbarimage using the given percentage
+     * @returns {initeger} index number of statusbar image array
+     */
     resolveImageIndex() {
         if (this.percentage >= 100) {
             return 5;

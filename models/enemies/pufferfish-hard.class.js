@@ -20,14 +20,14 @@ class PufferfishHard extends Pufferfish {
         this.loadImages(PUFFERFISH_HARD_IMAGES_DEAD_ANGRY);
         this.x = x;
         this.y = y;
-        this.animate();
-        this.moveLeft();
+        this.animateMovement();
+        this.animateImages();
     };
 
     /**
-    * animates movement and images for pufferfishes
+    * animates images for pufferfishes
     */
-    animate() {
+    animateImages() {
         setInterval(() => {
             if (gameIntervalsRunning) {
                 if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
@@ -47,6 +47,6 @@ class PufferfishHard extends Pufferfish {
                     this.playAnimation(PUFFERFISH_HARD_IMAGES_SWIM, 'multiple');
                 }
             }
-        }, 1000 / 10);
+        }, 100);
     }
 };

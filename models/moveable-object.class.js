@@ -25,7 +25,7 @@ class MovealbeObject extends DrawableObject {
             if (gameIntervalsRunning) {
                 this.playAnimation(images, option);
             }
-        }, 1000 / 10);
+        }, 100);
     }
 
     /**
@@ -41,21 +41,34 @@ class MovealbeObject extends DrawableObject {
             this.playAnimationMultiple(images);
         }
     }
+    
     /**
      * animates images by iterating through the images array once
      * @param {array} images array with img urls
      */
     playAnimationOnce(images) {
-        if (!this.animationStarted) {
-            this.currentImage = 0;
-        }
-
-        this.animationStarted = true;
+        this.resetCurrentImage();
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+        this.listenIfAnimationIsDone(images);
+    }
 
+    /**
+     * resets the current image that the array iteration starts at 0.
+     */
+    resetCurrentImage() {
+        if (!this.animationStarted) {
+            this.currentImage = 0;
+        }
+        this.animationStarted = true;
+    }
+
+    /**
+     * finishes animation when image array has been iterated once
+     */
+    listenIfAnimationIsDone(images) {
         if (this.currentImage == images.length) {
             this.animationStarted = false;
             this.animationStopped = true;
@@ -75,16 +88,31 @@ class MovealbeObject extends DrawableObject {
     }
 
     /**
+     * moves objects up
+     */
+    moveUP() {
+        this.y -= this.speedY;
+    }
+
+    /**
+    * moves objects down
+    */
+    moveDOWN() {
+        this.y += this.speedY;
+    }
+
+    /**
      * moves objects left
      */
-    moveLeft() {
-        if (!this.isDead()) {
-            setInterval(() => {
-                if (gameIntervalsRunning) {
-                    this.x -= this.speedX;
-                }
-            }, 1000 / 60);
-        }
+    moveLEFT() {
+        this.x -= this.speedX;
+    }
+
+    /**
+    * moves objects right
+    */
+    moveRIGHT() {
+        this.x += this.speedX;
     }
 
     /**
@@ -111,6 +139,7 @@ class MovealbeObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
     /**
      * return true if if time since last collision is lower than the defined hurt-time of an object
      * @returns boolean

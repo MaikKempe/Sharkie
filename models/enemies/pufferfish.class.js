@@ -4,6 +4,19 @@ class Pufferfish extends MovealbeObject {
     speedFloatingAway = 2;
 
     /**
+    * animates pufferfish movement
+    */
+    animateMovement() {
+        if (!this.isDead()) {
+            setInterval(() => {
+                if (gameIntervalsRunning) {
+                    super.moveLEFT();
+                }
+            }, 1000 / 60);
+        }
+    }
+
+    /**
      * moves dead pufferfish from the map
      * @param {boolean}
      */

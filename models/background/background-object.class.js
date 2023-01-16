@@ -18,35 +18,57 @@ class BackgroundObject extends MovealbeObject {
         setInterval(() => this.checkIfCharacterMoves(), 1000 / 60);
     }
 
-    //helpfunctions
 
+    /**
+    * check if player moves character. Calls function to move background elements in the right direction
+    */
     checkIfCharacterMoves() {
         if (gameIntervalsRunning) {
-            this.checkIfCharacterMovesUp();
-            this.checkIfCharacterMovesDown();
-            this.checkIfCharacterMovesLeft();
-            this.checkIfCharacterMovesRight();
+            this.UP();
+            this.DOWN();
+            this.LEFT();
+            this.RIGHT();
         }
     }
 
-    checkIfCharacterMovesUp() {
-        if (this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
-            this.y += this.speedY;
+    //helpfunctions
+    UP() {
+        if (this.characterMovesUP()) {
+            super.moveDOWN();
         }
     }
-    checkIfCharacterMovesDown() {
-        if (this.world.keyboard.DOWN && this.world.character.y < this.world.level.endY && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
-            this.y -= this.speedY;
+
+    DOWN() {
+        if (this.characterMovesDOWN()) {
+            super.moveUP();
         }
     }
-    checkIfCharacterMovesLeft() {
-        if (this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
-            this.x += this.speedX;
+
+    LEFT() {
+        if (this.characterMovesLEFT()) {
+            super.moveRIGHT();
         }
     }
-    checkIfCharacterMovesRight() {
-        if (this.world.keyboard.RIGHT && this.world.character.x < this.world.level.levelEndX && !this.world.character.isDead() && !this.world.character.keyboardBlocked) {
-            this.x -= this.speedX;
+
+    RIGHT() {
+        if (this.characterMovesRIGHT()) {
+            super.moveLEFT();
         }
+    }
+
+    characterMovesUP() {
+        return this.world.keyboard.UP && this.world.character.y > this.world.level.startY && !this.world.character.isDead() && !this.world.character.keyboardBlocked;
+    }
+
+    characterMovesDOWN() {
+        return this.world.keyboard.DOWN && this.world.character.y < this.world.level.endY && !this.world.character.isDead() && !this.world.character.keyboardBlocked;
+    }
+
+    characterMovesLEFT() {
+        return this.world.keyboard.LEFT && this.world.character.x > this.world.level.levelStartX && !this.world.character.isDead() && !this.world.character.keyboardBlocked;
+    }
+
+    characterMovesRIGHT() {
+        return this.world.keyboard.RIGHT && this.world.character.x < this.world.level.levelEndX && !this.world.character.isDead() && !this.world.character.keyboardBlocked;
     }
 }
