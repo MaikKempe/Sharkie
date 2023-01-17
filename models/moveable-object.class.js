@@ -41,7 +41,7 @@ class MovealbeObject extends DrawableObject {
             this.playAnimationMultiple(images);
         }
     }
-    
+
     /**
      * animates images by iterating through the images array once
      * @param {array} images array with img urls
@@ -113,6 +113,66 @@ class MovealbeObject extends DrawableObject {
     */
     moveRIGHT() {
         this.x += this.speedX;
+    }
+
+    /**
+     * let objects float right
+     */
+    floatRIGHT() {
+        this.x += this.speedX;
+        this.y -= this.speedY;
+    }
+
+    /**
+     * let objects float left
+     */
+    floatLEFT() {
+        this.x -= this.speedX;
+        this.y -= this.speedY;
+    }
+
+    /**
+     * let bubbles float
+     * @param {*} x coordinate from which the bubble is created
+     * @param {*} y coordinate from which the bubble is created
+     */
+    floatBubbles(x, y) {
+        this.x = x;
+        this.y = y;
+        if (this.charaterIsMirrored()) {
+            this.changeBubbleSpawnPosition();
+        }
+        this.setFloatDirection();
+    }
+
+    /**
+     * checks if character is mirrored and let bubbles float in right direction
+     */
+    setFloatDirection() {
+        setInterval(() => {
+            if (gameIntervalsRunning) {
+                if (this.charaterIsMirrored()) {
+                    this.floatLEFT();
+                } else {
+                    this.floatRIGHT();
+                }
+            }
+        }, 1000 / 60)
+    }
+
+    /**
+     * checks if character moves left.
+     * @returns boolean
+     */
+    charaterIsMirrored() {
+        return this.otherDirection;
+    }
+
+    /**
+     * function ensures that the bubble is always created in the direction in which the character swims
+     */
+    changeBubbleSpawnPosition() {
+        this.x -= 200;
     }
 
     /**

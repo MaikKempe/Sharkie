@@ -30,9 +30,22 @@ class World {
     * drawing all objects into canvas
     */
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
-        // space for moveable objects
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
+        this.drawMoveableObjects();
+        this.ctx.translate(-this.camera_x, 0);
+        this.drawFixedObjects();
+
+        self = this;
+        requestAnimationFrame(() => {
+            self.draw();
+        })
+    }
+
+    /**
+     * adds movable objects to map
+     */
+    drawMoveableObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.collectibleObjects);
         this.addObjectsToMap(this.level.enemies);
@@ -40,19 +53,18 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.bubbles);
         this.addObjectsToMap(this.poisonedBubbles);
-        this.ctx.translate(-this.camera_x, 0);
-        // space for fixed objects
+    }
+
+    /**
+     * adds fixed objects to map
+     */
+    drawFixedObjects() {
         this.addToMap(this.statusbarLife);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarPoison);
         if (this.endboss.isIntroduced) {
             this.addToMap(this.statusbarEndboss);
         };
-
-        self = this;
-        requestAnimationFrame(() => { //führt draw() solange aus, wie es die Grafikkarte hergibt.
-            self.draw();
-        })
     }
 
     /**
@@ -113,21 +125,28 @@ class World {
     }
 
     /**
-     * checks if enemies are dead and deletes them. character and dndboss don't need to be deleted
+     * checks if enemies are dead.
      */
     checkIfDead() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                this.level.enemies.forEach((enemy) => {
-                    if (enemy.isDead() && enemy instanceof Pufferfish) {
-                        //timespace for animation
-                        setTimeout(() => {
-                            this.deleteObject(this.level.enemies, enemy);
-                        }, 400);
-                    }
-                });
+                this.deleteDeadEnemies();
             }
         }, 650);
+    }
+
+    /**
+     * deletes regular enemies like pufferfishes if they are dead. the endboss doesn't need to be deleted
+     */
+    deleteDeadEnemies() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy.isDead() && enemy instanceof Pufferfish) {
+                //timespace for animation
+                setTimeout(() => {
+                    this.deleteObject(this.level.enemies, enemy);
+                }, 400);
+            }
+        });
     }
 
     /**
@@ -146,19 +165,50 @@ class World {
     }
 
     /**
-     * collision between enemy and character. calls hit function und updates statusbar
+     * collision between enemies and character. 
      */
     enemyHitsCharacter() {
+        this.regularEnemyHitsCharater();
+        this.endbossHitsCharacter();
+    }
+
+    /**
+     * checks if regular enemies (pufferfishes etc.) hits character. Calls hit function und updates statusbar
+     */
+    regularEnemyHitsCharater() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isSlapping) {
+            if (this.regularEnemyCollidesWithCharacter(enemy)) {
                 this.character.hit(enemy.attack);
                 this.updateStatusbarLife();
             }
         });
-        if (this.character.isColliding(this.level.endboss)) {
+    }
+
+    /**
+     * checks if regular enemies (pufferfishes etc.) collides with character
+     * @param {object} enemy 
+     * @returns funtions, objects, boolean
+     */
+    regularEnemyCollidesWithCharacter(enemy) {
+        return this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isSlapping;
+    }
+
+    /**
+     * checks if endboss hits character. Calls hit function und updates statusbar
+     */
+    endbossHitsCharacter() {
+        if (this.endbossCollidesWithCharacter()) {
             this.character.hit(this.level.endboss.attack);
             this.updateStatusbarLife();
         }
+    }
+
+    /**
+     * checks if endboss and character collide
+     * @returns function, object
+     */
+    endbossCollidesWithCharacter() {
+        return this.character.isColliding(this.level.endboss);
     }
 
     /**
@@ -167,30 +217,52 @@ class World {
      */
     bubbleHitsEnemy() {
         this.bubbles.forEach(bubble => {
-            if (bubble.y < 0) {  //bubble leaves window
-                this.deleteObject(this.bubbles, bubble);
-            }
-            if (bubble.isColliding(this.level.endboss)) {
-                if (soundOn) { this.playBubbleBurstSound(); }
-                this.deleteObject(this.bubbles, bubble);
+            this.bubbleLeavesWindow(bubble);
+            this.bubbleMeetsEndboss(bubble);
+            this.bubbleMeetsRegularEnemy(bubble);
+        });
+    }
 
-            }
-            this.level.enemies.forEach((enemy) => {
-                if (bubble.isColliding(enemy)) {
-                    if (enemy instanceof PufferfishNormal) {
-                        if (soundOn) { this.playBubbleBurstSound(); }
-                        enemy.hit(bubble.attack);
-                        this.deleteObject(this.bubbles, bubble);
-                    }
+    /**
+     * checks if bubble leves window and deletes it
+     * @param {object} bubble 
+     */
+    bubbleLeavesWindow(bubble) {
+        if (bubble.y < 0) {
+            this.deleteObject(this.bubbles, bubble);
+        }
+    }
 
-                    if (enemy instanceof PufferfishHard) {
-                        enemy.hitByBubble++;
-                        if (soundOn) { this.playBubbleBurstSound(); }
-                        enemy.hit(bubble.attack);
-                        this.deleteObject(this.bubbles, bubble);
-                    }
+    /**
+     * checks if bubble collides with endboss and deletes it. Endboss is not effected by normal bubbles
+     * @param {object} bubble 
+     */
+    bubbleMeetsEndboss(bubble) {
+        if (bubble.isColliding(this.level.endboss)) {
+            if (soundOn) { this.playBubbleBurstSound(); }
+            this.deleteObject(this.bubbles, bubble);
+        }
+    }
+
+    /**
+     * checks if bubble collides with regular enemies (pufferfish etc.). Deletes bubbles, calls hitfunction
+     * @param {object} bubble 
+     */
+    bubbleMeetsRegularEnemy(bubble) {
+        this.level.enemies.forEach((enemy) => {
+            if (bubble.isColliding(enemy)) {
+                if (enemy instanceof PufferfishNormal) {
+                    if (soundOn) { this.playBubbleBurstSound(); }
+                    enemy.hit(bubble.attack);
+                    this.deleteObject(this.bubbles, bubble);
                 }
-            });
+                if (enemy instanceof PufferfishHard) {
+                    enemy.hitByBubble++;
+                    if (soundOn) { this.playBubbleBurstSound(); }
+                    enemy.hit(bubble.attack);
+                    this.deleteObject(this.bubbles, bubble);
+                }
+            }
         });
     }
 

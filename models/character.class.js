@@ -40,105 +40,51 @@ class Character extends MovealbeObject {
     }
 
     /**
-     * calls character's animation functions
+     * calls character's animation functions with different intervals
      */
     animate() {
-        this.animateMovement();
-        this.playSingleMoves();
-        this.animateImages();
-    }
-
-    /**
-     * animates characters movement
-     */
-    animateMovement() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                this.listenForMoveDirections();
-                this.moveCamera();
+                this.animateImages();
+                this.listenForSingleMoves();
+            }
+        }, 100);
+
+        setInterval(() => {
+            if (gameIntervalsRunning) {
+                this.animateMovement();
             }
         }, 1000 / 60);
     }
 
     /**
-    * checks if the player gives a move direction by pressing an arrow key and moves character
-    */
-    listenForMoveDirections() {
-        if (this.moveDirectionUp()) {
-            this.moveUP();
-            if (soundOn) { this.playCharacterSwimSound() };
-        }
-        if (this.moveDirectionDOWN()) {
-            this.moveDOWN();
-            if (soundOn) { this.playCharacterSwimSound() };
-        }
-        if (this.moveDirectionLEFT()) {
-            this.moveLEFT();
-            if (soundOn) { this.playCharacterSwimSound() };
-            this.otherDirection = true;
-        }
-        if (this.moveDirectionRIGHT()) {
-            this.moveRIGHT();
-            if (soundOn) { this.playCharacterSwimSound() };
-            this.otherDirection = false;
-        }
-    }
-
-    /**
-     * moves camera when character moves
-     * @returns integer
-     */
-    moveCamera() {
-        return this.world.camera_x = -this.x + 10; //spawn position, movebackground
-    }
-
-    /**
-     * listen if a special move is activated
-     */
-    playSingleMoves() {
-        setInterval(() => {
-            if (gameIntervalsRunning) {
-                this.slapAttack();
-                this.bubbleAttack();
-                this.poisonedBubbleAttack();
-            }
-        }, 100);
-    }
-
-    /**
-     * animates characters images
+     * animates characters images calls other gameplay functions
      */
     animateImages() {
-        setInterval(() => {
-            if (gameIntervalsRunning) {
-                if (this.isDead()) {
-                    this.playAnimation(CHARACTER_IMAGES_DEAD, 'once');
-                    if (soundOn) { this.playCharacterIsDeadSounds() };
-                    this.gameOver();
-                } else if (this.isHurt1()) {
-                    this.playAnimation(CHARACTER_IMAGES_HURT, 'multiple');
-                    if (soundOn) { this.playCharacterIsHurtSound() };
-                } else if (this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.keyboardBlocked) {
-                    this.playAnimation(CHARACTER_IMAGES_SWIMMING, 'multiple');
-                } else if (this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.keyboardBlocked) { // end of map
-                    this.playAnimation(CHARACTER_IMAGES_SWIMMING, 'multiple');
-                } else if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.keyboardBlocked) {
-                    this.playAnimation(CHARACTER_IMAGES_SWIMMING, 'multiple');
-                } else if (this.world.keyboard.UP && this.y > this.world.level.startY && !this.keyboardBlocked) {
-                    this.playAnimation(CHARACTER_IMAGES_SWIMMING, 'multiple');
-                } else if (this.isSlapping) {
-                    this.playAnimation(CHARACTER_IMAGES_SLAP_ATTACK, 'once');
-                } else if (this.isBubbling) {
-                    this.playAnimation(CHARACTER_IMAGES_BUBBLE_ATTACK, 'once');
-                } else if (this.isPoisonedBubbling) {
-                    this.playAnimation(CHARACTER_IMAGES_POISONED_BUBBLE_ATTACK, 'once');
-                } else if (this.isLongIdle() && this.noKeyIsPressed) {
-                    this.playAnimation(CHARACTER_IMAGES_SLEEPING, 'multiple');
-                } else {
-                    this.playAnimation(CHARACTER_IMAGES_IDLE, 'multiple');
-                }
-            }
-        }, 100);
+        if (this.isDead()) {
+            this.animateDeath();
+            this.gameOver();
+        } else if (this.isHurt1()) {
+            this.animateHurtCharacter();
+        } else if (this.moveDirectionDOWN()) {
+            this.animateSwimming();
+        } else if (this.moveDirectionLEFT()) {
+            this.animateSwimming();
+        } else if (this.moveDirectionRIGHT()) {
+            this.animateSwimming();
+        } else if (this.moveDirectionUP()) {
+            this.animateSwimming();
+        } else if (this.isSlapping) {
+            this.animateSlapAttack();
+        } else if (this.isBubbling) {
+            this.animateBubbleAttack();
+        } else if (this.isPoisonedBubbling) {
+            this.animatePoisonedBubbleAttack();
+        } else if (this.playerIsAFK()) {
+            this.animateSleeping();
+        } else {
+            this.animateIdleMode();
+        }
     }
 
     /**
@@ -152,33 +98,130 @@ class Character extends MovealbeObject {
     }
 
     /**
+     * animates characters: death images, plays sound
+     */
+    animateDeath() {
+        this.playAnimation(CHARACTER_IMAGES_DEAD, 'once');
+        if (soundOn) { this.playCharacterIsDeadSounds() };
+    }
+
+    /**
+     * animates character: hurt images, plays sound
+     */
+    animateHurtCharacter() {
+        this.playAnimation(CHARACTER_IMAGES_HURT, 'multiple');
+        if (soundOn) { this.playCharacterIsHurtSound() };
+    }
+
+    /**
+     * animate charater: swim images
+     */
+    animateSwimming() {
+        this.playAnimation(CHARACTER_IMAGES_SWIMMING, 'multiple');
+    }
+
+    /**
+     * animate charater: slap attack images
+     */
+    animateSlapAttack() {
+        this.playAnimation(CHARACTER_IMAGES_SLAP_ATTACK, 'once');
+    }
+
+    /**
+     * animate charater: bubble attack images
+     */
+    animateBubbleAttack() {
+        this.playAnimation(CHARACTER_IMAGES_BUBBLE_ATTACK, 'once');
+    }
+
+    /**
+     * animate charater: poisoned bubble attack images
+     */
+    animatePoisonedBubbleAttack() {
+        this.playAnimation(CHARACTER_IMAGES_POISONED_BUBBLE_ATTACK, 'once');
+    }
+
+    /**
+     * checks if the player hasn't pressed a key for a certain time
+     * @returns functions
+     */
+    playerIsAFK() {
+        return this.isLongIdle() && this.noKeyIsPressed;
+    }
+
+    /**
+     * animate charater: long idle images
+     */
+    animateSleeping() {
+        this.playAnimation(CHARACTER_IMAGES_SLEEPING, 'multiple');
+    }
+
+    /**
+     * animate charater: idle images
+     */
+    animateIdleMode() {
+        this.playAnimation(CHARACTER_IMAGES_IDLE, 'multiple');
+    }
+
+    /**
+    * listen if a special move is activated
+    */
+    listenForSingleMoves() {
+        this.slapAttack();
+        this.bubbleAttack();
+        this.poisonedBubbleAttack();
+    }
+
+    /**
      * special move: slap attack
      */
     slapAttack() {
-        if (this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.isHurt1() && !this.keyboardBlocked) {
-            this.currentImage = 0;
-            this.keyboardBlocked = true;
-            this.isSlapping = true;
-            this.increaseOffset();
-
-            let keepKeyActive = setInterval(() => {
+        if (this.slapAttackActivated()) {
+            this.startSlapMove();
+            // keeps key event active that the animation cannot be interrupted by pressing other keys
+            let keepSpaceActive = setInterval(() => {
                 this.world.keyboard.SPACE = true;
                 this.activeKeyEvent = true;
             }, 100);
-
-            setTimeout(() => {
-                this.world.keyboard.SPACE = false;
-                this.activeKeyEvent = false;
-                this.isSlapping = false;
-                clearInterval(keepKeyActive);
-                this.decreaseOffset();
-                this.keyboardBlocked = false;
-            }, 750);
-            if (soundOn) {
-                this.swimSoundPlayed = false;
-                this.playCharacterSwimSound();
-            }
+            this.stopSlapMove(keepSpaceActive);
         }
+    }
+
+    /**
+    * checks if slap attack is activated
+    * @returns booleans, functions
+    */
+    slapAttackActivated() {
+        return this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.isHurt1() && !this.keyboardBlocked;
+    }
+
+    /**
+     * initializes and starts slap attack, plays sound
+     */
+    startSlapMove() {
+        this.currentImage = 0;
+        this.keyboardBlocked = true;
+        this.isSlapping = true;
+        this.increaseOffset();
+
+        if (soundOn) {
+            this.swimSoundPlayed = false;
+            this.playCharacterSwimSound();
+        }
+    }
+
+    /**
+     * stops slap attack animation by clearing the key event interval. Reset booleans
+     */
+    stopSlapMove(keepSpaceActive) {
+        setTimeout(() => {
+            this.world.keyboard.SPACE = false;
+            this.activeKeyEvent = false;
+            this.isSlapping = false;
+            clearInterval(keepSpaceActive);
+            this.decreaseOffset();
+            this.keyboardBlocked = false;
+        }, 750);
     }
 
     /**
@@ -207,29 +250,52 @@ class Character extends MovealbeObject {
     * special move: bubble attack
     */
     bubbleAttack() {
-        if (this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
-            this.currentImage = 0;
-            this.keyboardBlocked = true;
-            this.isBubbling = true;
-
-            let keepKeyActive = setInterval(() => {
+        if (this.bubbleAttackActivated()) {
+            this.startBubbleAttack();
+            // keeps key event active that the animation cannot be interrupted by pressing other keys
+            let keepBActive = setInterval(() => {
                 this.world.keyboard.B = true;
                 this.activeKeyEvent = true;
             }, 100);
-
-            setTimeout(() => {
-                this.world.keyboard.B = false;
-                this.activeKeyEvent = false;
-                this.isBubbling = false;
-                clearInterval(keepKeyActive);
-                this.keyboardBlocked = false;
-                this.createBubble();
-            }, 750);
+            this.finishBubbleAttack(keepBActive);
         }
     }
 
     /**
-     * creates bubble object
+    * checks if bubble attack is activated
+    * @returns booleans, functions
+    */
+    bubbleAttackActivated() {
+        return this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked;
+    }
+
+    /**
+    * initializes and starts bubble attack
+    */
+    startBubbleAttack() {
+        this.currentImage = 0;
+        this.keyboardBlocked = true;
+        this.isBubbling = true;
+    }
+
+    /**
+     * stops bubble attack animation by clearing the key event interval. Reset booleans.
+     * calls function to create bubble object
+     */
+    finishBubbleAttack(keepBActive) {
+        setTimeout(() => {
+            this.world.keyboard.B = false;
+            this.activeKeyEvent = false;
+            this.isBubbling = false;
+            clearInterval(keepBActive);
+            this.keyboardBlocked = false;
+            this.createBubble();
+        }, 750);
+    }
+
+
+    /**
+     * creates bubble object, plays sound
      */
     createBubble() {
         let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
@@ -241,38 +307,108 @@ class Character extends MovealbeObject {
     * special move: poisoned bubble attack
     */
     poisonedBubbleAttack() {
-        if (this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked) {
-            this.currentImage = 0;
-            this.keyboardBlocked = true;
-            this.isPoisonedBubbling = true;
-
-            let keepKeyActive = setInterval(() => {
+        if (this.poisonedBubbleAttackActivated()) {
+            this.startPoisonedBubbleAttack();
+            // keeps key event active that the animation cannot be interrupted by pressing other keys
+            let keepVActive = setInterval(() => {
                 this.world.keyboard.V = true;
                 this.activeKeyEvent = true;
             }, 100);
-
-            setTimeout(() => {
-                this.world.keyboard.V = false;
-                this.activeKeyEvent = false;
-                this.isPoisonedBubbling = false;
-                clearInterval(keepKeyActive);
-                this.keyboardBlocked = false;
-                this.createPoisonedBubble();
-            }, 750);
+            this.finishPoisonedBubbleAttack(keepVActive);
         }
     }
 
     /**
-     * creates poisoned bubble object and updates collected bubbles and status bar
+    * checks if poisoned bubble attack is activated
+    * @returns booleans, functions
+    */
+    poisonedBubbleAttackActivated() {
+        return this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked;
+    }
+
+    /**
+     * initializes and starts poisoned bubble attack
+     */
+    startPoisonedBubbleAttack() {
+        this.currentImage = 0;
+        this.keyboardBlocked = true;
+        this.isPoisonedBubbling = true;
+    }
+
+     /**
+     * stops poisoned bubble attack animation by clearing the key event interval. Reset booleans.
+     * calls function to create poisoned bubble object
+     */
+    finishPoisonedBubbleAttack(keepVActive) {
+        setTimeout(() => {
+            this.world.keyboard.V = false;
+            this.activeKeyEvent = false;
+            this.isPoisonedBubbling = false;
+            clearInterval(keepVActive);
+            this.keyboardBlocked = false;
+            this.createPoisonedBubble();
+        }, 750);
+    }
+
+    /**
+     * creates poisoned bubble object, updates collected bubbles and status bar, plays sound
      */
     createPoisonedBubble() {
-        if (this.poisonCollected > 0) {
+        if (this.characterHasPoison()) {
             let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
             this.world.updateStatusbarPoisons();
             if (soundOn) { this.playPoisonedBubbleAttackSound() };
         }
+    }
+
+    /**
+     * checks if player has collected poison
+     * @returns integer
+     */
+    characterHasPoison() {
+        return this.poisonCollected > 0;
+    }
+
+    /**
+    * animates characters movement
+    */
+    animateMovement() {
+        this.listenForMoveDirections();
+        this.moveCamera();
+    }
+
+    /**
+    * checks if the player gives a move direction by pressing an arrow key and moves character
+    */
+    listenForMoveDirections() {
+        if (this.moveDirectionUP()) {
+            this.moveUP();
+            if (soundOn) { this.playCharacterSwimSound() };
+        }
+        if (this.moveDirectionDOWN()) {
+            this.moveDOWN();
+            if (soundOn) { this.playCharacterSwimSound() };
+        }
+        if (this.moveDirectionLEFT()) {
+            this.moveLEFT();
+            if (soundOn) { this.playCharacterSwimSound() };
+            this.otherDirection = true;
+        }
+        if (this.moveDirectionRIGHT()) {
+            this.moveRIGHT();
+            if (soundOn) { this.playCharacterSwimSound() };
+            this.otherDirection = false;
+        }
+    }
+
+    /**
+     * moves camera when character moves
+     * @returns integer
+     */
+    moveCamera() {
+        return this.world.camera_x = -this.x + 10; //spawn position, movebackground
     }
 
     /**
@@ -384,7 +520,7 @@ class Character extends MovealbeObject {
 
     //helpfunctions
 
-    moveDirectionUp() {
+    moveDirectionUP() {
         return this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked;
     }
 

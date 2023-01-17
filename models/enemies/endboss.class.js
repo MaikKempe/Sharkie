@@ -80,10 +80,10 @@ class Endboss extends MovealbeObject {
         this.index++;
     }
 
-     /**
-     * animates endboss death, plays sound and resets stats
-     */
-     animateDeath() {
+    /**
+    * animates endboss death, plays sound and resets stats
+    */
+    animateDeath() {
         this.attack = 0;
         this.speedX = 0;
         this.playAnimation(ENDBOSS_IMAGES_DEAD, 'once');

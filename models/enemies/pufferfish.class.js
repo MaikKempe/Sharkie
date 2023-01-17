@@ -24,13 +24,27 @@ class Pufferfish extends MovealbeObject {
         setInterval(() => {
             if (gameIntervalsRunning) {
                 if (characterMirrored) {
-                    this.x += this.speedFloatingAway;
-                    this.y -= this.speedFloatingAway;
+                    this.slappedRIGHT();
                 } else {
-                    this.x -= this.speedFloatingAway;
-                    this.y -= this.speedFloatingAway;
+                    this.slappedLEFT();
                 }
             }
         }, 1000 / 60)
+    }
+
+    /**
+     * let pufferfish floats right when it is hit by a slap attack
+     */
+    slappedRIGHT() {
+        this.x += this.speedFloatingAway;
+        this.y -= this.speedFloatingAway;
+    }
+
+    /**
+     * let pufferfish floats left when it is hit by a slap attack
+     */
+    slappedLEFT() {
+        this.x -= this.speedFloatingAway;
+        this.y -= this.speedFloatingAway;
     }
 }
