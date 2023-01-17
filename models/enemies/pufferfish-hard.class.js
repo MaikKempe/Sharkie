@@ -25,28 +25,95 @@ class PufferfishHard extends Pufferfish {
     };
 
     /**
-    * animates images for pufferfishes
+    * animates images and gameplay for pufferfish hard
     */
     animateImages() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                if (this.isDead() && this.hitByBubble > 0) { //Death before changed color
-                    this.attack = 0;
-                    this.playAnimation(PUFFERFISH_HARD_IMAGES_DEAD_ANGRY, 'once');
-                } else if (this.isDead() && this.hitByBubble == 0) { // death after changed color
-                    this.attack = 0;
-                    this.playAnimation(PUFFERFISH_HARD_IMAGES_DEAD, 'once');
-                } else if (this.hitByBubble == 1 && !this.isSlapped && !this.isDead()) {
-                    this.playAnimation(PUFFERFISH_HARD_IMAGES_ANGRY, 'multiple');
-                    this.offset.height = 60;
-                } else if (this.hitByBubble == 2 && !this.isSlapped && !this.isDead()) {
-                    this.playAnimation(PUFFERFISH_HARD_IMAGES_ANGRY, 'multiple');
-                    this.offset.height = 60;
-                    this.speedX = 1.5;
+                if (this.deadByBubbleOrSlap()) {
+                    this.animateDeathAngryMode();
+                } else if (this.deadBySlap()) {
+                    this.animateDeathNormalMode();
+                } else if (this.hitByBubbleOnce()) {
+                    this.animateAngryMode1();
+                } else if (this.hitByBubbleTwice()) {
+                    this.animateDeathAngryMode2();
                 } else {
-                    this.playAnimation(PUFFERFISH_HARD_IMAGES_SWIM, 'multiple');
+                    this.animateNormalMode();
                 }
             }
         }, 100);
     }
-};
+
+    /**
+     * checks if pufferfish is dead and hit by bubble before
+     * @returns function, integer
+     */
+    deadByBubbleOrSlap() {
+        return this.isDead() && this.hitByBubble > 0;
+    }
+
+    /**
+     * animates pufferfish death images when it changed color after a bubble attack.
+     */
+    animateDeathAngryMode() {
+        this.attack = 0;
+        this.playAnimation(PUFFERFISH_HARD_IMAGES_DEAD_ANGRY, 'once');
+    }
+
+    /**
+     * checks if the pufferfish was only killed by a slap attack
+     * @returns function, integer
+     */
+    deadBySlap() {
+        return this.isDead() && this.hitByBubble == 0;
+    }
+
+    /**
+    * animates pufferfish death images before it changed color after a bubble attack.
+    */
+    animateDeathNormalMode() {
+        this.attack = 0;
+        this.playAnimation(PUFFERFISH_HARD_IMAGES_DEAD, 'once');
+    }
+
+    /**
+     * checks if pufferfish is hit by bubble once
+     * @returns integer, boolean, function
+     */
+    hitByBubbleOnce() {
+        return this.hitByBubble == 1 && !this.isSlapped && !this.isDead();
+    }
+
+    /**
+     * switches image colors after pufferfish is hit by bubble attack
+     */
+    animateAngryMode1() {
+        this.playAnimation(PUFFERFISH_HARD_IMAGES_ANGRY, 'multiple');
+        this.offset.height = 60;
+    }
+
+    /**
+     * checks if pufferfish is hit by bubble twice
+     * @returns integer, boolean, function
+     */
+    hitByBubbleTwice() {
+        return this.hitByBubble == 2 && !this.isSlapped && !this.isDead();
+    }
+
+    /**
+     * keeps color change and increases speed
+     */
+    animateDeathAngryMode2() {
+        this.playAnimation(PUFFERFISH_HARD_IMAGES_ANGRY, 'multiple');
+        this.offset.height = 60;
+        this.speedX = 1.5;
+    }
+
+    /**
+     * animates the images if the pufferfish hasn't interacted with the character yet
+     */
+    animateNormalMode() {
+        this.playAnimation(PUFFERFISH_HARD_IMAGES_SWIM, 'multiple');
+    }
+}
