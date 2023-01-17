@@ -31,28 +31,29 @@ class BackgroundObject extends MovealbeObject {
         }
     }
 
-    //helpfunctions
+    // helpfunctions
+
     UP() {
         if (this.characterMovesUP()) {
-            super.moveDOWN();
+            this.moveDOWN();
         }
     }
 
     DOWN() {
         if (this.characterMovesDOWN()) {
-            super.moveUP();
+            this.moveUP();
         }
     }
 
     LEFT() {
         if (this.characterMovesLEFT()) {
-            super.moveRIGHT();
+            this.moveRIGHT();
         }
     }
 
     RIGHT() {
         if (this.characterMovesRIGHT()) {
-            super.moveLEFT();
+            this.moveLEFT();
         }
     }
 

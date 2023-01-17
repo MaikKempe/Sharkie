@@ -65,20 +65,20 @@ class Character extends MovealbeObject {
     */
     listenForMoveDirections() {
         if (this.moveDirectionUp()) {
-            super.moveUP();
+            this.moveUP();
             if (soundOn) { this.playCharacterSwimSound() };
         }
         if (this.moveDirectionDOWN()) {
-            super.moveDOWN();
+            this.moveDOWN();
             if (soundOn) { this.playCharacterSwimSound() };
         }
         if (this.moveDirectionLEFT()) {
-            super.moveLEFT();
+            this.moveLEFT();
             if (soundOn) { this.playCharacterSwimSound() };
             this.otherDirection = true;
         }
         if (this.moveDirectionRIGHT()) {
-            super.moveRIGHT();
+            this.moveRIGHT();
             if (soundOn) { this.playCharacterSwimSound() };
             this.otherDirection = false;
         }
