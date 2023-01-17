@@ -60,6 +60,7 @@ class Character extends MovealbeObject {
     /**
      * animates characters images calls other gameplay functions
      */
+
     animateImages() {
         if (this.isDead()) {
             this.animateDeath();
@@ -88,6 +89,14 @@ class Character extends MovealbeObject {
     }
 
     /**
+     * animates characters: death images, plays sound
+     */
+    animateDeath() {
+        this.playAnimation(CHARACTER_IMAGES_DEAD, 'once');
+        if (soundOn) { this.playCharacterIsDeadSounds() };
+    }
+
+    /**
      * ends game when character is dead.
      */
     gameOver() {
@@ -95,14 +104,6 @@ class Character extends MovealbeObject {
         setTimeout(() => {
             stopGame(false);
         }, 3500);
-    }
-
-    /**
-     * animates characters: death images, plays sound
-     */
-    animateDeath() {
-        this.playAnimation(CHARACTER_IMAGES_DEAD, 'once');
-        if (soundOn) { this.playCharacterIsDeadSounds() };
     }
 
     /**
@@ -335,10 +336,10 @@ class Character extends MovealbeObject {
         this.isPoisonedBubbling = true;
     }
 
-     /**
-     * stops poisoned bubble attack animation by clearing the key event interval. Reset booleans.
-     * calls function to create poisoned bubble object
-     */
+    /**
+    * stops poisoned bubble attack animation by clearing the key event interval. Reset booleans.
+    * calls function to create poisoned bubble object
+    */
     finishPoisonedBubbleAttack(keepVActive) {
         setTimeout(() => {
             this.world.keyboard.V = false;

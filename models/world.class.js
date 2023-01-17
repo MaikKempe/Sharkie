@@ -156,8 +156,8 @@ class World {
         setInterval(() => {
             if (gameIntervalsRunning) {
                 this.enemyHitsCharacter();
-                this.bubbleHitsEnemy();
-                this.poisonedBubbleHitsEnemy();
+                this.bubbleMeetsEnvironment();
+                this.poisonedBubbleMeetsEnviroment();
                 this.characterSlapsEnemy();
                 this.characterCollectsObject();
             }
@@ -215,7 +215,7 @@ class World {
      * collision between bubble and enemy. calls hit function. Deletes bubble after collision or when it leaves the map.
      * bubbles only effect normal Pufferfishes.
      */
-    bubbleHitsEnemy() {
+    bubbleMeetsEnvironment() {
         this.bubbles.forEach(bubble => {
             this.bubbleLeavesWindow(bubble);
             this.bubbleMeetsEndboss(bubble);
@@ -224,7 +224,7 @@ class World {
     }
 
     /**
-     * checks if bubble leves window and deletes it
+     * checks if bubble leaves window and deletes it
      * @param {object} bubble 
      */
     bubbleLeavesWindow(bubble) {
@@ -250,45 +250,99 @@ class World {
      */
     bubbleMeetsRegularEnemy(bubble) {
         this.level.enemies.forEach((enemy) => {
-            if (bubble.isColliding(enemy)) {
-                if (enemy instanceof PufferfishNormal) {
-                    if (soundOn) { this.playBubbleBurstSound(); }
-                    enemy.hit(bubble.attack);
-                    this.deleteObject(this.bubbles, bubble);
-                }
-                if (enemy instanceof PufferfishHard) {
-                    enemy.hitByBubble++;
-                    if (soundOn) { this.playBubbleBurstSound(); }
-                    enemy.hit(bubble.attack);
-                    this.deleteObject(this.bubbles, bubble);
-                }
-            }
+            this.bubbleMeetsPufferfishNormal(enemy, bubble);
+            this.bubbleMeetsPufferfishHard(enemy, bubble);
         });
+    }
+
+    /**
+     * checks if normal pufferfish is hit by bubble. Calls hit function, deletes bubble, play sound
+     * @param {object} enemy pufferfish normal
+     * @param {object} bubble 
+     */
+    bubbleMeetsPufferfishNormal(enemy, bubble) {
+        if (bubble.isColliding(enemy)) {
+            if (enemy instanceof PufferfishNormal) {
+                if (soundOn) { this.playBubbleBurstSound(); }
+                enemy.hit(bubble.attack);
+                this.deleteObject(this.bubbles, bubble);
+            }
+        }
+    }
+
+    /**
+     * checks if a hard pufferfish is hit by bubble. Calls hit function, deletes bubble, updates stats, play sound
+     * @param {object} enemy pufferfish hard
+     * @param {object} bubble 
+     */
+    bubbleMeetsPufferfishHard(enemy, bubble) {
+        if (bubble.isColliding(enemy)) {
+            if (enemy instanceof PufferfishHard) {
+                enemy.hitByBubble++;
+                if (soundOn) { this.playBubbleBurstSound(); }
+                enemy.hit(bubble.attack);
+                this.deleteObject(this.bubbles, bubble);
+            }
+        }
     }
 
     /**
     * collision between poisoned bubbles and enemy. calls hit function. Deletes poisoned bubble after collision or when it leaves the map.
     * poisoned bubbles only effect endboss. Updates endboss statusbar.
     */
-    poisonedBubbleHitsEnemy() {
+    poisonedBubbleMeetsEnviroment() {
         this.poisonedBubbles.forEach(poisonedBubble => {
-            if (poisonedBubble.y < 0) { //bubble leaves window
-                this.deleteObject(this.poisonedBubbles, poisonedBubble);
-            }
-            if (poisonedBubble.isColliding(this.level.endboss)) {
-                this.level.endboss.hit(poisonedBubble.attack);
-                this.updateStatusbarEndboss(this.level.endboss.energy);
-                this.deleteObject(this.poisonedBubbles, poisonedBubble);
-            }
-            this.level.enemies.forEach((enemy) => {
-                if (poisonedBubble.isColliding(enemy)) {
-                    if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
-                        if (soundOn) { this.playBubbleBurstSound(); }
-                        this.deleteObject(this.poisonedBubbles, poisonedBubble);
-                    }
-                }
-            });
+            this.poisonedBubbleLeavesWindow(poisonedBubble);
+            this.poisonedBubbleMeetsEndboss(poisonedBubble);
+            this.poisonedBubbleMeetsRegularEnemy(poisonedBubble);
         });
+    }
+
+    /**
+     * checks if poisoned bubble leaves window and deletes it
+     * @param {object} poisonedBubble 
+     */
+    poisonedBubbleLeavesWindow(poisonedBubble) {
+        if (poisonedBubble.y < 0) {
+            this.deleteObject(this.poisonedBubbles, poisonedBubble);
+        }
+    }
+
+    /**
+     * checks if poisoned bubble collides with endboss. deletes bubble and updates statusbar
+     * @param {object} poisonedBubble 
+     */
+    poisonedBubbleMeetsEndboss(poisonedBubble) {
+        if (poisonedBubble.isColliding(this.level.endboss)) {
+            this.level.endboss.hit(poisonedBubble.attack);
+            this.updateStatusbarEndboss(this.level.endboss.energy);
+            this.deleteObject(this.poisonedBubbles, poisonedBubble);
+        }
+    }
+
+    /**
+     * checks if poisoned bubble collides with regular enemies (pufferfish etc.). Deletes bubbles, calls hitfunction
+     * @param {object} poisonedBubble 
+     */
+    poisonedBubbleMeetsRegularEnemy(poisonedBubble) {
+        this.level.enemies.forEach((enemy) => {
+            this.poisonedBubbleMeetsPufferfishes(enemy, poisonedBubble)
+        });
+    }
+
+    /**
+    * checks if pufferfish is hit by poisoned bubble und deletes it
+    * Pufferfishes are not effected by poisoned bubbles
+    * @param {object} enemy pufferfish normal
+    * @param {object} poisonedBubble 
+    */
+    poisonedBubbleMeetsPufferfishes(enemy, poisonedBubble) {
+        if (poisonedBubble.isColliding(enemy)) {
+            if (enemy instanceof PufferfishNormal || enemy instanceof PufferfishHard) {
+                if (soundOn) { this.playBubbleBurstSound(); }
+                this.deleteObject(this.poisonedBubbles, poisonedBubble);
+            }
+        }
     }
 
     /**
@@ -296,15 +350,23 @@ class World {
      */
     characterSlapsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
-                enemy.isSlapped = true;
-                if (soundOn) { this.playSlapSound(); }
-                setTimeout(() => {
-                    enemy.hit(this.character.attack);
-                    enemy.slappedAway(this.character.otherDirection);
-                }, 100);
-            }
+            this.characterSlapsPufferfish(enemy);
         });
+    }
+
+    /**
+     * checks if a pufferfish is hit by slap attack. calls hit function and moves pufferfish from map.
+     * @param {object} enemy pufferfish
+     */
+    characterSlapsPufferfish(enemy) {
+        if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
+            enemy.isSlapped = true;
+            if (soundOn) { this.playSlapSound(); }
+            setTimeout(() => {
+                enemy.hit(this.character.attack);
+                enemy.slappedAway(this.character.otherDirection);
+            }, 100);
+        }
     }
 
     /**
