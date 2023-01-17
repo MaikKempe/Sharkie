@@ -25,7 +25,7 @@ class PufferfishHard extends Pufferfish {
     };
 
     /**
-    * animates images and gameplay for pufferfish hard
+    * animates images and gameplay settings for pufferfish hard
     */
     animateImages() {
         setInterval(() => {
