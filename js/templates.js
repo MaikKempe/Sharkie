@@ -226,7 +226,7 @@ function helpSectionTemplate() {
             <img src="img/8_icons/arrows.png" class="key-img">
           </div>
           <h4>Move</h4>
-          <img class="sharkie-preview" src="img/7_introduction/sharkie.png">
+          <img class="sharkie-preview" src="img/7_introduction/sharkie_web.png">
         </div>
      </div>
      <div class="help-row">
@@ -235,10 +235,10 @@ function helpSectionTemplate() {
             <div class="key-letter">Space</div>
           </div>
           <h4>Slap Attack</h4>
-          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_slap.png">
+          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_slap_web.png">
         </div>
         <div class="help-child">
-          <img class="enemy-preview" src="img/7_introduction/pufferfishes.png">
+          <img class="enemy-preview" src="img/7_introduction/pufferfishes_web.png">
         </div>
      </div>
      <div class="help-row">
@@ -247,10 +247,10 @@ function helpSectionTemplate() {
             <div class="key-letter">B</div>
           </div>
           <h4>Bubble Attack</h4>
-          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_bubble.png">
+          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_bubble_web.png">
         </div>
         <div class="help-child">
-          <img class="enemy-preview" src="img/7_introduction/pufferfishes.png">
+          <img class="enemy-preview" src="img/7_introduction/pufferfishes_web.png">
         </div>
        </div>
      <div class="help-row">
@@ -259,10 +259,10 @@ function helpSectionTemplate() {
             <div class="key-letter">V</div>
           </div>
           <h4>Poisoned Bubble Attack</h4>
-          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_poisoned_bubble.png">
+          <img class="sharkie-attack-preview" src="img/7_introduction/sharkie_poisoned_bubble_web.png">
         </div>
         <div class="help-child">
-          <img class="enemy-preview" src="img/7_introduction/endboss.png">
+          <img class="enemy-preview" src="img/7_introduction/endboss_web.png">
         </div>
        </div>
      <div class="help-headline">
@@ -270,11 +270,11 @@ function helpSectionTemplate() {
      </div>
      <div class="collectible-element-row">
         <div class="collectible-element">
-          <img class="coin" src="img/7_introduction/coin.png">
+          <img class="coin" src="img/7_introduction/coin_web.png">
           <span>Coin</span>
         </div>
         <div class="collectible-element">
-          <img class="poison" src="img/7_introduction/poison.png">
+          <img class="poison" src="img/7_introduction/poison_web.png">
           <span>Poison</span>
         </div>
      </div>

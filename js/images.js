@@ -29,14 +29,14 @@ const UI_IMAGES = [
 
     // help-sction
     'img/8_icons/arrows.png',
-    'img/7_introduction/sharkie.png',
-    'img/7_introduction/sharkie_slap.png',
-    'img/7_introduction/pufferfishes.png',
-    'img/7_introduction/sharkie_bubble.png',
-    'img/7_introduction/sharkie_poisoned_bubble.png',
-    'img/7_introduction/endboss.png',
-    'img/7_introduction/coin.png',
-    'img/7_introduction/poison.png',
+    'img/7_introduction/sharkie_web.png',
+    'img/7_introduction/sharkie_slap_web.png',
+    'img/7_introduction/pufferfishes_web.png',
+    'img/7_introduction/sharkie_bubble_web.png',
+    'img/7_introduction/sharkie_poisoned_bubble_web.png',
+    'img/7_introduction/endboss_web.png',
+    'img/7_introduction/coin_web.png',
+    'img/7_introduction/poison_web.png',
 ];
 
 //##################### Background #############################

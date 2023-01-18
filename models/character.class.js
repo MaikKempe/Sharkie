@@ -45,8 +45,9 @@ class Character extends MovealbeObject {
     animate() {
         setInterval(() => {
             if (gameIntervalsRunning) {
-                this.animateImages();
                 this.listenForSingleMoves();
+                this.animateImages();
+             
             }
         }, 100);
 
