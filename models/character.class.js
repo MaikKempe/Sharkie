@@ -47,7 +47,7 @@ class Character extends MovealbeObject {
             if (gameIntervalsRunning) {
                 this.listenForSingleMoves();
                 this.animateImages();
-             
+
             }
         }, 100);
 
@@ -194,7 +194,11 @@ class Character extends MovealbeObject {
     * @returns booleans, functions
     */
     slapAttackActivated() {
-        return this.world.keyboard.SPACE && !this.activeKeyEvent && !this.isDead() && !this.isHurt1() && !this.keyboardBlocked;
+        return this.world.keyboard.SPACE &&
+            !this.activeKeyEvent &&
+            !this.isDead() &&
+            !this.isHurt1() &&
+            !this.keyboardBlocked;
     }
 
     /**
@@ -268,7 +272,10 @@ class Character extends MovealbeObject {
     * @returns booleans, functions
     */
     bubbleAttackActivated() {
-        return this.world.keyboard.B && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked;
+        return this.world.keyboard.B &&
+            !this.activeKeyEvent &&
+            !this.isDead() &&
+            !this.keyboardBlocked;
     }
 
     /**
@@ -300,7 +307,10 @@ class Character extends MovealbeObject {
      * creates bubble object, plays sound
      */
     createBubble() {
-        let bubble = new Bubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
+        let bubble = new Bubble(
+            this.x + this.offset.x + this.offset.y,
+            this.y + this.offset.y,
+            this.otherDirection);
         this.world.bubbles.push(bubble);
         if (soundOn) { this.playBubbleAttackSound() };
     }
@@ -325,7 +335,10 @@ class Character extends MovealbeObject {
     * @returns booleans, functions
     */
     poisonedBubbleAttackActivated() {
-        return this.world.keyboard.V && !this.activeKeyEvent && !this.isDead() && !this.keyboardBlocked;
+        return this.world.keyboard.V &&
+            !this.activeKeyEvent &&
+            !this.isDead() &&
+            !this.keyboardBlocked;
     }
 
     /**
@@ -357,7 +370,10 @@ class Character extends MovealbeObject {
      */
     createPoisonedBubble() {
         if (this.characterHasPoison()) {
-            let poisonedBubble = new PoisonedBubble(this.x + this.offset.x + this.offset.y, this.y + this.offset.y, this.otherDirection);
+            let poisonedBubble = new PoisonedBubble(
+                this.x + this.offset.x + this.offset.y,
+                this.y + this.offset.y,
+                this.otherDirection);
             this.world.poisonedBubbles.push(poisonedBubble);
             this.poisonCollected--;
             this.world.updateStatusbarPoisons();
@@ -434,7 +450,13 @@ class Character extends MovealbeObject {
      * @returns boolean
      */
     noKeyIsPressed() {
-        return !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.V && !this.world.keyboard.B;
+        return !this.world.keyboard.UP &&
+            !this.world.keyboard.DOWN &&
+            !this.world.keyboard.LEFT &&
+            !this.world.keyboard.RIGHT &&
+            !this.world.keyboard.SPACE &&
+            !this.world.keyboard.V &&
+            !this.world.keyboard.B;
     }
 
     /**
@@ -523,18 +545,30 @@ class Character extends MovealbeObject {
     //helpfunctions
 
     moveDirectionUP() {
-        return this.world.keyboard.UP && this.y > this.world.level.startY && !this.isDead() && !this.keyboardBlocked;
+        return this.world.keyboard.UP &&
+            this.y > this.world.level.startY &&
+            !this.isDead() &&
+            !this.keyboardBlocked;
     }
 
     moveDirectionDOWN() {
-        return this.world.keyboard.DOWN && this.y < this.world.level.endY && !this.isDead() && !this.keyboardBlocked;
+        return this.world.keyboard.DOWN &&
+            this.y < this.world.level.endY &&
+            !this.isDead() &&
+            !this.keyboardBlocked;
     }
 
     moveDirectionLEFT() {
-        return this.world.keyboard.LEFT && this.x > this.world.level.levelStartX && !this.isDead() && !this.keyboardBlocked;
+        return this.world.keyboard.LEFT &&
+            this.x > this.world.level.levelStartX &&
+            !this.isDead() &&
+            !this.keyboardBlocked;
     }
 
     moveDirectionRIGHT() {
-        return this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX && !this.isDead() && !this.keyboardBlocked;
+        return this.world.keyboard.RIGHT &&
+            this.x < this.world.level.levelEndX &&
+            !this.isDead() &&
+            !this.keyboardBlocked;
     }
 }

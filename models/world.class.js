@@ -190,7 +190,9 @@ class World {
      * @returns funtions, objects, boolean
      */
     regularEnemyCollidesWithCharacter(enemy) {
-        return this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isSlapping;
+        return this.character.isColliding(enemy) &&
+            !enemy.isDead() &&
+            !this.character.isSlapping;
     }
 
     /**
@@ -359,7 +361,10 @@ class World {
      * @param {object} enemy pufferfish
      */
     characterSlapsPufferfish(enemy) {
-        if (this.character.isColliding(enemy) && !enemy.isDead() && this.character.isSlapping && enemy instanceof Pufferfish) {
+        if (this.character.isColliding(enemy) &&
+            !enemy.isDead() &&
+            this.character.isSlapping &&
+            enemy instanceof Pufferfish) {
             enemy.isSlapped = true;
             if (soundOn) { this.playSlapSound(); }
             setTimeout(() => {
