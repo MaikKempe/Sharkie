@@ -128,7 +128,7 @@ class Endboss extends MovealbeObject {
     */
     animateSwimming() {
         this.playAnimation(ENDBOSS_IMAGES_SWIM, 'multiple');
-        this.speedX = 0.5;
+        this.speedX = 0.7;
     }
 
     /**
