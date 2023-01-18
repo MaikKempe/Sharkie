@@ -7,7 +7,7 @@ function startScreenTemplate() {
     <div class="startscreen">
     <img class="bg" src="img/3_background/dark/1.png">
       <div class="h1-container">
-        <img class="sharkie-startscreen" src="img/1_sharkie/1_IDLE/1.png">
+        <img class="sharkie-startscreen hide-mobile" src="img/1_sharkie/1_IDLE/1.png">
         <h1 id="h1">Sharkie</h1>
       </div>
       <button id="start-btn" class="start-btn" onclick="startGame()">START GAME</button>
@@ -176,7 +176,7 @@ function gameOverScreenTemplate() {
   <div class="endscreen">
     <img class="bg" src="img/3_background/dark/1.png">
       <div class="headline-container">
-        <img class="sharkie-game-over" src="img/1_sharkie/6_dead/1_poisoned/sin_subir/DES 2_00011.png">
+        <img class="sharkie-game-over hide-mobile" src="img/1_sharkie/6_dead/1_poisoned/sin_subir/DES 2_00011.png">
         <h2>GAME OVER</h2>
       </div>
       <button class="btn" onclick="reload()">Try again</button>
@@ -192,7 +192,7 @@ function winScreenTemplate() {
   <div class="endscreen">
     <img class="bg" src="img/3_background/dark/1.png">
       <div class="headline-container">
-        <img class="sharkie-win" src="img/6_botones/sharkie_win.png">
+        <img class="sharkie-win hide-mobile" src="img/6_botones/sharkie_win.png">
         <h2>YOU WIN!</h2>
       </div>
       <div class="coin-info">You have collected ${world.character.coinsCollected} of ${world.level.allCoins} Coins</div>
