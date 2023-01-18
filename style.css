@@ -233,6 +233,9 @@ h4 {
 .move-screen-infotext {
     font-size: 16px;
     color: white;
+    padding-left: 12px;
+    padding-right: 12px;
+    text-align: center;
 }
 
 .sliding-arrow {

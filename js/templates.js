@@ -14,7 +14,7 @@ function startScreenTemplate() {
       <button id="help-btn" class="btn" onclick="showHelpSection()">HELP</button>
       <div id="turn-screen-info">
         <img class="sliding-arrow" src="img/8_icons/move_screen_arrow.png">
-        <span class="move-screen-infotext">Please turn your screen</span>
+        <span class="move-screen-infotext">Please turn your screen to start the game</span>
       </div>
       <div id="startscreen-animation">
           <div class="bubble bubble-1"></div>
