@@ -20,7 +20,7 @@ Sharkie is a simple jump-and-run game based on an object-oriented approach. Chec
 - Open the folder and start the index.hmtl in your browser.
 
 ## License
-- The source code is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+- The source code is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 - The copyright for all graphics and images belongs to [Developer Akademie](https://developerakademie.com/).
 
 ## Acknowledgments
