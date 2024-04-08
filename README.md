@@ -13,9 +13,7 @@ Sharkie is a simple jump-and-run game based on an object-oriented approach. Chec
 
 ### Run the game
 
-- Download the .zip file of the repository or clone it with the following command:
-
-`git clone git@github.com:MaikKempe/Sharkie.git`
+- Download the .zip file of the repository or clone it with the following command: `git clone git@github.com:MaikKempe/Sharkie.git`
 
 - Open the folder and start the index.hmtl in your browser.
 
